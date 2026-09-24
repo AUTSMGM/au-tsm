@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AU TSM | WoW Forever</title>
+    <title>AU TSM | World of Warcraft Forever</title>
 
     <style>
 
@@ -15,25 +15,37 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
+
             background:
-                radial-gradient(circle at top, #25201a 0%, #111111 45%, #090909 100%);
+                radial-gradient(circle at top, #2a211a 0%, #151210 42%, #080808 100%);
+
             color: #e8e1d5;
             min-height: 100vh;
         }
 
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================== */
 
         header {
-            border-bottom: 1px solid #594522;
-            background: rgba(0,0,0,0.75);
+            border-bottom: 1px solid #5d4527;
+            background: rgba(8, 8, 8, 0.92);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-inner {
             max-width: 1100px;
             margin: auto;
-            padding: 28px 20px;
+            padding: 22px 20px;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -41,88 +53,120 @@
 
         .logo h1 {
             color: #d6a84b;
-            font-size: 36px;
+            font-size: 34px;
             letter-spacing: 3px;
         }
 
         .logo p {
-            color: #aaa08d;
+            color: #9f9688;
             margin-top: 4px;
-            font-size: 14px;
+            font-size: 12px;
+            letter-spacing: 2px;
         }
 
         nav a {
-            color: #d6d0c4;
+            color: #d4cec4;
             text-decoration: none;
-            margin-left: 24px;
+            margin-left: 26px;
             font-size: 14px;
+            transition: 0.2s;
         }
 
         nav a:hover {
             color: #d6a84b;
         }
 
-        /* MAIN */
+        /* =========================
+           MAIN
+        ========================== */
 
         main {
             max-width: 1100px;
             margin: auto;
-            padding: 60px 20px;
+            padding: 40px 20px 70px;
         }
 
-        /* HERO */
+        /* =========================
+           HERO
+        ========================== */
 
         .hero {
             text-align: center;
-            padding: 70px 20px 90px;
+            padding: 80px 20px 100px;
         }
 
         .hero .small-title {
-            color: #d6a84b;
+            color: #c44232;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             font-size: 13px;
-            margin-bottom: 15px;
+            font-weight: bold;
+            margin-bottom: 18px;
         }
 
         .hero h2 {
-            font-family: Georgia, serif;
-            font-size: 60px;
-            color: #f2eadb;
-            margin-bottom: 15px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 70px;
+            color: #f0e6d3;
+            margin-bottom: 18px;
+            letter-spacing: 5px;
+        }
+
+        .hero .forever {
+            color: #d6a84b;
         }
 
         .hero p {
-            color: #aaa08d;
-            max-width: 650px;
+            color: #aaa194;
+            max-width: 700px;
             margin: auto;
-            line-height: 1.7;
+            line-height: 1.8;
             font-size: 17px;
         }
 
-        /* SECTION */
+        .faction {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 8px 16px;
+
+            border: 1px solid #71352d;
+            background: rgba(100, 30, 25, 0.18);
+
+            color: #d16b5f;
+
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+        }
+
+        /* =========================
+           SECTIONS
+        ========================== */
 
         section {
-            margin-bottom: 70px;
+            margin-bottom: 80px;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .section-title h3 {
-            font-family: Georgia, serif;
-            font-size: 28px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 30px;
             color: #d6a84b;
         }
 
         .section-title p {
-            margin-top: 8px;
-            color: #8e877b;
+            margin-top: 9px;
+            color: #827b71;
+            font-size: 14px;
         }
 
-        /* STATS */
+        /* =========================
+           STATS
+        ========================== */
 
         .stats {
             display: grid;
@@ -131,93 +175,188 @@
         }
 
         .stat-card {
-            background: rgba(25, 23, 20, 0.9);
-            border: 1px solid #3d3529;
-            padding: 30px 15px;
+            background: rgba(25, 22, 19, 0.93);
+            border: 1px solid #40362b;
+
+            padding: 32px 15px;
+
             text-align: center;
             border-radius: 5px;
         }
 
         .stat-number {
             display: block;
+
             color: #d6a84b;
-            font-size: 40px;
+
+            font-size: 42px;
             font-weight: bold;
-            margin-bottom: 7px;
+
+            margin-bottom: 8px;
         }
 
         .stat-label {
             color: #938b7f;
-            font-size: 13px;
+
+            font-size: 12px;
+
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
-        /* CLASS GRID */
+        /* =========================
+           CLASS DISTRIBUTION
+        ========================== */
 
         .classes {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
         }
 
         .class-card {
-            background: #181716;
-            border: 1px solid #37322c;
-            padding: 18px 10px;
+            background: #181614;
+            border: 1px solid #38312a;
+
+            padding: 22px 15px;
+
+            text-align: center;
+            border-radius: 4px;
+
+            transition: 0.2s;
+        }
+
+        .class-card:hover {
+            border-color: #65533b;
+            transform: translateY(-2px);
+        }
+
+        .class-count {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .class-name {
+            color: #a39a8e;
+            font-size: 14px;
+        }
+
+        /* WoW class colours */
+
+        .warrior {
+            color: #C79C6E;
+        }
+
+        .paladin {
+            color: #F58CBA;
+        }
+
+        .hunter {
+            color: #ABD473;
+        }
+
+        .rogue {
+            color: #FFF569;
+        }
+
+        .priest {
+            color: #FFFFFF;
+        }
+
+        .shaman {
+            color: #0070DE;
+        }
+
+        .mage {
+            color: #69CCF0;
+        }
+
+        .warlock {
+            color: #9482C9;
+        }
+
+        .druid {
+            color: #FF7D0A;
+        }
+
+        /* =========================
+           GUILD INFO
+        ========================== */
+
+        .guild-info {
+            max-width: 800px;
+            margin: auto;
+
+            background: rgba(23, 20, 18, 0.9);
+
+            border-left: 3px solid #d6a84b;
+
+            padding: 32px;
+
+            line-height: 1.8;
+            color: #bbb2a5;
+        }
+
+        .guild-info strong {
+            color: #e3d7c5;
+        }
+
+        /* =========================
+           QUICK INFO
+        ========================== */
+
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .quick-card {
+            background: rgba(21, 19, 17, 0.9);
+            border: 1px solid #38312a;
+
+            padding: 25px;
+
             text-align: center;
             border-radius: 4px;
         }
 
-        .class-count {
-            font-size: 26px;
-            font-weight: bold;
-            margin-bottom: 5px;
+        .quick-card h4 {
+            color: #d6a84b;
+            margin-bottom: 10px;
+            font-size: 16px;
         }
 
-        .class-name {
-            color: #9e978c;
-            font-size: 13px;
+        .quick-card p {
+            color: #958d82;
+            line-height: 1.6;
+            font-size: 14px;
         }
 
-        /* WoW class inspired colours */
-
-        .warrior { color: #C79C6E; }
-        .paladin { color: #F58CBA; }
-        .hunter { color: #ABD473; }
-        .rogue { color: #FFF569; }
-        .priest { color: #FFFFFF; }
-        .shaman { color: #0070DE; }
-        .mage { color: #69CCF0; }
-        .warlock { color: #9482C9; }
-        .monk { color: #00FF96; }
-        .druid { color: #FF7D0A; }
-        .demonhunter { color: #A330C9; }
-        .deathknight { color: #C41F3B; }
-
-        /* ABOUT */
-
-        .about {
-            max-width: 760px;
-            margin: auto;
-            background: rgba(22,20,18,0.85);
-            border-left: 3px solid #d6a84b;
-            padding: 30px;
-            line-height: 1.8;
-            color: #b9b1a3;
-        }
-
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================== */
 
         footer {
             text-align: center;
+
             border-top: 1px solid #302a22;
-            padding: 30px 20px;
+
+            padding: 35px 20px;
+
             color: #69645c;
+
             font-size: 13px;
         }
 
-        /* MOBILE */
+        footer span {
+            color: #9a8562;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
 
         @media (max-width: 800px) {
 
@@ -225,8 +364,12 @@
                 display: none;
             }
 
+            .hero {
+                padding-top: 60px;
+            }
+
             .hero h2 {
-                font-size: 42px;
+                font-size: 48px;
             }
 
             .stats {
@@ -237,12 +380,32 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
+            .quick-info {
+                grid-template-columns: 1fr;
+            }
+
         }
 
-        @media (max-width: 450px) {
+        @media (max-width: 500px) {
+
+            .hero h2 {
+                font-size: 40px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
 
             .classes {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-inner {
+                justify-content: center;
+            }
+
+            .logo {
+                text-align: center;
             }
 
         }
@@ -259,15 +422,24 @@
     <div class="header-inner">
 
         <div class="logo">
+
             <h1>AU TSM</h1>
+
             <p>WORLD OF WARCRAFT • FOREVER</p>
+
         </div>
 
+
         <nav>
+
             <a href="#home">Home</a>
+
             <a href="#stats">Stats</a>
+
             <a href="#classes">Classes</a>
-            <a href="#about">Guild</a>
+
+            <a href="#guild">Guild</a>
+
         </nav>
 
     </div>
@@ -275,57 +447,103 @@
 </header>
 
 
+
 <main>
 
 
-    <!-- HERO -->
+    <!-- =========================
+         HERO
+    ========================== -->
 
     <section class="hero" id="home">
 
-        <div class="small-title">Oceanic Guild</div>
+        <div class="small-title">
+            Horde • Oceanic
+        </div>
 
-        <h2>AU TSM</h2>
+        <h2>
+            AU <span class="forever">TSM</span>
+        </h2>
 
         <p>
-            An Australian World of Warcraft Forever guild.
-            Built around good people, good banter and playing the game
-            for the long haul.
+
+            An Australian World of Warcraft Forever guild built around
+            mates, progression, good banter and enjoying Azeroth for the
+            long haul.
+
         </p>
+
+        <div class="faction">
+            For The Horde
+        </div>
 
     </section>
 
 
 
-    <!-- GUILD STATS -->
+    <!-- =========================
+         GUILD STATS
+    ========================== -->
 
     <section id="stats">
 
         <div class="section-title">
+
             <h3>Guild Statistics</h3>
-            <p>Current AU TSM numbers</p>
+
+            <p>
+                Current AU TSM guild numbers
+            </p>
+
         </div>
+
 
         <div class="stats">
 
+
             <div class="stat-card">
+
                 <span class="stat-number">42</span>
-                <span class="stat-label">Members</span>
+
+                <span class="stat-label">
+                    Members
+                </span>
+
             </div>
 
+
             <div class="stat-card">
+
                 <span class="stat-number">58</span>
-                <span class="stat-label">Characters</span>
+
+                <span class="stat-label">
+                    Characters
+                </span>
+
             </div>
 
+
             <div class="stat-card">
+
                 <span class="stat-number">24</span>
-                <span class="stat-label">Level Cap</span>
+
+                <span class="stat-label">
+                    Level Cap
+                </span>
+
             </div>
 
+
             <div class="stat-card">
+
                 <span class="stat-number">17</span>
-                <span class="stat-label">Active Raiders</span>
+
+                <span class="stat-label">
+                    Active Players
+                </span>
+
             </div>
+
 
         </div>
 
@@ -333,76 +551,142 @@
 
 
 
-    <!-- CLASS DISTRIBUTION -->
+    <!-- =========================
+         CLASS DISTRIBUTION
+    ========================== -->
 
     <section id="classes">
 
         <div class="section-title">
+
             <h3>Class Distribution</h3>
-            <p>Characters currently representing AU TSM</p>
+
+            <p>
+                Characters currently representing AU TSM
+            </p>
+
         </div>
+
 
         <div class="classes">
 
-            <div class="class-card">
-                <div class="class-count warrior">6</div>
-                <div class="class-name">Warrior</div>
-            </div>
 
             <div class="class-card">
-                <div class="class-count paladin">5</div>
-                <div class="class-name">Paladin</div>
+
+                <div class="class-count warrior">
+                    6
+                </div>
+
+                <div class="class-name">
+                    Warrior
+                </div>
+
             </div>
 
-            <div class="class-card">
-                <div class="class-count hunter">7</div>
-                <div class="class-name">Hunter</div>
-            </div>
 
             <div class="class-card">
-                <div class="class-count rogue">3</div>
-                <div class="class-name">Rogue</div>
+
+                <div class="class-count paladin">
+                    5
+                </div>
+
+                <div class="class-name">
+                    Paladin
+                </div>
+
             </div>
 
-            <div class="class-card">
-                <div class="class-count priest">4</div>
-                <div class="class-name">Priest</div>
-            </div>
 
             <div class="class-card">
-                <div class="class-count shaman">6</div>
-                <div class="class-name">Shaman</div>
+
+                <div class="class-count hunter">
+                    7
+                </div>
+
+                <div class="class-name">
+                    Hunter
+                </div>
+
             </div>
 
-            <div class="class-card">
-                <div class="class-count mage">5</div>
-                <div class="class-name">Mage</div>
-            </div>
 
             <div class="class-card">
-                <div class="class-count warlock">4</div>
-                <div class="class-name">Warlock</div>
+
+                <div class="class-count rogue">
+                    3
+                </div>
+
+                <div class="class-name">
+                    Rogue
+                </div>
+
             </div>
 
-            <div class="class-card">
-                <div class="class-count monk">2</div>
-                <div class="class-name">Monk</div>
-            </div>
 
             <div class="class-card">
-                <div class="class-count druid">7</div>
-                <div class="class-name">Druid</div>
+
+                <div class="class-count priest">
+                    4
+                </div>
+
+                <div class="class-name">
+                    Priest
+                </div>
+
             </div>
 
-            <div class="class-card">
-                <div class="class-count demonhunter">3</div>
-                <div class="class-name">Demon Hunter</div>
-            </div>
 
             <div class="class-card">
-                <div class="class-count deathknight">6</div>
-                <div class="class-name">Death Knight</div>
+
+                <div class="class-count shaman">
+                    6
+                </div>
+
+                <div class="class-name">
+                    Shaman
+                </div>
+
             </div>
+
+
+            <div class="class-card">
+
+                <div class="class-count mage">
+                    5
+                </div>
+
+                <div class="class-name">
+                    Mage
+                </div>
+
+            </div>
+
+
+            <div class="class-card">
+
+                <div class="class-count warlock">
+                    4
+                </div>
+
+                <div class="class-name">
+                    Warlock
+                </div>
+
+            </div>
+
+
+            <div class="class-card">
+
+                <div class="class-count druid">
+                    7
+                </div>
+
+                <div class="class-name">
+                    Druid
+                </div>
+
+            </div>
+
 
         </div>
 
@@ -410,27 +694,110 @@
 
 
 
-    <!-- ABOUT -->
+    <!-- =========================
+         QUICK INFO
+    ========================== -->
 
-    <section id="about">
+    <section>
 
         <div class="section-title">
-            <h3>The Guild</h3>
-        </div>
 
-        <div class="about">
+            <h3>AU TSM</h3>
 
             <p>
-                AU TSM is an Oceanic World of Warcraft Forever guild,
-                primarily made up of Australian and New Zealand players.
+                The important stuff
+            </p>
+
+        </div>
+
+
+        <div class="quick-info">
+
+
+            <div class="quick-card">
+
+                <h4>Faction</h4>
+
+                <p>
+                    Horde
+                </p>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <h4>Region</h4>
+
+                <p>
+                    Oceanic
+                </p>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <h4>Game</h4>
+
+                <p>
+                    World of Warcraft Forever
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         GUILD INFO
+    ========================== -->
+
+    <section id="guild">
+
+        <div class="section-title">
+
+            <h3>The Guild</h3>
+
+            <p>
+                Who we are
+            </p>
+
+        </div>
+
+
+        <div class="guild-info">
+
+            <p>
+
+                <strong>AU TSM</strong> is an Oceanic Horde guild playing
+                World of Warcraft Forever.
+
             </p>
 
             <br>
 
             <p>
-                Our aim is to build a long-term guild community for
-                progression, dungeons, raids and whatever else Azeroth
-                throws at us.
+
+                The guild is primarily made up of Australian and
+                New Zealand players and is focused on building a
+                long-term community for levelling, dungeons,
+                progression, raids, professions and everything else
+                Azeroth has to offer.
+
+            </p>
+
+            <br>
+
+            <p>
+
+                The goal is simple: build a strong guild, enjoy the game
+                with good people and stick around for the journey.
+
             </p>
 
         </div>
@@ -441,9 +808,10 @@
 </main>
 
 
+
 <footer>
 
-    AU TSM • World of Warcraft Forever
+    <span>AU TSM</span> • Horde • World of Warcraft Forever
 
 </footer>
 
