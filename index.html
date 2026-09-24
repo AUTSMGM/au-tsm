@@ -4,18 +4,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AU TSM</title>
+
+    <title>AU TSM | WoW Forever</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #25201a 0%, #111111 45%, #090909 100%);
+            color: #e8e1d5;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        header {
+            border-bottom: 1px solid #594522;
+            background: rgba(0,0,0,0.75);
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: auto;
+            padding: 28px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            color: #d6a84b;
+            font-size: 36px;
+            letter-spacing: 3px;
+        }
+
+        .logo p {
+            color: #aaa08d;
+            margin-top: 4px;
+            font-size: 14px;
+        }
+
+        nav a {
+            color: #d6d0c4;
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #d6a84b;
+        }
+
+        /* MAIN */
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px 90px;
+        }
+
+        .hero .small-title {
+            color: #d6a84b;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 {
+            font-family: Georgia, serif;
+            font-size: 60px;
+            color: #f2eadb;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #aaa08d;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* SECTION */
+
+        section {
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h3 {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            color: #d6a84b;
+        }
+
+        .section-title p {
+            margin-top: 8px;
+            color: #8e877b;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: rgba(25, 23, 20, 0.9);
+            border: 1px solid #3d3529;
+            padding: 30px 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .stat-number {
+            display: block;
+            color: #d6a84b;
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .stat-label {
+            color: #938b7f;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CLASS GRID */
+
+        .classes {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+
+        .class-card {
+            background: #181716;
+            border: 1px solid #37322c;
+            padding: 18px 10px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .class-count {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .class-name {
+            color: #9e978c;
+            font-size: 13px;
+        }
+
+        /* WoW class inspired colours */
+
+        .warrior { color: #C79C6E; }
+        .paladin { color: #F58CBA; }
+        .hunter { color: #ABD473; }
+        .rogue { color: #FFF569; }
+        .priest { color: #FFFFFF; }
+        .shaman { color: #0070DE; }
+        .mage { color: #69CCF0; }
+        .warlock { color: #9482C9; }
+        .monk { color: #00FF96; }
+        .druid { color: #FF7D0A; }
+        .demonhunter { color: #A330C9; }
+        .deathknight { color: #C41F3B; }
+
+        /* ABOUT */
+
+        .about {
+            max-width: 760px;
+            margin: auto;
+            background: rgba(22,20,18,0.85);
+            border-left: 3px solid #d6a84b;
+            padding: 30px;
+            line-height: 1.8;
+            color: #b9b1a3;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            border-top: 1px solid #302a22;
+            padding: 30px 20px;
+            color: #69645c;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            nav {
+                display: none;
+            }
+
+            .hero h2 {
+                font-size: 42px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .classes {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 450px) {
+
+            .classes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-    <h1>AU TSM</h1>
 
-    <h2>World of Warcraft Forever</h2>
+<header>
 
-    <p>Welcome to the home of AU TSM.</p>
+    <div class="header-inner">
 
-    <p>An Oceanic World of Warcraft guild.</p>
+        <div class="logo">
+            <h1>AU TSM</h1>
+            <p>WORLD OF WARCRAFT • FOREVER</p>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#stats">Stats</a>
+            <a href="#classes">Classes</a>
+            <a href="#about">Guild</a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="small-title">Oceanic Guild</div>
+
+        <h2>AU TSM</h2>
+
+        <p>
+            An Australian World of Warcraft Forever guild.
+            Built around good people, good banter and playing the game
+            for the long haul.
+        </p>
+
+    </section>
+
+
+
+    <!-- GUILD STATS -->
+
+    <section id="stats">
+
+        <div class="section-title">
+            <h3>Guild Statistics</h3>
+            <p>Current AU TSM numbers</p>
+        </div>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <span class="stat-number">42</span>
+                <span class="stat-label">Members</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-number">58</span>
+                <span class="stat-label">Characters</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-number">24</span>
+                <span class="stat-label">Level Cap</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-number">17</span>
+                <span class="stat-label">Active Raiders</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- CLASS DISTRIBUTION -->
+
+    <section id="classes">
+
+        <div class="section-title">
+            <h3>Class Distribution</h3>
+            <p>Characters currently representing AU TSM</p>
+        </div>
+
+        <div class="classes">
+
+            <div class="class-card">
+                <div class="class-count warrior">6</div>
+                <div class="class-name">Warrior</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count paladin">5</div>
+                <div class="class-name">Paladin</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count hunter">7</div>
+                <div class="class-name">Hunter</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count rogue">3</div>
+                <div class="class-name">Rogue</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count priest">4</div>
+                <div class="class-name">Priest</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count shaman">6</div>
+                <div class="class-name">Shaman</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count mage">5</div>
+                <div class="class-name">Mage</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count warlock">4</div>
+                <div class="class-name">Warlock</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count monk">2</div>
+                <div class="class-name">Monk</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count druid">7</div>
+                <div class="class-name">Druid</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count demonhunter">3</div>
+                <div class="class-name">Demon Hunter</div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-count deathknight">6</div>
+                <div class="class-name">Death Knight</div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="section-title">
+            <h3>The Guild</h3>
+        </div>
+
+        <div class="about">
+
+            <p>
+                AU TSM is an Oceanic World of Warcraft Forever guild,
+                primarily made up of Australian and New Zealand players.
+            </p>
+
+            <br>
+
+            <p>
+                Our aim is to build a long-term guild community for
+                progression, dungeons, raids and whatever else Azeroth
+                throws at us.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    AU TSM • World of Warcraft Forever
+
+</footer>
+
 
 </body>
 
