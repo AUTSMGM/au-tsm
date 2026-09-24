@@ -21,30 +21,31 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-
             background:
-                radial-gradient(circle at top, #2a211a 0%, #151210 42%, #080808 100%);
-
-            color: #e8e1d5;
+                radial-gradient(circle at top, #2b211a 0%, #151210 42%, #080808 100%);
+            color: #e9e2d7;
             min-height: 100vh;
         }
 
-        /* =========================
-           HEADER
-        ========================== */
+        a {
+            color: inherit;
+        }
+
+        /* HEADER */
 
         header {
-            border-bottom: 1px solid #5d4527;
-            background: rgba(8, 8, 8, 0.92);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            background: rgba(7, 7, 7, 0.96);
+            border-bottom: 1px solid #654a29;
+            backdrop-filter: blur(8px);
         }
 
         .header-inner {
-            max-width: 1100px;
+            max-width: 1180px;
             margin: auto;
-            padding: 22px 20px;
+            padding: 18px 20px;
 
             display: flex;
             justify-content: space-between;
@@ -52,311 +53,407 @@
         }
 
         .logo h1 {
-            color: #d6a84b;
+            color: #d7a94b;
             font-size: 34px;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
         }
 
         .logo p {
-            color: #9f9688;
-            margin-top: 4px;
-            font-size: 12px;
+            color: #978d7e;
+            font-size: 11px;
             letter-spacing: 2px;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
         }
 
         nav a {
-            color: #d4cec4;
             text-decoration: none;
-            margin-left: 26px;
-            font-size: 14px;
-            transition: 0.2s;
+            color: #cbc5ba;
+            font-size: 13px;
         }
 
         nav a:hover {
-            color: #d6a84b;
+            color: #d7a94b;
         }
 
-        /* =========================
-           MAIN
-        ========================== */
+        /* MAIN */
 
         main {
-            max-width: 1100px;
+            max-width: 1180px;
             margin: auto;
-            padding: 40px 20px 70px;
+            padding: 30px 20px 80px;
         }
 
-        /* =========================
-           HERO
-        ========================== */
+        /* HERO */
 
         .hero {
             text-align: center;
-            padding: 80px 20px 100px;
+            padding: 80px 20px 90px;
         }
 
-        .hero .small-title {
-            color: #c44232;
+        .eyebrow {
+            color: #cc4b3c;
             text-transform: uppercase;
             letter-spacing: 5px;
-            font-size: 13px;
             font-weight: bold;
+            font-size: 12px;
             margin-bottom: 18px;
         }
 
         .hero h2 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 70px;
-            color: #f0e6d3;
-            margin-bottom: 18px;
-            letter-spacing: 5px;
+            font-family: Georgia, serif;
+            font-size: clamp(54px, 10vw, 90px);
+            letter-spacing: 8px;
+            color: #f0e7d6;
         }
 
-        .hero .forever {
-            color: #d6a84b;
+        .hero h2 span {
+            color: #d7a94b;
         }
 
-        .hero p {
-            color: #aaa194;
-            max-width: 700px;
-            margin: auto;
+        .hero-description {
+            max-width: 710px;
+            margin: 20px auto 0;
+            color: #aaa195;
             line-height: 1.8;
             font-size: 17px;
         }
 
-        .faction {
+        .horde-badge {
             display: inline-block;
             margin-top: 25px;
-            padding: 8px 16px;
-
-            border: 1px solid #71352d;
-            background: rgba(100, 30, 25, 0.18);
-
-            color: #d16b5f;
-
+            padding: 8px 17px;
+            border: 1px solid #73372f;
+            background: rgba(120, 35, 26, 0.15);
+            color: #dc7364;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 12px;
         }
 
-        /* =========================
-           SECTIONS
-        ========================== */
+        .hero-buttons {
+            margin-top: 32px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .primary-button,
+        .secondary-button {
+            padding: 12px 20px;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+
+        .primary-button {
+            background: #b38538;
+            color: #0c0b09;
+            border: 1px solid #d1a653;
+            font-weight: bold;
+        }
+
+        .primary-button:hover {
+            background: #d1a653;
+        }
+
+        .secondary-button {
+            background: #181614;
+            color: #c9c1b5;
+            border: 1px solid #494037;
+        }
+
+        .secondary-button:hover {
+            border-color: #806b4c;
+        }
+
+        /* SECTION */
 
         section {
-            margin-bottom: 80px;
+            margin-bottom: 85px;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 32px;
         }
 
         .section-title h3 {
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: Georgia, serif;
+            color: #d7a94b;
             font-size: 30px;
-            color: #d6a84b;
         }
 
         .section-title p {
-            margin-top: 9px;
-            color: #827b71;
+            margin-top: 8px;
+            color: #7f786e;
             font-size: 14px;
         }
 
-        /* =========================
-           STATS
-        ========================== */
+        /* STATS */
 
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
+            gap: 15px;
         }
 
-        .stat-card {
-            background: rgba(25, 22, 19, 0.93);
-            border: 1px solid #40362b;
-
-            padding: 32px 15px;
-
+        .stat {
+            padding: 28px 14px;
             text-align: center;
+            background: rgba(25, 22, 19, 0.94);
+            border: 1px solid #41372d;
             border-radius: 5px;
         }
 
         .stat-number {
             display: block;
-
-            color: #d6a84b;
-
-            font-size: 42px;
+            color: #d7a94b;
+            font-size: 38px;
             font-weight: bold;
-
-            margin-bottom: 8px;
         }
 
         .stat-label {
-            color: #938b7f;
-
-            font-size: 12px;
-
-            text-transform: uppercase;
+            display: block;
+            margin-top: 7px;
+            color: #91887b;
+            font-size: 11px;
             letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
-        /* =========================
-           CLASS DISTRIBUTION
-        ========================== */
+        .stat-subtext {
+            display: block;
+            color: #605a52;
+            font-size: 10px;
+            margin-top: 7px;
+        }
+
+        /* IMPORTANT METRICS */
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .metric {
+            background: #171513;
+            border: 1px solid #383129;
+            padding: 22px;
+        }
+
+        .metric-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .metric-name {
+            color: #bdb5a8;
+        }
+
+        .metric-value {
+            color: #d7a94b;
+        }
+
+        .bar {
+            height: 7px;
+            background: #292520;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .fill {
+            height: 100%;
+            background: #b38538;
+        }
+
+        .metric-note {
+            color: #666057;
+            margin-top: 10px;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* CLASSES */
 
         .classes {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
+            gap: 12px;
         }
 
         .class-card {
-            background: #181614;
-            border: 1px solid #38312a;
-
-            padding: 22px 15px;
-
-            text-align: center;
-            border-radius: 4px;
-
-            transition: 0.2s;
-        }
-
-        .class-card:hover {
-            border-color: #65533b;
-            transform: translateY(-2px);
-        }
-
-        .class-count {
-            font-size: 30px;
-            font-weight: bold;
-            margin-bottom: 7px;
+            background: #171513;
+            border: 1px solid #39322b;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .class-name {
-            color: #a39a8e;
-            font-size: 14px;
+            color: #a59d91;
         }
 
-        /* WoW class colours */
-
-        .warrior {
-            color: #C79C6E;
+        .class-count {
+            font-size: 25px;
+            font-weight: bold;
         }
 
-        .paladin {
-            color: #F58CBA;
-        }
+        .warrior { color: #C79C6E; }
+        .paladin { color: #F58CBA; }
+        .hunter { color: #ABD473; }
+        .rogue { color: #FFF569; }
+        .priest { color: #FFFFFF; }
+        .shaman { color: #0070DE; }
+        .mage { color: #69CCF0; }
+        .warlock { color: #9482C9; }
+        .druid { color: #FF7D0A; }
 
-        .hunter {
-            color: #ABD473;
-        }
+        /* FAKE TOOLS */
 
-        .rogue {
-            color: #FFF569;
-        }
-
-        .priest {
-            color: #FFFFFF;
-        }
-
-        .shaman {
-            color: #0070DE;
-        }
-
-        .mage {
-            color: #69CCF0;
-        }
-
-        .warlock {
-            color: #9482C9;
-        }
-
-        .druid {
-            color: #FF7D0A;
-        }
-
-        /* =========================
-           GUILD INFO
-        ========================== */
-
-        .guild-info {
-            max-width: 800px;
-            margin: auto;
-
-            background: rgba(23, 20, 18, 0.9);
-
-            border-left: 3px solid #d6a84b;
-
-            padding: 32px;
-
-            line-height: 1.8;
-            color: #bbb2a5;
-        }
-
-        .guild-info strong {
-            color: #e3d7c5;
-        }
-
-        /* =========================
-           QUICK INFO
-        ========================== */
-
-        .quick-info {
+        .tools {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 18px;
         }
 
-        .quick-card {
-            background: rgba(21, 19, 17, 0.9);
-            border: 1px solid #38312a;
-
-            padding: 25px;
-
-            text-align: center;
-            border-radius: 4px;
+        .tool {
+            background: rgba(23, 20, 18, 0.95);
+            border: 1px solid #3c342b;
+            padding: 28px;
         }
 
-        .quick-card h4 {
-            color: #d6a84b;
+        .tool h4 {
+            color: #d7a94b;
+            font-size: 18px;
             margin-bottom: 10px;
-            font-size: 16px;
         }
 
-        .quick-card p {
-            color: #958d82;
+        .tool p {
+            color: #92897c;
             line-height: 1.6;
-            font-size: 14px;
+            font-size: 13px;
+            min-height: 42px;
         }
 
-        /* =========================
-           FOOTER
-        ========================== */
+        .tool button {
+            margin-top: 18px;
+            padding: 10px 15px;
+            background: #24201b;
+            border: 1px solid #66533c;
+            color: #ded6ca;
+            border-radius: 3px;
+        }
 
-        footer {
-            text-align: center;
+        .tool button:hover {
+            border-color: #d7a94b;
+        }
 
-            border-top: 1px solid #302a22;
-
-            padding: 35px 20px;
-
-            color: #69645c;
-
+        .result {
+            margin-top: 14px;
+            min-height: 20px;
+            color: #d7a94b;
             font-size: 13px;
         }
 
-        footer span {
-            color: #9a8562;
+        /* ANNOUNCEMENTS */
+
+        .announcement {
+            max-width: 850px;
+            margin: auto;
+            background: #181512;
+            border-left: 3px solid #b38538;
+            padding: 25px 30px;
+            color: #aaa195;
+            line-height: 1.8;
         }
 
-        /* =========================
-           MOBILE
-        ========================== */
+        .announcement strong {
+            color: #dfd4c3;
+        }
+
+        .announcement + .announcement {
+            margin-top: 14px;
+        }
+
+        /* RAID COMPOSITION */
+
+        .raid-box {
+            max-width: 850px;
+            margin: auto;
+            border: 1px solid #44372c;
+            background: #141210;
+            padding: 28px;
+        }
+
+        .raid-row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #292520;
+            padding: 11px 0;
+            color: #9c9488;
+            font-size: 13px;
+        }
+
+        .raid-row:last-child {
+            border-bottom: 0;
+        }
+
+        .warning {
+            color: #d05d4e;
+        }
+
+        .good {
+            color: #8eb875;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #302a22;
+            text-align: center;
+            padding: 35px 20px 60px;
+            color: #625d55;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        footer strong {
+            color: #877966;
+        }
+
+        /* TOAST */
+
+        #toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            max-width: 350px;
+            background: #171513;
+            border: 1px solid #6c573f;
+            color: #d9d1c5;
+            padding: 15px 18px;
+            display: none;
+            z-index: 2000;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* MOBILE */
 
         @media (max-width: 800px) {
 
@@ -364,40 +461,29 @@
                 display: none;
             }
 
-            .hero {
-                padding-top: 60px;
-            }
-
-            .hero h2 {
-                font-size: 48px;
-            }
-
             .stats {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .classes {
-                grid-template-columns: repeat(3, 1fr);
+            .metrics,
+            .tools {
+                grid-template-columns: 1fr;
             }
 
-            .quick-info {
-                grid-template-columns: 1fr;
+            .classes {
+                grid-template-columns: repeat(2, 1fr);
             }
 
         }
 
-        @media (max-width: 500px) {
-
-            .hero h2 {
-                font-size: 40px;
-            }
+        @media (max-width: 480px) {
 
             .stats {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
             }
 
             .classes {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
 
             .header-inner {
@@ -411,35 +497,25 @@
         }
 
     </style>
+
 </head>
 
-
 <body>
-
 
 <header>
 
     <div class="header-inner">
 
         <div class="logo">
-
             <h1>AU TSM</h1>
-
             <p>WORLD OF WARCRAFT • FOREVER</p>
-
         </div>
 
-
         <nav>
-
-            <a href="#home">Home</a>
-
-            <a href="#stats">Stats</a>
-
-            <a href="#classes">Classes</a>
-
-            <a href="#guild">Guild</a>
-
+            <a href="#stats">Statistics</a>
+            <a href="#classes">Roster</a>
+            <a href="#tools">Guild Tools</a>
+            <a href="#announcements">Announcements</a>
         </nav>
 
     </div>
@@ -447,43 +523,48 @@
 </header>
 
 
-
 <main>
 
+    <!-- HERO -->
 
-    <!-- =========================
-         HERO
-    ========================== -->
+    <section class="hero">
 
-    <section class="hero" id="home">
-
-        <div class="small-title">
-            Horde • Oceanic
+        <div class="eyebrow">
+            Horde • Oceanic • Questionable Leadership
         </div>
 
         <h2>
-            AU <span class="forever">TSM</span>
+            AU <span>TSM</span>
         </h2>
 
-        <p>
+        <p class="hero-description">
 
-            An Australian World of Warcraft Forever guild built around
-            mates, progression, good banter and enjoying Azeroth for the
-            long haul.
+            An Oceanic World of Warcraft Forever guild dedicated to
+            progression, efficiency, unnecessarily detailed spreadsheets,
+            arguing about talent points and blaming latency.
 
         </p>
 
-        <div class="faction">
-            For The Horde
+        <div class="horde-badge">
+            FOR THE HORDE
+        </div>
+
+        <div class="hero-buttons">
+
+            <button class="primary-button" id="joinButton">
+                Join AU TSM
+            </button>
+
+            <button class="secondary-button" id="readyButton">
+                Initiate Ready Check
+            </button>
+
         </div>
 
     </section>
 
 
-
-    <!-- =========================
-         GUILD STATS
-    ========================== -->
+    <!-- GUILD STATS -->
 
     <section id="stats">
 
@@ -492,68 +573,171 @@
             <h3>Guild Statistics</h3>
 
             <p>
-                Current AU TSM guild numbers
+                Independently audited by absolutely nobody
             </p>
 
         </div>
 
-
         <div class="stats">
 
-
-            <div class="stat-card">
-
+            <div class="stat">
                 <span class="stat-number">42</span>
-
-                <span class="stat-label">
-                    Members
-                </span>
-
+                <span class="stat-label">Guild Members</span>
+                <span class="stat-subtext">19 are definitely alts</span>
             </div>
 
-
-            <div class="stat-card">
-
-                <span class="stat-number">58</span>
-
-                <span class="stat-label">
-                    Characters
-                </span>
-
+            <div class="stat">
+                <span class="stat-number">67</span>
+                <span class="stat-label">Characters</span>
+                <span class="stat-subtext">Nobody knows whose bank alt is whose</span>
             </div>
 
-
-            <div class="stat-card">
-
-                <span class="stat-number">24</span>
-
-                <span class="stat-label">
-                    Level Cap
-                </span>
-
+            <div class="stat">
+                <span class="stat-number">14</span>
+                <span class="stat-label">Players Online</span>
+                <span class="stat-subtext">11 currently in Orgrimmar</span>
             </div>
 
-
-            <div class="stat-card">
-
-                <span class="stat-number">17</span>
-
-                <span class="stat-label">
-                    Active Players
-                </span>
-
+            <div class="stat">
+                <span class="stat-number">3</span>
+                <span class="stat-label">People Reading Discord</span>
+                <span class="stat-subtext">Optimistic estimate</span>
             </div>
-
 
         </div>
 
     </section>
 
 
+    <!-- ADVANCED METRICS -->
 
-    <!-- =========================
-         CLASS DISTRIBUTION
-    ========================== -->
+    <section>
+
+        <div class="section-title">
+
+            <h3>Advanced Guild Metrics</h3>
+
+            <p>
+                The numbers serious progression guilds don't want you to see
+            </p>
+
+        </div>
+
+        <div class="metrics">
+
+            <div class="metric">
+
+                <div class="metric-top">
+                    <span class="metric-name">Mechanical Competence</span>
+                    <span class="metric-value">73%</span>
+                </div>
+
+                <div class="bar">
+                    <div class="fill" style="width:73%"></div>
+                </div>
+
+                <div class="metric-note">
+                    Drops sharply when mechanics require moving while attacking.
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-top">
+                    <span class="metric-name">Discord Attendance</span>
+                    <span class="metric-value">98%</span>
+                </div>
+
+                <div class="bar">
+                    <div class="fill" style="width:98%"></div>
+                </div>
+
+                <div class="metric-note">
+                    Includes people muted, deafened and playing another game.
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-top">
+                    <span class="metric-name">Ability to Follow Skull</span>
+                    <span class="metric-value">41%</span>
+                </div>
+
+                <div class="bar">
+                    <div class="fill" style="width:41%"></div>
+                </div>
+
+                <div class="metric-note">
+                    Still under investigation.
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-top">
+                    <span class="metric-name">Chance Hunter Pulls Early</span>
+                    <span class="metric-value">96%</span>
+                </div>
+
+                <div class="bar">
+                    <div class="fill" style="width:96%"></div>
+                </div>
+
+                <div class="metric-note">
+                    Statistically indistinguishable from certainty.
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-top">
+                    <span class="metric-name">Loot Drama Resistance</span>
+                    <span class="metric-value">12%</span>
+                </div>
+
+                <div class="bar">
+                    <div class="fill" style="width:12%"></div>
+                </div>
+
+                <div class="metric-note">
+                    One purple item away from organisational collapse.
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-top">
+                    <span class="metric-name">Spreadsheet Coverage</span>
+                    <span class="metric-value">114%</span>
+                </div>
+
+                <div class="bar">
+                    <div class="fill" style="width:100%"></div>
+                </div>
+
+                <div class="metric-note">
+                    Several spreadsheets now track other spreadsheets.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CLASS DISTRIBUTION -->
 
     <section id="classes">
 
@@ -562,187 +746,198 @@
             <h3>Class Distribution</h3>
 
             <p>
-                Characters currently representing AU TSM
+                Current composition until everyone rerolls next week
             </p>
 
         </div>
 
-
         <div class="classes">
 
-
             <div class="class-card">
-
-                <div class="class-count warrior">
-                    6
-                </div>
-
-                <div class="class-name">
-                    Warrior
-                </div>
-
+                <span class="class-name">Warrior</span>
+                <span class="class-count warrior">12</span>
             </div>
 
-
             <div class="class-card">
-
-                <div class="class-count paladin">
-                    5
-                </div>
-
-                <div class="class-name">
-                    Paladin
-                </div>
-
+                <span class="class-name">Paladin</span>
+                <span class="class-count paladin">4</span>
             </div>
 
-
             <div class="class-card">
-
-                <div class="class-count hunter">
-                    7
-                </div>
-
-                <div class="class-name">
-                    Hunter
-                </div>
-
+                <span class="class-name">Hunter</span>
+                <span class="class-count hunter">9</span>
             </div>
 
-
             <div class="class-card">
-
-                <div class="class-count rogue">
-                    3
-                </div>
-
-                <div class="class-name">
-                    Rogue
-                </div>
-
+                <span class="class-name">Rogue</span>
+                <span class="class-count rogue">7</span>
             </div>
 
-
             <div class="class-card">
-
-                <div class="class-count priest">
-                    4
-                </div>
-
-                <div class="class-name">
-                    Priest
-                </div>
-
+                <span class="class-name">Priest</span>
+                <span class="class-count priest">3</span>
             </div>
 
-
             <div class="class-card">
-
-                <div class="class-count shaman">
-                    6
-                </div>
-
-                <div class="class-name">
-                    Shaman
-                </div>
-
+                <span class="class-name">Shaman</span>
+                <span class="class-count shaman">10</span>
             </div>
 
-
             <div class="class-card">
-
-                <div class="class-count mage">
-                    5
-                </div>
-
-                <div class="class-name">
-                    Mage
-                </div>
-
+                <span class="class-name">Mage</span>
+                <span class="class-count mage">8</span>
             </div>
 
-
             <div class="class-card">
-
-                <div class="class-count warlock">
-                    4
-                </div>
-
-                <div class="class-name">
-                    Warlock
-                </div>
-
+                <span class="class-name">Warlock</span>
+                <span class="class-count warlock">6</span>
             </div>
 
-
             <div class="class-card">
-
-                <div class="class-count druid">
-                    7
-                </div>
-
-                <div class="class-name">
-                    Druid
-                </div>
-
+                <span class="class-name">Druid</span>
+                <span class="class-count druid">8</span>
             </div>
-
 
         </div>
 
     </section>
 
 
-
-    <!-- =========================
-         QUICK INFO
-    ========================== -->
+    <!-- RAID COMPOSITION -->
 
     <section>
 
         <div class="section-title">
 
-            <h3>AU TSM</h3>
+            <h3>Raid Readiness</h3>
 
             <p>
-                The important stuff
+                Live tactical analysis*</p>
+
+        </div>
+
+        <div class="raid-box">
+
+            <div class="raid-row">
+                <span>Tanks</span>
+                <span class="good">Ready</span>
+            </div>
+
+            <div class="raid-row">
+                <span>Healers</span>
+                <span class="warning">Still levelling</span>
+            </div>
+
+            <div class="raid-row">
+                <span>DPS</span>
+                <span class="good">Far too many</span>
+            </div>
+
+            <div class="raid-row">
+                <span>Consumables</span>
+                <span class="warning">"I'll buy them when I get there"</span>
+            </div>
+
+            <div class="raid-row">
+                <span>World Buffs</span>
+                <span class="warning">Someone died on the way</span>
+            </div>
+
+            <div class="raid-row">
+                <span>Raid Leader Mental Stability</span>
+                <span class="warning">Degrading</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GUILD TOOLS -->
+
+    <section id="tools">
+
+        <div class="section-title">
+
+            <h3>Guild Tools</h3>
+
+            <p>
+                Cutting-edge technology developed specifically for AU TSM
             </p>
 
         </div>
 
+        <div class="tools">
 
-        <div class="quick-info">
 
+            <div class="tool">
 
-            <div class="quick-card">
-
-                <h4>Faction</h4>
+                <h4>Raid Eligibility Scanner</h4>
 
                 <p>
-                    Horde
+                    Analyse whether your character meets AU TSM's extremely
+                    rigorous raiding standards.
                 </p>
+
+                <button id="eligibilityButton">
+                    Analyse Character
+                </button>
+
+                <div class="result" id="eligibilityResult"></div>
 
             </div>
 
 
-            <div class="quick-card">
+            <div class="tool">
 
-                <h4>Region</h4>
+                <h4>Oceanic Latency Diagnostic</h4>
 
                 <p>
-                    Oceanic
+                    Determine whether your poor performance is your fault or
+                    can legally be blamed on Australian internet.
                 </p>
+
+                <button id="latencyButton">
+                    Test Connection
+                </button>
+
+                <div class="result" id="latencyResult"></div>
 
             </div>
 
 
-            <div class="quick-card">
+            <div class="tool">
 
-                <h4>Game</h4>
+                <h4>Loot Council Priority</h4>
 
                 <p>
-                    World of Warcraft Forever
+                    Our proprietary algorithm calculates your likelihood of
+                    receiving the next contested epic.
                 </p>
+
+                <button id="lootButton">
+                    Calculate Priority
+                </button>
+
+                <div class="result" id="lootResult"></div>
+
+            </div>
+
+
+            <div class="tool">
+
+                <h4>Parse Improvement Engine</h4>
+
+                <p>
+                    Advanced combat analytics provide personalised advice
+                    developed using decades of combined guild expertise.
+                </p>
+
+                <button id="parseButton">
+                    Improve My Parse
+                </button>
+
+                <div class="result" id="parseResult"></div>
 
             </div>
 
@@ -752,53 +947,58 @@
     </section>
 
 
+    <!-- ANNOUNCEMENTS -->
 
-    <!-- =========================
-         GUILD INFO
-    ========================== -->
-
-    <section id="guild">
+    <section id="announcements">
 
         <div class="section-title">
 
-            <h3>The Guild</h3>
+            <h3>Officer Announcements</h3>
 
             <p>
-                Who we are
+                Please read before asking the exact question answered below
             </p>
 
         </div>
 
 
-        <div class="guild-info">
+        <div class="announcement">
 
-            <p>
+            <strong>Raid Times:</strong>
 
-                <strong>AU TSM</strong> is an Oceanic Horde guild playing
-                World of Warcraft Forever.
+            Raid times will be announced once we have completed the
+            14th Discord poll determining which night everyone is unavailable.
 
-            </p>
+        </div>
 
-            <br>
 
-            <p>
+        <div class="announcement">
 
-                The guild is primarily made up of Australian and
-                New Zealand players and is focused on building a
-                long-term community for levelling, dungeons,
-                progression, raids, professions and everything else
-                Azeroth has to offer.
+            <strong>Loot Rules:</strong>
 
-            </p>
+            Loot rules are currently being reviewed by a committee,
+            a subcommittee and one Warrior who has made a spreadsheet.
 
-            <br>
+        </div>
 
-            <p>
 
-                The goal is simple: build a strong guild, enjoy the game
-                with good people and stick around for the journey.
+        <div class="announcement">
 
-            </p>
+            <strong>Guild Bank:</strong>
+
+            Please stop depositing grey items.
+
+            This specifically includes fish, broken teeth and six-slot bags.
+
+        </div>
+
+
+        <div class="announcement">
+
+            <strong>Recruitment:</strong>
+
+            Currently recruiting every class except whatever class you are
+            currently playing.
 
         </div>
 
@@ -808,12 +1008,192 @@
 </main>
 
 
-
 <footer>
 
-    <span>AU TSM</span> • Horde • World of Warcraft Forever
+    <strong>AU TSM</strong> • Horde • Oceanic • World of Warcraft Forever
+
+    <br><br>
+
+    AU TSM accepts no responsibility for repair bills,
+    lost world buffs, failed rolls, disconnects, hunter pets,
+    standing in fire, standing near fire,
+    or claiming that the fire "didn't render."
+
+    <br>
+
+    *Raid readiness data may be fabricated for comedic and/or morale purposes.
 
 </footer>
+
+
+<div id="toast"></div>
+
+
+<script>
+
+    const toast = document.getElementById("toast");
+
+    function showToast(message) {
+
+        toast.textContent = message;
+        toast.style.display = "block";
+
+        clearTimeout(window.toastTimer);
+
+        window.toastTimer = setTimeout(() => {
+            toast.style.display = "none";
+        }, 5000);
+
+    }
+
+
+    /* JOIN BUTTON */
+
+    let joinClicks = 0;
+
+    document.getElementById("joinButton").addEventListener("click", function () {
+
+        joinClicks++;
+
+        const messages = [
+
+            "Application requirement 1/7: Please provide three professional references from previous Guild Masters.",
+
+            "Application requirement 2/7: Upload Warcraft Logs from a game that has not released yet.",
+
+            "Application requirement 3/7: Confirm availability every evening from 5:00pm until further notice.",
+
+            "Application requirement 4/7: Complete the 46-page AU TSM cultural alignment questionnaire.",
+
+            "Application requirement 5/7: Provide evidence that your mother will not call you during raid.",
+
+            "Application requirement 6/7: Prove you can identify Skull without attacking X.",
+
+            "Application declined. Reason: Vibes."
+        ];
+
+        showToast(messages[Math.min(joinClicks - 1, messages.length - 1)]);
+
+    });
+
+
+    /* READY CHECK */
+
+    document.getElementById("readyButton").addEventListener("click", function () {
+
+        this.textContent = "Waiting for 1 player...";
+
+        setTimeout(() => {
+
+            this.textContent = "Waiting for 1 player...";
+
+            showToast(
+                "Ready check cannot complete. One player is permanently AFK despite actively talking in Discord."
+            );
+
+        }, 1800);
+
+    });
+
+
+    /* ELIGIBILITY */
+
+    document.getElementById("eligibilityButton").addEventListener("click", function () {
+
+        const result = document.getElementById("eligibilityResult");
+
+        result.textContent = "Scanning talents...";
+
+        setTimeout(() => {
+            result.textContent = "Checking gear...";
+        }, 700);
+
+        setTimeout(() => {
+            result.textContent = "Reviewing Discord message history...";
+        }, 1400);
+
+        setTimeout(() => {
+            result.textContent = "ELIGIBLE — barely.";
+        }, 2300);
+
+    });
+
+
+    /* LATENCY */
+
+    document.getElementById("latencyButton").addEventListener("click", function () {
+
+        const result = document.getElementById("latencyResult");
+
+        result.textContent = "Pinging Sydney...";
+
+        setTimeout(() => {
+            result.textContent = "Pinging Blizzard...";
+        }, 700);
+
+        setTimeout(() => {
+            result.textContent = "Tracing NBN infrastructure...";
+        }, 1400);
+
+        setTimeout(() => {
+
+            const ping = Math.floor(Math.random() * 140) + 26;
+
+            result.textContent =
+                ping + " ms — sufficient evidence to blame latency.";
+
+        }, 2200);
+
+    });
+
+
+    /* LOOT */
+
+    document.getElementById("lootButton").addEventListener("click", function () {
+
+        const result = document.getElementById("lootResult");
+
+        result.textContent = "Consulting Loot Council...";
+
+        setTimeout(() => {
+            result.textContent = "Checking attendance...";
+        }, 700);
+
+        setTimeout(() => {
+            result.textContent = "Checking officer friendships...";
+        }, 1400);
+
+        setTimeout(() => {
+            result.textContent = "Priority: LOW — item reserved for Officer's alt.";
+        }, 2200);
+
+    });
+
+
+    /* PARSE */
+
+    document.getElementById("parseButton").addEventListener("click", function () {
+
+        const result = document.getElementById("parseResult");
+
+        result.textContent = "Analysing rotation...";
+
+        setTimeout(() => {
+            result.textContent = "Analysing cooldown usage...";
+        }, 700);
+
+        setTimeout(() => {
+            result.textContent = "Analysing movement...";
+        }, 1400);
+
+        setTimeout(() => {
+            result.textContent = "Recommendation: Press your buttons harder.";
+        }, 2200);
+
+    });
+
+
+</script>
 
 
 </body>
