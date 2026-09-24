@@ -31,14 +31,19 @@
             color: inherit;
         }
 
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================== */
 
         header {
             position: sticky;
             top: 0;
             z-index: 1000;
+
             background: rgba(7, 7, 7, 0.96);
+
             border-bottom: 1px solid #654a29;
+
             backdrop-filter: blur(8px);
         }
 
@@ -80,7 +85,9 @@
             color: #d7a94b;
         }
 
-        /* MAIN */
+        /* =========================
+           MAIN
+        ========================== */
 
         main {
             max-width: 1180px;
@@ -88,7 +95,9 @@
             padding: 30px 20px 80px;
         }
 
-        /* HERO */
+        /* =========================
+           HERO
+        ========================== */
 
         .hero {
             text-align: center;
@@ -97,17 +106,25 @@
 
         .eyebrow {
             color: #cc4b3c;
+
             text-transform: uppercase;
+
             letter-spacing: 5px;
+
             font-weight: bold;
+
             font-size: 12px;
+
             margin-bottom: 18px;
         }
 
         .hero h2 {
             font-family: Georgia, serif;
+
             font-size: clamp(54px, 10vw, 90px);
+
             letter-spacing: 8px;
+
             color: #f0e7d6;
         }
 
@@ -117,29 +134,45 @@
 
         .hero-description {
             max-width: 710px;
+
             margin: 20px auto 0;
+
             color: #aaa195;
+
             line-height: 1.8;
+
             font-size: 17px;
         }
 
         .horde-badge {
             display: inline-block;
+
             margin-top: 25px;
+
             padding: 8px 17px;
+
             border: 1px solid #73372f;
+
             background: rgba(120, 35, 26, 0.15);
+
             color: #dc7364;
+
             text-transform: uppercase;
+
             letter-spacing: 2px;
+
             font-size: 12px;
         }
 
         .hero-buttons {
             margin-top: 32px;
+
             display: flex;
+
             justify-content: center;
+
             gap: 12px;
+
             flex-wrap: wrap;
         }
 
@@ -151,14 +184,19 @@
         .primary-button,
         .secondary-button {
             padding: 12px 20px;
+
             border-radius: 4px;
+
             transition: 0.2s;
         }
 
         .primary-button {
             background: #b38538;
+
             color: #0c0b09;
+
             border: 1px solid #d1a653;
+
             font-weight: bold;
         }
 
@@ -168,7 +206,9 @@
 
         .secondary-button {
             background: #181614;
+
             color: #c9c1b5;
+
             border: 1px solid #494037;
         }
 
@@ -176,7 +216,9 @@
             border-color: #806b4c;
         }
 
-        /* SECTION */
+        /* =========================
+           SECTIONS
+        ========================== */
 
         section {
             margin-bottom: 85px;
@@ -184,78 +226,163 @@
 
         .section-title {
             text-align: center;
+
             margin-bottom: 32px;
         }
 
         .section-title h3 {
             font-family: Georgia, serif;
+
             color: #d7a94b;
+
             font-size: 30px;
         }
 
         .section-title p {
             margin-top: 8px;
+
             color: #7f786e;
+
             font-size: 14px;
         }
 
-        /* STATS */
+        /* =========================
+           STATS
+        ========================== */
 
         .stats {
             display: grid;
+
             grid-template-columns: repeat(4, 1fr);
+
             gap: 15px;
         }
 
         .stat {
             padding: 28px 14px;
+
             text-align: center;
+
             background: rgba(25, 22, 19, 0.94);
+
             border: 1px solid #41372d;
+
             border-radius: 5px;
         }
 
         .stat-number {
             display: block;
+
             color: #d7a94b;
+
             font-size: 38px;
+
             font-weight: bold;
         }
 
         .stat-label {
             display: block;
+
             margin-top: 7px;
+
             color: #91887b;
+
             font-size: 11px;
+
             letter-spacing: 1.5px;
+
             text-transform: uppercase;
         }
 
         .stat-subtext {
             display: block;
+
             color: #605a52;
+
             font-size: 10px;
+
             margin-top: 7px;
         }
 
-        /* IMPORTANT METRICS */
+        /* =========================
+           LIVE GUILD STATUS
+        ========================== */
+
+        .live-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 16px;
+        }
+
+        .live-card {
+            background: #171513;
+
+            border: 1px solid #3d352d;
+
+            padding: 24px;
+        }
+
+        .live-label {
+            color: #7c7468;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            font-size: 10px;
+
+            margin-bottom: 8px;
+        }
+
+        .live-value {
+            color: #d7a94b;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            line-height: 1.4;
+        }
+
+        .live-note {
+            color: #716a60;
+
+            font-size: 11px;
+
+            margin-top: 8px;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           METRICS
+        ========================== */
 
         .metrics {
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 15px;
         }
 
         .metric {
             background: #171513;
+
             border: 1px solid #383129;
+
             padding: 22px;
         }
 
         .metric-top {
             display: flex;
+
             justify-content: space-between;
+
             margin-bottom: 12px;
+
             font-size: 13px;
         }
 
@@ -269,37 +396,53 @@
 
         .bar {
             height: 7px;
+
             background: #292520;
+
             overflow: hidden;
+
             border-radius: 4px;
         }
 
         .fill {
             height: 100%;
+
             background: #b38538;
         }
 
         .metric-note {
             color: #666057;
+
             margin-top: 10px;
+
             font-size: 11px;
+
             line-height: 1.5;
         }
 
-        /* CLASSES */
+        /* =========================
+           CLASSES
+        ========================== */
 
         .classes {
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 12px;
         }
 
         .class-card {
             background: #171513;
+
             border: 1px solid #39322b;
+
             padding: 20px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
         }
 
@@ -309,52 +452,115 @@
 
         .class-count {
             font-size: 25px;
+
             font-weight: bold;
         }
 
         .warrior { color: #C79C6E; }
+
         .paladin { color: #F58CBA; }
+
         .hunter { color: #ABD473; }
+
         .rogue { color: #FFF569; }
+
         .priest { color: #FFFFFF; }
+
         .shaman { color: #0070DE; }
+
         .mage { color: #69CCF0; }
+
         .warlock { color: #9482C9; }
+
         .druid { color: #FF7D0A; }
 
-        /* FAKE TOOLS */
+        /* =========================
+           GUILD INTELLIGENCE FEED
+        ========================== */
+
+        .feed {
+            max-width: 900px;
+
+            margin: auto;
+
+            background: #121110;
+
+            border: 1px solid #393128;
+        }
+
+        .feed-item {
+            padding: 14px 18px;
+
+            border-bottom: 1px solid #28231e;
+
+            font-size: 13px;
+
+            color: #aaa195;
+
+            line-height: 1.5;
+        }
+
+        .feed-item:last-child {
+            border-bottom: 0;
+        }
+
+        .feed-time {
+            color: #615b53;
+
+            margin-right: 10px;
+
+            font-size: 11px;
+        }
+
+        /* =========================
+           TOOLS
+        ========================== */
 
         .tools {
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
+
             gap: 18px;
         }
 
         .tool {
             background: rgba(23, 20, 18, 0.95);
+
             border: 1px solid #3c342b;
+
             padding: 28px;
         }
 
         .tool h4 {
             color: #d7a94b;
+
             font-size: 18px;
+
             margin-bottom: 10px;
         }
 
         .tool p {
             color: #92897c;
+
             line-height: 1.6;
+
             font-size: 13px;
+
             min-height: 42px;
         }
 
         .tool button {
             margin-top: 18px;
+
             padding: 10px 15px;
+
             background: #24201b;
+
             border: 1px solid #66533c;
+
             color: #ded6ca;
+
             border-radius: 3px;
         }
 
@@ -364,47 +570,43 @@
 
         .result {
             margin-top: 14px;
+
             min-height: 20px;
+
             color: #d7a94b;
+
             font-size: 13px;
         }
 
-        /* ANNOUNCEMENTS */
-
-        .announcement {
-            max-width: 850px;
-            margin: auto;
-            background: #181512;
-            border-left: 3px solid #b38538;
-            padding: 25px 30px;
-            color: #aaa195;
-            line-height: 1.8;
-        }
-
-        .announcement strong {
-            color: #dfd4c3;
-        }
-
-        .announcement + .announcement {
-            margin-top: 14px;
-        }
-
-        /* RAID COMPOSITION */
+        /* =========================
+           RAID
+        ========================== */
 
         .raid-box {
             max-width: 850px;
+
             margin: auto;
+
             border: 1px solid #44372c;
+
             background: #141210;
+
             padding: 28px;
         }
 
         .raid-row {
             display: flex;
+
             justify-content: space-between;
+
+            gap: 20px;
+
             border-bottom: 1px solid #292520;
+
             padding: 11px 0;
+
             color: #9c9488;
+
             font-size: 13px;
         }
 
@@ -420,14 +622,49 @@
             color: #8eb875;
         }
 
-        /* FOOTER */
+        /* =========================
+           ANNOUNCEMENTS
+        ========================== */
+
+        .announcement {
+            max-width: 850px;
+
+            margin: auto;
+
+            background: #181512;
+
+            border-left: 3px solid #b38538;
+
+            padding: 25px 30px;
+
+            color: #aaa195;
+
+            line-height: 1.8;
+        }
+
+        .announcement strong {
+            color: #dfd4c3;
+        }
+
+        .announcement + .announcement {
+            margin-top: 14px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
 
         footer {
             border-top: 1px solid #302a22;
+
             text-align: center;
+
             padding: 35px 20px 60px;
+
             color: #625d55;
+
             font-size: 11px;
+
             line-height: 1.8;
         }
 
@@ -435,25 +672,41 @@
             color: #877966;
         }
 
-        /* TOAST */
+        /* =========================
+           TOAST
+        ========================== */
 
         #toast {
             position: fixed;
+
             right: 20px;
+
             bottom: 20px;
-            max-width: 350px;
+
+            max-width: 360px;
+
             background: #171513;
+
             border: 1px solid #6c573f;
+
             color: #d9d1c5;
+
             padding: 15px 18px;
+
             display: none;
+
             z-index: 2000;
+
             box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+
             font-size: 13px;
+
             line-height: 1.5;
         }
 
-        /* MOBILE */
+        /* =========================
+           MOBILE
+        ========================== */
 
         @media (max-width: 800px) {
 
@@ -461,7 +714,8 @@
                 display: none;
             }
 
-            .stats {
+            .stats,
+            .live-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -478,7 +732,8 @@
 
         @media (max-width: 480px) {
 
-            .stats {
+            .stats,
+            .live-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -497,25 +752,34 @@
         }
 
     </style>
-
 </head>
 
+
 <body>
+
 
 <header>
 
     <div class="header-inner">
 
         <div class="logo">
+
             <h1>AU TSM</h1>
+
             <p>WORLD OF WARCRAFT • FOREVER</p>
+
         </div>
 
         <nav>
+
             <a href="#stats">Statistics</a>
+
             <a href="#classes">Roster</a>
+
             <a href="#tools">Guild Tools</a>
+
             <a href="#announcements">Announcements</a>
+
         </nav>
 
     </div>
@@ -524,6 +788,7 @@
 
 
 <main>
+
 
     <!-- HERO -->
 
@@ -540,7 +805,7 @@
         <p class="hero-description">
 
             An Oceanic World of Warcraft Forever guild dedicated to
-            progression, efficiency, unnecessarily detailed spreadsheets,
+            progression, efficiency, unnecessary spreadsheets,
             arguing about talent points and blaming latency.
 
         </p>
@@ -578,30 +843,138 @@
 
         </div>
 
+
         <div class="stats">
 
             <div class="stat">
+
                 <span class="stat-number">42</span>
-                <span class="stat-label">Guild Members</span>
-                <span class="stat-subtext">19 are definitely alts</span>
+
+                <span class="stat-label">
+                    Guild Members
+                </span>
+
+                <span class="stat-subtext">
+                    Approximately 19 are someone's alt
+                </span>
+
             </div>
 
+
             <div class="stat">
+
                 <span class="stat-number">67</span>
-                <span class="stat-label">Characters</span>
-                <span class="stat-subtext">Nobody knows whose bank alt is whose</span>
+
+                <span class="stat-label">
+                    Characters
+                </span>
+
+                <span class="stat-subtext">
+                    Ownership records unavailable
+                </span>
+
             </div>
 
-            <div class="stat">
-                <span class="stat-number">14</span>
-                <span class="stat-label">Players Online</span>
-                <span class="stat-subtext">11 currently in Orgrimmar</span>
-            </div>
 
             <div class="stat">
-                <span class="stat-number">3</span>
-                <span class="stat-label">People Reading Discord</span>
-                <span class="stat-subtext">Optimistic estimate</span>
+
+                <span class="stat-number">1</span>
+
+                <span class="stat-label">
+                    Best Gamer
+                </span>
+
+                <span class="stat-subtext">
+                    Chris insists this metric is objective
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-number">∞</span>
+
+                <span class="stat-label">
+                    Roks Incidents
+                </span>
+
+                <span class="stat-subtext">
+                    Counter exceeded technical limit
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LIVE STATUS -->
+
+    <section>
+
+        <div class="section-title">
+
+            <h3>Live Guild Operations</h3>
+
+            <p>
+                Mission-critical information updated whenever JavaScript feels like it
+            </p>
+
+        </div>
+
+
+        <div class="live-grid">
+
+            <div class="live-card">
+
+                <div class="live-label">
+                    Latest Death
+                </div>
+
+                <div class="live-value" id="latestDeath">
+                    Roks stood in fire.
+                </div>
+
+                <div class="live-note">
+                    Cause of death subject to officer revision.
+                </div>
+
+            </div>
+
+
+            <div class="live-card">
+
+                <div class="live-label">
+                    Current Blame Target
+                </div>
+
+                <div class="live-value" id="blameTarget">
+                    Roks
+                </div>
+
+                <div class="live-note">
+                    Automatically selected using advanced guild governance.
+                </div>
+
+            </div>
+
+
+            <div class="live-card">
+
+                <div class="live-label">
+                    Raid Leadership Status
+                </div>
+
+                <div class="live-value" id="leadershipStatus">
+                    Phinky pretending everything is under control.
+                </div>
+
+                <div class="live-note">
+                    Guild Master authority remains mostly ceremonial.
+                </div>
+
             </div>
 
         </div>
@@ -618,112 +991,168 @@
             <h3>Advanced Guild Metrics</h3>
 
             <p>
-                The numbers serious progression guilds don't want you to see
+                The analytics serious progression guilds are afraid to publish
             </p>
 
         </div>
 
+
         <div class="metrics">
 
-            <div class="metric">
-
-                <div class="metric-top">
-                    <span class="metric-name">Mechanical Competence</span>
-                    <span class="metric-value">73%</span>
-                </div>
-
-                <div class="bar">
-                    <div class="fill" style="width:73%"></div>
-                </div>
-
-                <div class="metric-note">
-                    Drops sharply when mechanics require moving while attacking.
-                </div>
-
-            </div>
-
 
             <div class="metric">
 
                 <div class="metric-top">
-                    <span class="metric-name">Discord Attendance</span>
-                    <span class="metric-value">98%</span>
+
+                    <span class="metric-name">
+                        Chris Gaming Ability
+                    </span>
+
+                    <span class="metric-value">
+                        100%
+                    </span>
+
                 </div>
 
                 <div class="bar">
-                    <div class="fill" style="width:98%"></div>
-                </div>
 
-                <div class="metric-note">
-                    Includes people muted, deafened and playing another game.
-                </div>
-
-            </div>
-
-
-            <div class="metric">
-
-                <div class="metric-top">
-                    <span class="metric-name">Ability to Follow Skull</span>
-                    <span class="metric-value">41%</span>
-                </div>
-
-                <div class="bar">
-                    <div class="fill" style="width:41%"></div>
-                </div>
-
-                <div class="metric-note">
-                    Still under investigation.
-                </div>
-
-            </div>
-
-
-            <div class="metric">
-
-                <div class="metric-top">
-                    <span class="metric-name">Chance Hunter Pulls Early</span>
-                    <span class="metric-value">96%</span>
-                </div>
-
-                <div class="bar">
-                    <div class="fill" style="width:96%"></div>
-                </div>
-
-                <div class="metric-note">
-                    Statistically indistinguishable from certainty.
-                </div>
-
-            </div>
-
-
-            <div class="metric">
-
-                <div class="metric-top">
-                    <span class="metric-name">Loot Drama Resistance</span>
-                    <span class="metric-value">12%</span>
-                </div>
-
-                <div class="bar">
-                    <div class="fill" style="width:12%"></div>
-                </div>
-
-                <div class="metric-note">
-                    One purple item away from organisational collapse.
-                </div>
-
-            </div>
-
-
-            <div class="metric">
-
-                <div class="metric-top">
-                    <span class="metric-name">Spreadsheet Coverage</span>
-                    <span class="metric-value">114%</span>
-                </div>
-
-                <div class="bar">
                     <div class="fill" style="width:100%"></div>
+
+                </div>
+
+                <div class="metric-note">
+                    Self-reported. Peer review unavailable.
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-top">
+
+                    <span class="metric-name">
+                        Roks Mechanic Awareness
+                    </span>
+
+                    <span class="metric-value">
+                        18%
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill" style="width:18%"></div>
+
+                </div>
+
+                <div class="metric-note">
+                    May increase once fire becomes more visible.
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-top">
+
+                    <span class="metric-name">
+                        Luffa Sobriety
+                    </span>
+
+                    <span class="metric-value">
+                        7%
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill" style="width:7%"></div>
+
+                </div>
+
+                <div class="metric-note">
+                    Measurement accuracy deteriorates after 8pm.
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-top">
+
+                    <span class="metric-name">
+                        Aimless Directional Accuracy
+                    </span>
+
+                    <span class="metric-value">
+                        31%
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill" style="width:31%"></div>
+
+                </div>
+
+                <div class="metric-note">
+                    Name appears statistically relevant.
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-top">
+
+                    <span class="metric-name">
+                        Phinky Leadership Confidence
+                    </span>
+
+                    <span class="metric-value">
+                        94%
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill" style="width:94%"></div>
+
+                </div>
+
+                <div class="metric-note">
+                    Leadership competence measured separately.
+                </div>
+
+            </div>
+
+
+            <div class="metric">
+
+                <div class="metric-top">
+
+                    <span class="metric-name">
+                        Spreadsheet Coverage
+                    </span>
+
+                    <span class="metric-value">
+                        114%
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill" style="width:100%"></div>
+
                 </div>
 
                 <div class="metric-note">
@@ -751,51 +1180,87 @@
 
         </div>
 
+
         <div class="classes">
 
             <div class="class-card">
+
                 <span class="class-name">Warrior</span>
+
                 <span class="class-count warrior">12</span>
+
             </div>
 
+
             <div class="class-card">
+
                 <span class="class-name">Paladin</span>
+
                 <span class="class-count paladin">4</span>
+
             </div>
 
+
             <div class="class-card">
+
                 <span class="class-name">Hunter</span>
+
                 <span class="class-count hunter">9</span>
+
             </div>
 
+
             <div class="class-card">
+
                 <span class="class-name">Rogue</span>
+
                 <span class="class-count rogue">7</span>
+
             </div>
 
+
             <div class="class-card">
+
                 <span class="class-name">Priest</span>
+
                 <span class="class-count priest">3</span>
+
             </div>
 
+
             <div class="class-card">
+
                 <span class="class-name">Shaman</span>
+
                 <span class="class-count shaman">10</span>
+
             </div>
 
+
             <div class="class-card">
+
                 <span class="class-name">Mage</span>
+
                 <span class="class-count mage">8</span>
+
             </div>
 
+
             <div class="class-card">
+
                 <span class="class-name">Warlock</span>
+
                 <span class="class-count warlock">6</span>
+
             </div>
 
+
             <div class="class-card">
+
                 <span class="class-name">Druid</span>
+
                 <span class="class-count druid">8</span>
+
             </div>
 
         </div>
@@ -803,7 +1268,54 @@
     </section>
 
 
-    <!-- RAID COMPOSITION -->
+    <!-- GUILD INTELLIGENCE -->
+
+    <section>
+
+        <div class="section-title">
+
+            <h3>Guild Intelligence Feed</h3>
+
+            <p>
+                Live operational intelligence from across Azeroth
+            </p>
+
+        </div>
+
+
+        <div class="feed" id="guildFeed">
+
+            <div class="feed-item">
+                <span class="feed-time">NOW</span>
+                Roks has been reminded that fire is not a temporary buff.
+            </div>
+
+            <div class="feed-item">
+                <span class="feed-time">2m</span>
+                Chris has completed another internal review confirming Chris is the best gamer.
+            </div>
+
+            <div class="feed-item">
+                <span class="feed-time">4m</span>
+                Luffa has entered the operationally impaired phase of the evening.
+            </div>
+
+            <div class="feed-item">
+                <span class="feed-time">6m</span>
+                Aimless has asked where everybody is while standing beside everybody.
+            </div>
+
+            <div class="feed-item">
+                <span class="feed-time">9m</span>
+                Phinky has called an emergency officer meeting. Nobody knows why.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RAID READINESS -->
 
     <section>
 
@@ -816,36 +1328,127 @@
 
         </div>
 
+
         <div class="raid-box">
 
             <div class="raid-row">
+
                 <span>Tanks</span>
-                <span class="good">Ready</span>
+
+                <span class="good">
+                    Ready
+                </span>
+
             </div>
 
+
             <div class="raid-row">
+
                 <span>Healers</span>
-                <span class="warning">Still levelling</span>
+
+                <span class="warning">
+                    Penny asked why Chris needs three healers
+                </span>
+
             </div>
 
+
             <div class="raid-row">
+
                 <span>DPS</span>
-                <span class="good">Far too many</span>
+
+                <span class="good">
+                    Far too many
+                </span>
+
             </div>
 
-            <div class="raid-row">
-                <span>Consumables</span>
-                <span class="warning">"I'll buy them when I get there"</span>
-            </div>
 
             <div class="raid-row">
-                <span>World Buffs</span>
-                <span class="warning">Someone died on the way</span>
+
+                <span>Stiff</span>
+
+                <span class="warning">
+                    AFK status unclear
+                </span>
+
             </div>
 
+
             <div class="raid-row">
-                <span>Raid Leader Mental Stability</span>
-                <span class="warning">Degrading</span>
+
+                <span>KP</span>
+
+                <span class="good">
+                    Claims to be ready
+                </span>
+
+            </div>
+
+
+            <div class="raid-row">
+
+                <span>Jaydo</span>
+
+                <span class="warning">
+                    Has started a completely unrelated conversation
+                </span>
+
+            </div>
+
+
+            <div class="raid-row">
+
+                <span>Sev</span>
+
+                <span class="good">
+                    Quietly carrying without acknowledgement
+                </span>
+
+            </div>
+
+
+            <div class="raid-row">
+
+                <span>Rulzy</span>
+
+                <span class="warning">
+                    Currently disputing a loot interpretation
+                </span>
+
+            </div>
+
+
+            <div class="raid-row">
+
+                <span>Marsmallow</span>
+
+                <span class="good">
+                    Present and somehow not involved in the drama
+                </span>
+
+            </div>
+
+
+            <div class="raid-row">
+
+                <span>Zomgs</span>
+
+                <span class="warning">
+                    Connection status classified
+                </span>
+
+            </div>
+
+
+            <div class="raid-row">
+
+                <span>Roks</span>
+
+                <span class="warning">
+                    Already dead
+                </span>
+
             </div>
 
         </div>
@@ -862,17 +1465,20 @@
             <h3>Guild Tools</h3>
 
             <p>
-                Cutting-edge technology developed specifically for AU TSM
+                Cutting-edge software developed specifically for AU TSM
             </p>
 
         </div>
+
 
         <div class="tools">
 
 
             <div class="tool">
 
-                <h4>Raid Eligibility Scanner</h4>
+                <h4>
+                    Raid Eligibility Scanner
+                </h4>
 
                 <p>
                     Analyse whether your character meets AU TSM's extremely
@@ -890,11 +1496,13 @@
 
             <div class="tool">
 
-                <h4>Oceanic Latency Diagnostic</h4>
+                <h4>
+                    Oceanic Latency Diagnostic
+                </h4>
 
                 <p>
-                    Determine whether your poor performance is your fault or
-                    can legally be blamed on Australian internet.
+                    Determine whether poor performance is your fault or can
+                    legally be blamed on Australian internet.
                 </p>
 
                 <button id="latencyButton">
@@ -908,11 +1516,13 @@
 
             <div class="tool">
 
-                <h4>Loot Council Priority</h4>
+                <h4>
+                    Loot Council Priority
+                </h4>
 
                 <p>
-                    Our proprietary algorithm calculates your likelihood of
-                    receiving the next contested epic.
+                    Our proprietary algorithm calculates your likelihood
+                    of receiving the next contested epic.
                 </p>
 
                 <button id="lootButton">
@@ -926,7 +1536,9 @@
 
             <div class="tool">
 
-                <h4>Parse Improvement Engine</h4>
+                <h4>
+                    Parse Improvement Engine
+                </h4>
 
                 <p>
                     Advanced combat analytics provide personalised advice
@@ -940,7 +1552,6 @@
                 <div class="result" id="parseResult"></div>
 
             </div>
-
 
         </div>
 
@@ -964,20 +1575,52 @@
 
         <div class="announcement">
 
-            <strong>Raid Times:</strong>
+            <strong>Guild Leadership:</strong>
 
-            Raid times will be announced once we have completed the
-            14th Discord poll determining which night everyone is unavailable.
+            Phinky would like to remind everyone that Guild Master decisions
+            are final unless Chris disagrees confidently enough.
 
         </div>
 
 
         <div class="announcement">
 
-            <strong>Loot Rules:</strong>
+            <strong>Raid Attendance:</strong>
 
-            Loot rules are currently being reviewed by a committee,
-            a subcommittee and one Warrior who has made a spreadsheet.
+            Please advise if unavailable.
+
+            "Maybe", "probably", "should be there" and "depends what the boys
+            are doing" are not considered definitive answers.
+
+        </div>
+
+
+        <div class="announcement">
+
+            <strong>Luffa:</strong>
+
+            Raid leadership recommends completing all technically difficult
+            mechanics before Luffa reaches beverage number four.
+
+        </div>
+
+
+        <div class="announcement">
+
+            <strong>Roks:</strong>
+
+            Following several incidents, Roks is no longer permitted to say
+            "trust me" immediately before a pull.
+
+        </div>
+
+
+        <div class="announcement">
+
+            <strong>Chris & Penny:</strong>
+
+            Penny retains full authority to overrule any raid strategy
+            beginning with the phrase "Chris reckons..."
 
         </div>
 
@@ -988,17 +1631,9 @@
 
             Please stop depositing grey items.
 
-            This specifically includes fish, broken teeth and six-slot bags.
-
-        </div>
-
-
-        <div class="announcement">
-
-            <strong>Recruitment:</strong>
-
-            Currently recruiting every class except whatever class you are
-            currently playing.
+            This specifically includes fish, broken teeth,
+            six-slot bags and anything Stiff says
+            "might be useful later."
 
         </div>
 
@@ -1010,18 +1645,31 @@
 
 <footer>
 
-    <strong>AU TSM</strong> • Horde • Oceanic • World of Warcraft Forever
+    <strong>AU TSM</strong>
+    • Horde
+    • Oceanic
+    • World of Warcraft Forever
 
     <br><br>
 
     AU TSM accepts no responsibility for repair bills,
-    lost world buffs, failed rolls, disconnects, hunter pets,
-    standing in fire, standing near fire,
-    or claiming that the fire "didn't render."
+    lost world buffs,
+    failed rolls,
+    disconnects,
+    hunter pets,
+    Luffa's decision making,
+    Phinky's leadership,
+    Chris's ego,
+    or any incident involving Roks.
 
     <br>
 
-    *Raid readiness data may be fabricated for comedic and/or morale purposes.
+    Standing in fire remains a personal choice,
+    but will be publicly documented.
+
+    <br><br>
+
+    *All guild statistics are scientifically accurate unless inconvenient.
 
 </footer>
 
@@ -1033,164 +1681,720 @@
 
     const toast = document.getElementById("toast");
 
+
     function showToast(message) {
 
         toast.textContent = message;
+
         toast.style.display = "block";
 
         clearTimeout(window.toastTimer);
 
         window.toastTimer = setTimeout(() => {
+
             toast.style.display = "none";
+
         }, 5000);
 
     }
 
 
-    /* JOIN BUTTON */
+    /*
+    ==============================================
+    CORE AU TSM MEMBERS
+    ==============================================
+    */
+
+    const players = [
+        "Chris",
+        "Aimless",
+        "Luffa",
+        "Roks",
+        "Stiff",
+        "KP",
+        "Jaydo",
+        "Sev",
+        "Rulzy",
+        "Marsmallow",
+        "Penny",
+        "Phinky",
+        "Zomgs"
+    ];
+
+
+    /*
+    ==============================================
+    RANDOM DEATH REPORTS
+    ==============================================
+    */
+
+    const deathReports = [
+
+        "Roks stood in fire.",
+
+        "Roks discovered a second patch of fire.",
+
+        "Aimless ran the wrong direction with impressive confidence.",
+
+        "Luffa died during what witnesses described as 'an ambitious manoeuvre'.",
+
+        "Stiff was technically online at the time of death.",
+
+        "KP said 'I've got this' approximately four seconds before dying.",
+
+        "Jaydo died while explaining something unrelated.",
+
+        "Sev died after attempting to save everybody else.",
+
+        "Rulzy died but has submitted a formal appeal.",
+
+        "Marsmallow died peacefully, surrounded by significantly worse players.",
+
+        "Chris died. Investigation concluded healer error.",
+
+        "Penny died immediately after asking Chris whether this strategy was actually a good idea.",
+
+        "Phinky died while typing instructions to everyone else.",
+
+        "Zomgs disconnected at the exact moment responsibility became relevant.",
+
+        "Roks died. Cause currently listed as Roks."
+    ];
+
+
+    /*
+    ==============================================
+    BLAME TARGETS
+    ==============================================
+    */
+
+    const blameTargets = [
+
+        "Roks",
+
+        "Australian internet",
+
+        "The healer",
+
+        "Whoever marked Skull",
+
+        "Roks again",
+
+        "Phinky's strategy",
+
+        "Hunter pet AI",
+
+        "Blizzard",
+
+        "Lag",
+
+        "The tank",
+
+        "Loot Council",
+
+        "Chris says definitely not Chris",
+
+        "Roks, pending investigation"
+    ];
+
+
+    /*
+    ==============================================
+    LEADERSHIP STATUS
+    ==============================================
+    */
+
+    const leadershipStatuses = [
+
+        "Phinky pretending everything is under control.",
+
+        "Phinky reviewing a spreadsheet nobody asked for.",
+
+        "Phinky has called an officer meeting.",
+
+        "Phinky is explaining that this was actually the intended strategy.",
+
+        "Phinky currently blaming Discord.",
+
+        "Guild leadership temporarily delegated to whoever sounds most confident.",
+
+        "Chris has begun providing unsolicited strategic oversight.",
+
+        "Penny has questioned the entire premise.",
+
+        "Leadership status unavailable due to Roks incident."
+    ];
+
+
+    /*
+    ==============================================
+    GUILD FEED EVENTS
+    ==============================================
+    */
+
+    const feedEvents = [
+
+        "Chris has completed another internal review confirming Chris is the best gamer.",
+
+        "Aimless has asked where everybody is while standing beside everybody.",
+
+        "Luffa has entered the operationally impaired phase of the evening.",
+
+        "Roks has been reminded that fire is not a temporary buff.",
+
+        "Stiff has gone AFK without formally declaring AFK status.",
+
+        "KP has stated 'easy' before the pull. Risk level increased.",
+
+        "Jaydo has started a story during ready check.",
+
+        "Sev has quietly fixed a problem nobody else noticed.",
+
+        "Rulzy has opened negotiations concerning an item that has not dropped.",
+
+        "Marsmallow has successfully avoided being blamed for anything.",
+
+        "Penny has asked Chris to explain why this apparently requires another spreadsheet.",
+
+        "Phinky has updated guild policy without informing guild leadership, including Phinky.",
+
+        "Zomgs has vanished from Discord under suspicious circumstances.",
+
+        "Roks has announced that this time he definitely understands the mechanic.",
+
+        "Chris has requested acknowledgement of an above-average performance.",
+
+        "Luffa says he is completely fine.",
+
+        "Aimless is travelling confidently toward the wrong instance.",
+
+        "Stiff has found an item that might be useful later.",
+
+        "KP has pulled.",
+
+        "Jaydo is still talking.",
+
+        "Sev appears to be carrying the group again.",
+
+        "Rulzy has requested clarification on loot priority.",
+
+        "Marsmallow remains suspiciously competent.",
+
+        "Phinky is typing...",
+
+        "Penny has vetoed a Chris plan before implementation.",
+
+        "Zomgs connection quality is currently being measured in prayers.",
+
+        "Roks is dead."
+    ];
+
+
+    /*
+    ==============================================
+    RANDOM SYSTEM POPUPS
+    ==============================================
+    */
+
+    const randomPopups = [
+
+        "GUILD ALERT: Roks has moved toward an unidentified ground effect.",
+
+        "SYSTEM: Chris performance rating has been automatically upgraded from Excellent to Chris.",
+
+        "OFFICER ALERT: Luffa claims current beverage consumption is 'not that bad'.",
+
+        "NAVIGATION WARNING: Aimless has left the designated route.",
+
+        "READY CHECK UPDATE: Stiff has not responded but is believed to exist.",
+
+        "TACTICAL UPDATE: KP has described the encounter as 'free'.",
+
+        "VOICE COMMS: Jaydo has begun a story. Estimated completion time unavailable.",
+
+        "PERFORMANCE NOTICE: Sev has once again done something useful without telling anyone.",
+
+        "LOOT SYSTEM: Rulzy has requested an independent review.",
+
+        "GUILD STATUS: Marsmallow remains below acceptable drama thresholds.",
+
+        "RELATIONSHIP OVERRIDE: Penny has rejected Chris's proposed 'five minute' gaming session.",
+
+        "ADMINISTRATIVE NOTICE: Phinky has exercised Guild Master authority. No measurable effect detected.",
+
+        "NETWORK ALERT: Zomgs has entered quantum connection state.",
+
+        "COMBAT LOG: Roks received avoidable damage.",
+
+        "COMBAT LOG: Roks received additional avoidable damage.",
+
+        "OFFICER NOTICE: Nobody read the pinned message.",
+
+        "RAID WARNING: Someone said 'one quick pull before bed'.",
+
+        "GUILD BANK NOTICE: Another useless item has been deposited."
+    ];
+
+
+    /*
+    ==============================================
+    UPDATE LIVE STATUS
+    ==============================================
+    */
+
+    function randomItem(array) {
+
+        return array[Math.floor(Math.random() * array.length)];
+
+    }
+
+
+    function updateLiveStatus() {
+
+        document.getElementById("latestDeath").textContent =
+            randomItem(deathReports);
+
+        document.getElementById("blameTarget").textContent =
+            randomItem(blameTargets);
+
+        document.getElementById("leadershipStatus").textContent =
+            randomItem(leadershipStatuses);
+
+    }
+
+
+    /*
+    ==============================================
+    UPDATE GUILD FEED
+    ==============================================
+    */
+
+    function updateGuildFeed() {
+
+        const feed = document.getElementById("guildFeed");
+
+        const newItem = document.createElement("div");
+
+        newItem.className = "feed-item";
+
+        newItem.innerHTML =
+            '<span class="feed-time">NOW</span>' +
+            randomItem(feedEvents);
+
+        feed.prepend(newItem);
+
+
+        /*
+        Keep only 6 visible entries
+        */
+
+        while (feed.children.length > 6) {
+
+            feed.removeChild(feed.lastChild);
+
+        }
+
+
+        /*
+        Change old NOW labels
+        */
+
+        const entries = feed.querySelectorAll(".feed-time");
+
+        entries.forEach((entry, index) => {
+
+            if (index === 0) {
+
+                entry.textContent = "NOW";
+
+            } else {
+
+                entry.textContent = (index * 2) + "m";
+
+            }
+
+        });
+
+    }
+
+
+    /*
+    ==============================================
+    RANDOM POPUPS
+    ==============================================
+    */
+
+    function scheduleRandomPopup() {
+
+        /*
+        Random delay between 15 and 30 seconds
+        */
+
+        const delay =
+            Math.floor(Math.random() * 15000) + 15000;
+
+        setTimeout(() => {
+
+            showToast(randomItem(randomPopups));
+
+            scheduleRandomPopup();
+
+        }, delay);
+
+    }
+
+
+    /*
+    ==============================================
+    JOIN BUTTON
+    ==============================================
+    */
 
     let joinClicks = 0;
 
-    document.getElementById("joinButton").addEventListener("click", function () {
 
-        joinClicks++;
-
-        const messages = [
-
-            "Application requirement 1/7: Please provide three professional references from previous Guild Masters.",
-
-            "Application requirement 2/7: Upload Warcraft Logs from a game that has not released yet.",
-
-            "Application requirement 3/7: Confirm availability every evening from 5:00pm until further notice.",
-
-            "Application requirement 4/7: Complete the 46-page AU TSM cultural alignment questionnaire.",
-
-            "Application requirement 5/7: Provide evidence that your mother will not call you during raid.",
-
-            "Application requirement 6/7: Prove you can identify Skull without attacking X.",
-
-            "Application declined. Reason: Vibes."
-        ];
-
-        showToast(messages[Math.min(joinClicks - 1, messages.length - 1)]);
-
-    });
+    document
+        .getElementById("joinButton")
+        .addEventListener("click", function () {
 
 
-    /* READY CHECK */
+            joinClicks++;
 
-    document.getElementById("readyButton").addEventListener("click", function () {
 
-        this.textContent = "Waiting for 1 player...";
+            const messages = [
 
-        setTimeout(() => {
+                "Application requirement 1/8: Please provide three professional references from previous Guild Masters.",
 
-            this.textContent = "Waiting for 1 player...";
+                "Application requirement 2/8: Upload Warcraft Logs from content that does not yet exist.",
+
+                "Application requirement 3/8: Confirm availability every evening from 5:00pm until retirement.",
+
+                "Application requirement 4/8: Chris must personally verify that you are not better than Chris.",
+
+                "Application requirement 5/8: Complete the 46-page AU TSM cultural alignment questionnaire.",
+
+                "Application requirement 6/8: Demonstrate ability to identify Skull without attacking X.",
+
+                "Application requirement 7/8: Confirm willingness to blame Roks when no better explanation exists.",
+
+                "Application declined by Phinky. Reason: Vibes."
+            ];
+
 
             showToast(
-                "Ready check cannot complete. One player is permanently AFK despite actively talking in Discord."
+                messages[
+                    Math.min(
+                        joinClicks - 1,
+                        messages.length - 1
+                    )
+                ]
             );
 
-        }, 1800);
-
-    });
+        });
 
 
-    /* ELIGIBILITY */
+    /*
+    ==============================================
+    READY CHECK
+    ==============================================
+    */
 
-    document.getElementById("eligibilityButton").addEventListener("click", function () {
-
-        const result = document.getElementById("eligibilityResult");
-
-        result.textContent = "Scanning talents...";
-
-        setTimeout(() => {
-            result.textContent = "Checking gear...";
-        }, 700);
-
-        setTimeout(() => {
-            result.textContent = "Reviewing Discord message history...";
-        }, 1400);
-
-        setTimeout(() => {
-            result.textContent = "ELIGIBLE — barely.";
-        }, 2300);
-
-    });
+    document
+        .getElementById("readyButton")
+        .addEventListener("click", function () {
 
 
-    /* LATENCY */
+            const button = this;
 
-    document.getElementById("latencyButton").addEventListener("click", function () {
 
-        const result = document.getElementById("latencyResult");
+            button.textContent =
+                "Waiting for 1 player...";
 
-        result.textContent = "Pinging Sydney...";
 
-        setTimeout(() => {
-            result.textContent = "Pinging Blizzard...";
-        }, 700);
+            setTimeout(() => {
 
-        setTimeout(() => {
-            result.textContent = "Tracing NBN infrastructure...";
-        }, 1400);
+                showToast(
+                    randomItem([
+                        "Ready check cannot complete. Stiff is AFK but continues responding verbally.",
+                        "Ready check cannot complete. Luffa clicked ready but nobody believes him.",
+                        "Ready check cannot complete. Aimless is in the wrong zone.",
+                        "Ready check cannot complete. Jaydo is mid-story.",
+                        "Ready check cannot complete. Roks is dead.",
+                        "Ready check cannot complete. Zomgs may or may not be connected.",
+                        "Ready check complete. KP has already pulled."
+                    ])
+                );
 
-        setTimeout(() => {
 
-            const ping = Math.floor(Math.random() * 140) + 26;
+                button.textContent =
+                    "Initiate Ready Check";
+
+            }, 1800);
+
+        });
+
+
+    /*
+    ==============================================
+    ELIGIBILITY TOOL
+    ==============================================
+    */
+
+    document
+        .getElementById("eligibilityButton")
+        .addEventListener("click", function () {
+
+
+            const result =
+                document.getElementById("eligibilityResult");
+
 
             result.textContent =
-                ping + " ms — sufficient evidence to blame latency.";
-
-        }, 2200);
-
-    });
+                "Scanning talents...";
 
 
-    /* LOOT */
+            setTimeout(() => {
 
-    document.getElementById("lootButton").addEventListener("click", function () {
+                result.textContent =
+                    "Checking gear...";
 
-        const result = document.getElementById("lootResult");
-
-        result.textContent = "Consulting Loot Council...";
-
-        setTimeout(() => {
-            result.textContent = "Checking attendance...";
-        }, 700);
-
-        setTimeout(() => {
-            result.textContent = "Checking officer friendships...";
-        }, 1400);
-
-        setTimeout(() => {
-            result.textContent = "Priority: LOW — item reserved for Officer's alt.";
-        }, 2200);
-
-    });
+            }, 700);
 
 
-    /* PARSE */
+            setTimeout(() => {
 
-    document.getElementById("parseButton").addEventListener("click", function () {
+                result.textContent =
+                    "Reviewing Discord message history...";
 
-        const result = document.getElementById("parseResult");
+            }, 1400);
 
-        result.textContent = "Analysing rotation...";
 
-        setTimeout(() => {
-            result.textContent = "Analysing cooldown usage...";
-        }, 700);
+            setTimeout(() => {
 
-        setTimeout(() => {
-            result.textContent = "Analysing movement...";
-        }, 1400);
+                result.textContent =
+                    randomItem([
 
-        setTimeout(() => {
-            result.textContent = "Recommendation: Press your buttons harder.";
-        }, 2200);
+                        "ELIGIBLE — barely.",
 
-    });
+                        "ELIGIBLE — Sev approved.",
+
+                        "CONDITIONALLY ELIGIBLE — do not listen to Chris.",
+
+                        "REJECTED — Roks-level mechanic history detected.",
+
+                        "ELIGIBLE — Phinky has no idea who you are.",
+
+                        "ELIGIBLE — guild standards have been lowered."
+
+                    ]);
+
+            }, 2300);
+
+        });
+
+
+    /*
+    ==============================================
+    LATENCY TOOL
+    ==============================================
+    */
+
+    document
+        .getElementById("latencyButton")
+        .addEventListener("click", function () {
+
+
+            const result =
+                document.getElementById("latencyResult");
+
+
+            result.textContent =
+                "Pinging Sydney...";
+
+
+            setTimeout(() => {
+
+                result.textContent =
+                    "Pinging Blizzard...";
+
+            }, 700);
+
+
+            setTimeout(() => {
+
+                result.textContent =
+                    "Consulting Zomgs...";
+
+            }, 1400);
+
+
+            setTimeout(() => {
+
+
+                const ping =
+                    Math.floor(Math.random() * 140) + 26;
+
+
+                result.textContent =
+                    ping +
+                    " ms — sufficient evidence to blame latency.";
+
+
+            }, 2200);
+
+        });
+
+
+    /*
+    ==============================================
+    LOOT TOOL
+    ==============================================
+    */
+
+    document
+        .getElementById("lootButton")
+        .addEventListener("click", function () {
+
+
+            const result =
+                document.getElementById("lootResult");
+
+
+            result.textContent =
+                "Consulting Loot Council...";
+
+
+            setTimeout(() => {
+
+                result.textContent =
+                    "Checking attendance...";
+
+            }, 700);
+
+
+            setTimeout(() => {
+
+                result.textContent =
+                    "Checking officer friendships...";
+
+            }, 1400);
+
+
+            setTimeout(() => {
+
+                result.textContent =
+                    randomItem([
+
+                        "Priority: LOW — Chris needs it for reasons.",
+
+                        "Priority: LOW — Rulzy has lodged a claim.",
+
+                        "Priority: MEDIUM — assuming Phinky remembers you.",
+
+                        "Priority: HIGH — nobody else wants it.",
+
+                        "Priority: DENIED — item reserved for someone's alt.",
+
+                        "Priority: UNDER REVIEW — expected decision in 6–8 raid tiers."
+
+                    ]);
+
+            }, 2200);
+
+        });
+
+
+    /*
+    ==============================================
+    PARSE TOOL
+    ==============================================
+    */
+
+    document
+        .getElementById("parseButton")
+        .addEventListener("click", function () {
+
+
+            const result =
+                document.getElementById("parseResult");
+
+
+            result.textContent =
+                "Analysing rotation...";
+
+
+            setTimeout(() => {
+
+                result.textContent =
+                    "Analysing cooldown usage...";
+
+            }, 700);
+
+
+            setTimeout(() => {
+
+                result.textContent =
+                    "Comparing performance to Chris...";
+
+            }, 1400);
+
+
+            setTimeout(() => {
+
+                result.textContent =
+                    randomItem([
+
+                        "Recommendation: Press your buttons harder.",
+
+                        "Recommendation: Stop standing next to Roks.",
+
+                        "Recommendation: Ask Sev what he is doing.",
+
+                        "Recommendation: Blame ping.",
+
+                        "Recommendation: Acquire better gamer genetics.",
+
+                        "Recommendation: Ignore Chris's parse screenshot."
+
+                    ]);
+
+            }, 2200);
+
+        });
+
+
+    /*
+    ==============================================
+    START LIVE SYSTEMS
+    ==============================================
+    */
+
+
+    /*
+    Update live cards every 9 seconds
+    */
+
+    setInterval(
+        updateLiveStatus,
+        9000
+    );
+
+
+    /*
+    Add feed event every 11 seconds
+    */
+
+    setInterval(
+        updateGuildFeed,
+        11000
+    );
+
+
+    /*
+    Start random popup system
+    */
+
+    scheduleRandomPopup();
 
 
 </script>
