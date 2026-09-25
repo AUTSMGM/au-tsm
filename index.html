@@ -1478,7 +1478,7 @@ but will be publicly documented.
 
         <div>
             SURVIVE:
-            <span id="gameTimer">10.0</span>s
+            <span id="gameTimer">30.0</span>s
         </div>
 
     </div>
@@ -1502,7 +1502,7 @@ but will be publicly documented.
             <p>
                 Jump over mechanics.<br>
                 Do not stand in fire.<br>
-                Survive for 10 seconds.
+                Survive for 30 seconds.
             </p>
 
             <button id="startRaidGame" type="button">
@@ -2233,7 +2233,8 @@ let gameRunning = false;
 
 let gameHealth = 3;
 
-let gameTime = 10;
+/* GAME LENGTH = 30 SECONDS */
+let gameTime = 30;
 
 let playerY = 0;
 
@@ -2293,7 +2294,7 @@ function resetRaidGame() {
 
     gameHealth = 3;
 
-    gameTime = 10;
+    gameTime = 30;
 
     playerY = 0;
 
@@ -2307,7 +2308,7 @@ function resetRaidGame() {
         "❤ ❤ ❤";
 
     gameTimerDisplay.textContent =
-        "10.0";
+        "30.0";
 
     gamePlayer.style.bottom =
         "55px";
@@ -2328,7 +2329,7 @@ function resetRaidGame() {
         <p>
             Jump over mechanics.<br>
             Do not stand in fire.<br>
-            Survive for 10 seconds.
+            Survive for 30 seconds.
         </p>
 
         <button id="startRaidGameAgain" type="button">
@@ -2354,7 +2355,7 @@ function beginRaidGame() {
 
     gameHealth = 3;
 
-    gameTime = 10;
+    gameTime = 30;
 
     playerY = 0;
 
@@ -2368,7 +2369,7 @@ function beginRaidGame() {
         "❤ ❤ ❤";
 
     gameTimerDisplay.textContent =
-        "10.0";
+        "30.0";
 
     gamePlayer.style.bottom =
         "55px";
@@ -2512,7 +2513,7 @@ function gameLoop(timestamp) {
 
     updateGameObjects(delta);
 
-    /* win */
+    /* win when 30 second countdown reaches zero */
 
     if (gameTime <= 0) {
 
@@ -2799,7 +2800,7 @@ function raidVictory() {
 
         <p>
 
-            You survived the encounter.
+            You survived 30 seconds of mechanics.
 
             <br><br>
 
