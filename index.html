@@ -1909,7 +1909,7 @@ but will be publicly documented.
             </div>
 
             <span id="bossHealthText">
-                10 / 10
+                30 / 30
             </span>
 
         </div>
@@ -2889,7 +2889,7 @@ let gameHealth = 3;
 
 let gameTime = 30;
 
-let bossHealth = 10;
+let bossHealth = 30;
 
 let playerY = 0;
 
@@ -2968,7 +2968,7 @@ function resetRaidGame() {
 
     gameHealth = 3;
 
-    bossHealth = 10;
+    bossHealth = 30;
 
     gameTime = 30;
 
@@ -3025,6 +3025,11 @@ function resetRaidGame() {
             Lightning Bolt is automatically cast
             every 3 seconds.
 
+            <br><br>
+
+            Each Lightning Bolt deals
+            <strong>3 damage</strong>.
+
         </p>
 
         <button id="startRaidGameAgain" type="button">
@@ -3059,7 +3064,7 @@ function beginRaidGame() {
 
     gameHealth = 3;
 
-    bossHealth = 10;
+    bossHealth = 30;
 
     gameTime = 30;
 
@@ -3569,7 +3574,8 @@ function damageBoss() {
         return;
     }
 
-    bossHealth--;
+    bossHealth -=
+        3;
 
     if (
         bossHealth < 0
@@ -3592,7 +3598,7 @@ function damageBoss() {
         "lightning-impact";
 
     impact.textContent =
-        "⚡";
+        "⚡ -3";
 
     gameArea.appendChild(
         impact
@@ -3628,7 +3634,7 @@ function updateBossHealth() {
     const percent =
         Math.max(
             0,
-            bossHealth * 10
+            (bossHealth / 30) * 100
         );
 
     bossHealthFill.style.width =
@@ -3636,7 +3642,7 @@ function updateBossHealth() {
 
     bossHealthText.textContent =
         bossHealth +
-        " / 10";
+        " / 30";
 
 }
 
@@ -3852,7 +3858,7 @@ function raidVictory() {
 
             Onyxia:
             <strong>
-                0 / 10 HP
+                0 / 30 HP
             </strong>
 
             <br><br>
