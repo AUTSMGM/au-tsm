@@ -279,7 +279,6 @@ nav a:hover {
     top: 25px;
     bottom: 22px;
     border-radius: 8px;
-
     background: linear-gradient(
         90deg,
         #66291b,
@@ -288,10 +287,8 @@ nav a:hover {
         #f0c568,
         #66291b
     );
-
     background-size: 300% 100%;
     animation: raidBorderGlow 4s linear infinite;
-
     z-index: 0;
 }
 
@@ -302,7 +299,6 @@ nav a:hover {
     padding: 22px 25px 19px;
     border: 1px solid #d7a94b;
     border-radius: 5px;
-
     background:
         radial-gradient(
             circle at center,
@@ -310,7 +306,6 @@ nav a:hover {
             #421913 50%,
             #1b0d0b 100%
         );
-
     color: #f5d88c;
     font-family: Georgia,serif;
 }
@@ -351,15 +346,8 @@ nav a:hover {
 }
 
 @keyframes raidBorderGlow {
-
-    0% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 300% 50%;
-    }
-
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
 }
 
 
@@ -722,7 +710,7 @@ footer strong {
 }
 
 .raid-game-window {
-    width: min(1000px,100%);
+    width: min(1050px,100%);
     background: #100e0d;
     border: 2px solid #806039;
 }
@@ -788,7 +776,7 @@ footer strong {
 }
 
 .boss-health-bar {
-    width: 220px;
+    width: 250px;
     height: 12px;
     background: #28100e;
     border: 1px solid #653029;
@@ -807,7 +795,7 @@ footer strong {
 
 .raid-body {
     display: grid;
-    grid-template-columns: 1fr 155px;
+    grid-template-columns: 1fr 165px;
 }
 
 
@@ -816,10 +804,9 @@ footer strong {
 ========================================================= */
 
 #gameArea {
-    height: 410px;
+    height: 440px;
     position: relative;
     overflow: hidden;
-
     background:
         radial-gradient(
             circle at 75% 35%,
@@ -827,7 +814,6 @@ footer strong {
             transparent 35%
         ),
         linear-gradient(#151313,#0a0909);
-
     cursor: pointer;
     user-select: none;
 }
@@ -844,30 +830,25 @@ footer strong {
 
 
 /* =========================================================
-   RAID WARNING
+   RAID WARNING - CENTER
 ========================================================= */
 
 #raidWarning {
     position: absolute;
-    top: 55px;
+    top: 58px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 90;
-
+    width: 70%;
+    text-align: center;
     color: #ffd55f;
-
     font-family: Georgia,serif;
     font-weight: bold;
-    font-size: 22px;
-
-    text-align: center;
-
+    font-size: 23px;
     text-shadow:
         0 2px 2px black,
         0 0 8px black;
-
     pointer-events: none;
-
     opacity: 0;
 }
 
@@ -876,47 +857,163 @@ footer strong {
 }
 
 @keyframes warningFlash {
-
     0% {
         opacity: 0;
         transform: translateX(-50%) scale(.8);
     }
-
     15% {
         opacity: 1;
         transform: translateX(-50%) scale(1.08);
     }
-
     75% {
         opacity: 1;
     }
-
     100% {
         opacity: 0;
         transform: translateX(-50%) scale(1);
     }
-
 }
 
 
 /* =========================================================
-   RANDOM ACTION BUTTON
+   LEFT COMBAT FEED
+========================================================= */
+
+#leftCombatFeed {
+    position: absolute;
+    left: 18px;
+    top: 95px;
+    width: 270px;
+    z-index: 75;
+    pointer-events: none;
+}
+
+.left-event {
+    margin-bottom: 7px;
+    padding: 7px 10px;
+    border-left: 3px solid #69c96b;
+    background: rgba(5,12,5,.72);
+    color: #8ce58e;
+    font-size: 12px;
+    line-height: 1.35;
+    text-shadow: 0 1px 2px black;
+    animation: feedIn .2s ease;
+}
+
+.left-event.buff {
+    border-left-color: #d7a94b;
+    color: #f3ce7c;
+}
+
+.left-event.warning-event {
+    border-left-color: #d55d4d;
+    color: #e17a6c;
+}
+
+
+/* =========================================================
+   RIGHT DAMAGE FEED
+========================================================= */
+
+#rightDamageFeed {
+    position: absolute;
+    right: 12px;
+    top: 100px;
+    width: 170px;
+    z-index: 75;
+    text-align: right;
+    pointer-events: none;
+}
+
+.damage-event {
+    margin-bottom: 5px;
+    color: #9beaff;
+    font-weight: bold;
+    font-size: 17px;
+    text-shadow:
+        0 2px 3px black,
+        0 0 5px #236a95;
+    animation: damageFade 1.15s forwards;
+}
+
+.damage-event.crit {
+    color: #ffd84c;
+    font-family: Georgia,serif;
+    font-size: 27px;
+    text-shadow:
+        0 2px 3px black,
+        0 0 10px #ff8b00;
+    animation: critBurst 1.25s forwards;
+}
+
+@keyframes feedIn {
+    from {
+        transform: translateX(-15px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes damageFade {
+    0% {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+    15% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes critBurst {
+    0% {
+        opacity: 0;
+        transform: scale(.5);
+    }
+    18% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+    35% {
+        transform: scale(1);
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-25px) scale(.95);
+    }
+}
+
+
+/* =========================================================
+   ACTION BUTTON
 ========================================================= */
 
 #raidActionPrompt {
     position: absolute;
     left: 50%;
-    bottom: 70px;
+    bottom: 72px;
     transform: translateX(-50%);
-    z-index: 80;
+    z-index: 85;
     display: none;
 }
 
 #raidActionButton {
-    padding: 14px 20px;
+    padding: 14px 22px;
     border: 2px solid #d7a94b;
     background: #4d3213;
-    color: #ffe0/86;
     color: #ffe086;
     font-weight: bold;
     box-shadow: 0 0 16px rgba(215,169,75,.35);
@@ -1019,13 +1116,8 @@ footer strong {
     border-radius: 50%;
 }
 
-.shoulder-left {
-    left: 1px;
-}
-
-.shoulder-right {
-    right: 0;
-}
+.shoulder-left { left: 1px; }
+.shoulder-right { right: 0; }
 
 .player-leg {
     position: absolute;
@@ -1035,13 +1127,8 @@ footer strong {
     background: #332f2c;
 }
 
-.leg-left {
-    left: 11px;
-}
-
-.leg-right {
-    right: 11px;
-}
+.leg-left { left: 11px; }
+.leg-right { right: 11px; }
 
 
 /* =========================================================
@@ -1141,7 +1228,6 @@ footer strong {
     bottom: 55px;
     width: 62px;
     height: 42px;
-
     background:
         radial-gradient(
             ellipse at bottom,
@@ -1157,7 +1243,6 @@ footer strong {
     width: 125px;
     height: 37px;
     border-radius: 50%;
-
     background:
         linear-gradient(
             90deg,
@@ -1183,52 +1268,12 @@ footer strong {
     z-index: 25;
 }
 
-.lightning-impact {
-    position: absolute;
-    right: 135px;
-    bottom: 135px;
-    font-size: 30px;
-    color: #9beaff;
-    z-index: 40;
-}
-
-
-/* =========================================================
-   FLOATING EVENT TEXT
-========================================================= */
-
-.floating-event {
-    position: absolute;
-    z-index: 70;
-
-    left: 50%;
-    top: 130px;
-
-    transform: translateX(-50%);
-
-    color: #8ee18c;
-    font-weight: bold;
-
-    text-shadow:
-        0 2px 3px black;
-
-    animation: floatEvent 1.7s forwards;
-
-    pointer-events: none;
-}
-
-@keyframes floatEvent {
-
-    from {
-        opacity: 1;
-        transform: translate(-50%,0);
-    }
-
-    to {
-        opacity: 0;
-        transform: translate(-50%,-60px);
-    }
-
+.lightning-bolt.crit-bolt {
+    height: 9px;
+    background: #fff57a;
+    box-shadow:
+        0 0 18px #ffd800,
+        0 0 30px #ff9900;
 }
 
 
@@ -1240,16 +1285,12 @@ footer strong {
     position: absolute;
     inset: 0;
     z-index: 100;
-
     background: rgba(5,5,5,.88);
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     text-align: center;
-
     padding: 30px;
 }
 
@@ -1272,14 +1313,19 @@ footer strong {
     font-weight: bold;
 }
 
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
 .game-controls {
     padding: 13px 18px;
     background: #151310;
     color: #837a6f;
     font-size: 11px;
-
     display: flex;
     justify-content: space-between;
+    gap: 15px;
 }
 
 
@@ -1291,11 +1337,9 @@ footer strong {
     width: min(600px,96%);
     background: #11100e;
     border: 2px solid #806039;
-
     box-shadow:
         0 0 0 1px #2a221b,
         0 15px 45px rgba(0,0,0,.8);
-
     padding: 20px;
     text-align: left;
 }
@@ -1351,16 +1395,12 @@ footer strong {
     width: 36px;
     height: 36px;
     flex: 0 0 36px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 2px solid #a335ee;
-
     background:
         radial-gradient(circle,#48205e,#1d1025);
-
     color: #ddb3ff;
 }
 
@@ -1411,11 +1451,9 @@ footer strong {
 ========================================================= */
 
 @media(max-width:900px) {
-
     nav {
         display: none;
     }
-
 }
 
 @media(max-width:800px) {
@@ -1447,17 +1485,28 @@ footer strong {
 @media(max-width:600px) {
 
     #gameArea {
-        height: 340px;
+        height: 380px;
     }
 
     #gamePlayer {
-        left: 45px;
+        left: 40px;
     }
 
     #onyxia {
         right: -20px;
-        transform: scale(.8);
+        transform: scale(.78);
         transform-origin: bottom right;
+    }
+
+    #leftCombatFeed {
+        width: 190px;
+        left: 7px;
+        top: 100px;
+    }
+
+    #rightDamageFeed {
+        width: 125px;
+        right: 5px;
     }
 
     .game-hud {
@@ -1490,12 +1539,11 @@ footer strong {
 
 </head>
 
-
 <body>
 
 
 <!-- =========================================================
-     AUDIO FILES
+     AUDIO
 ========================================================= -->
 
 <audio id="backgroundMusic" loop preload="auto">
@@ -1578,30 +1626,21 @@ AU <span>TSM</span>
 </h2>
 
 <div class="guild-tagline">
-
 PROFESSIONAL TEAM SOLO MID PLAYERS
-
-<span>
-WITH A HINT OF DEGENERACY
-</span>
-
+<span>WITH A HINT OF DEGENERACY</span>
 </div>
 
 <p class="hero-description">
-
 An Oceanic World of Warcraft Forever guild combining questionable
 sleep schedules, unnecessary optimisation, excessive spreadsheets
 and the unwavering belief that the next pull is definitely the one.
-
 </p>
 
 <div class="horde-badge">
 ⚔ FOR THE HORDE ⚔
 </div>
 
-
 <div class="hero-buttons">
-
 
 <div class="raid-ready-callout">
 
@@ -1688,7 +1727,7 @@ Initiate Ready Check
 
 
 <!-- =========================================================
-     LIVE OPERATIONS
+     LIVE
 ========================================================= -->
 
 <section>
@@ -1743,9 +1782,7 @@ Phinky pretending everything is under control.
 <span class="metric-name">Chris Gaming Ability</span>
 <span class="metric-value">100%</span>
 </div>
-<div class="bar">
-<div class="fill" style="width:100%"></div>
-</div>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
 <div class="metric-note">Self-reported. Peer review unavailable.</div>
 </div>
 
@@ -1754,9 +1791,7 @@ Phinky pretending everything is under control.
 <span class="metric-name">Roks Mechanic Awareness</span>
 <span class="metric-value">18%</span>
 </div>
-<div class="bar">
-<div class="fill" style="width:18%"></div>
-</div>
+<div class="bar"><div class="fill" style="width:18%"></div></div>
 <div class="metric-note">Corrective action remains ineffective.</div>
 </div>
 
@@ -1765,9 +1800,7 @@ Phinky pretending everything is under control.
 <span class="metric-name">Luffa Sobriety</span>
 <span class="metric-value">7%</span>
 </div>
-<div class="bar">
-<div class="fill" style="width:7%"></div>
-</div>
+<div class="bar"><div class="fill" style="width:7%"></div></div>
 <div class="metric-note">Strong inverse correlation with time of evening.</div>
 </div>
 
@@ -1776,9 +1809,7 @@ Phinky pretending everything is under control.
 <span class="metric-name">Aimless Directional Accuracy</span>
 <span class="metric-value">31%</span>
 </div>
-<div class="bar">
-<div class="fill" style="width:31%"></div>
-</div>
+<div class="bar"><div class="fill" style="width:31%"></div></div>
 <div class="metric-note">Name appears statistically relevant.</div>
 </div>
 
@@ -1787,9 +1818,7 @@ Phinky pretending everything is under control.
 <span class="metric-name">Phinky Leadership Confidence</span>
 <span class="metric-value">94%</span>
 </div>
-<div class="bar">
-<div class="fill" style="width:94%"></div>
-</div>
+<div class="bar"><div class="fill" style="width:94%"></div></div>
 <div class="metric-note">Has somehow turned WoW into middle management.</div>
 </div>
 
@@ -1798,9 +1827,7 @@ Phinky pretending everything is under control.
 <span class="metric-name">Fayne Bladestorm Uptime</span>
 <span class="metric-value">100%</span>
 </div>
-<div class="bar">
-<div class="fill" style="width:100%"></div>
-</div>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
 <div class="metric-note">Mechanic participation measured separately.</div>
 </div>
 
@@ -2048,7 +2075,9 @@ or any incident involving Roks.
 
 <div>
 PLAYER:
-<span id="gameHealth">❤ ❤ ❤</span>
+<span id="gameHealth">
+❤ ❤ ❤ ❤ ❤
+</span>
 </div>
 
 <div class="boss-hud">
@@ -2060,7 +2089,7 @@ ONYXIA
 </div>
 
 <span id="bossHealthText">
-100 / 100
+220 / 220
 </span>
 
 </div>
@@ -2081,13 +2110,15 @@ FIGHT:
 
 <div id="raidWarning"></div>
 
+<div id="leftCombatFeed"></div>
+
+<div id="rightDamageFeed"></div>
+
 
 <div id="raidActionPrompt">
-
 <button id="raidActionButton">
 USE ITEM
 </button>
-
 </div>
 
 
@@ -2095,12 +2126,9 @@ USE ITEM
 
 <div class="player-hair"></div>
 <div class="player-head"></div>
-
 <div class="player-shoulder shoulder-left"></div>
 <div class="player-shoulder shoulder-right"></div>
-
 <div class="player-body"></div>
-
 <div class="player-leg leg-left"></div>
 <div class="player-leg leg-right"></div>
 
@@ -2111,7 +2139,6 @@ USE ITEM
 
 <div class="dragon-wing dragon-wing-left"></div>
 <div class="dragon-wing dragon-wing-right"></div>
-
 <div class="dragon-body"></div>
 <div class="dragon-neck"></div>
 
@@ -2135,13 +2162,21 @@ ONYXIA
 
 <p>
 
-Onyxia now has <strong>100 HP</strong>.
+Onyxia has <strong>220 HP</strong>.
 
 <br><br>
 
-Your character automatically attacks.
+Your Lightning Bolt deals
+<strong>5 damage</strong>
+and has a
+<strong>25% critical strike chance</strong>.
 
 <br>
+
+Critical strikes deal
+<strong>10 damage</strong>.
+
+<br><br>
 
 <strong>Ground Fire:</strong> Jump.
 
@@ -2151,9 +2186,14 @@ Your character automatically attacks.
 
 <br><br>
 
-Random guild events, heals, mistakes,
-consumables and questionable leadership decisions
-will occur throughout the encounter.
+You have
+<strong>5 hearts</strong>.
+
+<br>
+
+Guild members may occasionally heal you,
+help you,
+or make everything considerably worse.
 
 <br><br>
 
@@ -2179,76 +2219,55 @@ PULL BOSS
 DAMAGE
 </div>
 
-
 <div class="dps-row">
-
 <div class="dps-name">
 <span>Chris</span>
 <span id="dpsChris">0</span>
 </div>
-
 <div class="dps-bar">
 <div class="dps-fill" id="barChris"></div>
 </div>
-
 </div>
 
-
 <div class="dps-row">
-
 <div class="dps-name">
 <span>You</span>
 <span id="dpsPlayer">0</span>
 </div>
-
 <div class="dps-bar">
 <div class="dps-fill" id="barPlayer"></div>
 </div>
-
 </div>
 
-
 <div class="dps-row">
-
 <div class="dps-name">
 <span>Fayne</span>
 <span id="dpsFayne">0</span>
 </div>
-
 <div class="dps-bar">
 <div class="dps-fill" id="barFayne"></div>
 </div>
-
 </div>
 
-
 <div class="dps-row">
-
 <div class="dps-name">
 <span>Sev</span>
 <span id="dpsSev">0</span>
 </div>
-
 <div class="dps-bar">
 <div class="dps-fill" id="barSev"></div>
 </div>
-
 </div>
 
-
 <div class="dps-row">
-
 <div class="dps-name">
 <span>Roks</span>
 <span id="dpsRoks">0</span>
 </div>
-
 <div class="dps-bar">
 <div class="dps-fill" id="barRoks"></div>
 </div>
-
 </div>
-
 
 </div>
 
@@ -2263,8 +2282,8 @@ DAMAGE
 SPACEBAR • ↑ • CLICK / TAP
 </div>
 
-<span id="phaseDisplay">
-PHASE 1
+<span id="combatStatus">
+PHASE 1 • 5/5 HP
 </span>
 
 </div>
@@ -2296,10 +2315,7 @@ function randomItem(array) {
 }
 
 
-function randomNumber(
-    minimum,
-    maximum
-) {
+function randomNumber(minimum, maximum) {
 
     return Math.floor(
         Math.random() *
@@ -2319,27 +2335,21 @@ function randomNumber(
 ========================================================= */
 
 const toast =
-    document.getElementById(
-        "toast"
-    );
-
+    document.getElementById("toast");
 
 let toastTimeout =
     null;
 
 
-function showToast(message) {
+function showToast(text) {
 
     toast.textContent =
-        message;
+        text;
 
     toast.style.display =
         "block";
 
-
-    if (
-        toastTimeout
-    ) {
+    if (toastTimeout) {
 
         clearTimeout(
             toastTimeout
@@ -2347,9 +2357,8 @@ function showToast(message) {
 
     }
 
-
     toastTimeout =
-        setTimeout(function () {
+        setTimeout(function() {
 
             toast.style.display =
                 "none";
@@ -2364,44 +2373,28 @@ function showToast(message) {
 ========================================================= */
 
 const backgroundMusic =
-    document.getElementById(
-        "backgroundMusic"
-    );
+    document.getElementById("backgroundMusic");
 
 const readyCheckSound =
-    document.getElementById(
-        "readyCheckSound"
-    );
+    document.getElementById("readyCheckSound");
 
 const verySlowlySound =
-    document.getElementById(
-        "verySlowlySound"
-    );
+    document.getElementById("verySlowlySound");
 
 const wtfSound =
-    document.getElementById(
-        "wtfSound"
-    );
+    document.getElementById("wtfSound");
 
 const moreDotsSound =
-    document.getElementById(
-        "moreDotsSound"
-    );
+    document.getElementById("moreDotsSound");
 
 const gratzSound =
-    document.getElementById(
-        "gratzSound"
-    );
+    document.getElementById("gratzSound");
 
 const levelUpSound =
-    document.getElementById(
-        "levelUpSound"
-    );
+    document.getElementById("levelUpSound");
 
 const musicButton =
-    document.getElementById(
-        "musicButton"
-    );
+    document.getElementById("musicButton");
 
 
 const NORMAL_MUSIC_VOLUME =
@@ -2439,12 +2432,11 @@ let musicPlaying =
 
 
 /* =========================================================
-   SOUND QUEUE
+   AUDIO QUEUE
 ========================================================= */
 
 const soundQueue =
     [];
-
 
 let foregroundSoundPlaying =
     false;
@@ -2453,16 +2445,12 @@ let foregroundSoundPlaying =
 function queueSound(audio) {
 
     if (!audio) {
-
         return;
-
     }
-
 
     soundQueue.push(
         audio
     );
-
 
     processSoundQueue();
 
@@ -2481,10 +2469,8 @@ async function processSoundQueue() {
 
 
     if (
-        soundQueue.length ===
-        0
+        soundQueue.length === 0
     ) {
-
 
         if (
             musicPlaying
@@ -2494,7 +2480,6 @@ async function processSoundQueue() {
                 NORMAL_MUSIC_VOLUME;
 
         }
-
 
         return;
 
@@ -2536,12 +2521,10 @@ async function processSoundQueue() {
         foregroundSoundPlaying =
             false;
 
-
         setTimeout(
             processSoundQueue,
             SOUND_GAP
         );
-
 
         return;
 
@@ -2551,16 +2534,13 @@ async function processSoundQueue() {
     audio.onended =
         function() {
 
-
             foregroundSoundPlaying =
                 false;
-
 
             setTimeout(
                 processSoundQueue,
                 SOUND_GAP
             );
-
 
         };
 
@@ -2568,7 +2548,7 @@ async function processSoundQueue() {
 
 
 /* =========================================================
-   MUSIC
+   MUSIC BUTTON
 ========================================================= */
 
 musicButton.onclick =
@@ -2579,16 +2559,12 @@ musicButton.onclick =
             !musicPlaying
         ) {
 
-
             try {
-
 
                 await backgroundMusic.play();
 
-
                 musicPlaying =
                     true;
-
 
                 backgroundMusic.volume =
                     foregroundSoundPlaying
@@ -2597,58 +2573,46 @@ musicButton.onclick =
                     :
                     NORMAL_MUSIC_VOLUME;
 
-
                 musicButton.textContent =
                     "♫ MUSIC: ON";
-
 
                 musicButton.classList.add(
                     "music-on"
                 );
 
-
             }
 
             catch(error) {
 
-
                 showToast(
-                    "Browser blocked audio. Click again."
+                    "Browser blocked audio. Click the music button again."
                 );
 
-
             }
-
 
         }
 
         else {
 
-
             backgroundMusic.pause();
-
 
             musicPlaying =
                 false;
 
-
             musicButton.textContent =
                 "♫ MUSIC: OFF";
-
 
             musicButton.classList.remove(
                 "music-on"
             );
 
-
         }
-
 
     };
 
 
 /* =========================================================
-   WEBSITE RANDOM DATA
+   WEBSITE DATA
 ========================================================= */
 
 const deathReports = [
@@ -2713,33 +2677,19 @@ const leadershipStatuses = [
 function updateLiveStatus() {
 
     document
-        .getElementById(
-            "latestDeath"
-        )
+        .getElementById("latestDeath")
         .textContent =
-        randomItem(
-            deathReports
-        );
-
+        randomItem(deathReports);
 
     document
-        .getElementById(
-            "blameTarget"
-        )
+        .getElementById("blameTarget")
         .textContent =
-        randomItem(
-            blameTargets
-        );
-
+        randomItem(blameTargets);
 
     document
-        .getElementById(
-            "leadershipStatus"
-        )
+        .getElementById("leadershipStatus")
         .textContent =
-        randomItem(
-            leadershipStatuses
-        );
+        randomItem(leadershipStatuses);
 
 }
 
@@ -2779,7 +2729,6 @@ let fayneIndex =
 
 setInterval(function() {
 
-
     fayneIndex =
         (
             fayneIndex +
@@ -2787,16 +2736,10 @@ setInterval(function() {
         ) %
         fayneStatuses.length;
 
-
     document
-        .getElementById(
-            "fayneStatus"
-        )
+        .getElementById("fayneStatus")
         .textContent =
-        fayneStatuses[
-            fayneIndex
-        ];
-
+        fayneStatuses[fayneIndex];
 
 },2500);
 
@@ -2806,17 +2749,13 @@ setInterval(function() {
 ========================================================= */
 
 document
-    .getElementById(
-        "joinButton"
-    )
+    .getElementById("joinButton")
     .onclick =
     function() {
-
 
         queueSound(
             levelUpSound
         );
-
 
         const applicationSteps = [
 
@@ -2834,50 +2773,36 @@ document
 
         ];
 
-
         let step =
             0;
 
-
         showToast(
-            applicationSteps[
-                step
-            ]
+            applicationSteps[step]
         );
-
 
         const timer =
             setInterval(function() {
 
-
                 step++;
-
 
                 if (
                     step >=
                     applicationSteps.length
                 ) {
 
-
                     clearInterval(
                         timer
                     );
-
 
                     return;
 
                 }
 
-
                 showToast(
-                    applicationSteps[
-                        step
-                    ]
+                    applicationSteps[step]
                 );
 
-
             },1000);
-
 
     };
 
@@ -2891,14 +2816,12 @@ const readyButton =
         "readyButton"
     );
 
-
 let readyCooldown =
     false;
 
 
 readyButton.onclick =
     function() {
-
 
         if (
             readyCooldown
@@ -2908,28 +2831,22 @@ readyButton.onclick =
 
         }
 
-
         readyCooldown =
             true;
 
-
         readyButton.disabled =
             true;
-
 
         queueSound(
             readyCheckSound
         );
 
-
         showToast(
             "Initiating enterprise-grade ready check..."
         );
 
-
         let remaining =
             5;
-
 
         readyButton.textContent =
             "Cooldown: 5s";
@@ -2938,49 +2855,37 @@ readyButton.onclick =
         const timer =
             setInterval(function() {
 
-
                 remaining--;
 
-
                 if (
-                    remaining >
-                    0
+                    remaining > 0
                 ) {
-
 
                     readyButton.textContent =
                         "Cooldown: " +
                         remaining +
                         "s";
 
-
                 }
 
                 else {
-
 
                     clearInterval(
                         timer
                     );
 
-
                     readyCooldown =
                         false;
-
 
                     readyButton.disabled =
                         false;
 
-
                     readyButton.textContent =
                         "Initiate Ready Check";
 
-
                 }
 
-
             },1000);
-
 
     };
 
@@ -2990,16 +2895,12 @@ readyButton.onclick =
 ========================================================= */
 
 document
-.getElementById(
-    "eligibilityButton"
-)
+.getElementById("eligibilityButton")
 .onclick =
 function() {
 
     document
-    .getElementById(
-        "eligibilityResult"
-    )
+    .getElementById("eligibilityResult")
     .textContent =
         randomItem([
 
@@ -3017,9 +2918,7 @@ function() {
 
 
 document
-.getElementById(
-    "latencyButton"
-)
+.getElementById("latencyButton")
 .onclick =
 function() {
 
@@ -3029,11 +2928,8 @@ function() {
             170
         );
 
-
     document
-    .getElementById(
-        "latencyResult"
-    )
+    .getElementById("latencyResult")
     .textContent =
         ping +
         " ms — enough evidence to blame Australian internet.";
@@ -3042,16 +2938,12 @@ function() {
 
 
 document
-.getElementById(
-    "lootButton"
-)
+.getElementById("lootButton")
 .onclick =
 function() {
 
     document
-    .getElementById(
-        "lootResult"
-    )
+    .getElementById("lootResult")
     .textContent =
         randomItem([
 
@@ -3069,16 +2961,12 @@ function() {
 
 
 document
-.getElementById(
-    "parseButton"
-)
+.getElementById("parseButton")
 .onclick =
 function() {
 
     document
-    .getElementById(
-        "parseResult"
-    )
+    .getElementById("parseResult")
     .textContent =
         randomItem([
 
@@ -3134,9 +3022,9 @@ const fightTimerDisplay =
         "fightTimer"
     );
 
-const phaseDisplay =
+const combatStatus =
     document.getElementById(
-        "phaseDisplay"
+        "combatStatus"
     );
 
 const message =
@@ -3147,6 +3035,16 @@ const message =
 const raidWarning =
     document.getElementById(
         "raidWarning"
+    );
+
+const leftCombatFeed =
+    document.getElementById(
+        "leftCombatFeed"
+    );
+
+const rightDamageFeed =
+    document.getElementById(
+        "rightDamageFeed"
     );
 
 const raidActionPrompt =
@@ -3164,85 +3062,81 @@ const raidActionButton =
    RAID VARIABLES
 ========================================================= */
 
+const BOSS_MAX_HP =
+    220;
+
+const PLAYER_MAX_HEALTH =
+    5;
+
+const NORMAL_DAMAGE =
+    5;
+
+const CRIT_DAMAGE =
+    10;
+
+const CRIT_CHANCE =
+    0.25;
+
+
 let gameRunning =
     false;
 
-
 let health =
-    3;
-
+    PLAYER_MAX_HEALTH;
 
 let bossHealth =
-    100;
-
+    BOSS_MAX_HP;
 
 let fightTime =
     0;
 
-
 let playerY =
     0;
-
 
 let velocityY =
     0;
 
-
 let lastFrame =
     0;
 
-
 let mechanicTimer =
-    1.5;
-
+    2;
 
 let attackTimer =
-    2.7;
-
+    2.6;
 
 let guildEventTimer =
-    5;
-
+    7;
 
 let dpsTickTimer =
     1;
 
-
 let mechanics =
     [];
-
 
 let bolts =
     [];
 
-
 let animation =
     null;
-
 
 let currentPhase =
     1;
 
-
 let moreDotsTriggered =
     false;
-
 
 let reviveUsed =
     false;
 
-
 let dpsPausedUntil =
     0;
-
 
 let damagePenaltyUntil =
     0;
 
-
 let currentAction =
     null;
-
 
 let actionTimeout =
     null;
@@ -3255,63 +3149,47 @@ let actionTimeout =
 let raidDamage =
 {
 
-    Chris:
-        0,
+    Chris: 0,
 
-    Player:
-        0,
+    Player: 0,
 
-    Fayne:
-        0,
+    Fayne: 0,
 
-    Sev:
-        0,
+    Sev: 0,
 
-    Roks:
-        0
+    Roks: 0
 
 };
 
 
 /* =========================================================
-   OPEN GAME
+   OPEN / CLOSE
 ========================================================= */
 
 document
-.getElementById(
-    "raidGameButton"
-)
+.getElementById("raidGameButton")
 .onclick =
 function() {
-
 
     overlay.style.display =
         "flex";
 
-
     resetGame();
-
 
 };
 
 
 document
-.getElementById(
-    "closeRaidGame"
-)
+.getElementById("closeRaidGame")
 .onclick =
 function() {
 
-
     stopGame();
-
 
     clearObjects();
 
-
     overlay.style.display =
         "none";
-
 
 };
 
@@ -3322,98 +3200,73 @@ function() {
 
 function resetGame() {
 
-
     stopGame();
-
 
     clearObjects();
 
+    clearCombatFeeds();
 
     health =
-        3;
-
+        PLAYER_MAX_HEALTH;
 
     bossHealth =
-        100;
-
+        BOSS_MAX_HP;
 
     fightTime =
         0;
 
-
     playerY =
         0;
-
 
     velocityY =
         0;
 
-
     currentPhase =
         1;
-
 
     moreDotsTriggered =
         false;
 
-
     reviveUsed =
         false;
-
 
     dpsPausedUntil =
         0;
 
-
     damagePenaltyUntil =
         0;
-
 
     raidDamage =
     {
 
-        Chris:
-            0,
+        Chris: 0,
 
-        Player:
-            0,
+        Player: 0,
 
-        Fayne:
-            0,
+        Fayne: 0,
 
-        Sev:
-            0,
+        Sev: 0,
 
-        Roks:
-            0
+        Roks: 0
 
     };
 
 
-    healthDisplay.textContent =
-        "❤ ❤ ❤";
+    updateHealthDisplay();
 
+    updateBoss();
+
+    updateDpsMeter();
+
+    updateCombatStatus();
 
     fightTimerDisplay.textContent =
         "0.0";
 
-
-    phaseDisplay.textContent =
-        "PHASE 1";
-
-
     player.style.bottom =
         "55px";
 
-
-    updateBoss();
-
-
-    updateDpsMeter();
-
-
     hideActionPrompt();
-
 
     message.style.display =
         "flex";
@@ -3428,13 +3281,24 @@ function resetGame() {
         <p>
 
         Onyxia has
-        <strong>100 HP</strong>.
+        <strong>220 HP</strong>.
 
         <br><br>
 
-        Your character automatically attacks.
+        Lightning Bolt deals
+        <strong>5 damage</strong>.
 
         <br>
+
+        You have a
+        <strong>25% chance to critically strike for 10 damage</strong>.
+
+        <br><br>
+
+        You have
+        <strong>5 hearts</strong>.
+
+        <br><br>
 
         <strong>Ground Fire:</strong>
         Jump.
@@ -3446,16 +3310,15 @@ function resetGame() {
 
         <br><br>
 
-        Random guild heals,
-        cooldowns,
-        mistakes,
-        disconnects
-        and leadership decisions
-        may occur.
+        Positive events appear on the left.
 
-        <br><br>
+        <br>
 
-        Kill Onyxia.
+        Damage appears beside Onyxia.
+
+        <br>
+
+        Raid warnings remain in the centre.
 
         </p>
 
@@ -3467,12 +3330,9 @@ function resetGame() {
 
 
     document
-    .getElementById(
-        "startAgain"
-    )
+    .getElementById("startAgain")
     .onclick =
         startGame;
-
 
 }
 
@@ -3483,113 +3343,91 @@ function resetGame() {
 
 function startGame() {
 
-
     stopGame();
-
 
     clearObjects();
 
+    clearCombatFeeds();
 
     health =
-        3;
-
+        PLAYER_MAX_HEALTH;
 
     bossHealth =
-        100;
-
+        BOSS_MAX_HP;
 
     fightTime =
         0;
 
-
     playerY =
         0;
-
 
     velocityY =
         0;
 
-
     currentPhase =
         1;
-
 
     moreDotsTriggered =
         false;
 
-
     reviveUsed =
         false;
 
-
     mechanicTimer =
-        1.3;
-
+        2.2;
 
     attackTimer =
-        2.5;
-
+        2.6;
 
     guildEventTimer =
         randomNumber(
-            4,
-            6
+            6,
+            9
         );
-
 
     dpsTickTimer =
         1;
 
-
     dpsPausedUntil =
         0;
-
 
     damagePenaltyUntil =
         0;
 
-
     raidDamage =
     {
 
-        Chris:
-            0,
+        Chris: 0,
 
-        Player:
-            0,
+        Player: 0,
 
-        Fayne:
-            0,
+        Fayne: 0,
 
-        Sev:
-            0,
+        Sev: 0,
 
-        Roks:
-            0
+        Roks: 0
 
     };
 
 
-    healthDisplay.textContent =
-        "❤ ❤ ❤";
+    updateHealthDisplay();
 
+    updateBoss();
+
+    updateDpsMeter();
+
+    updateCombatStatus();
 
     fightTimerDisplay.textContent =
         "0.0";
 
-
-    updateBoss();
-
-
-    updateDpsMeter();
-
+    player.style.bottom =
+        "55px";
 
     hideActionPrompt();
 
-
     message.style.display =
         "none";
-
 
     gameRunning =
         true;
@@ -3605,6 +3443,12 @@ function startGame() {
     );
 
 
+    addLeftEvent(
+        "Raid started. Confidence remains unjustifiably high.",
+        "buff"
+    );
+
+
     lastFrame =
         performance.now();
 
@@ -3614,7 +3458,6 @@ function startGame() {
             gameLoop
         );
 
-
 }
 
 
@@ -3623,7 +3466,6 @@ function startGame() {
 ========================================================= */
 
 function jump() {
-
 
     if (
         !gameRunning
@@ -3639,13 +3481,10 @@ function jump() {
         1
     ) {
 
-
         velocityY =
             570;
 
-
     }
-
 
 }
 
@@ -3654,28 +3493,17 @@ document.addEventListener(
     "keydown",
     function(event) {
 
-
         if (
-
-            event.code ===
-            "Space"
-
+            event.code === "Space"
             ||
-
-            event.code ===
-            "ArrowUp"
-
+            event.code === "ArrowUp"
         ) {
-
 
             event.preventDefault();
 
-
             jump();
 
-
         }
-
 
     }
 );
@@ -3684,7 +3512,6 @@ document.addEventListener(
 gameArea.addEventListener(
     "pointerdown",
     function(event) {
-
 
         if (
             event.target.closest(
@@ -3696,9 +3523,7 @@ gameArea.addEventListener(
 
         }
 
-
         jump();
-
 
     }
 );
@@ -3709,7 +3534,6 @@ gameArea.addEventListener(
 ========================================================= */
 
 function gameLoop(time) {
-
 
     if (
         !gameRunning
@@ -3745,35 +3569,27 @@ function gameLoop(time) {
         );
 
 
-    /* PLAYER PHYSICS */
-
+    /* PHYSICS */
 
     velocityY -=
         1500 *
         delta;
 
-
     playerY +=
         velocityY *
         delta;
 
-
     if (
-        playerY <
-        0
+        playerY < 0
     ) {
-
 
         playerY =
             0;
 
-
         velocityY =
             0;
 
-
     }
-
 
     player.style.bottom =
         (
@@ -3783,101 +3599,76 @@ function gameLoop(time) {
         "px";
 
 
-    /* MECHANICS */
-
+    /* BOSS MECHANICS */
 
     mechanicTimer -=
         delta;
-
 
     if (
         mechanicTimer <=
         0
     ) {
 
-
         spawnMechanic();
-
 
         mechanicTimer =
             getMechanicInterval();
-
 
     }
 
 
     /* PLAYER ATTACK */
 
-
     attackTimer -=
         delta;
-
 
     if (
         attackTimer <=
         0
     ) {
 
-
         playerAttack();
 
-
         attackTimer =
-            randomNumber(
-                22,
-                30
-            ) /
-            10;
-
+            2.55 +
+            Math.random() *
+            .35;
 
     }
 
 
-    /* RANDOM GUILD EVENT */
-
+    /* GUILD EVENT */
 
     guildEventTimer -=
         delta;
-
 
     if (
         guildEventTimer <=
         0
     ) {
 
-
         triggerGuildEvent();
 
-
         guildEventTimer =
-            randomNumber(
-                4,
-                7
-            );
-
+            getGuildEventInterval();
 
     }
 
 
-    /* DPS SIMULATION */
-
+    /* DPS METER */
 
     dpsTickTimer -=
         delta;
-
 
     if (
         dpsTickTimer <=
         0
     ) {
 
-
         simulateRaidDamage();
-
 
         dpsTickTimer =
             1;
-
 
     }
 
@@ -3885,7 +3676,6 @@ function gameLoop(time) {
     updateMechanics(
         delta
     );
-
 
     updateBolts(
         delta
@@ -3897,7 +3687,6 @@ function gameLoop(time) {
             gameLoop
         );
 
-
 }
 
 
@@ -3907,141 +3696,163 @@ function gameLoop(time) {
 
 function updatePhase() {
 
-
     let newPhase =
         1;
 
 
     if (
         bossHealth <=
-        60
+        145
     ) {
-
 
         newPhase =
             2;
-
 
     }
 
 
     if (
         bossHealth <=
-        30
+        70
     ) {
-
 
         newPhase =
             3;
-
 
     }
 
 
     if (
-        newPhase !==
+        newPhase ===
         currentPhase
     ) {
 
-
-        currentPhase =
-            newPhase;
-
-
-        phaseDisplay.textContent =
-            "PHASE " +
-            currentPhase;
-
-
-        if (
-            currentPhase ===
-            2
-        ) {
-
-
-            showRaidWarning(
-                "PHASE 2 — DEEP BREATHS INCOMING"
-            );
-
-
-        }
-
-
-        if (
-            currentPhase ===
-            3
-        ) {
-
-
-            showRaidWarning(
-                "ONYXIA ENRAGED — PHINKY HAS BEGUN SHOUTING"
-            );
-
-
-        }
-
+        return;
 
     }
 
+
+    currentPhase =
+        newPhase;
+
+
+    updateCombatStatus();
+
+
+    if (
+        currentPhase === 2
+    ) {
+
+        showRaidWarning(
+            "PHASE 2 — DEEP BREATHS INCOMING"
+        );
+
+        addLeftEvent(
+            "Raid has entered Phase 2. Officers immediately begin arguing.",
+            "buff"
+        );
+
+    }
+
+
+    if (
+        currentPhase === 3
+    ) {
+
+        showRaidWarning(
+            "ONYXIA ENRAGED — PHINKY HAS BEGUN SHOUTING"
+        );
+
+        addLeftEvent(
+            "Emergency healing protocols activated. Nobody knows what those are.",
+            "warning-event"
+        );
+
+    }
 
 }
 
 
 /* =========================================================
-   MECHANIC SPEED
+   TIMINGS
 ========================================================= */
 
 function getMechanicInterval() {
 
-
     if (
-        currentPhase ===
-        1
+        currentPhase === 1
     ) {
 
-
         return randomNumber(
-            14,
-            21
+            20,
+            28
         ) /
         10;
-
 
     }
 
 
     if (
-        currentPhase ===
-        2
+        currentPhase === 2
     ) {
 
-
         return randomNumber(
-            11,
-            18
+            17,
+            24
         ) /
         10;
-
 
     }
 
 
     return randomNumber(
-        8,
-        14
+        13,
+        20
     ) /
     10;
 
+}
+
+
+function getGuildEventInterval() {
+
+    if (
+        currentPhase === 1
+    ) {
+
+        return randomNumber(
+            7,
+            10
+        );
+
+    }
+
+
+    if (
+        currentPhase === 2
+    ) {
+
+        return randomNumber(
+            6,
+            9
+        );
+
+    }
+
+
+    return randomNumber(
+        5,
+        8
+    );
 
 }
 
 
 /* =========================================================
-   SPAWN MECHANIC
+   MECHANICS
 ========================================================= */
 
 function spawnMechanic() {
-
 
     const element =
         document.createElement(
@@ -4050,31 +3861,25 @@ function spawnMechanic() {
 
 
     let fireChance =
-        .68;
+        .72;
 
 
     if (
-        currentPhase ===
-        2
+        currentPhase === 2
     ) {
 
-
         fireChance =
-            .52;
-
+            .58;
 
     }
 
 
     if (
-        currentPhase ===
-        3
+        currentPhase === 3
     ) {
 
-
         fireChance =
-            .58;
-
+            .62;
 
     }
 
@@ -4084,29 +3889,22 @@ function spawnMechanic() {
         fireChance
     ) {
 
-
         element.className =
             "game-fire";
 
-
     }
 
-
     else {
-
 
         element.className =
             "game-breath";
 
-
         element.style.bottom =
             "150px";
-
 
         showRaidWarning(
             "DEEP BREATH — STAY LOW"
         );
-
 
     }
 
@@ -4137,15 +3935,14 @@ function spawnMechanic() {
 
         speed:
             randomNumber(
-                290,
-                365
+                285,
+                340
             ),
 
         direction:
             -1
 
     });
-
 
 }
 
@@ -4156,25 +3953,20 @@ function spawnMechanic() {
 
 function spawnReverseFire() {
 
-
     const element =
         document.createElement(
             "div"
         );
 
-
     element.className =
         "game-fire";
-
 
     element.style.left =
         "-20px";
 
-
     gameArea.appendChild(
         element
     );
-
 
     mechanics.push(
     {
@@ -4186,13 +3978,12 @@ function spawnReverseFire() {
             -20,
 
         speed:
-            310,
+            300,
 
         direction:
             1
 
     });
-
 
 }
 
@@ -4203,29 +3994,21 @@ function spawnReverseFire() {
 
 function updateMechanics(delta) {
 
-
     const playerRect =
         player.getBoundingClientRect();
 
 
     for (
-
         let i =
-            mechanics.length -
-            1;
+            mechanics.length - 1;
 
-        i >=
-        0;
+        i >= 0;
 
         i--
-
     ) {
 
-
         const mechanic =
-            mechanics[
-                i
-            ];
+            mechanics[i];
 
 
         mechanic.x +=
@@ -4251,63 +4034,47 @@ function updateMechanics(delta) {
             )
         ) {
 
-
             mechanic.element.remove();
-
 
             mechanics.splice(
                 i,
                 1
             );
 
-
             damagePlayer();
 
-
             continue;
-
 
         }
 
 
         if (
-
-            mechanic.x <
-            -180
-
+            mechanic.x < -180
             ||
-
             mechanic.x >
             gameArea.clientWidth +
             180
-
         ) {
 
-
             mechanic.element.remove();
-
 
             mechanics.splice(
                 i,
                 1
             );
 
-
         }
 
-
     }
-
 
 }
 
 
 /* =========================================================
-   PLAYER AUTO ATTACK
+   PLAYER ATTACK
 ========================================================= */
 
 function playerAttack() {
-
 
     if (
         !gameRunning
@@ -4323,23 +4090,27 @@ function playerAttack() {
         dpsPausedUntil
     ) {
 
-
-        showFloatingEvent(
-            "Phinky called STOP DPS. Everyone ignored him except you.",
-            "#d7a94b"
+        addLeftEvent(
+            "Phinky called STOP DPS. You were apparently the only person listening.",
+            "warning-event"
         );
-
 
         return;
 
     }
 
 
+    const crit =
+        Math.random() <
+        CRIT_CHANCE;
+
+
     let damage =
-        randomNumber(
-            6,
-            10
-        );
+        crit
+        ?
+        CRIT_DAMAGE
+        :
+        NORMAL_DAMAGE;
 
 
     if (
@@ -4347,16 +4118,14 @@ function playerAttack() {
         damagePenaltyUntil
     ) {
 
-
         damage =
             Math.max(
                 3,
                 Math.round(
                     damage *
-                    .6
+                    .7
                 )
             );
-
 
     }
 
@@ -4367,12 +4136,14 @@ function playerAttack() {
 
 
     damageBoss(
-        damage
+        damage,
+        crit
     );
 
 
-    castLightningVisual();
-
+    castLightningVisual(
+        crit
+    );
 
 }
 
@@ -4381,8 +4152,7 @@ function playerAttack() {
    LIGHTNING VISUAL
 ========================================================= */
 
-function castLightningVisual() {
-
+function castLightningVisual(crit) {
 
     const bolt =
         document.createElement(
@@ -4392,6 +4162,17 @@ function castLightningVisual() {
 
     bolt.className =
         "lightning-bolt";
+
+
+    if (
+        crit
+    ) {
+
+        bolt.classList.add(
+            "crit-bolt"
+        );
+
+    }
 
 
     bolt.style.left =
@@ -4422,10 +4203,13 @@ function castLightningVisual() {
             135,
 
         speed:
+            crit
+            ?
+            800
+            :
             680
 
     });
-
 
 }
 
@@ -4436,30 +4220,22 @@ function castLightningVisual() {
 
 function updateBolts(delta) {
 
-
     const target =
         gameArea.clientWidth -
         180;
 
 
     for (
-
         let i =
-            bolts.length -
-            1;
+            bolts.length - 1;
 
-        i >=
-        0;
+        i >= 0;
 
         i--
-
     ) {
 
-
         const bolt =
-            bolts[
-                i
-            ];
+            bolts[i];
 
 
         bolt.x +=
@@ -4477,21 +4253,16 @@ function updateBolts(delta) {
             target
         ) {
 
-
             bolt.element.remove();
-
 
             bolts.splice(
                 i,
                 1
             );
 
-
         }
 
-
     }
-
 
 }
 
@@ -4500,8 +4271,10 @@ function updateBolts(delta) {
    DAMAGE BOSS
 ========================================================= */
 
-function damageBoss(amount) {
-
+function damageBoss(
+    amount,
+    crit = false
+) {
 
     if (
         !gameRunning
@@ -4517,54 +4290,44 @@ function damageBoss(amount) {
 
 
     if (
-        bossHealth <
-        0
+        bossHealth < 0
     ) {
-
 
         bossHealth =
             0;
-
 
     }
 
 
     updateBoss();
 
-
     updatePhase();
 
 
-    showBossDamage(
-        amount
+    addDamageEvent(
+        amount,
+        crit
     );
 
 
     if (
-
         bossHealth <=
-        50
-
+        BOSS_MAX_HP /
+        2
         &&
-
         !moreDotsTriggered
-
     ) {
-
 
         moreDotsTriggered =
             true;
-
 
         queueSound(
             moreDotsSound
         );
 
-
         showRaidWarning(
             "MORE DOTS"
         );
-
 
     }
 
@@ -4574,64 +4337,94 @@ function damageBoss(amount) {
         0
     ) {
 
-
         victory();
 
-
     }
-
 
 }
 
 
 /* =========================================================
-   BOSS DAMAGE VISUAL
+   DAMAGE DISPLAY
 ========================================================= */
 
-function showBossDamage(amount) {
+function addDamageEvent(
+    amount,
+    crit
+) {
 
-
-    const impact =
+    const element =
         document.createElement(
             "div"
         );
 
 
-    impact.className =
-        "lightning-impact";
+    element.className =
+        crit
+        ?
+        "damage-event crit"
+        :
+        "damage-event";
 
 
-    impact.textContent =
+    element.textContent =
+        crit
+        ?
+        "⚡ CRITICAL! -" +
+        amount
+        :
         "⚡ -" +
         amount;
 
 
-    gameArea.appendChild(
-        impact
+    rightDamageFeed.prepend(
+        element
     );
+
+
+    while (
+        rightDamageFeed.children.length >
+        5
+    ) {
+
+        rightDamageFeed.removeChild(
+            rightDamageFeed.lastChild
+        );
+
+    }
 
 
     setTimeout(function() {
 
+        if (
+            element.parentNode
+        ) {
 
-        impact.remove();
+            element.remove();
 
+        }
 
-    },450);
-
+    },1300);
 
 }
 
 
 /* =========================================================
-   UPDATE BOSS
+   BOSS HP
 ========================================================= */
 
 function updateBoss() {
 
+    const percent =
+        (
+            bossHealth /
+            BOSS_MAX_HP
+        ) *
+        100;
+
 
     bossFill.style.width =
-        bossHealth +
+        percent +
         "%";
 
 
@@ -4639,8 +4432,74 @@ function updateBoss() {
         Math.ceil(
             bossHealth
         ) +
-        " / 100";
+        " / " +
+        BOSS_MAX_HP;
 
+}
+
+
+/* =========================================================
+   LEFT EVENT FEED
+========================================================= */
+
+function addLeftEvent(
+    text,
+    type = ""
+) {
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "left-event";
+
+
+    if (
+        type
+    ) {
+
+        element.classList.add(
+            type
+        );
+
+    }
+
+
+    element.textContent =
+        text;
+
+
+    leftCombatFeed.prepend(
+        element
+    );
+
+
+    while (
+        leftCombatFeed.children.length >
+        5
+    ) {
+
+        leftCombatFeed.removeChild(
+            leftCombatFeed.lastChild
+        );
+
+    }
+
+
+    setTimeout(function() {
+
+        if (
+            element.parentNode
+        ) {
+
+            element.remove();
+
+        }
+
+    },5000);
 
 }
 
@@ -4650,7 +4509,6 @@ function updateBoss() {
 ========================================================= */
 
 function triggerGuildEvent() {
-
 
     if (
         !gameRunning
@@ -4664,7 +4522,7 @@ function triggerGuildEvent() {
     const event =
         randomNumber(
             1,
-            14
+            16
         );
 
 
@@ -4673,328 +4531,206 @@ function triggerGuildEvent() {
 
         case 1:
 
-
-            showRaidWarning(
-                "CHRIS POPS COOLDOWNS"
+            addLeftEvent(
+                "Chris uses cooldowns. Of course he does.",
+                "buff"
             );
-
 
             raidDamage.Chris +=
-                1400;
-
+                950;
 
             damageBoss(
-                9
+                3,
+                false
             );
-
 
             break;
 
 
         case 2:
 
-
-            showRaidWarning(
-                "FAYNE: BLADESTORM"
+            addLeftEvent(
+                "Fayne activates Bladestorm. Mechanic responsibilities suspended.",
+                "buff"
             );
-
 
             raidDamage.Fayne +=
-                1300;
-
+                900;
 
             damageBoss(
-                7
+                3,
+                false
             );
-
-
-            showFloatingEvent(
-                "Fayne ignores assigned mechanic. Damage excellent.",
-                "#d7a94b"
-            );
-
 
             break;
 
 
         case 3:
 
-
-            showRaidWarning(
-                "ROKS STOOD IN FIRE"
+            addLeftEvent(
+                "Roks stood in fire and died. Raid performance unchanged.",
+                "warning-event"
             );
-
 
             raidDamage.Roks +=
-                110;
-
-
-            showFloatingEvent(
-                "Roks has died. Again.",
-                "#d9534f"
-            );
-
+                80;
 
             break;
 
 
         case 4:
 
-
-            showRaidWarning(
-                "LUFFA OPENS ANOTHER BEER"
+            addLeftEvent(
+                "Luffa opens another beer. Accuracy reduced.",
+                "warning-event"
             );
-
 
             damagePenaltyUntil =
                 performance.now() +
                 4500;
-
-
-            showFloatingEvent(
-                "Raid accuracy reduced for entirely unrelated reasons.",
-                "#d7a94b"
-            );
-
 
             break;
 
 
         case 5:
 
-
             showRaidWarning(
                 "KP PULLS THREAT"
             );
 
-
             spawnMechanic();
-
-
-            spawnMechanic();
-
 
             break;
 
 
         case 6:
 
-
-            showRaidWarning(
-                "AIMLESS RUNS THE WRONG WAY"
+            addLeftEvent(
+                "Aimless runs the wrong direction.",
+                "warning-event"
             );
 
-
             spawnReverseFire();
-
 
             break;
 
 
         case 7:
 
-
-            showRaidWarning(
-                "STIFF GOES AFK"
+            addLeftEvent(
+                "Stiff goes AFK. No measurable performance change."
             );
-
-
-            showFloatingEvent(
-                "No measurable change in raid performance.",
-                "#aaa195"
-            );
-
 
             break;
 
 
         case 8:
 
-
             showRaidWarning(
                 "PHINKY: STOP DPS"
             );
 
-
             dpsPausedUntil =
                 performance.now() +
-                2200;
-
+                1800;
 
             break;
 
 
         case 9:
 
-
-            showRaidWarning(
-                "PENNY TELLS CHRIS TO CALM DOWN"
+            addLeftEvent(
+                "Penny tells Chris to calm down. Effect estimated at 0.4 seconds."
             );
-
-
-            showFloatingEvent(
-                "Chris briefly reduced to merely excellent.",
-                "#aaa195"
-            );
-
 
             break;
 
 
         case 10:
 
-
-            showRaidWarning(
-                "ZOMGS DISCONNECTED"
+            addLeftEvent(
+                "Zomgs disconnected exactly when accountability became relevant.",
+                "warning-event"
             );
-
-
-            showFloatingEvent(
-                "Responsibility successfully avoided.",
-                "#aaa195"
-            );
-
 
             break;
 
 
         case 11:
 
-
-            showRaidWarning(
-                "MARSMALLOW DOES THE MECHANIC CORRECTLY"
-            );
-
-
             healPlayer(
                 "Marsmallow"
             );
-
 
             break;
 
 
         case 12:
 
-
-            showRaidWarning(
-                "SEV NOTICED NOBODY WAS HEALING"
-            );
-
-
             healPlayer(
                 "Sev"
             );
-
 
             break;
 
 
         case 13:
 
-
-            spawnRaidAction(
-                "healthstone"
+            healPlayer(
+                "Jaydo"
             );
-
 
             break;
 
 
         case 14:
 
+            spawnRaidAction(
+                "healthstone"
+            );
+
+            break;
+
+
+        case 15:
 
             spawnRaidAction(
                 "bloodlust"
             );
 
-
             break;
 
 
-    }
+        case 16:
 
+            addLeftEvent(
+                "Rulzy disputes the strategy. No action taken pending arbitration."
+            );
+
+            break;
+
+    }
 
 }
 
 
 /* =========================================================
-   RANDOM HEAL
-========================================================= */
-
-function maybeRandomHeal() {
-
-
-    if (
-
-        health >=
-        3
-
-        ||
-
-        !gameRunning
-
-    ) {
-
-
-        return;
-
-    }
-
-
-    if (
-        Math.random() <
-        .32
-    ) {
-
-
-        const healer =
-            randomItem([
-
-                "Jaydo",
-
-                "Sev",
-
-                "Chris",
-
-                "Penny",
-
-                "Marsmallow",
-
-                "KP"
-
-            ]);
-
-
-        healPlayer(
-            healer
-        );
-
-
-    }
-
-
-}
-
-
-/* =========================================================
-   HEAL PLAYER
+   HEALS
 ========================================================= */
 
 function healPlayer(name) {
 
-
     if (
-
         health >=
-        3
-
+        PLAYER_MAX_HEALTH
         ||
-
         !gameRunning
-
     ) {
 
+        addLeftEvent(
+            name +
+            " attempted a heal, but you were already full health."
+        );
 
         return;
 
@@ -5011,51 +4747,94 @@ function healPlayer(name) {
     {
 
         Jaydo:
-            "Jaydo reluctantly casts a heal.",
+            "Jaydo reluctantly casts Flash Heal. +1 ❤",
 
         Sev:
-            "Sev notices nobody else was healing.",
+            "Sev noticed nobody else was healing. +1 ❤",
 
         Chris:
-            "Chris heals you while maintaining top DPS.",
+            "Chris heals you without sacrificing DPS. +1 ❤",
 
         Penny:
-            "Penny decided you were worth saving.",
+            "Penny decided you were worth saving. +1 ❤",
 
         Marsmallow:
-            "Marsmallow quietly performs the mechanic correctly.",
+            "Marsmallow quietly does everything correctly. +1 ❤",
 
         KP:
-            "KP accidentally targets you with a heal."
+            "KP accidentally heals the correct target. +1 ❤"
 
     };
 
 
-    showFloatingEvent(
-        "+1 ❤ " +
-        (
-            messages[
-                name
-            ]
-
-            ||
-
-            name +
-            " heals you."
-        ),
-        "#74df75"
+    addLeftEvent(
+        messages[name]
+        ||
+        name +
+        " heals you. +1 ❤"
     );
-
 
 }
 
 
 /* =========================================================
-   ACTION PROMPTS
+   RANDOM HEAL CHANCE AFTER HIT
+========================================================= */
+
+function maybeRandomHeal() {
+
+    if (
+        health >=
+        PLAYER_MAX_HEALTH
+        ||
+        !gameRunning
+    ) {
+
+        return;
+
+    }
+
+
+    let chance =
+        .16;
+
+
+    if (
+        currentPhase === 3
+    ) {
+
+        chance =
+            .23;
+
+    }
+
+
+    if (
+        Math.random() <
+        chance
+    ) {
+
+        healPlayer(
+            randomItem([
+                "Jaydo",
+                "Sev",
+                "Chris",
+                "Penny",
+                "Marsmallow",
+                "KP"
+            ])
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CONSUMABLES / BLOODLUST
 ========================================================= */
 
 function spawnRaidAction(type) {
-
 
     if (
         currentAction
@@ -5079,15 +4858,13 @@ function spawnRaidAction(type) {
         "healthstone"
     ) {
 
-
         raidActionButton.textContent =
             "🧪 USE HEALTHSTONE";
 
-
-        showRaidWarning(
-            "HEALTHSTONE AVAILABLE"
+        addLeftEvent(
+            "Healthstone available!",
+            "buff"
         );
-
 
     }
 
@@ -5097,15 +4874,13 @@ function spawnRaidAction(type) {
         "bloodlust"
     ) {
 
-
         raidActionButton.textContent =
             "⚡ BLOODLUST";
 
-
-        showRaidWarning(
-            "BLOODLUST READY"
+        addLeftEvent(
+            "Bloodlust available!",
+            "buff"
         );
-
 
     }
 
@@ -5113,31 +4888,35 @@ function spawnRaidAction(type) {
     actionTimeout =
         setTimeout(function() {
 
-
             if (
-                currentAction
+                currentAction ===
+                "healthstone"
             ) {
 
-
-                showFloatingEvent(
-                    currentAction ===
-                    "healthstone"
-                    ?
-                    "Healthstone expired. Warlock has noted this."
-                    :
-                    "Bloodlust opportunity missed. Officer review pending.",
-                    "#d9534f"
+                addLeftEvent(
+                    "Healthstone expired. Warlock has noted this.",
+                    "warning-event"
                 );
 
+            }
+
+
+            if (
+                currentAction ===
+                "bloodlust"
+            ) {
+
+                addLeftEvent(
+                    "Bloodlust opportunity missed. Officer review pending.",
+                    "warning-event"
+                );
 
             }
 
 
             hideActionPrompt();
 
-
-        },3200);
-
+        },3800);
 
 }
 
@@ -5148,7 +4927,6 @@ function spawnRaidAction(type) {
 
 raidActionButton.onclick =
     function(event) {
-
 
         event.stopPropagation();
 
@@ -5167,38 +4945,30 @@ raidActionButton.onclick =
             "healthstone"
         ) {
 
-
             if (
                 health <
-                3
+                PLAYER_MAX_HEALTH
             ) {
-
 
                 health++;
 
-
                 updateHealthDisplay();
 
-
-                showFloatingEvent(
-                    "Healthstone used. Warlock takes full credit.",
-                    "#74df75"
+                addLeftEvent(
+                    "Healthstone used. Warlock takes full credit. +1 ❤",
+                    "buff"
                 );
-
 
             }
 
             else {
 
-
-                showFloatingEvent(
+                addLeftEvent(
                     "Healthstone used at full HP. Peak AU TSM efficiency.",
-                    "#d7a94b"
+                    "warning-event"
                 );
 
-
             }
-
 
         }
 
@@ -5208,9 +4978,13 @@ raidActionButton.onclick =
             "bloodlust"
         ) {
 
-
             showRaidWarning(
                 "BLOODLUST"
+            );
+
+            addLeftEvent(
+                "Bloodlust activated. Button pressing intensified.",
+                "buff"
             );
 
 
@@ -5221,16 +4995,13 @@ raidActionButton.onclick =
             const burstTimer =
                 setInterval(function() {
 
-
                     if (
                         !gameRunning
                     ) {
 
-
                         clearInterval(
                             burstTimer
                         );
-
 
                         return;
 
@@ -5240,11 +5011,17 @@ raidActionButton.onclick =
                     bursts++;
 
 
+                    const crit =
+                        Math.random() <
+                        CRIT_CHANCE;
+
+
                     const damage =
-                        randomNumber(
-                            4,
-                            7
-                        );
+                        crit
+                        ?
+                        CRIT_DAMAGE
+                        :
+                        NORMAL_DAMAGE;
 
 
                     raidDamage.Player +=
@@ -5253,11 +5030,14 @@ raidActionButton.onclick =
 
 
                     damageBoss(
-                        damage
+                        damage,
+                        crit
                     );
 
 
-                    castLightningVisual();
+                    castLightningVisual(
+                        crit
+                    );
 
 
                     if (
@@ -5265,33 +5045,26 @@ raidActionButton.onclick =
                         3
                     ) {
 
-
                         clearInterval(
                             burstTimer
                         );
 
-
                     }
 
-
-                },280);
-
+                },500);
 
         }
 
 
         hideActionPrompt();
 
-
     };
 
 
 function hideActionPrompt() {
 
-
     currentAction =
         null;
-
 
     raidActionPrompt.style.display =
         "none";
@@ -5301,59 +5074,49 @@ function hideActionPrompt() {
         actionTimeout
     ) {
 
-
         clearTimeout(
             actionTimeout
         );
 
-
         actionTimeout =
             null;
 
-
     }
-
 
 }
 
 
 /* =========================================================
-   SIMULATED RAID DPS
+   DPS SIMULATION
 ========================================================= */
 
 function simulateRaidDamage() {
 
-
     raidDamage.Chris +=
         randomNumber(
-            360,
-            520
-        );
-
-
-    raidDamage.Fayne +=
-        randomNumber(
-            300,
-            470
-        );
-
-
-    raidDamage.Sev +=
-        randomNumber(
-            250,
+            330,
             390
         );
 
+    raidDamage.Fayne +=
+        randomNumber(
+            290,
+            365
+        );
+
+    raidDamage.Sev +=
+        randomNumber(
+            245,
+            320
+        );
 
     raidDamage.Roks +=
         randomNumber(
-            20,
-            90
+            15,
+            55
         );
 
-
     updateDpsMeter();
-
 
 }
 
@@ -5363,7 +5126,6 @@ function simulateRaidDamage() {
 ========================================================= */
 
 function updateDpsMeter() {
-
 
     const values =
     [
@@ -5391,35 +5153,15 @@ function updateDpsMeter() {
     const entries =
     [
 
-        [
-            "Chris",
-            "dpsChris",
-            "barChris"
-        ],
+        ["Chris","dpsChris","barChris"],
 
-        [
-            "Player",
-            "dpsPlayer",
-            "barPlayer"
-        ],
+        ["Player","dpsPlayer","barPlayer"],
 
-        [
-            "Fayne",
-            "dpsFayne",
-            "barFayne"
-        ],
+        ["Fayne","dpsFayne","barFayne"],
 
-        [
-            "Sev",
-            "dpsSev",
-            "barSev"
-        ],
+        ["Sev","dpsSev","barSev"],
 
-        [
-            "Roks",
-            "dpsRoks",
-            "barRoks"
-        ]
+        ["Roks","dpsRoks","barRoks"]
 
     ];
 
@@ -5427,20 +5169,15 @@ function updateDpsMeter() {
     entries.forEach(
         function(entry) {
 
-
             const value =
                 raidDamage[
-                    entry[
-                        0
-                    ]
+                    entry[0]
                 ];
 
 
             document
             .getElementById(
-                entry[
-                    1
-                ]
+                entry[1]
             )
             .textContent =
                 Math.round(
@@ -5450,9 +5187,7 @@ function updateDpsMeter() {
 
             document
             .getElementById(
-                entry[
-                    2
-                ]
+                entry[2]
             )
             .style.width =
                 (
@@ -5462,10 +5197,8 @@ function updateDpsMeter() {
                 ) +
                 "%";
 
-
         }
     );
-
 
 }
 
@@ -5475,7 +5208,6 @@ function updateDpsMeter() {
 ========================================================= */
 
 function damagePlayer() {
-
 
     if (
         !gameRunning
@@ -5494,6 +5226,12 @@ function damagePlayer() {
     health--;
 
 
+    addLeftEvent(
+        "You failed a mechanic. -1 ❤",
+        "warning-event"
+    );
+
+
     updateHealthDisplay();
 
 
@@ -5505,86 +5243,85 @@ function damagePlayer() {
         0
     ) {
 
-
         attemptRevive();
 
-
     }
-
 
 }
 
 
 /* =========================================================
-   HEALTH DISPLAY
+   HEALTH
 ========================================================= */
 
 function updateHealthDisplay() {
 
+    let hearts =
+        "";
 
-    if (
-        health >=
-        3
+
+    for (
+        let i =
+            0;
+
+        i <
+        PLAYER_MAX_HEALTH;
+
+        i++
     ) {
 
-
-        healthDisplay.textContent =
-            "❤ ❤ ❤";
-
-
-    }
-
-    else if (
-        health ===
-        2
-    ) {
-
-
-        healthDisplay.textContent =
-            "❤ ❤ ♡";
-
+        hearts +=
+            i <
+            health
+            ?
+            "❤ "
+            :
+            "♡ ";
 
     }
 
-    else if (
-        health ===
-        1
-    ) {
+
+    healthDisplay.textContent =
+        hearts.trim();
 
 
-        healthDisplay.textContent =
-            "❤ ♡ ♡";
-
-
-    }
-
-    else {
-
-
-        healthDisplay.textContent =
-            "♡ ♡ ♡";
-
-
-    }
-
+    updateCombatStatus();
 
 }
 
 
 /* =========================================================
-   REVIVE CHANCE
+   COMBAT STATUS
+========================================================= */
+
+function updateCombatStatus() {
+
+    combatStatus.textContent =
+        "PHASE " +
+        currentPhase +
+        " • " +
+        Math.max(
+            health,
+            0
+        ) +
+        "/" +
+        PLAYER_MAX_HEALTH +
+        " HP";
+
+}
+
+
+/* =========================================================
+   REVIVE
 ========================================================= */
 
 function attemptRevive() {
-
 
     if (
         reviveUsed
     ) {
 
-
         wipe();
-
 
         return;
 
@@ -5597,74 +5334,59 @@ function attemptRevive() {
 
     if (
         roll <
-        .14
+        .10
     ) {
-
 
         reviveUsed =
             true;
 
-
         health =
             1;
 
-
         updateHealthDisplay();
-
 
         showRaidWarning(
             "ANKH AVAILABLE"
         );
 
-
-        showFloatingEvent(
-            "Phinky remembered he is a Shaman. You return with 1 HP.",
-            "#79cfff"
+        addLeftEvent(
+            "Phinky remembered he is a Shaman. You return with 1 ❤",
+            "buff"
         );
 
-
         return;
-
 
     }
 
 
     if (
         roll <
-        .26
+        .18
     ) {
-
 
         reviveUsed =
             true;
 
-
         health =
             1;
 
-
         updateHealthDisplay();
-
 
         showRaidWarning(
             "SOULSTONE"
         );
 
-
-        showFloatingEvent(
-            "A Warlock accidentally prepared correctly.",
-            "#b989ff"
+        addLeftEvent(
+            "A Warlock accidentally prepared correctly. You return with 1 ❤",
+            "buff"
         );
 
-
         return;
-
 
     }
 
 
     wipe();
-
 
 }
 
@@ -5675,12 +5397,9 @@ function attemptRevive() {
 
 function wipe() {
 
-
     stopGame();
 
-
     hideActionPrompt();
-
 
     message.style.display =
         "flex";
@@ -5726,12 +5445,9 @@ function wipe() {
 
 
     document
-    .getElementById(
-        "retry"
-    )
+    .getElementById("retry")
     .onclick =
         startGame;
-
 
 }
 
@@ -5741,7 +5457,6 @@ function wipe() {
 ========================================================= */
 
 function victory() {
-
 
     if (
         !gameRunning
@@ -5754,13 +5469,10 @@ function victory() {
 
     stopGame();
 
-
     hideActionPrompt();
-
 
     bossHealth =
         0;
-
 
     updateBoss();
 
@@ -5781,33 +5493,21 @@ function victory() {
 
     message.innerHTML = `
 
-
     <div class="loot-window">
 
-
         <div class="loot-title">
-
         🏆 ONYXIA DEFEATED
-
         </div>
-
 
         <div class="loot-subtitle">
-
         RAID READINESS ASSESSMENT PASSED
-
         </div>
-
 
         <div class="victory-congratulations">
 
-
             <strong>
-
             Good job Chris!
-
             </strong>
-
 
             And thanks to everyone else who participated.
 
@@ -5821,19 +5521,13 @@ function victory() {
                 ${fightTime.toFixed(1)} seconds
             </strong>
 
-
         </div>
-
 
         <div class="loot-subtitle">
-
         MASTER LOOT ACTIVE
-
         </div>
 
-
         <div class="loot-list">
-
 
             <div class="loot-item">
 
@@ -5842,7 +5536,6 @@ function victory() {
                 </div>
 
                 <div>
-
                     <div class="loot-name">
                     Dragonfire Greatblade
                     </div>
@@ -5850,7 +5543,6 @@ function victory() {
                     <div class="loot-type">
                     Epic Two-Handed Sword
                     </div>
-
                 </div>
 
             </div>
@@ -5863,7 +5555,6 @@ function victory() {
                 </div>
 
                 <div>
-
                     <div class="loot-name">
                     Band of the Spreadsheet
                     </div>
@@ -5871,7 +5562,6 @@ function victory() {
                     <div class="loot-type">
                     Epic Ring
                     </div>
-
                 </div>
 
             </div>
@@ -5884,7 +5574,6 @@ function victory() {
                 </div>
 
                 <div>
-
                     <div class="loot-name">
                     Fayne's Bladestorm Management Tool
                     </div>
@@ -5892,7 +5581,6 @@ function victory() {
                     <div class="loot-type">
                     Epic Axe
                     </div>
-
                 </div>
 
             </div>
@@ -5905,7 +5593,6 @@ function victory() {
                 </div>
 
                 <div>
-
                     <div class="loot-name">
                     Roks' Fire Resistance Trinket
                     </div>
@@ -5913,31 +5600,22 @@ function victory() {
                     <div class="loot-type">
                     Epic Trinket • Still Insufficient
                     </div>
-
                 </div>
 
             </div>
-
 
         </div>
 
 
         <div class="loot-reserved">
 
-
             <div class="loot-reserved-title">
-
             LOOT COUNCIL DECISION
-
             </div>
-
 
             <div class="loot-reserved-main">
-
             ALL ITEMS RESERVED BY PHINKY
-
             </div>
-
 
             <div class="loot-reserved-note">
 
@@ -5954,16 +5632,12 @@ function victory() {
 
             </div>
 
-
         </div>
 
 
         <button id="resetInstance">
-
         RESET INSTANCE
-
         </button>
-
 
     </div>
 
@@ -5971,12 +5645,9 @@ function victory() {
 
 
     document
-    .getElementById(
-        "resetInstance"
-    )
+    .getElementById("resetInstance")
     .onclick =
         startGame;
-
 
 }
 
@@ -5987,76 +5658,18 @@ function victory() {
 
 function showRaidWarning(text) {
 
-
     raidWarning.textContent =
         text;
-
 
     raidWarning.classList.remove(
         "show"
     );
 
-
     void raidWarning.offsetWidth;
-
 
     raidWarning.classList.add(
         "show"
     );
-
-
-}
-
-
-/* =========================================================
-   FLOATING MESSAGE
-========================================================= */
-
-function showFloatingEvent(
-    text,
-    colour
-) {
-
-
-    const element =
-        document.createElement(
-            "div"
-        );
-
-
-    element.className =
-        "floating-event";
-
-
-    element.textContent =
-        text;
-
-
-    if (
-        colour
-    ) {
-
-
-        element.style.color =
-            colour;
-
-
-    }
-
-
-    gameArea.appendChild(
-        element
-    );
-
-
-    setTimeout(function() {
-
-
-        element.remove();
-
-
-    },1800);
-
 
 }
 
@@ -6065,15 +5678,10 @@ function showFloatingEvent(
    COLLISION
 ========================================================= */
 
-function overlap(
-    a,
-    b
-) {
-
+function overlap(a,b) {
 
     const pad =
         7;
-
 
     return !(
 
@@ -6105,7 +5713,6 @@ function overlap(
 
     );
 
-
 }
 
 
@@ -6115,44 +5722,41 @@ function overlap(
 
 function stopGame() {
 
-
     gameRunning =
         false;
-
 
     if (
         animation
     ) {
 
-
         cancelAnimationFrame(
             animation
         );
 
-
         animation =
             null;
 
-
     }
-
 
 }
 
 
 /* =========================================================
-   CLEAR OBJECTS
+   CLEAR
 ========================================================= */
 
 function clearObjects() {
 
-
     mechanics.forEach(
         function(object) {
 
+            if (
+                object.element
+            ) {
 
-            object.element.remove();
+                object.element.remove();
 
+            }
 
         }
     );
@@ -6161,9 +5765,13 @@ function clearObjects() {
     bolts.forEach(
         function(object) {
 
+            if (
+                object.element
+            ) {
 
-            object.element.remove();
+                object.element.remove();
 
+            }
 
         }
     );
@@ -6172,40 +5780,32 @@ function clearObjects() {
     mechanics =
         [];
 
-
     bolts =
         [];
 
-
-    document
-    .querySelectorAll(
-        ".floating-event"
-    )
-    .forEach(
-        function(element) {
+}
 
 
-            element.remove();
+function clearCombatFeeds() {
 
+    leftCombatFeed.innerHTML =
+        "";
 
-        }
-    );
-
+    rightDamageFeed.innerHTML =
+        "";
 
 }
 
 
 /* =========================================================
-   ESCAPE KEY
+   ESCAPE
 ========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event) {
 
-
         if (
-
             event.code ===
             "Escape"
 
@@ -6213,38 +5813,29 @@ document.addEventListener(
 
             overlay.style.display ===
             "flex"
-
         ) {
-
 
             stopGame();
 
-
             clearObjects();
 
-
             hideActionPrompt();
-
 
             overlay.style.display =
                 "none";
 
-
         }
-
 
     }
 );
 
 
 /* =========================================================
-   INITIAL START BUTTON
+   START BUTTON
 ========================================================= */
 
 document
-.getElementById(
-    "startRaidGame"
-)
+.getElementById("startRaidGame")
 .onclick =
     startGame;
 
