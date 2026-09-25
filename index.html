@@ -703,19 +703,34 @@ footer strong {
     inset: 0;
     background: rgba(0,0,0,.94);
     z-index: 5000;
+
     display: none;
-    align-items: center;
+
+    align-items: flex-start;
     justify-content: center;
+
     padding: 20px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    overscroll-behavior: contain;
 }
 
 .raid-game-window {
     width: min(1050px,100%);
     background: #100e0d;
     border: 2px solid #806039;
+    margin: auto 0;
+    max-height: none;
 }
 
 .game-header {
+    position: sticky;
+    top: 0;
+    z-index: 150;
+    background: #100e0d;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1286,12 +1301,18 @@ footer strong {
     inset: 0;
     z-index: 100;
     background: rgba(5,5,5,.88);
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+
     text-align: center;
-    padding: 30px;
+
+    padding: 50px 30px 40px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #gameMessage h2 {
@@ -1311,6 +1332,7 @@ footer strong {
     background: #b38538;
     border: 1px solid #d7a94b;
     font-weight: bold;
+    flex-shrink: 0;
 }
 
 
@@ -1342,6 +1364,7 @@ footer strong {
         0 15px 45px rgba(0,0,0,.8);
     padding: 20px;
     text-align: left;
+    margin: auto;
 }
 
 .loot-title {
@@ -1484,6 +1507,10 @@ footer strong {
 
 @media(max-width:600px) {
 
+    #raidGameOverlay {
+        padding: 8px;
+    }
+
     #gameArea {
         height: 380px;
     }
@@ -1516,11 +1543,6 @@ footer strong {
 
     .loot-list {
         grid-template-columns: 1fr;
-    }
-
-    .loot-window {
-        max-height: 95%;
-        overflow-y: auto;
     }
 
 }
@@ -2211,8 +2233,6 @@ PULL BOSS
 </div>
 
 
-<!-- DPS METER -->
-
 <div class="dps-meter">
 
 <div class="dps-title">
@@ -2433,6 +2453,11 @@ let musicPlaying =
 
 /* =========================================================
    AUDIO QUEUE
+
+   Important sounds can wait indefinitely.
+
+   WTF sounds expire after 2 seconds if they
+   have not started playing.
 ========================================================= */
 
 const soundQueue =
@@ -2442,15 +2467,29 @@ let foregroundSoundPlaying =
     false;
 
 
-function queueSound(audio) {
+function queueSound(
+    audio,
+    expireAfter = null
+) {
 
     if (!audio) {
         return;
     }
 
-    soundQueue.push(
-        audio
-    );
+
+    soundQueue.push({
+
+        audio:
+            audio,
+
+        queuedAt:
+            performance.now(),
+
+        expireAfter:
+            expireAfter
+
+    });
+
 
     processSoundQueue();
 
@@ -2468,71 +2507,68 @@ async function processSoundQueue() {
     }
 
 
-    if (
-        soundQueue.length === 0
+    while (
+        soundQueue.length >
+        0
     ) {
+
+        const item =
+            soundQueue.shift();
+
+
+        if (
+            item.expireAfter !==
+            null
+        ) {
+
+            const age =
+                performance.now() -
+                item.queuedAt;
+
+
+            if (
+                age >
+                item.expireAfter
+            ) {
+
+                continue;
+
+            }
+
+        }
+
+
+        foregroundSoundPlaying =
+            true;
+
 
         if (
             musicPlaying
         ) {
 
             backgroundMusic.volume =
-                NORMAL_MUSIC_VOLUME;
+                DUCKED_MUSIC_VOLUME;
 
         }
 
-        return;
 
-    }
-
-
-    foregroundSoundPlaying =
-        true;
+        const audio =
+            item.audio;
 
 
-    if (
-        musicPlaying
-    ) {
+        audio.pause();
 
-        backgroundMusic.volume =
-            DUCKED_MUSIC_VOLUME;
-
-    }
+        audio.currentTime =
+            0;
 
 
-    const audio =
-        soundQueue.shift();
+        try {
 
+            await audio.play();
 
-    audio.pause();
+        }
 
-    audio.currentTime =
-        0;
-
-
-    try {
-
-        await audio.play();
-
-    }
-
-    catch(error) {
-
-        foregroundSoundPlaying =
-            false;
-
-        setTimeout(
-            processSoundQueue,
-            SOUND_GAP
-        );
-
-        return;
-
-    }
-
-
-    audio.onended =
-        function() {
+        catch(error) {
 
             foregroundSoundPlaying =
                 false;
@@ -2542,7 +2578,38 @@ async function processSoundQueue() {
                 SOUND_GAP
             );
 
-        };
+            return;
+
+        }
+
+
+        audio.onended =
+            function() {
+
+                foregroundSoundPlaying =
+                    false;
+
+                setTimeout(
+                    processSoundQueue,
+                    SOUND_GAP
+                );
+
+            };
+
+
+        return;
+
+    }
+
+
+    if (
+        musicPlaying
+    ) {
+
+        backgroundMusic.volume =
+            NORMAL_MUSIC_VOLUME;
+
+    }
 
 }
 
@@ -3174,6 +3241,9 @@ function() {
     overlay.style.display =
         "flex";
 
+    overlay.scrollTop =
+        0;
+
     resetGame();
 
 };
@@ -3270,6 +3340,9 @@ function resetGame() {
 
     message.style.display =
         "flex";
+
+    message.scrollTop =
+        0;
 
 
     message.innerHTML = `
@@ -3569,8 +3642,6 @@ function gameLoop(time) {
         );
 
 
-    /* PHYSICS */
-
     velocityY -=
         1500 *
         delta;
@@ -3599,8 +3670,6 @@ function gameLoop(time) {
         "px";
 
 
-    /* BOSS MECHANICS */
-
     mechanicTimer -=
         delta;
 
@@ -3616,8 +3685,6 @@ function gameLoop(time) {
 
     }
 
-
-    /* PLAYER ATTACK */
 
     attackTimer -=
         delta;
@@ -3637,8 +3704,6 @@ function gameLoop(time) {
     }
 
 
-    /* GUILD EVENT */
-
     guildEventTimer -=
         delta;
 
@@ -3654,8 +3719,6 @@ function gameLoop(time) {
 
     }
 
-
-    /* DPS METER */
 
     dpsTickTimer -=
         delta;
@@ -5205,6 +5268,10 @@ function updateDpsMeter() {
 
 /* =========================================================
    PLAYER DAMAGE
+
+   WTF behaviour:
+   - only one can wait in queue
+   - expires after 2 seconds
 ========================================================= */
 
 function damagePlayer() {
@@ -5218,9 +5285,35 @@ function damagePlayer() {
     }
 
 
-    queueSound(
-        wtfSound
-    );
+    const wtfAlreadyQueued =
+        soundQueue.some(
+            function(item) {
+
+                return item.audio ===
+                    wtfSound;
+
+            }
+        );
+
+
+    const wtfCurrentlyPlaying =
+        foregroundSoundPlaying
+        &&
+        !wtfSound.paused;
+
+
+    if (
+        !wtfAlreadyQueued
+        &&
+        !wtfCurrentlyPlaying
+    ) {
+
+        queueSound(
+            wtfSound,
+            2000
+        );
+
+    }
 
 
     health--;
@@ -5404,6 +5497,9 @@ function wipe() {
     message.style.display =
         "flex";
 
+    message.scrollTop =
+        0;
+
 
     message.innerHTML = `
 
@@ -5432,6 +5528,13 @@ function wipe() {
         <br>
 
         "the fire spawned underneath me."
+
+        <br><br>
+
+        Fight duration:
+        <strong>
+        ${fightTime.toFixed(1)} seconds
+        </strong>
 
         </p>
 
@@ -5489,6 +5592,9 @@ function victory() {
 
     message.style.display =
         "flex";
+
+    message.scrollTop =
+        0;
 
 
     message.innerHTML = `
