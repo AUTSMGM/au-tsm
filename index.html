@@ -251,9 +251,9 @@ nav a:hover {
 }
 
 .secondary-button:disabled {
-    opacity: 0.45;
-    border-color: #39332d;
+    opacity: .45;
     color: #756e64;
+    border-color: #39332d;
 }
 
 .raid-ready-callout {
@@ -297,7 +297,6 @@ nav a:hover {
 
     background-size: 300% 100%;
     animation: raidBorderGlow 4s linear infinite;
-
     z-index: 0;
 
     box-shadow:
@@ -325,10 +324,12 @@ nav a:hover {
         );
 
     color: #f5d88c;
-
     font-family: Georgia, serif;
+    transition: .2s;
+}
 
-    transition: 0.2s;
+#raidGameButton:hover {
+    transform: scale(1.025);
 }
 
 .raid-button-main {
@@ -347,10 +348,6 @@ nav a:hover {
     letter-spacing: 3px;
 }
 
-#raidGameButton:hover {
-    transform: scale(1.025);
-}
-
 .raid-ready-warning {
     position: relative;
     z-index: 3;
@@ -367,6 +364,7 @@ nav a:hover {
 }
 
 @keyframes raidBorderGlow {
+
     0% {
         background-position: 0% 50%;
     }
@@ -374,6 +372,7 @@ nav a:hover {
     100% {
         background-position: 300% 50%;
     }
+
 }
 
 
@@ -405,16 +404,14 @@ nav a:hover {
 
 .stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4,1fr);
     gap: 15px;
 }
 
 .stat {
     padding: 28px 14px;
     text-align: center;
-
     background: rgba(25,22,19,.94);
-
     border: 1px solid #41372d;
     border-radius: 5px;
 }
@@ -449,7 +446,7 @@ nav a:hover {
 
 .live-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3,1fr);
     gap: 16px;
 }
 
@@ -487,7 +484,7 @@ nav a:hover {
 
 .metrics {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3,1fr);
     gap: 15px;
 }
 
@@ -538,7 +535,7 @@ nav a:hover {
 
 .classes {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3,1fr);
     gap: 12px;
 }
 
@@ -555,19 +552,19 @@ nav a:hover {
     font-weight: bold;
 }
 
-.warrior { color: #C79C6E; }
-.paladin { color: #F58CBA; }
-.hunter { color: #ABD473; }
-.rogue { color: #FFF569; }
-.priest { color: #FFFFFF; }
-.shaman { color: #0070DE; }
-.mage { color: #69CCF0; }
-.warlock { color: #9482C9; }
-.druid { color: #FF7D0A; }
+.warrior { color:#C79C6E; }
+.paladin { color:#F58CBA; }
+.hunter { color:#ABD473; }
+.rogue { color:#FFF569; }
+.priest { color:#FFFFFF; }
+.shaman { color:#0070DE; }
+.mage { color:#69CCF0; }
+.warlock { color:#9482C9; }
+.druid { color:#FF7D0A; }
 
 
 /* =========================================================
-   FEED
+   OPERATIONS FEED
 ========================================================= */
 
 .feed {
@@ -592,7 +589,7 @@ nav a:hover {
 
 
 /* =========================================================
-   READINESS
+   PERSONNEL READINESS
 ========================================================= */
 
 .raid-box {
@@ -628,7 +625,7 @@ nav a:hover {
 
 .tools {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 18px;
 }
 
@@ -960,21 +957,13 @@ footer strong {
 .dragon-wing-left {
     right: 100px;
     bottom: 65px;
-    clip-path: polygon(
-        100% 100%,
-        0% 50%,
-        80% 0%
-    );
+    clip-path: polygon(100% 100%,0% 50%,80% 0%);
 }
 
 .dragon-wing-right {
     right: 5px;
     bottom: 80px;
-    clip-path: polygon(
-        0% 100%,
-        20% 0%,
-        100% 45%
-    );
+    clip-path: polygon(0% 100%,20% 0%,100% 45%);
 }
 
 .dragon-neck {
@@ -1122,7 +1111,6 @@ footer strong {
     background: #151310;
     color: #837a6f;
     font-size: 11px;
-
     display: flex;
     justify-content: space-between;
 }
@@ -1133,10 +1121,8 @@ footer strong {
 ========================================================= */
 
 .loot-window {
-    width: min(600px, 96%);
-
+    width: min(600px,96%);
     background: #11100e;
-
     border: 2px solid #806039;
 
     box-shadow:
@@ -1144,7 +1130,6 @@ footer strong {
         0 15px 45px rgba(0,0,0,.8);
 
     padding: 20px;
-
     text-align: left;
 }
 
@@ -1190,11 +1175,8 @@ footer strong {
     display: flex;
     align-items: center;
     gap: 10px;
-
     padding: 9px;
-
     background: #171513;
-
     border: 1px solid #40362d;
 }
 
@@ -1210,11 +1192,7 @@ footer strong {
     border: 2px solid #a335ee;
 
     background:
-        radial-gradient(
-            circle,
-            #48205e,
-            #1d1025
-        );
+        radial-gradient(circle,#48205e,#1d1025);
 
     color: #ddb3ff;
     font-size: 18px;
@@ -1238,11 +1216,8 @@ footer strong {
 .loot-reserved {
     margin-top: 15px;
     padding: 13px;
-
     text-align: center;
-
     background: #28100d;
-
     border: 1px solid #7d3328;
 }
 
@@ -1363,6 +1338,7 @@ footer strong {
 }
 
 </style>
+
 </head>
 
 
@@ -1370,7 +1346,7 @@ footer strong {
 
 
 <!-- =========================================================
-     AUDIO FILES
+     AUDIO
 ========================================================= -->
 
 <audio id="backgroundMusic" loop preload="auto">
@@ -1379,6 +1355,18 @@ footer strong {
 
 <audio id="readyCheckSound" preload="auto">
     <source src="Readycheck.ogg" type="audio/ogg">
+</audio>
+
+<audio id="verySlowlySound" preload="auto">
+    <source src="Very_Very_Slowly_DPS.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="wtfSound" preload="auto">
+    <source src="WTF.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="moreDotsSound" preload="auto">
+    <source src="More_Dots.mp3" type="audio/mpeg">
 </audio>
 
 
@@ -1425,7 +1413,6 @@ Announcements
 
 </nav>
 
-
 <button id="musicButton">
 ♫ MUSIC: OFF
 </button>
@@ -1454,7 +1441,6 @@ HORDE • OCEANIC • EST. AFTER SOMEONE MADE A DISCORD
 AU <span>TSM</span>
 </h2>
 
-
 <div class="guild-tagline">
 
 PROFESSIONAL TEAM SOLO MID PLAYERS
@@ -1465,7 +1451,6 @@ WITH A HINT OF DEGENERACY
 
 </div>
 
-
 <p class="hero-description">
 
 An Oceanic World of Warcraft Forever guild combining questionable
@@ -1474,7 +1459,6 @@ and the unwavering belief that the next pull is definitely the one.
 
 </p>
 
-
 <div class="horde-badge">
 ⚔ FOR THE HORDE ⚔
 </div>
@@ -1482,13 +1466,11 @@ and the unwavering belief that the next pull is definitely the one.
 
 <div class="hero-buttons">
 
-
 <div class="raid-ready-callout">
 
 <div class="raid-ready-label">
 ⚠ MANDATORY GUILD ASSESSMENT ⚠
 </div>
-
 
 <button id="raidGameButton">
 
@@ -1502,11 +1484,8 @@ CAN YOU SURVIVE ONYXIA?
 
 </button>
 
-
 <div class="raid-ready-warning">
-
 3 mechanic failures will result in automatic classification as Roks
-
 </div>
 
 </div>
@@ -1514,16 +1493,13 @@ CAN YOU SURVIVE ONYXIA?
 
 <div class="secondary-hero-buttons">
 
-
 <button class="primary-button" id="joinButton">
 Join AU TSM
 </button>
 
-
 <button class="secondary-button" id="readyButton">
 Initiate Ready Check
 </button>
-
 
 </div>
 
@@ -1537,7 +1513,6 @@ Initiate Ready Check
 ========================================================= -->
 
 <section id="stats">
-
 
 <div class="section-title">
 
@@ -1553,7 +1528,6 @@ Key performance indicators for a highly professional gaming organisation
 
 
 <div class="stats">
-
 
 <div class="stat">
 
@@ -1622,7 +1596,6 @@ Counter exceeded technical limit
 
 </div>
 
-
 </div>
 
 </section>
@@ -1633,7 +1606,6 @@ Counter exceeded technical limit
 ========================================================= -->
 
 <section>
-
 
 <div class="section-title">
 
@@ -1649,7 +1621,6 @@ Real-time monitoring of a completely normal group of adults playing a video game
 
 
 <div class="live-grid">
-
 
 <div class="live-card">
 
@@ -1701,7 +1672,6 @@ Guild Master authority remains mostly ceremonial.
 
 </div>
 
-
 </div>
 
 </section>
@@ -1712,7 +1682,6 @@ Guild Master authority remains mostly ceremonial.
 ========================================================= -->
 
 <section>
-
 
 <div class="section-title">
 
@@ -1728,7 +1697,6 @@ Because apparently playing the game wasn't complicated enough
 
 
 <div class="metrics">
-
 
 <div class="metric">
 
@@ -1879,7 +1847,6 @@ Mechanic participation measured separately.
 
 </div>
 
-
 </div>
 
 </section>
@@ -1890,7 +1857,6 @@ Mechanic participation measured separately.
 ========================================================= -->
 
 <section id="classes">
-
 
 <div class="section-title">
 
@@ -1954,7 +1920,6 @@ Current composition until everyone rerolls again
 
 </div>
 
-
 </section>
 
 
@@ -1963,7 +1928,6 @@ Current composition until everyone rerolls again
 ========================================================= -->
 
 <section>
-
 
 <div class="section-title">
 
@@ -1979,7 +1943,6 @@ Monitoring AU TSM's ongoing descent into operational excellence
 
 
 <div class="feed" id="guildFeed">
-
 
 <div class="feed-item">
 
@@ -2025,7 +1988,6 @@ Luffa has entered the operationally impaired phase of the evening.
 
 </div>
 
-
 </div>
 
 </section>
@@ -2036,7 +1998,6 @@ Luffa has entered the operationally impaired phase of the evening.
 ========================================================= -->
 
 <section>
-
 
 <div class="section-title">
 
@@ -2053,162 +2014,65 @@ Because a normal ready check wasn't sufficiently bureaucratic
 
 <div class="raid-box">
 
-
 <div class="raid-row">
-
-<span>
-Tanks
-</span>
-
-<span class="good">
-Ready
-</span>
-
+<span>Tanks</span>
+<span class="good">Ready</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-Healers
-</span>
-
-<span class="warning">
-Penny asked why Chris needs three healers
-</span>
-
+<span>Healers</span>
+<span class="warning">Penny asked why Chris needs three healers</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-DPS
-</span>
-
-<span class="good">
-Far too many
-</span>
-
+<span>DPS</span>
+<span class="good">Far too many</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-Fayne
-</span>
-
-<span class="good" id="fayneStatus">
-Ready — Bladestorm available
-</span>
-
+<span>Fayne</span>
+<span class="good" id="fayneStatus">Ready — Bladestorm available</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-Stiff
-</span>
-
-<span class="warning">
-AFK status unclear
-</span>
-
+<span>Stiff</span>
+<span class="warning">AFK status unclear</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-KP
-</span>
-
-<span class="good">
-Claims to be ready
-</span>
-
+<span>KP</span>
+<span class="good">Claims to be ready</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-Jaydo
-</span>
-
-<span class="warning">
-Has started a completely unrelated conversation
-</span>
-
+<span>Jaydo</span>
+<span class="warning">Has started a completely unrelated conversation</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-Sev
-</span>
-
-<span class="good">
-Quietly carrying without acknowledgement
-</span>
-
+<span>Sev</span>
+<span class="good">Quietly carrying without acknowledgement</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-Rulzy
-</span>
-
-<span class="warning">
-Currently disputing a loot interpretation
-</span>
-
+<span>Rulzy</span>
+<span class="warning">Currently disputing a loot interpretation</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-Marsmallow
-</span>
-
-<span class="good">
-Present and somehow not involved in the drama
-</span>
-
+<span>Marsmallow</span>
+<span class="good">Present and somehow not involved in the drama</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-Zomgs
-</span>
-
-<span class="warning">
-Connection status classified
-</span>
-
+<span>Zomgs</span>
+<span class="warning">Connection status classified</span>
 </div>
 
-
 <div class="raid-row">
-
-<span>
-Roks
-</span>
-
-<span class="warning">
-Already dead
-</span>
-
+<span>Roks</span>
+<span class="warning">Already dead</span>
 </div>
-
 
 </div>
 
@@ -2220,7 +2084,6 @@ Already dead
 ========================================================= -->
 
 <section id="tools">
-
 
 <div class="section-title">
 
@@ -2237,7 +2100,6 @@ Enterprise-grade solutions to problems we created ourselves
 
 <div class="tools">
 
-
 <div class="tool">
 
 <h4>
@@ -2245,10 +2107,8 @@ Raid Eligibility Scanner
 </h4>
 
 <p>
-
 Determine whether your character meets AU TSM's rigorous
 and frequently changing standards.
-
 </p>
 
 <button id="eligibilityButton">
@@ -2267,10 +2127,8 @@ Oceanic Latency Diagnostic
 </h4>
 
 <p>
-
 Determine whether poor performance is your fault or can
 legally be blamed on Australian internet.
-
 </p>
 
 <button id="latencyButton">
@@ -2289,10 +2147,8 @@ Loot Council Priority
 </h4>
 
 <p>
-
 Proprietary governance technology calculates your likelihood
 of receiving the next contested epic.
-
 </p>
 
 <button id="lootButton">
@@ -2311,10 +2167,8 @@ Parse Improvement Engine
 </h4>
 
 <p>
-
 Advanced analytics provide personalised advice developed
 using decades of questionable expertise.
-
 </p>
 
 <button id="parseButton">
@@ -2324,7 +2178,6 @@ Improve My Parse
 <div class="result" id="parseResult"></div>
 
 </div>
-
 
 </div>
 
@@ -2336,7 +2189,6 @@ Improve My Parse
 ========================================================= -->
 
 <section id="announcements">
-
 
 <div class="section-title">
 
@@ -2459,9 +2311,7 @@ theoretical DPS increase justifies completely rebuilding someone's character.
 
 </div>
 
-
 </section>
-
 
 </main>
 
@@ -2515,9 +2365,7 @@ but will be recorded, analysed and discussed at the next performance review.
 
 <div id="raidGameOverlay">
 
-
 <div class="raid-game-window">
-
 
 <div class="game-header">
 
@@ -2533,7 +2381,6 @@ ONYXIA ENCOUNTER SIMULATION
 
 </div>
 
-
 <button id="closeRaidGame">
 ✕
 </button>
@@ -2542,7 +2389,6 @@ ONYXIA ENCOUNTER SIMULATION
 
 
 <div class="game-hud">
-
 
 <div>
 
@@ -2580,7 +2426,6 @@ ENRAGE:
 
 </div>
 
-
 </div>
 
 
@@ -2617,9 +2462,7 @@ ENRAGE:
 <div class="dragon-neck"></div>
 
 <div class="dragon-head">
-
 <div class="dragon-eye"></div>
-
 </div>
 
 <div class="dragon-tail"></div>
@@ -2635,7 +2478,6 @@ ENRAGE:
 <h2>
 ONYXIA
 </h2>
-
 
 <p>
 
@@ -2661,21 +2503,30 @@ Stay low.
 <br><br>
 
 Your character automatically casts
-<strong>Lightning Bolt every 3 seconds</strong>.
+
+<strong>
+Lightning Bolt every 3 seconds
+</strong>.
 
 <br>
 
 Each Lightning Bolt deals
-<strong>3 damage</strong>.
+
+<strong>
+3 damage
+</strong>.
 
 <br><br>
 
 Reduce Onyxia from
-<strong>30 HP to 0 HP</strong>
+
+<strong>
+30 HP to 0 HP
+</strong>
+
 without dying.
 
 </p>
-
 
 <button id="startRaidGame">
 PULL BOSS
@@ -2683,12 +2534,10 @@ PULL BOSS
 
 </div>
 
-
 </div>
 
 
 <div class="game-controls">
-
 
 <div>
 
@@ -2700,17 +2549,13 @@ SPACEBAR • ↑ • CLICK / TAP
 
 </div>
 
-
 <span>
 3 mechanic failures = Roks.
 </span>
 
-
 </div>
 
-
 </div>
-
 
 </div>
 
@@ -2777,7 +2622,7 @@ function showToast(message) {
 
 
 /* =========================================================
-   AUDIO
+   AUDIO REFERENCES
 ========================================================= */
 
 const backgroundMusic =
@@ -2790,43 +2635,192 @@ const readyCheckSound =
         "readyCheckSound"
     );
 
+const verySlowlySound =
+    document.getElementById(
+        "verySlowlySound"
+    );
+
+const wtfSound =
+    document.getElementById(
+        "wtfSound"
+    );
+
+const moreDotsSound =
+    document.getElementById(
+        "moreDotsSound"
+    );
+
 const musicButton =
     document.getElementById(
         "musicButton"
     );
 
 
-let musicPlaying =
-    false;
-
-
-/*
-Normal background music volume
-*/
-
 const NORMAL_MUSIC_VOLUME =
     0.18;
 
-
-/*
-Reduced background volume while
-ready-check sound is playing
-*/
-
 const DUCKED_MUSIC_VOLUME =
-    0.05;
+    0.04;
+
+const SOUND_GAP =
+    300;
 
 
 backgroundMusic.volume =
     NORMAL_MUSIC_VOLUME;
 
-
 readyCheckSound.volume =
     1.0;
 
+verySlowlySound.volume =
+    1.0;
+
+wtfSound.volume =
+    1.0;
+
+moreDotsSound.volume =
+    1.0;
+
+
+let musicPlaying =
+    false;
+
 
 /* =========================================================
-   MUSIC TOGGLE
+   FOREGROUND SOUND QUEUE
+
+   Ready Check, raid voice clips etc all use this queue.
+
+   Only ONE can play at a time.
+
+   When one finishes:
+   wait 300ms
+   then play the next.
+========================================================= */
+
+const soundQueue =
+    [];
+
+
+let foregroundSoundPlaying =
+    false;
+
+
+function queueSound(audio) {
+
+    if (!audio) {
+        return;
+    }
+
+
+    soundQueue.push(
+        audio
+    );
+
+
+    processSoundQueue();
+
+}
+
+
+async function processSoundQueue() {
+
+    if (
+        foregroundSoundPlaying
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        soundQueue.length ===
+        0
+    ) {
+
+        if (
+            musicPlaying
+        ) {
+
+            backgroundMusic.volume =
+                NORMAL_MUSIC_VOLUME;
+
+        }
+
+        return;
+
+    }
+
+
+    foregroundSoundPlaying =
+        true;
+
+
+    if (
+        musicPlaying
+    ) {
+
+        backgroundMusic.volume =
+            DUCKED_MUSIC_VOLUME;
+
+    }
+
+
+    const audio =
+        soundQueue.shift();
+
+
+    audio.pause();
+
+    audio.currentTime =
+        0;
+
+
+    try {
+
+        await audio.play();
+
+    }
+
+    catch (error) {
+
+        foregroundSoundPlaying =
+            false;
+
+
+        setTimeout(
+            processSoundQueue,
+            SOUND_GAP
+        );
+
+
+        return;
+
+    }
+
+
+    audio.onended =
+        function () {
+
+
+            foregroundSoundPlaying =
+                false;
+
+
+            setTimeout(
+                processSoundQueue,
+                SOUND_GAP
+            );
+
+
+        };
+
+}
+
+
+/* =========================================================
+   MUSIC BUTTON
 ========================================================= */
 
 musicButton.onclick =
@@ -2846,6 +2840,28 @@ musicButton.onclick =
 
                 musicPlaying =
                     true;
+
+
+                /*
+                If a foreground clip is already playing,
+                start background music ducked.
+                */
+
+                if (
+                    foregroundSoundPlaying
+                ) {
+
+                    backgroundMusic.volume =
+                        DUCKED_MUSIC_VOLUME;
+
+                }
+
+                else {
+
+                    backgroundMusic.volume =
+                        NORMAL_MUSIC_VOLUME;
+
+                }
 
 
                 musicButton.textContent =
@@ -3350,7 +3366,11 @@ document
 
 
 /* =========================================================
-   READY CHECK + SOUND + 5 SECOND COOLDOWN
+   READY CHECK
+
+   Plays through same foreground queue.
+
+   5 second anti-spam cooldown.
 ========================================================= */
 
 const readyButton =
@@ -3364,12 +3384,8 @@ let readyCheckOnCooldown =
 
 
 readyButton.onclick =
-    async function () {
+    function () {
 
-
-        /*
-        Stop people repeatedly clicking the sound.
-        */
 
         if (
             readyCheckOnCooldown
@@ -3388,84 +3404,15 @@ readyButton.onclick =
             true;
 
 
-        /*
-        Restart the sound from the beginning.
-        */
-
-        readyCheckSound.pause();
-
-
-        readyCheckSound.currentTime =
-            0;
-
-
-        /*
-        Temporarily reduce background music
-        so the Ready Check is clearly audible.
-        */
-
-        if (
-            musicPlaying
-        ) {
-
-            backgroundMusic.volume =
-                DUCKED_MUSIC_VOLUME;
-
-        }
-
-
-        try {
-
-
-            await readyCheckSound.play();
-
-
-        }
-
-
-        catch (error) {
-
-
-            showToast(
-                "Ready-check audio could not be played by this browser."
-            );
-
-
-        }
-
-
-        /*
-        Restore background music when the
-        sound finishes.
-        */
-
-        readyCheckSound.onended =
-            function () {
-
-
-                if (
-                    musicPlaying
-                ) {
-
-
-                    backgroundMusic.volume =
-                        NORMAL_MUSIC_VOLUME;
-
-
-                }
-
-
-            };
+        queueSound(
+            readyCheckSound
+        );
 
 
         showToast(
             "Initiating enterprise-grade ready check..."
         );
 
-
-        /*
-        Normal comedy result.
-        */
 
         setTimeout(function () {
 
@@ -3492,10 +3439,6 @@ readyButton.onclick =
         },1800);
 
 
-        /*
-        5 SECOND COOLDOWN
-        */
-
         let remaining =
             5;
 
@@ -3514,7 +3457,8 @@ readyButton.onclick =
 
 
                 if (
-                    remaining > 0
+                    remaining >
+                    0
                 ) {
 
 
@@ -3545,24 +3489,6 @@ readyButton.onclick =
 
                     readyButton.textContent =
                         "Initiate Ready Check";
-
-
-                    /*
-                    Make sure background audio
-                    has returned to normal even
-                    if the sound file behaves oddly.
-                    */
-
-                    if (
-                        musicPlaying
-                    ) {
-
-
-                        backgroundMusic.volume =
-                            NORMAL_MUSIC_VOLUME;
-
-
-                    }
 
 
                 }
@@ -3766,42 +3692,35 @@ const overlay =
         "raidGameOverlay"
     );
 
-
 const gameArea =
     document.getElementById(
         "gameArea"
     );
-
 
 const player =
     document.getElementById(
         "gamePlayer"
     );
 
-
 const healthDisplay =
     document.getElementById(
         "gameHealth"
     );
-
 
 const timerDisplay =
     document.getElementById(
         "gameTimer"
     );
 
-
 const message =
     document.getElementById(
         "gameMessage"
     );
 
-
 const bossFill =
     document.getElementById(
         "bossHealthFill"
     );
-
 
 const bossText =
     document.getElementById(
@@ -3812,48 +3731,46 @@ const bossText =
 let gameRunning =
     false;
 
-
 let health =
     3;
-
 
 let bossHealth =
     30;
 
-
 let gameTime =
     30;
-
 
 let playerY =
     0;
 
-
 let velocityY =
     0;
-
 
 let lastFrame =
     0;
 
-
 let mechanicTimer =
     1;
-
 
 let lightningTimer =
     3;
 
-
 let mechanics =
     [];
-
 
 let bolts =
     [];
 
-
 let animation;
+
+
+/*
+Prevents MORE DOTS from playing
+more than once per attempt.
+*/
+
+let moreDotsTriggered =
+    false;
 
 
 /* =========================================================
@@ -3979,6 +3896,10 @@ function resetGame() {
         0;
 
 
+    moreDotsTriggered =
+        false;
+
+
     healthDisplay.textContent =
         "❤ ❤ ❤";
 
@@ -4028,6 +3949,7 @@ function resetGame() {
         <br><br>
 
         Your character automatically casts
+
         <strong>
         Lightning Bolt every 3 seconds
         </strong>.
@@ -4035,6 +3957,7 @@ function resetGame() {
         <br>
 
         Each Lightning Bolt deals
+
         <strong>
         3 damage
         </strong>.
@@ -4042,9 +3965,11 @@ function resetGame() {
         <br><br>
 
         Reduce Onyxia from
+
         <strong>
         30 HP to 0 HP
         </strong>
+
         without dying.
 
         </p>
@@ -4068,7 +3993,9 @@ function resetGame() {
 
 
 /* =========================================================
-   START GAME
+   START RAID
+
+   VERY VERY SLOWLY DPS plays here.
 ========================================================= */
 
 function startGame() {
@@ -4100,6 +4027,10 @@ function startGame() {
         0;
 
 
+    moreDotsTriggered =
+        false;
+
+
     mechanicTimer =
         1.2;
 
@@ -4129,6 +4060,15 @@ function startGame() {
 
     gameRunning =
         true;
+
+
+    /*
+    Pull voice line.
+    */
+
+    queueSound(
+        verySlowlySound
+    );
 
 
     lastFrame =
@@ -4348,7 +4288,7 @@ function gameLoop(time) {
     }
 
 
-    /* LIGHTNING */
+    /* PLAYER ATTACK */
 
 
     lightningTimer -=
@@ -4423,6 +4363,10 @@ function spawnMechanic() {
             "game-breath";
 
 
+        /*
+        Stay low to avoid breath.
+        */
+
         element.style.bottom =
             "150px";
 
@@ -4465,7 +4409,7 @@ function spawnMechanic() {
 
 
 /* =========================================================
-   UPDATE BOSS MECHANICS
+   UPDATE MECHANICS
 ========================================================= */
 
 function updateMechanics(delta) {
@@ -4700,7 +4644,10 @@ function updateBolts(delta) {
 
 
 /* =========================================================
-   DAMAGE BOSS
+   BOSS DAMAGE
+
+   At 15/30 HP:
+   MORE DOTS is queued once.
 ========================================================= */
 
 function damageBoss() {
@@ -4733,6 +4680,34 @@ function damageBoss() {
 
 
     updateBoss();
+
+
+    /*
+    50% HP voice line.
+    */
+
+    if (
+
+        bossHealth <=
+        15
+
+        &&
+
+        !moreDotsTriggered
+
+    ) {
+
+
+        moreDotsTriggered =
+            true;
+
+
+        queueSound(
+            moreDotsSound
+        );
+
+
+    }
 
 
     const impact =
@@ -4854,9 +4829,22 @@ function overlap(
 
 /* =========================================================
    PLAYER DAMAGE
+
+   Every lost heart queues WTF.mp3.
 ========================================================= */
 
 function damagePlayer() {
+
+
+    /*
+    Player got hit.
+    Queue WTF without overlapping
+    whatever voice clip is currently running.
+    */
+
+    queueSound(
+        wtfSound
+    );
 
 
     health--;
@@ -5271,6 +5259,10 @@ function stopGame() {
         );
 
 
+        animation =
+            null;
+
+
     }
 
 
@@ -5284,7 +5276,13 @@ function clearObjects() {
         function (object) {
 
 
-            object.element.remove();
+            if (
+                object.element
+            ) {
+
+                object.element.remove();
+
+            }
 
 
         }
@@ -5295,7 +5293,13 @@ function clearObjects() {
         function (object) {
 
 
-            object.element.remove();
+            if (
+                object.element
+            ) {
+
+                object.element.remove();
+
+            }
 
 
         }
