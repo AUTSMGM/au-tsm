@@ -1474,9 +1474,11 @@ footer strong {
 ========================================================= */
 
 @media(max-width:900px) {
+
     nav {
         display: none;
     }
+
 }
 
 @media(max-width:800px) {
@@ -2188,6 +2190,29 @@ Onyxia has <strong>220 HP</strong>.
 
 <br><br>
 
+<strong>PHASE 1 — 100% to 70%</strong>
+<br>
+Ground fire only.
+<br>
+Jump over it.
+
+<br><br>
+
+<strong>PHASE 2 — 70% to 40%</strong>
+<br>
+Ground fire plus fire breath.
+<br>
+Jump fire, stay low for breath.
+
+<br><br>
+
+<strong>PHASE 3 — below 40%</strong>
+<br>
+Same mechanics as Phase 2,
+but approximately twice as fast.
+
+<br><br>
+
 Your Lightning Bolt deals
 <strong>5 damage</strong>
 and has a
@@ -2200,18 +2225,10 @@ Critical strikes deal
 
 <br><br>
 
-<strong>Ground Fire:</strong> Jump.
-
-<br>
-
-<strong>Fire Breath:</strong> Stay low.
-
-<br><br>
-
 You have
 <strong>5 hearts</strong>.
 
-<br>
+<br><br>
 
 Guild members may occasionally heal you,
 help you,
@@ -2453,11 +2470,6 @@ let musicPlaying =
 
 /* =========================================================
    AUDIO QUEUE
-
-   Important sounds can wait indefinitely.
-
-   WTF sounds expire after 2 seconds if they
-   have not started playing.
 ========================================================= */
 
 const soundQueue =
@@ -3358,6 +3370,29 @@ function resetGame() {
 
         <br><br>
 
+        <strong>PHASE 1 — 100% to 70%</strong>
+        <br>
+        Ground fire only.
+        <br>
+        Jump over it.
+
+        <br><br>
+
+        <strong>PHASE 2 — 70% to 40%</strong>
+        <br>
+        Ground fire plus fire breath.
+        <br>
+        Jump fire, stay low for breath.
+
+        <br><br>
+
+        <strong>PHASE 3 — below 40%</strong>
+        <br>
+        Same mechanics as Phase 2,
+        but approximately twice as fast.
+
+        <br><br>
+
         Lightning Bolt deals
         <strong>5 damage</strong>.
 
@@ -3370,28 +3405,6 @@ function resetGame() {
 
         You have
         <strong>5 hearts</strong>.
-
-        <br><br>
-
-        <strong>Ground Fire:</strong>
-        Jump.
-
-        <br>
-
-        <strong>Fire Breath:</strong>
-        Stay low.
-
-        <br><br>
-
-        Positive events appear on the left.
-
-        <br>
-
-        Damage appears beside Onyxia.
-
-        <br>
-
-        Raid warnings remain in the centre.
 
         </p>
 
@@ -3447,7 +3460,7 @@ function startGame() {
         false;
 
     mechanicTimer =
-        2.2;
+        2.5;
 
     attackTimer =
         2.6;
@@ -3512,12 +3525,12 @@ function startGame() {
 
 
     showRaidWarning(
-        "VERY VERY SLOWLY DPS"
+        "PHASE 1 — VERY VERY SLOWLY DPS"
     );
 
 
     addLeftEvent(
-        "Raid started. Confidence remains unjustifiably high.",
+        "Phase 1 started. Ground fire only. Surely this is manageable.",
         "buff"
     );
 
@@ -3755,6 +3768,10 @@ function gameLoop(time) {
 
 /* =========================================================
    PHASES
+
+   Phase 1 = 100% -> 70%
+   Phase 2 = 70% -> 40%
+   Phase 3 = 40% -> 0%
 ========================================================= */
 
 function updatePhase() {
@@ -3765,7 +3782,8 @@ function updatePhase() {
 
     if (
         bossHealth <=
-        145
+        BOSS_MAX_HP *
+        0.70
     ) {
 
         newPhase =
@@ -3776,7 +3794,8 @@ function updatePhase() {
 
     if (
         bossHealth <=
-        70
+        BOSS_MAX_HP *
+        0.40
     ) {
 
         newPhase =
@@ -3803,7 +3822,8 @@ function updatePhase() {
 
 
     if (
-        currentPhase === 2
+        currentPhase ===
+        2
     ) {
 
         showRaidWarning(
@@ -3811,7 +3831,7 @@ function updatePhase() {
         );
 
         addLeftEvent(
-            "Raid has entered Phase 2. Officers immediately begin arguing.",
+            "Phase 2: Onyxia remembered she can breathe fire.",
             "buff"
         );
 
@@ -3819,15 +3839,16 @@ function updatePhase() {
 
 
     if (
-        currentPhase === 3
+        currentPhase ===
+        3
     ) {
 
         showRaidWarning(
-            "ONYXIA ENRAGED — PHINKY HAS BEGUN SHOUTING"
+            "PHASE 3 — PHINKY HAS BEGUN SHOUTING"
         );
 
         addLeftEvent(
-            "Emergency healing protocols activated. Nobody knows what those are.",
+            "Phase 3: Same mechanics. Twice the panic.",
             "warning-event"
         );
 
@@ -3837,18 +3858,21 @@ function updatePhase() {
 
 
 /* =========================================================
-   TIMINGS
+   MECHANIC INTERVALS
+
+   Phase 3 is roughly twice as fast as Phase 2.
 ========================================================= */
 
 function getMechanicInterval() {
 
     if (
-        currentPhase === 1
+        currentPhase ===
+        1
     ) {
 
         return randomNumber(
-            20,
-            28
+            24,
+            32
         ) /
         10;
 
@@ -3856,12 +3880,13 @@ function getMechanicInterval() {
 
 
     if (
-        currentPhase === 2
+        currentPhase ===
+        2
     ) {
 
         return randomNumber(
-            17,
-            24
+            20,
+            26
         ) /
         10;
 
@@ -3869,13 +3894,60 @@ function getMechanicInterval() {
 
 
     return randomNumber(
-        13,
-        20
+        10,
+        13
     ) /
     10;
 
 }
 
+
+/* =========================================================
+   MECHANIC SPEED
+
+   Phase 3 only increases movement speed slightly.
+   The main difficulty increase is spawn frequency.
+========================================================= */
+
+function getMechanicSpeed() {
+
+    if (
+        currentPhase ===
+        1
+    ) {
+
+        return randomNumber(
+            285,
+            320
+        );
+
+    }
+
+
+    if (
+        currentPhase ===
+        2
+    ) {
+
+        return randomNumber(
+            295,
+            335
+        );
+
+    }
+
+
+    return randomNumber(
+        310,
+        350
+    );
+
+}
+
+
+/* =========================================================
+   GUILD EVENT TIMINGS
+========================================================= */
 
 function getGuildEventInterval() {
 
@@ -3912,7 +3984,17 @@ function getGuildEventInterval() {
 
 
 /* =========================================================
-   MECHANICS
+   SPAWN MECHANIC
+
+   Phase 1:
+   - ground fire only
+
+   Phase 2:
+   - ground fire
+   - fire breath
+
+   Phase 3:
+   - same as Phase 2
 ========================================================= */
 
 function spawnMechanic() {
@@ -3923,33 +4005,9 @@ function spawnMechanic() {
         );
 
 
-    let fireChance =
-        .72;
-
-
     if (
-        currentPhase === 2
-    ) {
-
-        fireChance =
-            .58;
-
-    }
-
-
-    if (
-        currentPhase === 3
-    ) {
-
-        fireChance =
-            .62;
-
-    }
-
-
-    if (
-        Math.random() <
-        fireChance
+        currentPhase ===
+        1
     ) {
 
         element.className =
@@ -3959,15 +4017,35 @@ function spawnMechanic() {
 
     else {
 
-        element.className =
-            "game-breath";
+        const groundFire =
+            Math.random() <
+            0.60;
 
-        element.style.bottom =
-            "150px";
 
-        showRaidWarning(
-            "DEEP BREATH — STAY LOW"
-        );
+        if (
+            groundFire
+        ) {
+
+            element.className =
+                "game-fire";
+
+        }
+
+        else {
+
+            element.className =
+                "game-breath";
+
+
+            element.style.bottom =
+                "150px";
+
+
+            showRaidWarning(
+                "DEEP BREATH — STAY LOW"
+            );
+
+        }
 
     }
 
@@ -3997,10 +4075,7 @@ function spawnMechanic() {
             x,
 
         speed:
-            randomNumber(
-                285,
-                340
-            ),
+            getMechanicSpeed(),
 
         direction:
             -1
@@ -4353,7 +4428,8 @@ function damageBoss(
 
 
     if (
-        bossHealth < 0
+        bossHealth <
+        0
     ) {
 
         bossHealth =
@@ -4863,7 +4939,8 @@ function maybeRandomHeal() {
 
 
     if (
-        currentPhase === 3
+        currentPhase ===
+        3
     ) {
 
         chance =
@@ -5268,10 +5345,6 @@ function updateDpsMeter() {
 
 /* =========================================================
    PLAYER DAMAGE
-
-   WTF behaviour:
-   - only one can wait in queue
-   - expires after 2 seconds
 ========================================================= */
 
 function damagePlayer() {
