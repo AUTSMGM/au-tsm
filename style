@@ -9,6 +9,369 @@
 
     <style>
 
+/* =========================================
+   RAID READY MINI GAME
+========================================= */
+
+#raidGameOverlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.88);
+
+    z-index: 5000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.raid-game-window {
+    width: min(900px, 100%);
+
+    background: #11100e;
+
+    border: 2px solid #806039;
+
+    box-shadow:
+        0 0 0 1px #241d16,
+        0 20px 70px rgba(0,0,0,0.8);
+}
+
+.game-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid #493a2b;
+
+    background: #191612;
+}
+
+.game-header h3 {
+    font-family: Georgia, serif;
+
+    color: #d7a94b;
+
+    margin-bottom: 4px;
+}
+
+.game-header p {
+    color: #746c61;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+#closeRaidGame {
+    width: 42px;
+    height: 42px;
+
+    background: #221d18;
+
+    border: 1px solid #514235;
+
+    color: #bbb1a4;
+
+    font-size: 17px;
+}
+
+#closeRaidGame:hover {
+    border-color: #b38538;
+}
+
+.game-hud {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 20px;
+
+    background: #0c0b0a;
+
+    color: #9d9386;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+#gameHealth {
+    color: #d9534f;
+
+    margin-left: 6px;
+}
+
+#gameTimer {
+    color: #d7a94b;
+
+    font-weight: bold;
+}
+
+#gameArea {
+    height: 360px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 70% 30%, rgba(130,55,25,.18), transparent 35%),
+        linear-gradient(#171617, #0b0b0b);
+
+    cursor: pointer;
+}
+
+/* dungeon floor */
+
+#gameGround {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 55px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #22201c 0px,
+            #22201c 80px,
+            #29251f 81px,
+            #29251f 84px
+        );
+
+    border-top: 2px solid #514435;
+}
+
+/* PLAYER */
+
+#gamePlayer {
+    position: absolute;
+
+    left: 90px;
+
+    bottom: 55px;
+
+    width: 38px;
+    height: 60px;
+
+    z-index: 10;
+}
+
+.player-head {
+    width: 24px;
+    height: 24px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    background: #7da25c;
+
+    border: 2px solid #b78c43;
+}
+
+.player-body {
+    width: 34px;
+    height: 35px;
+
+    margin: -1px auto 0;
+
+    background: #612920;
+
+    border: 2px solid #b78c43;
+
+    border-radius: 5px 5px 2px 2px;
+}
+
+/* FIRE */
+
+.game-fire {
+    position: absolute;
+
+    bottom: 55px;
+
+    width: 55px;
+    height: 35px;
+
+    background:
+        radial-gradient(
+            ellipse at bottom,
+            #ffdd34 0%,
+            #ff7b00 35%,
+            #bd1f0b 70%,
+            transparent 72%
+        );
+
+    animation: firePulse .35s infinite alternate;
+}
+
+@keyframes firePulse {
+
+    from {
+        transform: scaleY(.85);
+    }
+
+    to {
+        transform: scaleY(1.15);
+    }
+
+}
+
+/* OBSTACLE */
+
+.game-obstacle {
+    position: absolute;
+
+    bottom: 55px;
+
+    width: 35px;
+    height: 55px;
+
+    background: #3c3936;
+
+    border: 2px solid #70685e;
+
+    border-radius: 4px;
+}
+
+/* PROJECTILE */
+
+.game-projectile {
+    position: absolute;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        #cf70ff,
+        #652a82 55%,
+        transparent 58%
+    );
+
+    box-shadow: 0 0 12px #914cc0;
+}
+
+/* DAMAGE EFFECT */
+
+.game-hit {
+    animation: gameHitFlash .18s alternate 4;
+}
+
+@keyframes gameHitFlash {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: .2;
+    }
+
+}
+
+/* START / END MESSAGE */
+
+#gameMessage {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 50;
+
+    background: rgba(5,5,5,.82);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+#gameMessage h2 {
+    font-family: Georgia, serif;
+
+    color: #d7a94b;
+
+    margin-bottom: 15px;
+
+    font-size: 30px;
+}
+
+#gameMessage p {
+    color: #a69b8d;
+
+    line-height: 1.8;
+
+    margin-bottom: 20px;
+}
+
+#gameMessage button {
+    padding: 12px 22px;
+
+    background: #b38538;
+
+    border: 1px solid #d7a94b;
+
+    color: #111;
+
+    font-weight: bold;
+}
+
+.game-controls {
+    padding: 13px 18px;
+
+    background: #151310;
+
+    border-top: 1px solid #40362c;
+
+    color: #837a6f;
+
+    font-size: 11px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.game-controls strong {
+    color: #c9b18a;
+}
+
+@media (max-width: 600px) {
+
+    #gameArea {
+        height: 300px;
+    }
+
+    .game-controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+}
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -814,17 +1177,21 @@
             FOR THE HORDE
         </div>
 
-        <div class="hero-buttons">
+<div class="hero-buttons">
 
-            <button class="primary-button" id="joinButton">
-                Join AU TSM
-            </button>
+    <button class="primary-button" id="joinButton">
+        Join AU TSM
+    </button>
 
-            <button class="secondary-button" id="readyButton">
-                Initiate Ready Check
-            </button>
+    <button class="secondary-button" id="readyButton">
+        Initiate Ready Check
+    </button>
 
-        </div>
+    <button class="secondary-button" id="raidGameButton">
+        Test Raid Ready
+    </button>
+
+</div>
 
     </section>
 
@@ -1673,7 +2040,81 @@
 
 </footer>
 
+<!-- =========================================
+     RAID READY MINI GAME
+========================================= -->
 
+<div id="raidGameOverlay">
+
+    <div class="raid-game-window">
+
+        <div class="game-header">
+
+            <div>
+                <h3>AU TSM Raid Readiness Assessment</h3>
+                <p>Advanced mechanical competency evaluation</p>
+            </div>
+
+            <button id="closeRaidGame">✕</button>
+
+        </div>
+
+        <div class="game-hud">
+
+            <div>
+                HEALTH:
+                <span id="gameHealth">❤ ❤ ❤</span>
+            </div>
+
+            <div>
+                SURVIVE:
+                <span id="gameTimer">10.0</span>s
+            </div>
+
+        </div>
+
+        <div id="gameArea">
+
+            <div id="gamePlayer">
+                <div class="player-head"></div>
+                <div class="player-body"></div>
+            </div>
+
+            <div id="gameGround"></div>
+
+            <div id="gameMessage">
+
+                <h2>RAID READINESS TEST</h2>
+
+                <p>
+                    Jump over mechanics.<br>
+                    Do not stand in fire.<br>
+                    Somehow survive for 10 seconds.
+                </p>
+
+                <button id="startRaidGame">
+                    BEGIN ENCOUNTER
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="game-controls">
+
+            <strong>JUMP:</strong>
+            SPACEBAR • ↑ • CLICK / TAP
+
+            <span>
+                Phinky accepts no responsibility for repair bills.
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+    
 <div id="toast"></div>
 
 
@@ -2396,6 +2837,760 @@
 
     scheduleRandomPopup();
 
+/*
+==============================================
+AU TSM RAID READINESS MINI GAME
+==============================================
+*/
+
+const raidGameOverlay =
+    document.getElementById("raidGameOverlay");
+
+const raidGameButton =
+    document.getElementById("raidGameButton");
+
+const closeRaidGame =
+    document.getElementById("closeRaidGame");
+
+const startRaidGame =
+    document.getElementById("startRaidGame");
+
+const gameArea =
+    document.getElementById("gameArea");
+
+const gamePlayer =
+    document.getElementById("gamePlayer");
+
+const gameHealthDisplay =
+    document.getElementById("gameHealth");
+
+const gameTimerDisplay =
+    document.getElementById("gameTimer");
+
+const gameMessage =
+    document.getElementById("gameMessage");
+
+
+let gameRunning = false;
+
+let gameHealth = 3;
+
+let gameTime = 10;
+
+let playerY = 0;
+
+let velocityY = 0;
+
+let jumping = false;
+
+let invulnerable = false;
+
+let lastFrame = 0;
+
+let obstacleTimer = 0;
+
+let gameAnimation;
+
+let gameObjects = [];
+
+
+/*
+OPEN GAME
+*/
+
+raidGameButton.addEventListener(
+    "click",
+    function () {
+
+        raidGameOverlay.style.display = "flex";
+
+        resetRaidGame();
+
+    }
+);
+
+
+/*
+CLOSE GAME
+*/
+
+closeRaidGame.addEventListener(
+    "click",
+    function () {
+
+        endGameLoop();
+
+        raidGameOverlay.style.display = "none";
+
+    }
+);
+
+
+/*
+START GAME
+*/
+
+startRaidGame.addEventListener(
+    "click",
+    function () {
+
+        beginRaidGame();
+
+    }
+);
+
+
+/*
+RESET
+*/
+
+function resetRaidGame() {
+
+    endGameLoop();
+
+    gameHealth = 3;
+
+    gameTime = 10;
+
+    playerY = 0;
+
+    velocityY = 0;
+
+    jumping = false;
+
+    invulnerable = false;
+
+    obstacleTimer = 0;
+
+    gameHealthDisplay.textContent =
+        "❤ ❤ ❤";
+
+    gameTimerDisplay.textContent =
+        "10.0";
+
+    gamePlayer.style.bottom =
+        "55px";
+
+    clearGameObjects();
+
+    gameMessage.style.display =
+        "flex";
+
+    gameMessage.innerHTML = `
+        <h2>RAID READINESS TEST</h2>
+
+        <p>
+            Jump over mechanics.<br>
+            Do not stand in fire.<br>
+            Survive for 10 seconds.
+        </p>
+
+        <button id="startRaidGameAgain">
+            BEGIN ENCOUNTER
+        </button>
+    `;
+
+    document
+        .getElementById("startRaidGameAgain")
+        .addEventListener(
+            "click",
+            beginRaidGame
+        );
+}
+
+
+/*
+BEGIN ENCOUNTER
+*/
+
+function beginRaidGame() {
+
+    clearGameObjects();
+
+    gameHealth = 3;
+
+    gameTime = 10;
+
+    playerY = 0;
+
+    velocityY = 0;
+
+    obstacleTimer = 0;
+
+    invulnerable = false;
+
+    gameHealthDisplay.textContent =
+        "❤ ❤ ❤";
+
+    gameTimerDisplay.textContent =
+        "10.0";
+
+    gameMessage.style.display =
+        "none";
+
+    gameRunning = true;
+
+    lastFrame = performance.now();
+
+    gameAnimation =
+        requestAnimationFrame(gameLoop);
+
+}
+
+
+/*
+JUMP
+*/
+
+function jumpPlayer() {
+
+    if (!gameRunning) {
+        return;
+    }
+
+    if (playerY <= 1) {
+
+        velocityY = 570;
+
+        jumping = true;
+
+    }
+
+}
+
+
+/*
+SPACE / UP ARROW
+*/
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            raidGameOverlay.style.display !== "flex"
+        ) {
+            return;
+        }
+
+        if (
+            event.code === "Space" ||
+            event.code === "ArrowUp"
+        ) {
+
+            event.preventDefault();
+
+            jumpPlayer();
+
+        }
+
+    }
+);
+
+
+/*
+CLICK / TAP GAME
+*/
+
+gameArea.addEventListener(
+    "pointerdown",
+    function (event) {
+
+        if (
+            event.target.closest(
+                "#gameMessage button"
+            )
+        ) {
+            return;
+        }
+
+        jumpPlayer();
+
+    }
+);
+
+
+/*
+GAME LOOP
+*/
+
+function gameLoop(timestamp) {
+
+    if (!gameRunning) {
+        return;
+    }
+
+    const delta =
+        Math.min(
+            (timestamp - lastFrame) / 1000,
+            0.05
+        );
+
+    lastFrame = timestamp;
+
+
+    /*
+    TIMER
+    */
+
+    gameTime -= delta;
+
+    if (gameTime < 0) {
+        gameTime = 0;
+    }
+
+    gameTimerDisplay.textContent =
+        gameTime.toFixed(1);
+
+
+    /*
+    GRAVITY
+    */
+
+    velocityY -= 1500 * delta;
+
+    playerY += velocityY * delta;
+
+    if (playerY <= 0) {
+
+        playerY = 0;
+
+        velocityY = 0;
+
+        jumping = false;
+
+    }
+
+    gamePlayer.style.bottom =
+        (55 + playerY) + "px";
+
+
+    /*
+    SPAWN MECHANICS
+    */
+
+    obstacleTimer -= delta;
+
+    if (obstacleTimer <= 0) {
+
+        spawnGameObject();
+
+        /*
+        Between roughly 0.8 and 1.4 seconds
+        */
+
+        obstacleTimer =
+            0.8 + Math.random() * 0.6;
+
+    }
+
+
+    /*
+    MOVE MECHANICS
+    */
+
+    updateGameObjects(delta);
+
+
+    /*
+    WIN CONDITION
+    */
+
+    if (gameTime <= 0) {
+
+        raidVictory();
+
+        return;
+
+    }
+
+
+    gameAnimation =
+        requestAnimationFrame(gameLoop);
+
+}
+
+
+/*
+SPAWN RANDOM MECHANIC
+*/
+
+function spawnGameObject() {
+
+    const random =
+        Math.random();
+
+    let object;
+
+    /*
+    55% FIRE
+    */
+
+    if (random < 0.55) {
+
+        object =
+            document.createElement("div");
+
+        object.className =
+            "game-fire";
+
+        object.dataset.type =
+            "fire";
+
+    }
+
+    /*
+    30% ROCK / OBSTACLE
+    */
+
+    else if (random < 0.85) {
+
+        object =
+            document.createElement("div");
+
+        object.className =
+            "game-obstacle";
+
+        object.dataset.type =
+            "obstacle";
+
+    }
+
+    /*
+    15% PROJECTILE
+    */
+
+    else {
+
+        object =
+            document.createElement("div");
+
+        object.className =
+            "game-projectile";
+
+        object.dataset.type =
+            "projectile";
+
+        object.style.bottom =
+            (115 + Math.random() * 70) + "px";
+
+    }
+
+
+    object.style.left =
+        gameArea.clientWidth + "px";
+
+
+    gameArea.appendChild(object);
+
+
+    gameObjects.push({
+
+        element: object,
+
+        x: gameArea.clientWidth,
+
+        speed:
+            280 + Math.random() * 80
+
+    });
+
+}
+
+
+/*
+MOVE OBJECTS AND COLLISION
+*/
+
+function updateGameObjects(delta) {
+
+    const playerRect =
+        gamePlayer.getBoundingClientRect();
+
+
+    for (
+        let i = gameObjects.length - 1;
+        i >= 0;
+        i--
+    ) {
+
+        const object =
+            gameObjects[i];
+
+        object.x -=
+            object.speed * delta;
+
+        object.element.style.left =
+            object.x + "px";
+
+
+        /*
+        COLLISION
+        */
+
+        const objectRect =
+            object.element.getBoundingClientRect();
+
+
+        if (
+            !invulnerable &&
+            rectanglesOverlap(
+                playerRect,
+                objectRect
+            )
+        ) {
+
+            playerHit();
+
+            object.element.remove();
+
+            gameObjects.splice(i, 1);
+
+            continue;
+
+        }
+
+
+        /*
+        REMOVE OFF SCREEN
+        */
+
+        if (object.x < -100) {
+
+            object.element.remove();
+
+            gameObjects.splice(i, 1);
+
+        }
+
+    }
+
+}
+
+
+/*
+COLLISION CHECK
+*/
+
+function rectanglesOverlap(a, b) {
+
+    /*
+    Slightly smaller hitbox to make
+    the game feel less unfair
+    */
+
+    const padding = 7;
+
+    return !(
+        a.right - padding < b.left + padding ||
+        a.left + padding > b.right - padding ||
+        a.bottom - padding < b.top + padding ||
+        a.top + padding > b.bottom - padding
+    );
+
+}
+
+
+/*
+PLAYER HIT
+*/
+
+function playerHit() {
+
+    if (invulnerable) {
+        return;
+    }
+
+    gameHealth--;
+
+    invulnerable = true;
+
+    gamePlayer.classList.add(
+        "game-hit"
+    );
+
+
+    /*
+    UPDATE HEARTS
+    */
+
+    if (gameHealth === 2) {
+
+        gameHealthDisplay.textContent =
+            "❤ ❤ ♡";
+
+    }
+
+    else if (gameHealth === 1) {
+
+        gameHealthDisplay.textContent =
+            "❤ ♡ ♡";
+
+    }
+
+    else {
+
+        gameHealthDisplay.textContent =
+            "♡ ♡ ♡";
+
+    }
+
+
+    /*
+    DEATH
+    */
+
+    if (gameHealth <= 0) {
+
+        raidDeath();
+
+        return;
+
+    }
+
+
+    /*
+    SHORT INVULNERABILITY
+    */
+
+    setTimeout(
+        function () {
+
+            invulnerable = false;
+
+            gamePlayer.classList.remove(
+                "game-hit"
+            );
+
+        },
+        700
+    );
+
+}
+
+
+/*
+DEATH
+*/
+
+function raidDeath() {
+
+    endGameLoop();
+
+    gameMessage.style.display =
+        "flex";
+
+    gameMessage.innerHTML = `
+        <h2 style="color:#d05245;">
+            ☠ ROKS IS DEAD AGAIN
+        </h2>
+
+        <p>
+            Raid readiness assessment failed.<br><br>
+
+            Cause of death:
+            <strong>avoidable mechanic</strong>.<br>
+
+            Roks maintains that it
+            "looked safe".
+        </p>
+
+        <button id="restartRaidGame">
+            RELEASE SPIRIT & TRY AGAIN
+        </button>
+    `;
+
+
+    document
+        .getElementById("restartRaidGame")
+        .addEventListener(
+            "click",
+            beginRaidGame
+        );
+
+}
+
+
+/*
+VICTORY
+*/
+
+function raidVictory() {
+
+    endGameLoop();
+
+    gameMessage.style.display =
+        "flex";
+
+    gameMessage.innerHTML = `
+        <h2 style="color:#d7a94b;">
+            🏆 RAID DEFEATED
+        </h2>
+
+        <p>
+            You survived the encounter.<br><br>
+
+            <strong>
+                Good job Chris!
+            </strong>
+
+            <br><br>
+
+            Everyone else also participated.
+        </p>
+
+        <button id="restartRaidGame">
+            TEST AGAIN
+        </button>
+    `;
+
+
+    document
+        .getElementById("restartRaidGame")
+        .addEventListener(
+            "click",
+            beginRaidGame
+        );
+
+}
+
+
+/*
+STOP GAME
+*/
+
+function endGameLoop() {
+
+    gameRunning = false;
+
+    if (gameAnimation) {
+
+        cancelAnimationFrame(
+            gameAnimation
+        );
+
+    }
+
+}
+
+
+/*
+CLEAR OBJECTS
+*/
+
+function clearGameObjects() {
+
+    gameObjects.forEach(
+        object => {
+
+            object.element.remove();
+
+        }
+    );
+
+    gameObjects = [];
+
+}
 
 </script>
 
