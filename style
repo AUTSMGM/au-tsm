@@ -1952,7 +1952,7 @@ but will be publicly documented.
         <div>
             SURVIVE:
             <span id="gameTimer">
-                10.0
+                30.0
             </span>s
         </div>
 
