@@ -228,7 +228,6 @@ nav a:hover {
     font-size: 10px;
     font-weight: bold;
     letter-spacing: 2px;
-    text-transform: uppercase;
 }
 
 .raid-ready-callout::before {
@@ -271,12 +270,7 @@ nav a:hover {
         );
     color: #f5d88c;
     font-family: Georgia, serif;
-    transition:
-        transform .2s,
-        box-shadow .2s,
-        background .2s;
-    box-shadow:
-        inset 0 0 25px rgba(255,110,30,.08);
+    transition: 0.2s;
 }
 
 .raid-button-main {
@@ -284,33 +278,19 @@ nav a:hover {
     font-size: 22px;
     font-weight: bold;
     letter-spacing: 2px;
-    text-shadow:
-        0 2px 2px #000,
-        0 0 9px rgba(255,170,60,.45);
 }
 
 .raid-ready-subtitle {
     display: block;
     margin-top: 9px;
     color: #c3b59d;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 11px;
-    font-weight: normal;
     letter-spacing: 3px;
 }
 
 #raidGameButton:hover {
     transform: scale(1.025);
-    background:
-        radial-gradient(
-            circle at center,
-            #913226 0%,
-            #501d16 50%,
-            #21100d 100%
-        );
-    box-shadow:
-        inset 0 0 30px rgba(255,120,30,.15),
-        0 0 30px rgba(215,169,75,.18);
 }
 
 .raid-ready-warning {
@@ -319,7 +299,6 @@ nav a:hover {
     margin-top: 8px;
     color: #766c60;
     font-size: 10px;
-    letter-spacing: .5px;
 }
 
 .secondary-hero-buttons {
@@ -330,13 +309,8 @@ nav a:hover {
 }
 
 @keyframes raidBorderGlow {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 300% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
 }
 
 
@@ -363,7 +337,7 @@ nav a:hover {
 
 
 /* =========================================================
-   STATS
+   STATISTICS
 ========================================================= */
 
 .stats {
@@ -375,7 +349,7 @@ nav a:hover {
 .stat {
     padding: 28px 14px;
     text-align: center;
-    background: rgba(25, 22, 19, 0.94);
+    background: rgba(25,22,19,.94);
     border: 1px solid #41372d;
     border-radius: 5px;
 }
@@ -405,7 +379,7 @@ nav a:hover {
 
 
 /* =========================================================
-   LIVE STATUS
+   LIVE OPERATIONS
 ========================================================= */
 
 .live-grid {
@@ -439,7 +413,6 @@ nav a:hover {
     color: #716a60;
     font-size: 11px;
     margin-top: 8px;
-    line-height: 1.5;
 }
 
 
@@ -491,7 +464,6 @@ nav a:hover {
     color: #666057;
     margin-top: 10px;
     font-size: 11px;
-    line-height: 1.5;
 }
 
 
@@ -510,7 +482,6 @@ nav a:hover {
     border: 1px solid #39322b;
     padding: 20px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 
@@ -550,11 +521,6 @@ nav a:hover {
     border-bottom: 1px solid #28231e;
     font-size: 13px;
     color: #aaa195;
-    line-height: 1.5;
-}
-
-.feed-item:last-child {
-    border-bottom: 0;
 }
 
 .feed-time {
@@ -565,7 +531,7 @@ nav a:hover {
 
 
 /* =========================================================
-   RAID READINESS TABLE
+   READINESS
 ========================================================= */
 
 .raid-box {
@@ -586,17 +552,8 @@ nav a:hover {
     font-size: 13px;
 }
 
-.raid-row:last-child {
-    border-bottom: 0;
-}
-
-.warning {
-    color: #d05d4e;
-}
-
-.good {
-    color: #8eb875;
-}
+.warning { color: #d05d4e; }
+.good { color: #8eb875; }
 
 
 /* =========================================================
@@ -610,7 +567,7 @@ nav a:hover {
 }
 
 .tool {
-    background: rgba(23, 20, 18, 0.95);
+    background: #171412;
     border: 1px solid #3c342b;
     padding: 28px;
 }
@@ -625,7 +582,6 @@ nav a:hover {
     color: #92897c;
     line-height: 1.6;
     font-size: 13px;
-    min-height: 42px;
 }
 
 .tool button {
@@ -634,11 +590,6 @@ nav a:hover {
     background: #24201b;
     border: 1px solid #66533c;
     color: #ded6ca;
-    border-radius: 3px;
-}
-
-.tool button:hover {
-    border-color: #d7a94b;
 }
 
 .result {
@@ -663,12 +614,12 @@ nav a:hover {
     line-height: 1.8;
 }
 
-.announcement strong {
-    color: #dfd4c3;
-}
-
 .announcement + .announcement {
     margin-top: 14px;
+}
+
+.announcement strong {
+    color: #dfd4c3;
 }
 
 
@@ -705,14 +656,11 @@ footer strong {
     padding: 15px 18px;
     display: none;
     z-index: 6000;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.5);
-    font-size: 13px;
-    line-height: 1.5;
 }
 
 
 /* =========================================================
-   RAID MINI GAME
+   RAID GAME OVERLAY
 ========================================================= */
 
 #raidGameOverlay {
@@ -727,12 +675,9 @@ footer strong {
 }
 
 .raid-game-window {
-    width: min(950px, 100%);
+    width: min(950px,100%);
     background: #100e0d;
     border: 2px solid #806039;
-    box-shadow:
-        0 0 0 1px #241d16,
-        0 20px 70px rgba(0,0,0,.85);
 }
 
 .game-header {
@@ -741,19 +686,16 @@ footer strong {
     align-items: center;
     padding: 18px 20px;
     border-bottom: 1px solid #493a2b;
-    background: #191612;
 }
 
 .game-header h3 {
-    font-family: Georgia, serif;
     color: #d7a94b;
-    margin-bottom: 4px;
+    font-family: Georgia, serif;
 }
 
 .game-header p {
     color: #8f5548;
     font-size: 11px;
-    font-weight: bold;
     letter-spacing: 2px;
 }
 
@@ -763,7 +705,6 @@ footer strong {
     background: #221d18;
     border: 1px solid #514235;
     color: #bbb1a4;
-    font-size: 17px;
 }
 
 .game-hud {
@@ -773,9 +714,7 @@ footer strong {
     gap: 20px;
     padding: 11px 20px;
     background: #090908;
-    color: #9d9386;
     font-size: 11px;
-    letter-spacing: 1px;
 }
 
 #gameHealth {
@@ -784,7 +723,6 @@ footer strong {
 
 #gameTimer {
     color: #d7a94b;
-    font-weight: bold;
 }
 
 .boss-hud {
@@ -801,14 +739,12 @@ footer strong {
     height: 10px;
     background: #28100e;
     border: 1px solid #653029;
-    overflow: hidden;
 }
 
 #bossHealthFill {
-    width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, #8e1f18, #d24c3d);
-    transition: width .25s;
+    width: 100%;
+    background: linear-gradient(90deg,#8e1f18,#d24c3d);
 }
 
 
@@ -821,15 +757,10 @@ footer strong {
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(
-            circle at 75% 35%,
-            rgba(110,30,20,.20),
-            transparent 35%
-        ),
-        linear-gradient(#151313, #0a0909);
+        radial-gradient(circle at 75% 35%,rgba(110,30,20,.2),transparent 35%),
+        linear-gradient(#151313,#0a0909);
     cursor: pointer;
     user-select: none;
-    touch-action: manipulation;
 }
 
 #gameGround {
@@ -838,14 +769,7 @@ footer strong {
     right: 0;
     bottom: 0;
     height: 55px;
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #26221d 0px,
-            #26221d 70px,
-            #302a23 71px,
-            #302a23 74px
-        );
+    background: #26221d;
     border-top: 2px solid #5d4936;
 }
 
@@ -869,9 +793,8 @@ footer strong {
     top: 5px;
     width: 23px;
     height: 27px;
-    border-radius: 45% 45% 50% 50%;
+    border-radius: 50%;
     background: #c38f6a;
-    border: 2px solid #30241e;
 }
 
 .player-hair {
@@ -881,25 +804,8 @@ footer strong {
     width: 26px;
     height: 13px;
     background: #2b211c;
-    border-radius: 50% 50% 20% 20%;
-    z-index: 3;
-}
-
-.player-eye {
-    position: absolute;
-    top: 10px;
-    width: 3px;
-    height: 3px;
-    background: #111;
     border-radius: 50%;
-}
-
-.eye-left {
-    left: 5px;
-}
-
-.eye-right {
-    right: 5px;
+    z-index: 3;
 }
 
 .player-body {
@@ -908,9 +814,8 @@ footer strong {
     top: 30px;
     width: 31px;
     height: 33px;
-    background: linear-gradient(90deg, #24354a, #45617a, #24354a);
+    background: #36506b;
     border: 2px solid #94703d;
-    border-radius: 5px;
 }
 
 .player-shoulder {
@@ -921,16 +826,10 @@ footer strong {
     background: #53412c;
     border: 2px solid #a78447;
     border-radius: 50%;
-    z-index: 4;
 }
 
-.shoulder-left {
-    left: 1px;
-}
-
-.shoulder-right {
-    right: 0;
-}
+.shoulder-left { left: 1px; }
+.shoulder-right { right: 0; }
 
 .player-leg {
     position: absolute;
@@ -938,16 +837,10 @@ footer strong {
     width: 10px;
     height: 19px;
     background: #332f2c;
-    border: 1px solid #171513;
 }
 
-.leg-left {
-    left: 11px;
-}
-
-.leg-right {
-    right: 11px;
-}
+.leg-left { left: 11px; }
+.leg-right { right: 11px; }
 
 
 /* =========================================================
@@ -969,14 +862,8 @@ footer strong {
     bottom: 15px;
     width: 115px;
     height: 95px;
-    border-radius: 55% 45% 45% 50%;
-    background:
-        radial-gradient(
-            circle at 60% 30%,
-            #47383a,
-            #20191c 55%,
-            #100d0e
-        );
+    border-radius: 55%;
+    background: #21191c;
     border: 3px solid #5b4749;
 }
 
@@ -984,23 +871,20 @@ footer strong {
     position: absolute;
     width: 95px;
     height: 130px;
-    background: linear-gradient(135deg, #35272d, #171216);
+    background: #35272d;
     border: 3px solid #594148;
-    opacity: .95;
 }
 
 .dragon-wing-left {
     right: 100px;
     bottom: 65px;
-    clip-path: polygon(100% 100%, 0% 50%, 80% 0%);
-    transform: rotate(-15deg);
+    clip-path: polygon(100% 100%,0% 50%,80% 0%);
 }
 
 .dragon-wing-right {
     right: 5px;
     bottom: 80px;
-    clip-path: polygon(0% 100%, 20% 0%, 100% 45%);
-    transform: rotate(12deg);
+    clip-path: polygon(0% 100%,20% 0%,100% 45%);
 }
 
 .dragon-neck {
@@ -1021,9 +905,9 @@ footer strong {
     top: 37px;
     width: 66px;
     height: 49px;
-    background: linear-gradient(#33262a, #171216);
+    background: #241a1d;
     border: 3px solid #594147;
-    border-radius: 50% 35% 40% 50%;
+    border-radius: 50%;
 }
 
 .dragon-eye {
@@ -1032,38 +916,8 @@ footer strong {
     top: 15px;
     width: 8px;
     height: 5px;
-    border-radius: 50%;
     background: #ff9d28;
     box-shadow: 0 0 8px #ff5e00;
-}
-
-.dragon-mouth {
-    position: absolute;
-    left: -5px;
-    bottom: 7px;
-    width: 35px;
-    height: 4px;
-    background: #9e3b2e;
-    transform: rotate(-5deg);
-}
-
-.dragon-horn {
-    position: absolute;
-    top: -22px;
-    width: 8px;
-    height: 29px;
-    background: #aaa18d;
-    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-}
-
-.horn-one {
-    left: 19px;
-    transform: rotate(-20deg);
-}
-
-.horn-two {
-    left: 40px;
-    transform: rotate(8deg);
 }
 
 .dragon-tail {
@@ -1075,12 +929,11 @@ footer strong {
     background: #21191c;
     border: 3px solid #554045;
     border-radius: 50%;
-    transform: rotate(15deg);
 }
 
 
 /* =========================================================
-   FIRE ATTACKS
+   FIRE
 ========================================================= */
 
 .game-fire {
@@ -1091,23 +944,11 @@ footer strong {
     background:
         radial-gradient(
             ellipse at bottom,
-            #fff05b 0%,
+            #fff05b,
             #ff9d00 30%,
             #e44112 55%,
-            #781005 73%,
             transparent 75%
         );
-    animation: firePulse .28s infinite alternate;
-}
-
-@keyframes firePulse {
-    from {
-        transform: scaleY(.85);
-    }
-
-    to {
-        transform: scaleY(1.15);
-    }
 }
 
 .game-breath {
@@ -1119,23 +960,11 @@ footer strong {
         linear-gradient(
             90deg,
             transparent,
-            #c51e0a 10%,
-            #ff6f00 45%,
-            #ffe04a 70%,
+            #c51e0a,
+            #ff6f00,
+            #ffe04a,
             transparent
         );
-    box-shadow: 0 0 15px rgba(255,90,0,.7);
-    animation: breathPulse .18s infinite alternate;
-}
-
-@keyframes breathPulse {
-    from {
-        transform: scaleY(.8);
-    }
-
-    to {
-        transform: scaleY(1.1);
-    }
 }
 
 
@@ -1147,11 +976,8 @@ footer strong {
     position: absolute;
     height: 6px;
     width: 45px;
-    background: linear-gradient(90deg, #8be9ff, #ffffff, #4cb5ff);
-    box-shadow:
-        0 0 7px #67d7ff,
-        0 0 14px #459cff;
-    transform: skewY(-10deg);
+    background: #a9ecff;
+    box-shadow: 0 0 12px #459cff;
     z-index: 25;
 }
 
@@ -1161,34 +987,7 @@ footer strong {
     bottom: 135px;
     font-size: 32px;
     color: #9beaff;
-    animation: lightningImpact .35s forwards;
     z-index: 40;
-}
-
-@keyframes lightningImpact {
-    from {
-        opacity: 1;
-        transform: scale(.5);
-    }
-
-    to {
-        opacity: 0;
-        transform: scale(2);
-    }
-}
-
-.game-hit {
-    animation: gameHitFlash .18s alternate 4;
-}
-
-@keyframes gameHitFlash {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: .15;
-    }
 }
 
 
@@ -1213,7 +1012,6 @@ footer strong {
     font-family: Georgia, serif;
     color: #d7a94b;
     margin-bottom: 15px;
-    font-size: 32px;
 }
 
 #gameMessage p {
@@ -1222,27 +1020,131 @@ footer strong {
     margin-bottom: 20px;
 }
 
-#gameMessage strong {
-    color: #eee1cb;
-}
-
 #gameMessage button {
     padding: 12px 22px;
     background: #b38538;
     border: 1px solid #d7a94b;
-    color: #111;
     font-weight: bold;
 }
 
 .game-controls {
     padding: 13px 18px;
     background: #151310;
-    border-top: 1px solid #40362c;
     color: #837a6f;
     font-size: 11px;
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+}
+
+
+/* =========================================================
+   EPIC LOOT WINDOW
+========================================================= */
+
+.loot-window {
+    width: min(650px, 96%);
+    max-height: 94%;
+    overflow-y: auto;
+    background: #11100e;
+    border: 2px solid #806039;
+    box-shadow:
+        0 0 0 1px #2a221b,
+        0 15px 45px rgba(0,0,0,.8);
+    padding: 20px;
+    text-align: left;
+}
+
+.loot-title {
+    text-align: center;
+    color: #d7a94b;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    margin-bottom: 6px;
+}
+
+.loot-subtitle {
+    text-align: center;
+    color: #746c61;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.loot-list {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 9px;
+}
+
+.loot-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px;
+    background: #171513;
+    border: 1px solid #40362d;
+}
+
+.loot-icon {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #a335ee;
+    background:
+        radial-gradient(circle,#48205e,#1d1025);
+    color: #ddb3ff;
+    font-size: 19px;
+    box-shadow:
+        0 0 8px rgba(163,53,238,.3);
+}
+
+.loot-name {
+    color: #a335ee;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.loot-type {
+    margin-top: 3px;
+    color: #777067;
+    font-size: 10px;
+}
+
+.loot-reserved {
+    margin-top: 18px;
+    padding: 15px;
+    text-align: center;
+    background: #28100d;
+    border: 1px solid #7d3328;
+}
+
+.loot-reserved-title {
+    color: #db6758;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.loot-reserved-main {
+    margin-top: 7px;
+    color: #eee1cb;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.loot-reserved-note {
+    margin-top: 6px;
+    color: #8f8175;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.loot-window button {
+    display: block;
+    margin: 18px auto 0;
 }
 
 
@@ -1250,98 +1152,85 @@ footer strong {
    MOBILE
 ========================================================= */
 
-@media (max-width: 800px) {
+@media(max-width:800px) {
 
-    nav {
-        display: none;
-    }
+    nav { display:none; }
 
     .stats,
     .live-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
     .metrics,
     .tools {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
     }
 
     .classes {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:repeat(2,1fr);
     }
+
 }
 
-@media (max-width: 600px) {
+@media(max-width:600px) {
 
     #gameArea {
-        height: 310px;
+        height:310px;
     }
 
     #gamePlayer {
-        left: 45px;
+        left:45px;
     }
 
     #onyxia {
-        right: -20px;
-        transform: scale(.8);
-        transform-origin: bottom right;
+        right:-20px;
+        transform:scale(.8);
+        transform-origin:bottom right;
     }
 
     .game-hud {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 7px;
+        grid-template-columns:1fr;
+        text-align:center;
     }
 
-    .game-controls {
-        flex-direction: column;
+    .loot-list {
+        grid-template-columns:1fr;
     }
 
-    .raid-button-main {
-        font-size: 17px;
-    }
 }
 
-@media (max-width: 480px) {
+@media(max-width:480px) {
 
     .stats,
     .live-grid,
     .classes {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
     }
 
-    .header-inner {
-        justify-content: center;
-    }
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
 <header>
 
 <div class="header-inner">
 
-    <div class="logo">
-        <h1>AU TSM</h1>
-        <p>WORLD OF WARCRAFT • FOREVER</p>
-    </div>
+<div class="logo">
+<h1>AU TSM</h1>
+<p>WORLD OF WARCRAFT • FOREVER</p>
+</div>
 
-    <nav>
-        <a href="#stats">Statistics</a>
-        <a href="#classes">Roster</a>
-        <a href="#tools">Guild Tools</a>
-        <a href="#announcements">Announcements</a>
-    </nav>
+<nav>
+<a href="#stats">Statistics</a>
+<a href="#classes">Roster</a>
+<a href="#tools">Guild Tools</a>
+<a href="#announcements">Announcements</a>
+</nav>
 
 </div>
 
@@ -1351,756 +1240,431 @@ footer strong {
 <main>
 
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+<!-- HERO -->
 
 <section class="hero">
 
-    <div class="eyebrow">
-        HORDE • OCEANIC • EST. AFTER SOMEONE MADE A DISCORD
-    </div>
+<div class="eyebrow">
+HORDE • OCEANIC • EST. AFTER SOMEONE MADE A DISCORD
+</div>
 
-    <h2>
-        AU <span>TSM</span>
-    </h2>
+<h2>AU <span>TSM</span></h2>
 
-    <div class="guild-tagline">
-        PROFESSIONAL TEAM SOLO MID PLAYERS
-        <span>WITH A HINT OF DEGENERACY</span>
-    </div>
+<div class="guild-tagline">
+PROFESSIONAL TEAM SOLO MID PLAYERS
+<span>WITH A HINT OF DEGENERACY</span>
+</div>
 
-    <p class="hero-description">
-        An Oceanic World of Warcraft Forever guild combining
-        questionable sleep schedules, unnecessary optimisation,
-        excessive spreadsheets and the unwavering belief that
-        the next pull is definitely the one.
-    </p>
+<p class="hero-description">
+An Oceanic World of Warcraft Forever guild combining questionable
+sleep schedules, unnecessary optimisation, excessive spreadsheets
+and the unwavering belief that the next pull is definitely the one.
+</p>
 
-    <div class="horde-badge">
-        ⚔ FOR THE HORDE ⚔
-    </div>
+<div class="horde-badge">
+⚔ FOR THE HORDE ⚔
+</div>
 
 
-    <div class="hero-buttons">
+<div class="hero-buttons">
+
+<div class="raid-ready-callout">
+
+<div class="raid-ready-label">
+⚠ MANDATORY GUILD ASSESSMENT ⚠
+</div>
+
+<button id="raidGameButton">
+
+<span class="raid-button-main">
+⚔ TEST YOUR RAID READINESS ⚔
+</span>
+
+<span class="raid-ready-subtitle">
+CAN YOU SURVIVE ONYXIA?
+</span>
+
+</button>
+
+<div class="raid-ready-warning">
+3 mechanic failures will result in automatic classification as Roks
+</div>
+
+</div>
 
 
-        <div class="raid-ready-callout">
+<div class="secondary-hero-buttons">
 
-            <div class="raid-ready-label">
-                ⚠ MANDATORY GUILD ASSESSMENT ⚠
-            </div>
+<button class="primary-button" id="joinButton">
+Join AU TSM
+</button>
 
-            <button id="raidGameButton">
+<button class="secondary-button" id="readyButton">
+Initiate Ready Check
+</button>
 
-                <span class="raid-button-main">
-                    ⚔ TEST YOUR RAID READINESS ⚔
-                </span>
+</div>
 
-                <span class="raid-ready-subtitle">
-                    CAN YOU SURVIVE ONYXIA?
-                </span>
-
-            </button>
-
-            <div class="raid-ready-warning">
-                3 mechanic failures will result in automatic classification as Roks
-            </div>
-
-        </div>
-
-
-        <div class="secondary-hero-buttons">
-
-            <button class="primary-button" id="joinButton">
-                Join AU TSM
-            </button>
-
-            <button class="secondary-button" id="readyButton">
-                Initiate Ready Check
-            </button>
-
-        </div>
-
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- =========================================================
-     STATISTICS
-========================================================= -->
+<!-- STATISTICS -->
 
 <section id="stats">
 
 <div class="section-title">
-    <h3>Guild Statistics</h3>
-    <p>
-        Key performance indicators for a highly professional gaming organisation
-    </p>
+<h3>Guild Statistics</h3>
+<p>Key performance indicators for a highly professional gaming organisation</p>
 </div>
 
 <div class="stats">
 
-    <div class="stat">
-        <span class="stat-number">42</span>
-        <span class="stat-label">Guild Members</span>
-        <span class="stat-subtext">
-            Social skills vary considerably
-        </span>
-    </div>
+<div class="stat">
+<span class="stat-number">42</span>
+<span class="stat-label">Guild Members</span>
+<span class="stat-subtext">Social skills vary considerably</span>
+</div>
 
-    <div class="stat">
-        <span class="stat-number">67</span>
-        <span class="stat-label">Characters</span>
-        <span class="stat-subtext">
-            Character ownership records remain unreliable
-        </span>
-    </div>
+<div class="stat">
+<span class="stat-number">67</span>
+<span class="stat-label">Characters</span>
+<span class="stat-subtext">Character ownership records remain unreliable</span>
+</div>
 
-    <div class="stat">
-        <span class="stat-number">1</span>
-        <span class="stat-label">Best Gamer</span>
-        <span class="stat-subtext">
-            Chris insists this metric is objective
-        </span>
-    </div>
+<div class="stat">
+<span class="stat-number">1</span>
+<span class="stat-label">Best Gamer</span>
+<span class="stat-subtext">Chris insists this metric is objective</span>
+</div>
 
-    <div class="stat">
-        <span class="stat-number">∞</span>
-        <span class="stat-label">Roks Incidents</span>
-        <span class="stat-subtext">
-            Counter exceeded technical limit
-        </span>
-    </div>
+<div class="stat">
+<span class="stat-number">∞</span>
+<span class="stat-label">Roks Incidents</span>
+<span class="stat-subtext">Counter exceeded technical limit</span>
+</div>
 
 </div>
 
 </section>
 
 
-<!-- =========================================================
-     LIVE OPERATIONS
-========================================================= -->
+<!-- LIVE OPERATIONS -->
 
 <section>
 
 <div class="section-title">
-    <h3>Live Guild Operations</h3>
-    <p>
-        Real-time monitoring of a completely normal group of adults playing a video game
-    </p>
+<h3>Live Guild Operations</h3>
+<p>Real-time monitoring of a completely normal group of adults playing a video game</p>
 </div>
 
 <div class="live-grid">
 
-    <div class="live-card">
+<div class="live-card">
+<div class="live-label">Latest Incident</div>
+<div class="live-value" id="latestDeath">Roks stood in fire.</div>
+<div class="live-note">Root cause analysis currently underway.</div>
+</div>
 
-        <div class="live-label">
-            Latest Incident
-        </div>
+<div class="live-card">
+<div class="live-label">Current Blame Target</div>
+<div class="live-value" id="blameTarget">Roks</div>
+<div class="live-note">Selected using evidence-based guild governance.</div>
+</div>
 
-        <div class="live-value" id="latestDeath">
-            Roks stood in fire.
-        </div>
-
-        <div class="live-note">
-            Root cause analysis currently underway.
-        </div>
-
-    </div>
-
-
-    <div class="live-card">
-
-        <div class="live-label">
-            Current Blame Target
-        </div>
-
-        <div class="live-value" id="blameTarget">
-            Roks
-        </div>
-
-        <div class="live-note">
-            Selected using evidence-based guild governance.
-        </div>
-
-    </div>
-
-
-    <div class="live-card">
-
-        <div class="live-label">
-            Leadership Status
-        </div>
-
-        <div class="live-value" id="leadershipStatus">
-            Phinky pretending everything is under control.
-        </div>
-
-        <div class="live-note">
-            Guild Master authority remains mostly ceremonial.
-        </div>
-
-    </div>
+<div class="live-card">
+<div class="live-label">Leadership Status</div>
+<div class="live-value" id="leadershipStatus">
+Phinky pretending everything is under control.
+</div>
+<div class="live-note">
+Guild Master authority remains mostly ceremonial.
+</div>
+</div>
 
 </div>
 
 </section>
 
 
-<!-- =========================================================
-     PERFORMANCE & COMPLIANCE
-========================================================= -->
+<!-- PERFORMANCE -->
 
 <section>
 
 <div class="section-title">
-    <h3>Performance &amp; Compliance</h3>
-    <p>
-        Because apparently playing the game wasn't complicated enough
-    </p>
+<h3>Performance &amp; Compliance</h3>
+<p>Because apparently playing the game wasn't complicated enough</p>
 </div>
 
 <div class="metrics">
 
+<div class="metric">
+<div class="metric-top">
+<span class="metric-name">Chris Gaming Ability</span>
+<span class="metric-value">100%</span>
+</div>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
+<div class="metric-note">Self-reported. Peer review unavailable.</div>
+</div>
 
-    <div class="metric">
+<div class="metric">
+<div class="metric-top">
+<span class="metric-name">Roks Mechanic Awareness</span>
+<span class="metric-value">18%</span>
+</div>
+<div class="bar"><div class="fill" style="width:18%"></div></div>
+<div class="metric-note">Corrective action remains ineffective.</div>
+</div>
 
-        <div class="metric-top">
-            <span class="metric-name">
-                Chris Gaming Ability
-            </span>
+<div class="metric">
+<div class="metric-top">
+<span class="metric-name">Luffa Sobriety</span>
+<span class="metric-value">7%</span>
+</div>
+<div class="bar"><div class="fill" style="width:7%"></div></div>
+<div class="metric-note">
+Strong inverse correlation with time of evening.
+</div>
+</div>
 
-            <span class="metric-value">
-                100%
-            </span>
-        </div>
+<div class="metric">
+<div class="metric-top">
+<span class="metric-name">Aimless Directional Accuracy</span>
+<span class="metric-value">31%</span>
+</div>
+<div class="bar"><div class="fill" style="width:31%"></div></div>
+<div class="metric-note">Name appears statistically relevant.</div>
+</div>
 
-        <div class="bar">
-            <div class="fill" style="width:100%"></div>
-        </div>
+<div class="metric">
+<div class="metric-top">
+<span class="metric-name">Phinky Leadership Confidence</span>
+<span class="metric-value">94%</span>
+</div>
+<div class="bar"><div class="fill" style="width:94%"></div></div>
+<div class="metric-note">
+Has somehow turned playing WoW into middle management.
+</div>
+</div>
 
-        <div class="metric-note">
-            Self-reported. Peer review unavailable.
-        </div>
-
-    </div>
-
-
-    <div class="metric">
-
-        <div class="metric-top">
-            <span class="metric-name">
-                Roks Mechanic Awareness
-            </span>
-
-            <span class="metric-value">
-                18%
-            </span>
-        </div>
-
-        <div class="bar">
-            <div class="fill" style="width:18%"></div>
-        </div>
-
-        <div class="metric-note">
-            Corrective action remains ineffective.
-        </div>
-
-    </div>
-
-
-    <div class="metric">
-
-        <div class="metric-top">
-            <span class="metric-name">
-                Luffa Sobriety
-            </span>
-
-            <span class="metric-value">
-                7%
-            </span>
-        </div>
-
-        <div class="bar">
-            <div class="fill" style="width:7%"></div>
-        </div>
-
-        <div class="metric-note">
-            Strong inverse correlation with time of evening.
-        </div>
-
-    </div>
-
-
-    <div class="metric">
-
-        <div class="metric-top">
-            <span class="metric-name">
-                Aimless Directional Accuracy
-            </span>
-
-            <span class="metric-value">
-                31%
-            </span>
-        </div>
-
-        <div class="bar">
-            <div class="fill" style="width:31%"></div>
-        </div>
-
-        <div class="metric-note">
-            Name appears statistically relevant.
-        </div>
-
-    </div>
-
-
-    <div class="metric">
-
-        <div class="metric-top">
-            <span class="metric-name">
-                Phinky Leadership Confidence
-            </span>
-
-            <span class="metric-value">
-                94%
-            </span>
-        </div>
-
-        <div class="bar">
-            <div class="fill" style="width:94%"></div>
-        </div>
-
-        <div class="metric-note">
-            Has somehow turned playing WoW into middle management.
-        </div>
-
-    </div>
-
-
-    <div class="metric">
-
-        <div class="metric-top">
-            <span class="metric-name">
-                Fayne Bladestorm Uptime
-            </span>
-
-            <span class="metric-value">
-                100%
-            </span>
-        </div>
-
-        <div class="bar">
-            <div class="fill" style="width:100%"></div>
-        </div>
-
-        <div class="metric-note">
-            Mechanic participation measured separately.
-        </div>
-
-    </div>
-
+<div class="metric">
+<div class="metric-top">
+<span class="metric-name">Fayne Bladestorm Uptime</span>
+<span class="metric-value">100%</span>
+</div>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
+<div class="metric-note">
+Mechanic participation measured separately.
+</div>
+</div>
 
 </div>
 
 </section>
 
 
-<!-- =========================================================
-     CLASS DISTRIBUTION
-========================================================= -->
+<!-- CLASSES -->
 
 <section id="classes">
 
 <div class="section-title">
-    <h3>Class Distribution</h3>
-    <p>
-        Current composition until everyone rerolls again
-    </p>
+<h3>Class Distribution</h3>
+<p>Current composition until everyone rerolls again</p>
 </div>
 
 <div class="classes">
 
-    <div class="class-card">
-        <span class="class-name">Warrior</span>
-        <span class="class-count warrior">12</span>
-    </div>
-
-    <div class="class-card">
-        <span class="class-name">Paladin</span>
-        <span class="class-count paladin">4</span>
-    </div>
-
-    <div class="class-card">
-        <span class="class-name">Hunter</span>
-        <span class="class-count hunter">9</span>
-    </div>
-
-    <div class="class-card">
-        <span class="class-name">Rogue</span>
-        <span class="class-count rogue">7</span>
-    </div>
-
-    <div class="class-card">
-        <span class="class-name">Priest</span>
-        <span class="class-count priest">3</span>
-    </div>
-
-    <div class="class-card">
-        <span class="class-name">Shaman</span>
-        <span class="class-count shaman">10</span>
-    </div>
-
-    <div class="class-card">
-        <span class="class-name">Mage</span>
-        <span class="class-count mage">8</span>
-    </div>
-
-    <div class="class-card">
-        <span class="class-name">Warlock</span>
-        <span class="class-count warlock">6</span>
-    </div>
-
-    <div class="class-card">
-        <span class="class-name">Druid</span>
-        <span class="class-count druid">8</span>
-    </div>
+<div class="class-card"><span>Warrior</span><span class="class-count warrior">12</span></div>
+<div class="class-card"><span>Paladin</span><span class="class-count paladin">4</span></div>
+<div class="class-card"><span>Hunter</span><span class="class-count hunter">9</span></div>
+<div class="class-card"><span>Rogue</span><span class="class-count rogue">7</span></div>
+<div class="class-card"><span>Priest</span><span class="class-count priest">3</span></div>
+<div class="class-card"><span>Shaman</span><span class="class-count shaman">10</span></div>
+<div class="class-card"><span>Mage</span><span class="class-count mage">8</span></div>
+<div class="class-card"><span>Warlock</span><span class="class-count warlock">6</span></div>
+<div class="class-card"><span>Druid</span><span class="class-count druid">8</span></div>
 
 </div>
 
 </section>
 
 
-<!-- =========================================================
-     GUILD OPERATIONS CENTRE
-========================================================= -->
+<!-- GUILD OPERATIONS -->
 
 <section>
 
 <div class="section-title">
-    <h3>Guild Operations Centre</h3>
-    <p>
-        Monitoring AU TSM's ongoing descent into operational excellence
-    </p>
+<h3>Guild Operations Centre</h3>
+<p>Monitoring AU TSM's ongoing descent into operational excellence</p>
 </div>
 
 <div class="feed" id="guildFeed">
 
-    <div class="feed-item">
-        <span class="feed-time">NOW</span>
-        Roks has been reminded that fire is not a temporary buff.
-    </div>
+<div class="feed-item">
+<span class="feed-time">NOW</span>
+Roks has been reminded that fire is not a temporary buff.
+</div>
 
-    <div class="feed-item">
-        <span class="feed-time">2m</span>
-        Fayne has been assigned an important mechanic. Bladestorm availability is being investigated.
-    </div>
+<div class="feed-item">
+<span class="feed-time">2m</span>
+Fayne has been assigned an important mechanic. Bladestorm availability is being investigated.
+</div>
 
-    <div class="feed-item">
-        <span class="feed-time">4m</span>
-        Chris has completed another internal review confirming Chris is the best gamer.
-    </div>
+<div class="feed-item">
+<span class="feed-time">4m</span>
+Chris has completed another internal review confirming Chris is the best gamer.
+</div>
 
-    <div class="feed-item">
-        <span class="feed-time">6m</span>
-        Luffa has entered the operationally impaired phase of the evening.
-    </div>
-
-    <div class="feed-item">
-        <span class="feed-time">8m</span>
-        Phinky has called an emergency officer meeting. Nobody knows why.
-    </div>
+<div class="feed-item">
+<span class="feed-time">6m</span>
+Luffa has entered the operationally impaired phase of the evening.
+</div>
 
 </div>
 
 </section>
 
 
-<!-- =========================================================
-     PERSONNEL READINESS
-========================================================= -->
+<!-- READINESS -->
 
 <section>
 
 <div class="section-title">
-    <h3>Personnel Readiness Matrix</h3>
-    <p>
-        Because a normal ready check wasn't sufficiently bureaucratic
-    </p>
+<h3>Personnel Readiness Matrix</h3>
+<p>Because a normal ready check wasn't sufficiently bureaucratic</p>
 </div>
 
 <div class="raid-box">
 
-    <div class="raid-row">
-        <span>Tanks</span>
-        <span class="good">
-            Ready
-        </span>
-    </div>
+<div class="raid-row">
+<span>Tanks</span>
+<span class="good">Ready</span>
+</div>
 
-    <div class="raid-row">
-        <span>Healers</span>
-        <span class="warning">
-            Penny asked why Chris needs three healers
-        </span>
-    </div>
+<div class="raid-row">
+<span>Healers</span>
+<span class="warning">Penny asked why Chris needs three healers</span>
+</div>
 
-    <div class="raid-row">
-        <span>DPS</span>
-        <span class="good">
-            Far too many
-        </span>
-    </div>
+<div class="raid-row">
+<span>DPS</span>
+<span class="good">Far too many</span>
+</div>
 
-    <div class="raid-row">
-        <span>Fayne</span>
-        <span class="good" id="fayneStatus">
-            Ready — Bladestorm available
-        </span>
-    </div>
+<div class="raid-row">
+<span>Fayne</span>
+<span class="good" id="fayneStatus">Ready — Bladestorm available</span>
+</div>
 
-    <div class="raid-row">
-        <span>Stiff</span>
-        <span class="warning">
-            AFK status unclear
-        </span>
-    </div>
-
-    <div class="raid-row">
-        <span>KP</span>
-        <span class="good">
-            Claims to be ready
-        </span>
-    </div>
-
-    <div class="raid-row">
-        <span>Jaydo</span>
-        <span class="warning">
-            Has started a completely unrelated conversation
-        </span>
-    </div>
-
-    <div class="raid-row">
-        <span>Sev</span>
-        <span class="good">
-            Quietly carrying without acknowledgement
-        </span>
-    </div>
-
-    <div class="raid-row">
-        <span>Rulzy</span>
-        <span class="warning">
-            Currently disputing a loot interpretation
-        </span>
-    </div>
-
-    <div class="raid-row">
-        <span>Marsmallow</span>
-        <span class="good">
-            Present and somehow not involved in the drama
-        </span>
-    </div>
-
-    <div class="raid-row">
-        <span>Zomgs</span>
-        <span class="warning">
-            Connection status classified
-        </span>
-    </div>
-
-    <div class="raid-row">
-        <span>Roks</span>
-        <span class="warning">
-            Already dead
-        </span>
-    </div>
+<div class="raid-row"><span>Stiff</span><span class="warning">AFK status unclear</span></div>
+<div class="raid-row"><span>KP</span><span class="good">Claims to be ready</span></div>
+<div class="raid-row"><span>Jaydo</span><span class="warning">Has started a completely unrelated conversation</span></div>
+<div class="raid-row"><span>Sev</span><span class="good">Quietly carrying without acknowledgement</span></div>
+<div class="raid-row"><span>Rulzy</span><span class="warning">Currently disputing a loot interpretation</span></div>
+<div class="raid-row"><span>Marsmallow</span><span class="good">Present and somehow not involved in the drama</span></div>
+<div class="raid-row"><span>Zomgs</span><span class="warning">Connection status classified</span></div>
+<div class="raid-row"><span>Roks</span><span class="warning">Already dead</span></div>
 
 </div>
 
 </section>
 
 
-<!-- =========================================================
-     GUILD TOOLS
-========================================================= -->
+<!-- TOOLS -->
 
 <section id="tools">
 
 <div class="section-title">
-    <h3>Guild Tools</h3>
-    <p>
-        Enterprise-grade solutions to problems we created ourselves
-    </p>
+<h3>Guild Tools</h3>
+<p>Enterprise-grade solutions to problems we created ourselves</p>
 </div>
 
 <div class="tools">
 
+<div class="tool">
+<h4>Raid Eligibility Scanner</h4>
+<p>Determine whether your character meets AU TSM's rigorous and frequently changing standards.</p>
+<button id="eligibilityButton">Analyse Character</button>
+<div class="result" id="eligibilityResult"></div>
+</div>
 
-    <div class="tool">
+<div class="tool">
+<h4>Oceanic Latency Diagnostic</h4>
+<p>Determine whether poor performance is your fault or can legally be blamed on Australian internet.</p>
+<button id="latencyButton">Test Connection</button>
+<div class="result" id="latencyResult"></div>
+</div>
 
-        <h4>
-            Raid Eligibility Scanner
-        </h4>
+<div class="tool">
+<h4>Loot Council Priority</h4>
+<p>Proprietary governance technology calculates your likelihood of receiving the next contested epic.</p>
+<button id="lootButton">Calculate Priority</button>
+<div class="result" id="lootResult"></div>
+</div>
 
-        <p>
-            Determine whether your character meets AU TSM's
-            rigorous and frequently changing standards.
-        </p>
-
-        <button id="eligibilityButton">
-            Analyse Character
-        </button>
-
-        <div class="result" id="eligibilityResult"></div>
-
-    </div>
-
-
-    <div class="tool">
-
-        <h4>
-            Oceanic Latency Diagnostic
-        </h4>
-
-        <p>
-            Determine whether poor performance is your fault
-            or can legally be blamed on Australian internet.
-        </p>
-
-        <button id="latencyButton">
-            Test Connection
-        </button>
-
-        <div class="result" id="latencyResult"></div>
-
-    </div>
-
-
-    <div class="tool">
-
-        <h4>
-            Loot Council Priority
-        </h4>
-
-        <p>
-            Proprietary governance technology calculates
-            your likelihood of receiving the next contested epic.
-        </p>
-
-        <button id="lootButton">
-            Calculate Priority
-        </button>
-
-        <div class="result" id="lootResult"></div>
-
-    </div>
-
-
-    <div class="tool">
-
-        <h4>
-            Parse Improvement Engine
-        </h4>
-
-        <p>
-            Advanced analytics provide personalised advice
-            developed using decades of questionable expertise.
-        </p>
-
-        <button id="parseButton">
-            Improve My Parse
-        </button>
-
-        <div class="result" id="parseResult"></div>
-
-    </div>
-
+<div class="tool">
+<h4>Parse Improvement Engine</h4>
+<p>Advanced analytics provide personalised advice developed using decades of questionable expertise.</p>
+<button id="parseButton">Improve My Parse</button>
+<div class="result" id="parseResult"></div>
+</div>
 
 </div>
 
 </section>
 
 
-<!-- =========================================================
-     ANNOUNCEMENTS
-========================================================= -->
+<!-- ANNOUNCEMENTS -->
 
 <section id="announcements">
 
 <div class="section-title">
-    <h3>Officer Announcements</h3>
-    <p>
-        Please read before asking the exact question answered below
-    </p>
+<h3>Officer Announcements</h3>
+<p>Please read before asking the exact question answered below</p>
 </div>
-
 
 <div class="announcement">
-    <strong>Guild Leadership:</strong>
-    Phinky would like to remind everyone that Guild Master decisions
-    are final unless Chris disagrees confidently enough.
+<strong>Guild Leadership:</strong>
+Phinky would like to remind everyone that Guild Master decisions
+are final unless Chris disagrees confidently enough.
 </div>
-
 
 <div class="announcement">
-    <strong>Raid Attendance:</strong>
-    "Maybe", "probably", "should be there" and "depends what the boys
-    are doing" are not considered definitive answers.
+<strong>Raid Attendance:</strong>
+"Maybe", "probably", "should be there" and "depends what the boys
+are doing" are not considered definitive answers.
 </div>
-
 
 <div class="announcement">
-    <strong>Operational Excellence:</strong>
-    AU TSM remains committed to applying an entirely unreasonable
-    level of optimisation to content we will eventually clear anyway.
+<strong>Luffa:</strong>
+Raid leadership recommends completing all technically difficult
+mechanics before Luffa reaches beverage number four.
 </div>
-
 
 <div class="announcement">
-    <strong>Luffa:</strong>
-    Raid leadership recommends completing all technically difficult
-    mechanics before Luffa reaches beverage number four.
+<strong>Roks:</strong>
+Following several incidents, Roks is no longer permitted to say
+"trust me" immediately before a pull.
 </div>
-
 
 <div class="announcement">
-    <strong>Roks:</strong>
-    Following several incidents, Roks is no longer permitted to say
-    "trust me" immediately before a pull.
+<strong>Fayne:</strong>
+Fayne is generally a good player. Unfortunately, mechanics occurring
+during Bladestorm are considered outside his jurisdiction.
 </div>
-
 
 <div class="announcement">
-    <strong>Fayne:</strong>
-    Raid leadership acknowledges that Fayne is generally a good player.
-    Unfortunately, mechanics occurring during Bladestorm are considered
-    outside his jurisdiction.
+<strong>Guild Bank:</strong>
+Please stop depositing grey items, broken teeth, six-slot bags
+and anything Stiff says "might be useful later."
 </div>
-
 
 <div class="announcement">
-    <strong>Chris &amp; Penny:</strong>
-    Penny retains full authority to overrule any raid strategy
-    beginning with the phrase "Chris reckons..."
+<strong>Research &amp; Development:</strong>
+Three hours have been allocated to determining whether a 0.4%
+theoretical DPS increase justifies completely rebuilding someone's character.
 </div>
-
-
-<div class="announcement">
-    <strong>Guild Bank:</strong>
-    Please stop depositing grey items, broken teeth, six-slot bags
-    and anything Stiff says "might be useful later."
-</div>
-
-
-<div class="announcement">
-    <strong>Research &amp; Development:</strong>
-    Three hours have been allocated to determining whether a 0.4%
-    theoretical DPS increase justifies completely rebuilding someone's character.
-</div>
-
 
 </section>
 
@@ -2108,16 +1672,10 @@ footer strong {
 </main>
 
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
 <footer>
 
 <strong>AU TSM</strong>
-• HORDE
-• OCEANIC
-• WORLD OF WARCRAFT FOREVER
+• HORDE • OCEANIC • WORLD OF WARCRAFT FOREVER
 
 <br><br>
 
@@ -2128,29 +1686,20 @@ Professional Team Solo Mid players with a hint of degeneracy.
 <br><br>
 
 AU TSM is a highly organised collection of gamers,
-spreadsheet enthusiasts, serial rerollers,
-Discord residents and individuals who have spent
-considerably more time researching optimal talent builds
-than would be reasonable to admit publicly.
+spreadsheet enthusiasts, serial rerollers and Discord residents.
 
 <br><br>
 
 AU TSM accepts no responsibility for repair bills,
-lost world buffs,
-failed rolls,
-disconnects,
-hunter pets,
-Luffa's decision making,
-Phinky's administrative overhead,
-Chris's ego,
-Fayne's Bladestorm uptime,
+lost world buffs, failed rolls, disconnects, hunter pets,
+Luffa's decision making, Phinky's administrative overhead,
+Chris's ego, Fayne's Bladestorm uptime,
 or any incident involving Roks.
 
 <br><br>
 
 Standing in fire remains a personal choice,
-but will be recorded, analysed and discussed
-at the next performance review.
+but will be recorded, analysed and discussed at the next performance review.
 
 <br><br>
 
@@ -2160,189 +1709,144 @@ at the next performance review.
 
 
 <!-- =========================================================
-     ONYXIA MINI GAME
+     RAID GAME
 ========================================================= -->
 
 <div id="raidGameOverlay">
 
 <div class="raid-game-window">
 
+<div class="game-header">
 
-    <div class="game-header">
+<div>
+<h3>AU TSM Raid Readiness Assessment</h3>
+<p>ONYXIA ENCOUNTER SIMULATION</p>
+</div>
 
-        <div>
-            <h3>
-                AU TSM Raid Readiness Assessment
-            </h3>
+<button id="closeRaidGame">✕</button>
 
-            <p>
-                ONYXIA ENCOUNTER SIMULATION
-            </p>
-        </div>
+</div>
 
-        <button id="closeRaidGame" type="button">
-            ✕
-        </button>
 
-    </div>
+<div class="game-hud">
 
+<div>
+PLAYER:
+<span id="gameHealth">❤ ❤ ❤</span>
+</div>
 
-    <div class="game-hud">
+<div class="boss-hud">
 
-        <div>
-            PLAYER:
-            <span id="gameHealth">
-                ❤ ❤ ❤
-            </span>
-        </div>
+ONYXIA
 
+<div class="boss-health-bar">
+<div id="bossHealthFill"></div>
+</div>
 
-        <div class="boss-hud">
+<span id="bossHealthText">
+30 / 30
+</span>
 
-            ONYXIA
+</div>
 
-            <div class="boss-health-bar">
-                <div id="bossHealthFill"></div>
-            </div>
+<div>
+ENRAGE:
+<span id="gameTimer">30.0</span>s
+</div>
 
-            <span id="bossHealthText">
-                30 / 30
-            </span>
+</div>
 
-        </div>
 
+<div id="gameArea">
 
-        <div>
-            ENRAGE:
-            <span id="gameTimer">
-                30.0
-            </span>s
-        </div>
 
-    </div>
+<div id="gamePlayer">
 
+<div class="player-hair"></div>
+<div class="player-head"></div>
+<div class="player-shoulder shoulder-left"></div>
+<div class="player-shoulder shoulder-right"></div>
+<div class="player-body"></div>
+<div class="player-leg leg-left"></div>
+<div class="player-leg leg-right"></div>
 
-    <div id="gameArea">
+</div>
 
 
-        <!-- PLAYER -->
+<div id="onyxia">
 
-        <div id="gamePlayer">
+<div class="dragon-wing dragon-wing-left"></div>
+<div class="dragon-wing dragon-wing-right"></div>
+<div class="dragon-body"></div>
+<div class="dragon-neck"></div>
 
-            <div class="player-hair"></div>
+<div class="dragon-head">
+<div class="dragon-eye"></div>
+</div>
 
-            <div class="player-head">
-                <div class="player-eye eye-left"></div>
-                <div class="player-eye eye-right"></div>
-            </div>
+<div class="dragon-tail"></div>
 
-            <div class="player-shoulder shoulder-left"></div>
+</div>
 
-            <div class="player-shoulder shoulder-right"></div>
 
-            <div class="player-body"></div>
+<div id="gameGround"></div>
 
-            <div class="player-leg leg-left"></div>
 
-            <div class="player-leg leg-right"></div>
+<div id="gameMessage">
 
-        </div>
+<h2>ONYXIA</h2>
 
+<p>
 
-        <!-- ONYXIA -->
+Welcome to the mandatory AU TSM Raid Readiness Assessment.
 
-        <div id="onyxia">
+<br><br>
 
-            <div class="dragon-wing dragon-wing-left"></div>
+<strong>Ground Fire:</strong> Jump over it.
 
-            <div class="dragon-wing dragon-wing-right"></div>
+<br>
 
-            <div class="dragon-body"></div>
+<strong>Fire Breath:</strong> Stay low.
 
-            <div class="dragon-neck"></div>
+<br><br>
 
-            <div class="dragon-head">
+Your character automatically casts
+<strong>Lightning Bolt every 3 seconds</strong>.
 
-                <div class="dragon-horn horn-one"></div>
+<br>
 
-                <div class="dragon-horn horn-two"></div>
+Each Lightning Bolt deals
+<strong>3 damage</strong>.
 
-                <div class="dragon-eye"></div>
+<br><br>
 
-                <div class="dragon-mouth"></div>
+Reduce Onyxia from
+<strong>30 HP to 0 HP</strong>
+without dying.
 
-            </div>
+</p>
 
-            <div class="dragon-tail"></div>
+<button id="startRaidGame">
+PULL BOSS
+</button>
 
-        </div>
+</div>
 
+</div>
 
-        <div id="gameGround"></div>
 
+<div class="game-controls">
 
-        <div id="gameMessage">
+<div>
+<strong>JUMP:</strong>
+SPACEBAR • ↑ • CLICK / TAP
+</div>
 
-            <h2>
-                ONYXIA
-            </h2>
+<span>
+3 mechanic failures = Roks.
+</span>
 
-            <p>
-
-                Welcome to the mandatory AU TSM
-                Raid Readiness Assessment.
-
-                <br><br>
-
-                <strong>Ground Fire:</strong>
-                Jump over it.
-
-                <br>
-
-                <strong>Fire Breath:</strong>
-                Stay low.
-
-                <br><br>
-
-                Your character automatically casts
-                <strong>Lightning Bolt every 3 seconds</strong>.
-
-                <br>
-
-                Each Lightning Bolt deals
-                <strong>3 damage</strong>.
-
-                <br><br>
-
-                Reduce Onyxia from
-                <strong>30 HP to 0 HP</strong>
-                without dying.
-
-            </p>
-
-            <button id="startRaidGame" type="button">
-                PULL BOSS
-            </button>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="game-controls">
-
-        <div>
-            <strong>JUMP:</strong>
-            SPACEBAR • ↑ • CLICK / TAP
-        </div>
-
-        <span>
-            3 mechanic failures = Roks.
-        </span>
-
-    </div>
-
+</div>
 
 </div>
 
@@ -2355,7 +1859,7 @@ at the next performance review.
 <script>
 
 /* =========================================================
-   HELPERS
+   GENERAL WEBSITE
 ========================================================= */
 
 function randomItem(array) {
@@ -2363,31 +1867,17 @@ function randomItem(array) {
 }
 
 
-/* =========================================================
-   TOAST
-========================================================= */
-
-const toast =
-    document.getElementById("toast");
-
-let toastTimer = null;
+const toast = document.getElementById("toast");
 
 function showToast(message) {
 
     toast.textContent = message;
-
     toast.style.display = "block";
 
-    if (toastTimer) {
-        clearTimeout(toastTimer);
-    }
+    setTimeout(function () {
+        toast.style.display = "none";
+    }, 5000);
 
-    toastTimer =
-        setTimeout(function () {
-
-            toast.style.display = "none";
-
-        }, 5000);
 }
 
 
@@ -2398,44 +1888,21 @@ function showToast(message) {
 const deathReports = [
 
     "Roks stood in fire.",
-
     "Roks discovered a second patch of fire.",
-
     "Aimless ran the wrong direction with impressive confidence.",
-
     "Luffa died during what witnesses described as an ambitious manoeuvre.",
-
     "Stiff was technically online at the time of death.",
-
     "KP said 'I've got this' approximately four seconds before dying.",
-
     "Jaydo died while explaining something unrelated.",
-
     "Sev died after attempting to save everybody else.",
-
     "Rulzy died but has submitted a formal appeal.",
-
     "Marsmallow died peacefully, surrounded by significantly worse players.",
-
     "Chris died. Investigation concluded healer error.",
-
-    "Penny died immediately after asking Chris whether this strategy was actually a good idea.",
-
     "Phinky died while typing instructions to everyone else.",
-
     "Zomgs disconnected at the exact moment responsibility became relevant.",
-
     "Roks died. Cause currently listed as Roks.",
-
     "Fayne died while Bladestorming through a mechanic that specifically required him to stop Bladestorming.",
-
-    "Fayne successfully maximised Bladestorm uptime. Survival was not included in the optimisation.",
-
-    "Fayne was asked to handle the mechanic. Bladestorm was already active.",
-
-    "Fayne died doing excellent damage to something that was not currently the priority.",
-
-    "Fayne encountered a mechanic that could not be solved by Bladestorm. Further research required."
+    "Fayne successfully maximised Bladestorm uptime. Survival was not included in the optimisation."
 
 ];
 
@@ -2443,37 +1910,16 @@ const deathReports = [
 const blameTargets = [
 
     "Roks",
-
     "Australian internet",
-
     "The healer",
-
     "Whoever marked Skull",
-
     "Roks again",
-
     "Phinky's strategy",
-
     "Hunter pet AI",
-
     "Blizzard",
-
     "Lag",
-
-    "The tank",
-
-    "Loot Council",
-
     "Chris says definitely not Chris",
-
-    "Roks, pending investigation",
-
     "Fayne's Bladestorm",
-
-    "Fayne — unavailable due to Bladestorm",
-
-    "Whoever let Fayne press Bladestorm",
-
     "Mechanics occurring during Fayne's Bladestorm window"
 
 ];
@@ -2482,971 +1928,321 @@ const blameTargets = [
 const leadershipStatuses = [
 
     "Phinky pretending everything is under control.",
-
     "Phinky reviewing a spreadsheet nobody asked for.",
-
     "Phinky has called an officer meeting.",
-
-    "Phinky is explaining that this was actually the intended strategy.",
-
     "Phinky currently blaming Discord.",
-
     "Guild leadership temporarily delegated to whoever sounds most confident.",
-
     "Chris has begun providing unsolicited strategic oversight.",
-
-    "Penny has questioned the entire premise.",
-
-    "Leadership status unavailable due to Roks incident.",
-
     "Phinky is waiting for Fayne to finish Bladestorming before continuing instructions."
 
 ];
 
 
-const feedEvents = [
-
-    "Chris has completed another internal review confirming Chris is the best gamer.",
-
-    "Aimless has asked where everybody is while standing beside everybody.",
-
-    "Luffa has entered the operationally impaired phase of the evening.",
-
-    "Roks has been reminded that fire is not a temporary buff.",
-
-    "Stiff has gone AFK without formally declaring AFK status.",
-
-    "KP has stated 'easy' before the pull. Risk level increased.",
-
-    "Jaydo has started a story during ready check.",
-
-    "Sev has quietly fixed a problem nobody else noticed.",
-
-    "Rulzy has opened negotiations concerning an item that has not dropped.",
-
-    "Marsmallow has successfully avoided being blamed for anything.",
-
-    "Penny has asked Chris to explain why this apparently requires another spreadsheet.",
-
-    "Phinky has updated guild policy without informing guild leadership, including Phinky.",
-
-    "Zomgs has vanished from Discord under suspicious circumstances.",
-
-    "Roks has announced that this time he definitely understands the mechanic.",
-
-    "Chris has requested acknowledgement of an above-average performance.",
-
-    "Luffa says he is completely fine.",
-
-    "Aimless is travelling confidently toward the wrong instance.",
-
-    "Stiff has found an item that might be useful later.",
-
-    "KP has pulled.",
-
-    "Jaydo is still talking.",
-
-    "Sev appears to be carrying the group again.",
-
-    "Rulzy has requested clarification on loot priority.",
-
-    "Marsmallow remains suspiciously competent.",
-
-    "Phinky is typing...",
-
-    "Penny has vetoed a Chris plan before implementation.",
-
-    "Zomgs connection quality is currently being measured in prayers.",
-
-    "Roks is dead.",
-
-    "Fayne has been assigned an important mechanic. Bladestorm availability is being investigated.",
-
-    "Fayne is currently Bladestorming. All non-Bladestorm responsibilities have been temporarily suspended.",
-
-    "Raid Leader: 'Fayne, mechanic.' Fayne: *Bladestorm noises*",
-
-    "Fayne has achieved 100% Bladestorm uptime and 0% awareness of the surrounding environment.",
-
-    "Fayne has requested that future raid mechanics respect his Bladestorm cooldown.",
-
-    "Fayne was technically in the correct position before pressing Bladestorm.",
-
-    "Fayne has identified a mechanic. No evidence suggests this will interrupt Bladestorm.",
-
-    "Combat logs confirm Fayne was doing excellent damage during the incident.",
-
-    "Fayne's defence: 'Yeah but look at my damage.' Investigation ongoing.",
-
-    "A spreadsheet has been created to determine whether another spreadsheet is required.",
-
-    "Raid preparation has now taken longer than the expected raid.",
-
-    "Someone has discovered a 0.4% DPS optimisation. Guild productivity has ceased.",
-
-    "A simple question has resulted in a 47-message Discord discussion."
-
-];
-
-
-const randomPopups = [
-
-    "GUILD ALERT: Roks has moved toward an unidentified ground effect.",
-
-    "SYSTEM: Chris performance rating has been automatically upgraded from Excellent to Chris.",
-
-    "OFFICER ALERT: Luffa claims current beverage consumption is 'not that bad'.",
-
-    "NAVIGATION WARNING: Aimless has left the designated route.",
-
-    "READY CHECK UPDATE: Stiff has not responded but is believed to exist.",
-
-    "TACTICAL UPDATE: KP has described the encounter as 'free'.",
-
-    "VOICE COMMS: Jaydo has begun a story. Estimated completion time unavailable.",
-
-    "PERFORMANCE NOTICE: Sev has once again done something useful without telling anyone.",
-
-    "LOOT SYSTEM: Rulzy has requested an independent review.",
-
-    "GUILD STATUS: Marsmallow remains below acceptable drama thresholds.",
-
-    "RELATIONSHIP OVERRIDE: Penny has rejected Chris's proposed 'five minute' gaming session.",
-
-    "ADMINISTRATIVE NOTICE: Phinky has exercised Guild Master authority. No measurable effect detected.",
-
-    "NETWORK ALERT: Zomgs has entered quantum connection state.",
-
-    "COMBAT LOG: Roks received avoidable damage.",
-
-    "COMBAT LOG: Roks received additional avoidable damage.",
-
-    "OFFICER NOTICE: Nobody read the pinned message.",
-
-    "RAID WARNING: Someone said 'one quick pull before bed'.",
-
-    "GUILD BANK NOTICE: Another useless item has been deposited.",
-
-    "RAID WARNING: Fayne is Bladestorming. Mechanics have been postponed until further notice.",
-
-    "TACTICAL ALERT: A mechanic has appeared during Fayne's Bladestorm window.",
-
-    "COMBAT LOG: Fayne ignored an important mechanic but damage remained excellent.",
-
-    "OFFICER NOTICE: Fayne has been assigned mechanics. This decision is currently under review.",
-
-    "DPS ALERT: Fayne has activated Bladestorm. Personal responsibility temporarily disabled.",
-
-    "MECHANIC DETECTED: Fayne unavailable. Reason: spinning.",
-
-    "PERFORMANCE NOTICE: Fayne has topped damage while simultaneously failing the assignment.",
-
-    "AU TSM POLICY UPDATE: Mechanics occurring during Bladestorm are now considered a design flaw.",
-
-    "OPTIMISATION ALERT: Someone has discovered a theoretical 0.3% damage increase. All normal activity suspended.",
-
-    "DISCORD ALERT: A yes-or-no question has exceeded 30 replies.",
-
-    "MANAGEMENT NOTICE: Phinky has requested additional data before making an irrelevant decision.",
-
-    "COMPLIANCE WARNING: Roks has failed another mandatory awareness assessment."
-
-];
-
-
-/* =========================================================
-   LIVE STATUS
-========================================================= */
-
 function updateLiveStatus() {
 
-    document
-        .getElementById("latestDeath")
-        .textContent =
+    document.getElementById("latestDeath").textContent =
         randomItem(deathReports);
 
-    document
-        .getElementById("blameTarget")
-        .textContent =
+    document.getElementById("blameTarget").textContent =
         randomItem(blameTargets);
 
-    document
-        .getElementById("leadershipStatus")
-        .textContent =
+    document.getElementById("leadershipStatus").textContent =
         randomItem(leadershipStatuses);
+
 }
 
 
-/* =========================================================
-   FEED
-========================================================= */
-
-function updateGuildFeed() {
-
-    const feed =
-        document.getElementById("guildFeed");
-
-    const newItem =
-        document.createElement("div");
-
-    newItem.className =
-        "feed-item";
-
-    newItem.innerHTML =
-        '<span class="feed-time">NOW</span>' +
-        randomItem(feedEvents);
-
-    feed.prepend(newItem);
-
-    while (feed.children.length > 6) {
-
-        feed.removeChild(
-            feed.lastChild
-        );
-
-    }
-
-    const entries =
-        feed.querySelectorAll(".feed-time");
-
-    entries.forEach(
-        function (entry, index) {
-
-            if (index === 0) {
-
-                entry.textContent =
-                    "NOW";
-
-            } else {
-
-                entry.textContent =
-                    (index * 2) + "m";
-
-            }
-
-        }
-    );
-}
+setInterval(updateLiveStatus, 9000);
 
 
 /* =========================================================
-   FAYNE STATUS
+   FAYNE
 ========================================================= */
 
 const fayneStatuses = [
 
     "Ready — Bladestorm available",
-
     "Bladestorming",
-
     "Still Bladestorming",
-
     "Mechanic detected — continuing Bladestorm",
-
     "Raid Leader requesting mechanic",
-
     "Request ignored — Bladestorm active",
-
     "Excellent damage",
-
     "Mechanic failed",
-
     "\"Yeah but look at my damage\"",
-
     "Bladestorm available again"
 
 ];
 
 let fayneStatusIndex = 0;
 
-setInterval(
-    function () {
+setInterval(function () {
 
-        const fayneStatus =
-            document.getElementById(
-                "fayneStatus"
-            );
+    fayneStatusIndex =
+        (fayneStatusIndex + 1) %
+        fayneStatuses.length;
 
-        if (!fayneStatus) {
-            return;
-        }
+    document.getElementById("fayneStatus").textContent =
+        fayneStatuses[fayneStatusIndex];
 
-        fayneStatusIndex =
-            (fayneStatusIndex + 1) %
-            fayneStatuses.length;
-
-        fayneStatus.textContent =
-            fayneStatuses[
-                fayneStatusIndex
-            ];
-
-    },
-    2500
-);
+},2500);
 
 
 /* =========================================================
-   RANDOM POPUPS
+   NORMAL BUTTONS
 ========================================================= */
 
-function scheduleRandomPopup() {
+document.getElementById("joinButton").onclick = function () {
 
-    const delay =
-        Math.floor(
-            Math.random() * 15000
-        ) + 15000;
-
-    setTimeout(
-        function () {
-
-            showToast(
-                randomItem(
-                    randomPopups
-                )
-            );
-
-            scheduleRandomPopup();
-
-        },
-        delay
+    showToast(
+        randomItem([
+            "Application rejected by Phinky. Reason: Vibes.",
+            "Application pending Chris competency review.",
+            "Application requirement: provide three previous Guild Master references.",
+            "Application accepted. This was probably a mistake."
+        ])
     );
-}
+
+};
 
 
-/* =========================================================
-   JOIN BUTTON
-========================================================= */
+document.getElementById("readyButton").onclick = function () {
 
-let joinClicks = 0;
+    showToast(
+        randomItem([
+            "Ready check failed: Roks is dead.",
+            "Ready check failed: Stiff is AFK.",
+            "Ready check failed: Fayne is Bladestorming.",
+            "Ready check complete. KP has already pulled."
+        ])
+    );
 
-document
-.getElementById("joinButton")
-.addEventListener(
-    "click",
-    function () {
-
-        joinClicks++;
-
-        const messages = [
-
-            "Application requirement 1/8: Please provide three professional references from previous Guild Masters.",
-
-            "Application requirement 2/8: Upload Warcraft Logs from content that does not yet exist.",
-
-            "Application requirement 3/8: Confirm availability every evening from 5:00pm until retirement.",
-
-            "Application requirement 4/8: Chris must personally verify that you are not better than Chris.",
-
-            "Application requirement 5/8: Complete the 46-page AU TSM cultural alignment questionnaire.",
-
-            "Application requirement 6/8: Demonstrate ability to identify Skull without attacking X.",
-
-            "Application requirement 7/8: Confirm willingness to blame Roks when no better explanation exists.",
-
-            "Application declined by Phinky. Reason: Vibes."
-
-        ];
-
-        showToast(
-            messages[
-                Math.min(
-                    joinClicks - 1,
-                    messages.length - 1
-                )
-            ]
-        );
-
-    }
-);
-
-
-/* =========================================================
-   READY CHECK
-========================================================= */
-
-document
-.getElementById("readyButton")
-.addEventListener(
-    "click",
-    function () {
-
-        const button =
-            this;
-
-        button.textContent =
-            "Waiting for 1 player...";
-
-        setTimeout(
-            function () {
-
-                showToast(
-                    randomItem([
-
-                        "Ready check cannot complete. Stiff is AFK but continues responding verbally.",
-
-                        "Ready check cannot complete. Luffa clicked ready but nobody believes him.",
-
-                        "Ready check cannot complete. Aimless is in the wrong zone.",
-
-                        "Ready check cannot complete. Jaydo is mid-story.",
-
-                        "Ready check cannot complete. Roks is dead.",
-
-                        "Ready check cannot complete. Fayne is currently Bladestorming.",
-
-                        "Ready check cannot complete. Zomgs may or may not be connected.",
-
-                        "Ready check complete. KP has already pulled."
-
-                    ])
-                );
-
-                button.textContent =
-                    "Initiate Ready Check";
-
-            },
-            1800
-        );
-
-    }
-);
+};
 
 
 /* =========================================================
    GUILD TOOLS
 ========================================================= */
 
-document
-.getElementById("eligibilityButton")
-.addEventListener(
-    "click",
-    function () {
+document.getElementById("eligibilityButton").onclick = function () {
 
-        const result =
-            document.getElementById(
-                "eligibilityResult"
-            );
+    document.getElementById("eligibilityResult").textContent =
+        randomItem([
+            "ELIGIBLE — barely.",
+            "REJECTED — Roks-level mechanic history detected.",
+            "ELIGIBLE — Fayne confirms Bladestorm is talented.",
+            "ELIGIBLE — guild standards have been lowered."
+        ]);
 
-        result.textContent =
-            "Scanning talents...";
+};
 
-        setTimeout(
-            function () {
 
-                result.textContent =
-                    "Checking gear...";
+document.getElementById("latencyButton").onclick = function () {
 
-            },
-            700
-        );
+    const ping =
+        Math.floor(Math.random() * 140) + 26;
 
-        setTimeout(
-            function () {
+    document.getElementById("latencyResult").textContent =
+        ping + " ms — sufficient evidence to blame latency.";
 
-                result.textContent =
-                    "Reviewing Discord message history...";
+};
 
-            },
-            1400
-        );
 
-        setTimeout(
-            function () {
+document.getElementById("lootButton").onclick = function () {
 
-                result.textContent =
-                    randomItem([
+    document.getElementById("lootResult").textContent =
+        randomItem([
+            "Priority: LOW — Chris needs it for reasons.",
+            "Priority: HIGH — nobody else wants it.",
+            "Priority: DENIED — item reserved for someone's alt.",
+            "Priority: UNDER REVIEW — expected decision in 6–8 raid tiers."
+        ]);
 
-                        "ELIGIBLE — barely.",
+};
 
-                        "ELIGIBLE — Sev approved.",
 
-                        "CONDITIONALLY ELIGIBLE — do not listen to Chris.",
+document.getElementById("parseButton").onclick = function () {
 
-                        "REJECTED — Roks-level mechanic history detected.",
+    document.getElementById("parseResult").textContent =
+        randomItem([
+            "Recommendation: Press your buttons harder.",
+            "Recommendation: Stop standing next to Roks.",
+            "Recommendation: Bladestorm harder. Fayne approved.",
+            "Recommendation: Blame ping."
+        ]);
 
-                        "ELIGIBLE — Fayne confirms Bladestorm is talented.",
-
-                        "ELIGIBLE — Phinky has no idea who you are.",
-
-                        "ELIGIBLE — guild standards have been lowered."
-
-                    ]);
-
-            },
-            2300
-        );
-
-    }
-);
-
-
-document
-.getElementById("latencyButton")
-.addEventListener(
-    "click",
-    function () {
-
-        const result =
-            document.getElementById(
-                "latencyResult"
-            );
-
-        result.textContent =
-            "Pinging Sydney...";
-
-        setTimeout(
-            function () {
-
-                result.textContent =
-                    "Pinging Blizzard...";
-
-            },
-            700
-        );
-
-        setTimeout(
-            function () {
-
-                result.textContent =
-                    "Consulting Zomgs...";
-
-            },
-            1400
-        );
-
-        setTimeout(
-            function () {
-
-                const ping =
-                    Math.floor(
-                        Math.random() * 140
-                    ) + 26;
-
-                result.textContent =
-                    ping +
-                    " ms — sufficient evidence to blame latency.";
-
-            },
-            2200
-        );
-
-    }
-);
-
-
-document
-.getElementById("lootButton")
-.addEventListener(
-    "click",
-    function () {
-
-        const result =
-            document.getElementById(
-                "lootResult"
-            );
-
-        result.textContent =
-            "Consulting Loot Council...";
-
-        setTimeout(
-            function () {
-
-                result.textContent =
-                    "Checking attendance...";
-
-            },
-            700
-        );
-
-        setTimeout(
-            function () {
-
-                result.textContent =
-                    "Checking officer friendships...";
-
-            },
-            1400
-        );
-
-        setTimeout(
-            function () {
-
-                result.textContent =
-                    randomItem([
-
-                        "Priority: LOW — Chris needs it for reasons.",
-
-                        "Priority: LOW — Rulzy has lodged a claim.",
-
-                        "Priority: MEDIUM — assuming Phinky remembers you.",
-
-                        "Priority: HIGH — nobody else wants it.",
-
-                        "Priority: DENIED — item reserved for someone's alt.",
-
-                        "Priority: UNDER REVIEW — expected decision in 6–8 raid tiers."
-
-                    ]);
-
-            },
-            2200
-        );
-
-    }
-);
-
-
-document
-.getElementById("parseButton")
-.addEventListener(
-    "click",
-    function () {
-
-        const result =
-            document.getElementById(
-                "parseResult"
-            );
-
-        result.textContent =
-            "Analysing rotation...";
-
-        setTimeout(
-            function () {
-
-                result.textContent =
-                    "Analysing cooldown usage...";
-
-            },
-            700
-        );
-
-        setTimeout(
-            function () {
-
-                result.textContent =
-                    "Comparing performance to Chris...";
-
-            },
-            1400
-        );
-
-        setTimeout(
-            function () {
-
-                result.textContent =
-                    randomItem([
-
-                        "Recommendation: Press your buttons harder.",
-
-                        "Recommendation: Stop standing next to Roks.",
-
-                        "Recommendation: Ask Sev what he is doing.",
-
-                        "Recommendation: Bladestorm harder. Fayne approved.",
-
-                        "Recommendation: Blame ping.",
-
-                        "Recommendation: Acquire better gamer genetics.",
-
-                        "Recommendation: Ignore Chris's parse screenshot."
-
-                    ]);
-
-            },
-            2200
-        );
-
-    }
-);
+};
 
 
 /* =========================================================
-   ONYXIA RAID MINI GAME
+   RAID GAME
 ========================================================= */
 
-const raidGameOverlay =
-    document.getElementById(
-        "raidGameOverlay"
-    );
-
-const raidGameButton =
-    document.getElementById(
-        "raidGameButton"
-    );
-
-const closeRaidGame =
-    document.getElementById(
-        "closeRaidGame"
-    );
+const overlay =
+    document.getElementById("raidGameOverlay");
 
 const gameArea =
-    document.getElementById(
-        "gameArea"
-    );
+    document.getElementById("gameArea");
 
-const gamePlayer =
-    document.getElementById(
-        "gamePlayer"
-    );
+const player =
+    document.getElementById("gamePlayer");
 
-const gameHealthDisplay =
-    document.getElementById(
-        "gameHealth"
-    );
+const healthDisplay =
+    document.getElementById("gameHealth");
 
-const gameTimerDisplay =
-    document.getElementById(
-        "gameTimer"
-    );
+const timerDisplay =
+    document.getElementById("gameTimer");
 
-const gameMessage =
-    document.getElementById(
-        "gameMessage"
-    );
+const message =
+    document.getElementById("gameMessage");
 
-const bossHealthFill =
-    document.getElementById(
-        "bossHealthFill"
-    );
+const bossFill =
+    document.getElementById("bossHealthFill");
 
-const bossHealthText =
-    document.getElementById(
-        "bossHealthText"
-    );
+const bossText =
+    document.getElementById("bossHealthText");
 
 
 let gameRunning = false;
-
-let gameHealth = 3;
-
+let health = 3;
+let bossHealth = 30;
 let gameTime = 30;
 
-let bossHealth = 30;
-
 let playerY = 0;
-
 let velocityY = 0;
 
-let invulnerable = false;
-
 let lastFrame = 0;
+let mechanicTimer = 1;
+let lightningTimer = 3;
 
-let mechanicTimer = 0;
+let mechanics = [];
+let bolts = [];
 
-let lightningTimer = 0;
-
-let gameAnimation = null;
-
-let gameObjects = [];
-
-let lightningObjects = [];
+let animation;
 
 
 /* =========================================================
-   OPEN / CLOSE
+   OPEN GAME
 ========================================================= */
 
-raidGameButton
-.addEventListener(
-    "click",
-    function () {
+document.getElementById("raidGameButton").onclick = function () {
 
-        raidGameOverlay.style.display =
-            "flex";
+    overlay.style.display = "flex";
+    resetGame();
 
-        resetRaidGame();
-
-    }
-);
+};
 
 
-closeRaidGame
-.addEventListener(
-    "click",
-    function () {
+document.getElementById("closeRaidGame").onclick = function () {
 
-        endGameLoop();
+    stopGame();
+    overlay.style.display = "none";
 
-        clearGameObjects();
-
-        clearLightning();
-
-        raidGameOverlay.style.display =
-            "none";
-
-    }
-);
+};
 
 
-document
-.getElementById("startRaidGame")
-.addEventListener(
-    "click",
-    beginRaidGame
-);
+document.getElementById("startRaidGame").onclick =
+    startGame;
 
 
 /* =========================================================
-   RESET GAME
+   RESET
 ========================================================= */
 
-function resetRaidGame() {
+function resetGame() {
 
-    endGameLoop();
+    stopGame();
+    clearObjects();
 
-    clearGameObjects();
-
-    clearLightning();
-
-    gameHealth = 3;
-
+    health = 3;
     bossHealth = 30;
-
     gameTime = 30;
 
     playerY = 0;
-
     velocityY = 0;
 
-    invulnerable = false;
+    healthDisplay.textContent = "❤ ❤ ❤";
+    timerDisplay.textContent = "30.0";
 
-    mechanicTimer = 0;
+    updateBoss();
 
-    lightningTimer = 0;
+    player.style.bottom = "55px";
 
-    gameHealthDisplay.textContent =
-        "❤ ❤ ❤";
+    message.style.display = "flex";
 
-    gameTimerDisplay.textContent =
-        "30.0";
+    message.innerHTML = `
 
-    updateBossHealth();
-
-    gamePlayer.style.bottom =
-        "55px";
-
-    gamePlayer.classList.remove(
-        "game-hit"
-    );
-
-    gameMessage.style.display =
-        "flex";
-
-    gameMessage.innerHTML = `
-
-        <h2>
-            ONYXIA
-        </h2>
+        <h2>ONYXIA</h2>
 
         <p>
 
-            Welcome to the mandatory AU TSM
-            Raid Readiness Assessment.
+        <strong>Ground Fire:</strong>
+        Jump over it.
 
-            <br><br>
+        <br>
 
-            <strong>Ground Fire:</strong>
-            Jump over it.
+        <strong>Fire Breath:</strong>
+        Stay low.
 
-            <br>
+        <br><br>
 
-            <strong>Fire Breath:</strong>
-            Stay low.
+        Lightning Bolt automatically casts every
+        <strong>3 seconds</strong>.
 
-            <br><br>
+        <br>
 
-            Lightning Bolt is automatically cast
-            every 3 seconds.
+        Each hit deals
+        <strong>3 damage</strong>.
 
-            <br>
+        <br><br>
 
-            Each Lightning Bolt deals
-            <strong>3 damage</strong>.
-
-            <br><br>
-
-            Reduce Onyxia from
-            <strong>30 HP to 0 HP</strong>
-            without dying.
+        Kill Onyxia before she kills you.
 
         </p>
 
-        <button id="startRaidGameAgain" type="button">
-            PULL BOSS
+        <button id="startAgain">
+        PULL BOSS
         </button>
 
     `;
 
-    document
-    .getElementById(
-        "startRaidGameAgain"
-    )
-    .addEventListener(
-        "click",
-        beginRaidGame
-    );
+    document.getElementById("startAgain").onclick =
+        startGame;
 
 }
 
 
 /* =========================================================
-   BEGIN GAME
+   START
 ========================================================= */
 
-function beginRaidGame() {
+function startGame() {
 
-    endGameLoop();
+    stopGame();
+    clearObjects();
 
-    clearGameObjects();
-
-    clearLightning();
-
-    gameHealth = 3;
-
+    health = 3;
     bossHealth = 30;
-
     gameTime = 30;
 
     playerY = 0;
-
     velocityY = 0;
 
-    invulnerable = false;
+    mechanicTimer = 1.2;
+    lightningTimer = 3;
 
-    mechanicTimer =
-        1.25;
+    healthDisplay.textContent = "❤ ❤ ❤";
 
-    lightningTimer =
-        3;
+    updateBoss();
 
-    gameHealthDisplay.textContent =
-        "❤ ❤ ❤";
+    message.style.display = "none";
 
-    gameTimerDisplay.textContent =
-        "30.0";
+    gameRunning = true;
 
-    updateBossHealth();
+    lastFrame = performance.now();
 
-    gamePlayer.style.bottom =
-        "55px";
-
-    gamePlayer.classList.remove(
-        "game-hit"
-    );
-
-    gameMessage.style.display =
-        "none";
-
-    gameRunning =
-        true;
-
-    lastFrame =
-        performance.now();
-
-    gameAnimation =
-        requestAnimationFrame(
-            gameLoop
-        );
+    animation =
+        requestAnimationFrame(gameLoop);
 
 }
 
@@ -3455,120 +2251,68 @@ function beginRaidGame() {
    JUMP
 ========================================================= */
 
-function jumpPlayer() {
+function jump() {
 
-    if (!gameRunning) {
-        return;
-    }
+    if (!gameRunning) return;
 
     if (playerY <= 1) {
 
-        velocityY =
-            570;
+        velocityY = 570;
 
     }
 
 }
 
 
-/* =========================================================
-   CONTROLS
-========================================================= */
+document.addEventListener("keydown", function(event) {
 
-document
-.addEventListener(
-    "keydown",
-    function (event) {
+    if (
+        event.code === "Space" ||
+        event.code === "ArrowUp"
+    ) {
 
-        if (
-            raidGameOverlay.style.display !==
-            "flex"
-        ) {
-            return;
-        }
-
-        if (
-            event.code === "Space" ||
-            event.code === "ArrowUp"
-        ) {
-
-            event.preventDefault();
-
-            jumpPlayer();
-
-        }
-
-        if (
-            event.code === "Escape"
-        ) {
-
-            endGameLoop();
-
-            clearGameObjects();
-
-            clearLightning();
-
-            raidGameOverlay.style.display =
-                "none";
-
-        }
+        event.preventDefault();
+        jump();
 
     }
-);
+
+});
 
 
-gameArea
-.addEventListener(
-    "pointerdown",
-    function (event) {
+gameArea.addEventListener("pointerdown", function(event) {
 
-        if (
-            event.target.closest(
-                "#gameMessage button"
-            )
-        ) {
-            return;
-        }
+    if (
+        event.target.closest(
+            "#gameMessage button"
+        )
+    ) return;
 
-        jumpPlayer();
+    jump();
 
-    }
-);
+});
 
 
 /* =========================================================
    GAME LOOP
 ========================================================= */
 
-function gameLoop(timestamp) {
+function gameLoop(time) {
 
-    if (!gameRunning) {
-        return;
-    }
+    if (!gameRunning) return;
 
     const delta =
         Math.min(
-            (timestamp - lastFrame) / 1000,
-            0.05
+            (time - lastFrame) / 1000,
+            .05
         );
 
-    lastFrame =
-        timestamp;
+    lastFrame = time;
 
+    gameTime -= delta;
 
-    gameTime -=
-        delta;
+    if (gameTime < 0) gameTime = 0;
 
-    if (
-        gameTime < 0
-    ) {
-
-        gameTime =
-            0;
-
-    }
-
-    gameTimerDisplay.textContent =
+    timerDisplay.textContent =
         gameTime.toFixed(1);
 
 
@@ -3578,134 +2322,91 @@ function gameLoop(timestamp) {
     playerY +=
         velocityY * delta;
 
-    if (
-        playerY <= 0
-    ) {
+    if (playerY < 0) {
 
-        playerY =
-            0;
-
-        velocityY =
-            0;
+        playerY = 0;
+        velocityY = 0;
 
     }
 
-    gamePlayer.style.bottom =
+    player.style.bottom =
         (55 + playerY) + "px";
 
 
-    mechanicTimer -=
-        delta;
+    mechanicTimer -= delta;
 
-    if (
-        mechanicTimer <= 0
-    ) {
+    if (mechanicTimer <= 0) {
 
-        spawnBossMechanic();
+        spawnMechanic();
 
         mechanicTimer =
-            1.05 +
-            Math.random();
+            1.05 + Math.random();
 
     }
 
 
-    lightningTimer -=
-        delta;
+    lightningTimer -= delta;
 
-    if (
-        lightningTimer <= 0
-    ) {
+    if (lightningTimer <= 0) {
 
-        castLightningBolt();
+        castLightning();
 
-        lightningTimer +=
-            3;
+        lightningTimer += 3;
 
     }
 
 
-    updateGameObjects(
-        delta
-    );
+    updateMechanics(delta);
 
-    updateLightning(
-        delta
-    );
+    updateBolts(delta);
 
 
-    gameAnimation =
-        requestAnimationFrame(
-            gameLoop
-        );
+    animation =
+        requestAnimationFrame(gameLoop);
 
 }
 
 
 /* =========================================================
-   ONYXIA ATTACKS
+   BOSS MECHANICS
 ========================================================= */
 
-function spawnBossMechanic() {
+function spawnMechanic() {
 
-    const type =
-        Math.random();
+    const element =
+        document.createElement("div");
 
-    let element;
-
-
-    if (
-        type < 0.65
-    ) {
-
-        element =
-            document.createElement(
-                "div"
-            );
+    if (Math.random() < .65) {
 
         element.className =
             "game-fire";
-
-        element.dataset.type =
-            "ground";
 
     }
 
     else {
 
-        element =
-            document.createElement(
-                "div"
-            );
-
         element.className =
             "game-breath";
 
-        element.dataset.type =
-            "breath";
-
         element.style.bottom =
-            "128px";
+            "145px";
 
     }
 
 
-    const startX =
-        gameArea.clientWidth -
-        225;
+    const x =
+        gameArea.clientWidth - 225;
 
     element.style.left =
-        startX + "px";
+        x + "px";
 
-    gameArea.appendChild(
-        element
-    );
+    gameArea.appendChild(element);
 
-    gameObjects.push({
+    mechanics.push({
 
         element: element,
 
-        x: startX,
+        x: x,
 
         speed:
             300 +
@@ -3717,65 +2418,59 @@ function spawnBossMechanic() {
 
 
 /* =========================================================
-   MOVE ATTACKS
+   UPDATE MECHANICS
 ========================================================= */
 
-function updateGameObjects(delta) {
+function updateMechanics(delta) {
 
     const playerRect =
-        gamePlayer
-        .getBoundingClientRect();
+        player.getBoundingClientRect();
 
     for (
-        let i =
-            gameObjects.length - 1;
+        let i = mechanics.length - 1;
         i >= 0;
         i--
     ) {
 
-        const object =
-            gameObjects[i];
+        const mechanic =
+            mechanics[i];
 
-        object.x -=
-            object.speed * delta;
+        mechanic.x -=
+            mechanic.speed * delta;
 
-        object.element.style.left =
-            object.x + "px";
+        mechanic.element.style.left =
+            mechanic.x + "px";
 
-        const objectRect =
-            object.element
+        const rect =
+            mechanic.element
             .getBoundingClientRect();
 
+
         if (
-            !invulnerable &&
-            rectanglesOverlap(
+            overlap(
                 playerRect,
-                objectRect
+                rect
             )
         ) {
 
-            playerHit();
+            mechanic.element.remove();
 
-            object.element.remove();
+            mechanics.splice(i,1);
 
-            gameObjects.splice(
-                i,
-                1
-            );
+            damagePlayer();
 
             continue;
+
         }
 
+
         if (
-            object.x < -150
+            mechanic.x < -150
         ) {
 
-            object.element.remove();
+            mechanic.element.remove();
 
-            gameObjects.splice(
-                i,
-                1
-            );
+            mechanics.splice(i,1);
 
         }
 
@@ -3788,43 +2483,28 @@ function updateGameObjects(delta) {
    LIGHTNING
 ========================================================= */
 
-function castLightningBolt() {
-
-    if (!gameRunning) {
-        return;
-    }
+function castLightning() {
 
     const bolt =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     bolt.className =
         "lightning-bolt";
 
-    const startX =
-        135;
-
-    const startBottom =
-        55 +
-        playerY +
-        38;
-
     bolt.style.left =
-        startX + "px";
+        "135px";
 
     bolt.style.bottom =
-        startBottom + "px";
+        (55 + playerY + 38) +
+        "px";
 
-    gameArea.appendChild(
-        bolt
-    );
+    gameArea.appendChild(bolt);
 
-    lightningObjects.push({
+    bolts.push({
 
         element: bolt,
 
-        x: startX,
+        x: 135,
 
         speed: 680
 
@@ -3833,21 +2513,20 @@ function castLightningBolt() {
 }
 
 
-function updateLightning(delta) {
+function updateBolts(delta) {
 
-    const bossHitX =
+    const target =
         gameArea.clientWidth -
         180;
 
     for (
-        let i =
-            lightningObjects.length - 1;
+        let i = bolts.length - 1;
         i >= 0;
         i--
     ) {
 
         const bolt =
-            lightningObjects[i];
+            bolts[i];
 
         bolt.x +=
             bolt.speed * delta;
@@ -3855,35 +2534,16 @@ function updateLightning(delta) {
         bolt.element.style.left =
             bolt.x + "px";
 
+
         if (
-            bolt.x >= bossHitX
+            bolt.x >= target
         ) {
 
             bolt.element.remove();
 
-            lightningObjects.splice(
-                i,
-                1
-            );
+            bolts.splice(i,1);
 
             damageBoss();
-
-            continue;
-
-        }
-
-        if (
-            bolt.x >
-            gameArea.clientWidth +
-            100
-        ) {
-
-            bolt.element.remove();
-
-            lightningObjects.splice(
-                i,
-                1
-            );
 
         }
 
@@ -3898,29 +2558,18 @@ function updateLightning(delta) {
 
 function damageBoss() {
 
-    if (!gameRunning) {
-        return;
-    }
+    if (!gameRunning) return;
 
-    bossHealth -=
-        3;
+    bossHealth -= 3;
 
-    if (
-        bossHealth < 0
-    ) {
+    if (bossHealth < 0)
+        bossHealth = 0;
 
-        bossHealth =
-            0;
-
-    }
-
-    updateBossHealth();
+    updateBoss();
 
 
     const impact =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     impact.className =
         "lightning-impact";
@@ -3928,47 +2577,31 @@ function damageBoss() {
     impact.textContent =
         "⚡ -3";
 
-    gameArea.appendChild(
-        impact
-    );
+    gameArea.appendChild(impact);
 
-    setTimeout(
-        function () {
+    setTimeout(function() {
 
-            impact.remove();
+        impact.remove();
 
-        },
-        350
-    );
+    },350);
 
 
-    if (
-        bossHealth <= 0
-    ) {
+    if (bossHealth <= 0) {
 
-        raidVictory();
+        victory();
 
     }
 
 }
 
 
-/* =========================================================
-   BOSS HEALTH
-========================================================= */
+function updateBoss() {
 
-function updateBossHealth() {
+    bossFill.style.width =
+        ((bossHealth / 30) * 100) +
+        "%";
 
-    const percent =
-        Math.max(
-            0,
-            (bossHealth / 30) * 100
-        );
-
-    bossHealthFill.style.width =
-        percent + "%";
-
-    bossHealthText.textContent =
+    bossText.textContent =
         bossHealth +
         " / 30";
 
@@ -3979,27 +2612,23 @@ function updateBossHealth() {
    COLLISION
 ========================================================= */
 
-function rectanglesOverlap(
-    a,
-    b
-) {
+function overlap(a,b) {
 
-    const padding =
-        7;
+    const pad = 7;
 
     return !(
 
-        a.right - padding <
-            b.left + padding ||
+        a.right - pad <
+            b.left + pad ||
 
-        a.left + padding >
-            b.right - padding ||
+        a.left + pad >
+            b.right - pad ||
 
-        a.bottom - padding <
-            b.top + padding ||
+        a.bottom - pad <
+            b.top + pad ||
 
-        a.top + padding >
-            b.bottom - padding
+        a.top + pad >
+            b.bottom - pad
 
     );
 
@@ -4010,83 +2639,26 @@ function rectanglesOverlap(
    PLAYER DAMAGE
 ========================================================= */
 
-function playerHit() {
+function damagePlayer() {
 
-    if (
-        invulnerable ||
-        !gameRunning
-    ) {
-        return;
-    }
+    health--;
 
-    gameHealth--;
-
-    invulnerable =
-        true;
-
-    gamePlayer
-    .classList
-    .add(
-        "game-hit"
-    );
-
-
-    if (
-        gameHealth === 2
-    ) {
-
-        gameHealthDisplay.textContent =
+    if (health === 2)
+        healthDisplay.textContent =
             "❤ ❤ ♡";
 
-    }
-
-    else if (
-        gameHealth === 1
-    ) {
-
-        gameHealthDisplay.textContent =
+    if (health === 1)
+        healthDisplay.textContent =
             "❤ ♡ ♡";
 
-    }
+    if (health <= 0) {
 
-    else {
-
-        gameHealthDisplay.textContent =
+        healthDisplay.textContent =
             "♡ ♡ ♡";
 
-    }
-
-
-    if (
-        gameHealth <= 0
-    ) {
-
-        raidDeath();
-
-        return;
+        wipe();
 
     }
-
-
-    setTimeout(
-        function () {
-
-            if (!gameRunning) {
-                return;
-            }
-
-            invulnerable =
-                false;
-
-            gamePlayer
-            .classList
-            .remove(
-                "game-hit"
-            );
-
-        },
-        700
-    );
 
 }
 
@@ -4095,232 +2667,338 @@ function playerHit() {
    WIPE
 ========================================================= */
 
-function raidDeath() {
+function wipe() {
 
-    endGameLoop();
+    stopGame();
 
-    gamePlayer
-    .classList
-    .remove(
-        "game-hit"
-    );
-
-    gameMessage.style.display =
+    message.style.display =
         "flex";
 
-    gameMessage.innerHTML = `
+    message.innerHTML = `
 
-        <h2 style="color:#d05245;">
-            ☠ ROKS IS DEAD AGAIN
+        <h2 style="color:#d05245">
+        ☠ ROKS IS DEAD AGAIN
         </h2>
 
         <p>
 
-            Raid readiness assessment failed.
+        Raid readiness assessment failed.
 
-            <br><br>
+        <br><br>
 
-            Your performance has been automatically
-            forwarded to Guild Management.
+        Cause of death:
+        <strong>
+        avoidable mechanic
+        </strong>.
 
-            <br><br>
+        <br><br>
 
-            Cause of death:
-            <strong>
-                avoidable mechanic
-            </strong>.
-
-            <br><br>
-
-            Roks maintains that
-            "the fire spawned underneath me."
+        Roks maintains that
+        "the fire spawned underneath me."
 
         </p>
 
-        <button id="restartRaidGame" type="button">
-            RELEASE SPIRIT &amp; TRY AGAIN
+        <button id="retry">
+        RELEASE SPIRIT &amp; TRY AGAIN
         </button>
 
     `;
 
-    document
-    .getElementById(
-        "restartRaidGame"
-    )
-    .addEventListener(
-        "click",
-        beginRaidGame
-    );
+    document.getElementById("retry").onclick =
+        startGame;
 
 }
 
 
 /* =========================================================
-   VICTORY
+   VICTORY + LOOT
 ========================================================= */
 
-function raidVictory() {
+function victory() {
 
-    if (!gameRunning) {
-        return;
-    }
+    if (!gameRunning) return;
 
-    endGameLoop();
+    stopGame();
 
-    bossHealth =
-        0;
+    bossHealth = 0;
 
-    updateBossHealth();
+    updateBoss();
 
-    gameTimerDisplay.textContent =
+    timerDisplay.textContent =
         "0.0";
 
-    gameMessage.style.display =
+    message.style.display =
         "flex";
 
-    gameMessage.innerHTML = `
 
-        <h2 style="color:#d7a94b;">
+    message.innerHTML = `
+
+    <div class="loot-window">
+
+        <div class="loot-title">
             🏆 ONYXIA DEFEATED
-        </h2>
+        </div>
 
-        <p>
+        <div class="loot-subtitle">
+            LOOT RECEIVED • MASTER LOOT ACTIVE
+        </div>
 
-            RAID READINESS ASSESSMENT:
-            <strong>PASSED</strong>
 
-            <br><br>
+        <div class="loot-list">
 
-            Onyxia:
-            <strong>
-                0 / 30 HP
-            </strong>
 
-            <br><br>
+            <div class="loot-item">
 
-            <strong style="font-size:20px;">
-                Good job Chris!
-            </strong>
+                <div class="loot-icon">
+                    ⚔
+                </div>
 
-            <br><br>
+                <div>
 
-            Everyone else also participated.
+                    <div class="loot-name">
+                        Dragonfire Greatblade
+                    </div>
 
-            <br><br>
+                    <div class="loot-type">
+                        Epic Two-Handed Sword
+                    </div>
 
-            Fayne was Bladestorming somewhere.
+                </div>
 
-        </p>
+            </div>
 
-        <button id="restartRaidGame" type="button">
+
+            <div class="loot-item">
+
+                <div class="loot-icon">
+                    🛡
+                </div>
+
+                <div>
+
+                    <div class="loot-name">
+                        Bulwark of Questionable Decisions
+                    </div>
+
+                    <div class="loot-type">
+                        Epic Shield
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="loot-item">
+
+                <div class="loot-icon">
+                    👑
+                </div>
+
+                <div>
+
+                    <div class="loot-name">
+                        Crown of Excessive Optimisation
+                    </div>
+
+                    <div class="loot-type">
+                        Epic Plate Helm
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="loot-item">
+
+                <div class="loot-icon">
+                    💍
+                </div>
+
+                <div>
+
+                    <div class="loot-name">
+                        Band of the Spreadsheet
+                    </div>
+
+                    <div class="loot-type">
+                        Epic Ring
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="loot-item">
+
+                <div class="loot-icon">
+                    🪓
+                </div>
+
+                <div>
+
+                    <div class="loot-name">
+                        Fayne's Bladestorm Management Tool
+                    </div>
+
+                    <div class="loot-type">
+                        Epic Axe
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="loot-item">
+
+                <div class="loot-icon">
+                    🧥
+                </div>
+
+                <div>
+
+                    <div class="loot-name">
+                        Robes of Mechanic Awareness
+                    </div>
+
+                    <div class="loot-type">
+                        Epic Cloth Chest
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="loot-item">
+
+                <div class="loot-icon">
+                    🔥
+                </div>
+
+                <div>
+
+                    <div class="loot-name">
+                        Roks' Fire Resistance Trinket
+                    </div>
+
+                    <div class="loot-type">
+                        Epic Trinket • Still Insufficient
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="loot-item">
+
+                <div class="loot-icon">
+                    ⚡
+                </div>
+
+                <div>
+
+                    <div class="loot-name">
+                        Chris' Completely Deserved Upgrade
+                    </div>
+
+                    <div class="loot-type">
+                        Epic Trinket
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="loot-reserved">
+
+            <div class="loot-reserved-title">
+                LOOT COUNCIL DECISION
+            </div>
+
+            <div class="loot-reserved-main">
+                ALL ITEMS RESERVED BY PHINKY
+            </div>
+
+            <div class="loot-reserved-note">
+
+                Sorry.
+
+                <br><br>
+
+                Guild Master privilege has been invoked.
+
+                <br>
+
+                Appeals may be submitted directly to Phinky
+                and will be ignored in the order received.
+
+            </div>
+
+        </div>
+
+
+        <button id="resetInstance">
             RESET INSTANCE
         </button>
 
+
+    </div>
+
     `;
 
-    document
-    .getElementById(
-        "restartRaidGame"
-    )
-    .addEventListener(
-        "click",
-        beginRaidGame
-    );
+
+    document.getElementById("resetInstance").onclick =
+        startGame;
 
 }
 
 
 /* =========================================================
-   STOP GAME
+   STOP / CLEANUP
 ========================================================= */
 
-function endGameLoop() {
+function stopGame() {
 
-    gameRunning =
-        false;
+    gameRunning = false;
 
-    if (
-        gameAnimation !== null
-    ) {
+    if (animation) {
 
-        cancelAnimationFrame(
-            gameAnimation
-        );
-
-        gameAnimation =
-            null;
+        cancelAnimationFrame(animation);
 
     }
 
 }
 
 
-/* =========================================================
-   CLEAR OBJECTS
-========================================================= */
+function clearObjects() {
 
-function clearGameObjects() {
+    mechanics.forEach(function(object) {
 
-    gameObjects.forEach(
-        function (object) {
+        object.element.remove();
 
-            if (
-                object.element &&
-                object.element.parentNode
-            ) {
+    });
 
-                object.element.remove();
+    bolts.forEach(function(object) {
 
-            }
+        object.element.remove();
 
-        }
-    );
+    });
 
-    gameObjects = [];
+    mechanics = [];
+    bolts = [];
 
 }
-
-
-function clearLightning() {
-
-    lightningObjects.forEach(
-        function (object) {
-
-            if (
-                object.element &&
-                object.element.parentNode
-            ) {
-
-                object.element.remove();
-
-            }
-
-        }
-    );
-
-    lightningObjects = [];
-
-}
-
-
-/* =========================================================
-   START WEBSITE SYSTEMS
-========================================================= */
-
-setInterval(
-    updateLiveStatus,
-    9000
-);
-
-setInterval(
-    updateGuildFeed,
-    11000
-);
-
-scheduleRandomPopup();
 
 </script>
 
 </body>
-
 </html>
