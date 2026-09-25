@@ -40,6 +40,10 @@ button {
     font: inherit;
 }
 
+button:disabled {
+    cursor: not-allowed;
+}
+
 main {
     max-width: 1180px;
     margin: auto;
@@ -110,7 +114,7 @@ nav a:hover {
 
 
 /* =========================================================
-   MUSIC BUTTON
+   MUSIC CONTROL
 ========================================================= */
 
 #musicButton {
@@ -246,6 +250,12 @@ nav a:hover {
     border-color: #806b4c;
 }
 
+.secondary-button:disabled {
+    opacity: 0.45;
+    border-color: #39332d;
+    color: #756e64;
+}
+
 .raid-ready-callout {
     position: relative;
     width: min(570px, 100%);
@@ -275,6 +285,7 @@ nav a:hover {
     top: 25px;
     bottom: 22px;
     border-radius: 8px;
+
     background: linear-gradient(
         90deg,
         #66291b,
@@ -283,9 +294,12 @@ nav a:hover {
         #f0c568,
         #66291b
     );
+
     background-size: 300% 100%;
     animation: raidBorderGlow 4s linear infinite;
+
     z-index: 0;
+
     box-shadow:
         0 0 20px rgba(215,169,75,.25),
         0 12px 40px rgba(0,0,0,.65);
@@ -294,10 +308,14 @@ nav a:hover {
 #raidGameButton {
     position: relative;
     z-index: 2;
+
     width: calc(100% - 8px);
+
     padding: 22px 25px 19px;
+
     border: 1px solid #d7a94b;
     border-radius: 5px;
+
     background:
         radial-gradient(
             circle at center,
@@ -305,8 +323,11 @@ nav a:hover {
             #421913 50%,
             #1b0d0b 100%
         );
+
     color: #f5d88c;
+
     font-family: Georgia, serif;
+
     transition: 0.2s;
 }
 
@@ -346,8 +367,13 @@ nav a:hover {
 }
 
 @keyframes raidBorderGlow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
 }
 
 
@@ -386,7 +412,9 @@ nav a:hover {
 .stat {
     padding: 28px 14px;
     text-align: center;
+
     background: rgba(25,22,19,.94);
+
     border: 1px solid #41372d;
     border-radius: 5px;
 }
@@ -522,10 +550,6 @@ nav a:hover {
     justify-content: space-between;
 }
 
-.class-name {
-    color: #a59d91;
-}
-
 .class-count {
     font-size: 25px;
     font-weight: bold;
@@ -589,8 +613,13 @@ nav a:hover {
     font-size: 13px;
 }
 
-.warning { color: #d05d4e; }
-.good { color: #8eb875; }
+.warning {
+    color: #d05d4e;
+}
+
+.good {
+    color: #8eb875;
+}
 
 
 /* =========================================================
@@ -697,7 +726,7 @@ footer strong {
 
 
 /* =========================================================
-   RAID GAME OVERLAY
+   RAID GAME
 ========================================================= */
 
 #raidGameOverlay {
@@ -793,9 +822,15 @@ footer strong {
     height: 390px;
     position: relative;
     overflow: hidden;
+
     background:
-        radial-gradient(circle at 75% 35%,rgba(110,30,20,.2),transparent 35%),
+        radial-gradient(
+            circle at 75% 35%,
+            rgba(110,30,20,.2),
+            transparent 35%
+        ),
         linear-gradient(#151313,#0a0909);
+
     cursor: pointer;
     user-select: none;
 }
@@ -865,8 +900,13 @@ footer strong {
     border-radius: 50%;
 }
 
-.shoulder-left { left: 1px; }
-.shoulder-right { right: 0; }
+.shoulder-left {
+    left: 1px;
+}
+
+.shoulder-right {
+    right: 0;
+}
 
 .player-leg {
     position: absolute;
@@ -876,8 +916,13 @@ footer strong {
     background: #332f2c;
 }
 
-.leg-left { left: 11px; }
-.leg-right { right: 11px; }
+.leg-left {
+    left: 11px;
+}
+
+.leg-right {
+    right: 11px;
+}
 
 
 /* =========================================================
@@ -915,13 +960,21 @@ footer strong {
 .dragon-wing-left {
     right: 100px;
     bottom: 65px;
-    clip-path: polygon(100% 100%,0% 50%,80% 0%);
+    clip-path: polygon(
+        100% 100%,
+        0% 50%,
+        80% 0%
+    );
 }
 
 .dragon-wing-right {
     right: 5px;
     bottom: 80px;
-    clip-path: polygon(0% 100%,20% 0%,100% 45%);
+    clip-path: polygon(
+        0% 100%,
+        20% 0%,
+        100% 45%
+    );
 }
 
 .dragon-neck {
@@ -970,7 +1023,7 @@ footer strong {
 
 
 /* =========================================================
-   FIRE / LIGHTNING
+   GAME ATTACKS
 ========================================================= */
 
 .game-fire {
@@ -978,6 +1031,7 @@ footer strong {
     bottom: 55px;
     width: 62px;
     height: 42px;
+
     background:
         radial-gradient(
             ellipse at bottom,
@@ -993,6 +1047,7 @@ footer strong {
     width: 125px;
     height: 37px;
     border-radius: 50%;
+
     background:
         linear-gradient(
             90deg,
@@ -1031,11 +1086,14 @@ footer strong {
     position: absolute;
     inset: 0;
     z-index: 100;
+
     background: rgba(5,5,5,.86);
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     text-align: center;
     padding: 30px;
 }
@@ -1064,6 +1122,7 @@ footer strong {
     background: #151310;
     color: #837a6f;
     font-size: 11px;
+
     display: flex;
     justify-content: space-between;
 }
@@ -1075,12 +1134,17 @@ footer strong {
 
 .loot-window {
     width: min(600px, 96%);
+
     background: #11100e;
+
     border: 2px solid #806039;
+
     box-shadow:
         0 0 0 1px #2a221b,
         0 15px 45px rgba(0,0,0,.8);
+
     padding: 20px;
+
     text-align: left;
 }
 
@@ -1126,8 +1190,11 @@ footer strong {
     display: flex;
     align-items: center;
     gap: 10px;
+
     padding: 9px;
+
     background: #171513;
+
     border: 1px solid #40362d;
 }
 
@@ -1135,14 +1202,25 @@ footer strong {
     width: 36px;
     height: 36px;
     flex: 0 0 36px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border: 2px solid #a335ee;
-    background: radial-gradient(circle,#48205e,#1d1025);
+
+    background:
+        radial-gradient(
+            circle,
+            #48205e,
+            #1d1025
+        );
+
     color: #ddb3ff;
     font-size: 18px;
-    box-shadow: 0 0 8px rgba(163,53,238,.3);
+
+    box-shadow:
+        0 0 8px rgba(163,53,238,.3);
 }
 
 .loot-name {
@@ -1160,8 +1238,11 @@ footer strong {
 .loot-reserved {
     margin-top: 15px;
     padding: 13px;
+
     text-align: center;
+
     background: #28100d;
+
     border: 1px solid #7d3328;
 }
 
@@ -1208,16 +1289,16 @@ footer strong {
 
     .stats,
     .live-grid {
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .metrics,
     .tools {
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
     }
 
     .classes {
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
 }
@@ -1242,31 +1323,31 @@ footer strong {
     }
 
     #gameArea {
-        height:310px;
+        height: 310px;
     }
 
     #gamePlayer {
-        left:45px;
+        left: 45px;
     }
 
     #onyxia {
-        right:-20px;
-        transform:scale(.8);
-        transform-origin:bottom right;
+        right: -20px;
+        transform: scale(.8);
+        transform-origin: bottom right;
     }
 
     .game-hud {
-        grid-template-columns:1fr;
-        text-align:center;
+        grid-template-columns: 1fr;
+        text-align: center;
     }
 
     .loot-list {
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
     }
 
     .loot-window {
-        max-height:95%;
-        overflow-y:auto;
+        max-height: 95%;
+        overflow-y: auto;
     }
 
 }
@@ -1276,7 +1357,7 @@ footer strong {
     .stats,
     .live-grid,
     .classes {
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
     }
 
 }
@@ -1287,36 +1368,65 @@ footer strong {
 
 <body>
 
+
 <!-- =========================================================
-     BACKGROUND MUSIC
-     Background.mp3 is in the same folder as index.html
+     AUDIO FILES
 ========================================================= -->
 
 <audio id="backgroundMusic" loop preload="auto">
     <source src="Background.mp3" type="audio/mpeg">
 </audio>
 
+<audio id="readyCheckSound" preload="auto">
+    <source src="Readycheck.ogg" type="audio/ogg">
+</audio>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
 <header>
 
 <div class="header-inner">
 
 <div class="logo">
-<h1>AU TSM</h1>
-<p>WORLD OF WARCRAFT • FOREVER</p>
+
+<h1>
+AU TSM
+</h1>
+
+<p>
+WORLD OF WARCRAFT • FOREVER
+</p>
+
 </div>
 
 
 <div class="header-right">
 
 <nav>
-<a href="#stats">Statistics</a>
-<a href="#classes">Roster</a>
-<a href="#tools">Guild Tools</a>
-<a href="#announcements">Announcements</a>
+
+<a href="#stats">
+Statistics
+</a>
+
+<a href="#classes">
+Roster
+</a>
+
+<a href="#tools">
+Guild Tools
+</a>
+
+<a href="#announcements">
+Announcements
+</a>
+
 </nav>
 
-<button id="musicButton" title="Toggle background music">
+
+<button id="musicButton">
 ♫ MUSIC: OFF
 </button>
 
@@ -1340,18 +1450,30 @@ footer strong {
 HORDE • OCEANIC • EST. AFTER SOMEONE MADE A DISCORD
 </div>
 
-<h2>AU <span>TSM</span></h2>
+<h2>
+AU <span>TSM</span>
+</h2>
+
 
 <div class="guild-tagline">
+
 PROFESSIONAL TEAM SOLO MID PLAYERS
-<span>WITH A HINT OF DEGENERACY</span>
+
+<span>
+WITH A HINT OF DEGENERACY
+</span>
+
 </div>
 
+
 <p class="hero-description">
+
 An Oceanic World of Warcraft Forever guild combining questionable
 sleep schedules, unnecessary optimisation, excessive spreadsheets
 and the unwavering belief that the next pull is definitely the one.
+
 </p>
+
 
 <div class="horde-badge">
 ⚔ FOR THE HORDE ⚔
@@ -1360,11 +1482,13 @@ and the unwavering belief that the next pull is definitely the one.
 
 <div class="hero-buttons">
 
+
 <div class="raid-ready-callout">
 
 <div class="raid-ready-label">
 ⚠ MANDATORY GUILD ASSESSMENT ⚠
 </div>
+
 
 <button id="raidGameButton">
 
@@ -1378,8 +1502,11 @@ CAN YOU SURVIVE ONYXIA?
 
 </button>
 
+
 <div class="raid-ready-warning">
+
 3 mechanic failures will result in automatic classification as Roks
+
 </div>
 
 </div>
@@ -1387,13 +1514,16 @@ CAN YOU SURVIVE ONYXIA?
 
 <div class="secondary-hero-buttons">
 
+
 <button class="primary-button" id="joinButton">
 Join AU TSM
 </button>
 
+
 <button class="secondary-button" id="readyButton">
 Initiate Ready Check
 </button>
+
 
 </div>
 
@@ -1408,36 +1538,90 @@ Initiate Ready Check
 
 <section id="stats">
 
+
 <div class="section-title">
-<h3>Guild Statistics</h3>
-<p>Key performance indicators for a highly professional gaming organisation</p>
+
+<h3>
+Guild Statistics
+</h3>
+
+<p>
+Key performance indicators for a highly professional gaming organisation
+</p>
+
 </div>
+
 
 <div class="stats">
 
-<div class="stat">
-<span class="stat-number">42</span>
-<span class="stat-label">Guild Members</span>
-<span class="stat-subtext">Social skills vary considerably</span>
-</div>
 
 <div class="stat">
-<span class="stat-number">67</span>
-<span class="stat-label">Characters</span>
-<span class="stat-subtext">Character ownership records remain unreliable</span>
+
+<span class="stat-number">
+42
+</span>
+
+<span class="stat-label">
+Guild Members
+</span>
+
+<span class="stat-subtext">
+Social skills vary considerably
+</span>
+
 </div>
 
-<div class="stat">
-<span class="stat-number">1</span>
-<span class="stat-label">Best Gamer</span>
-<span class="stat-subtext">Chris insists this metric is objective</span>
-</div>
 
 <div class="stat">
-<span class="stat-number">∞</span>
-<span class="stat-label">Roks Incidents</span>
-<span class="stat-subtext">Counter exceeded technical limit</span>
+
+<span class="stat-number">
+67
+</span>
+
+<span class="stat-label">
+Characters
+</span>
+
+<span class="stat-subtext">
+Character ownership records remain unreliable
+</span>
+
 </div>
+
+
+<div class="stat">
+
+<span class="stat-number">
+1
+</span>
+
+<span class="stat-label">
+Best Gamer
+</span>
+
+<span class="stat-subtext">
+Chris insists this metric is objective
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<span class="stat-number">
+∞
+</span>
+
+<span class="stat-label">
+Roks Incidents
+</span>
+
+<span class="stat-subtext">
+Counter exceeded technical limit
+</span>
+
+</div>
+
 
 </div>
 
@@ -1450,42 +1634,73 @@ Initiate Ready Check
 
 <section>
 
+
 <div class="section-title">
-<h3>Live Guild Operations</h3>
-<p>Real-time monitoring of a completely normal group of adults playing a video game</p>
+
+<h3>
+Live Guild Operations
+</h3>
+
+<p>
+Real-time monitoring of a completely normal group of adults playing a video game
+</p>
+
 </div>
+
 
 <div class="live-grid">
 
+
 <div class="live-card">
-<div class="live-label">Latest Incident</div>
+
+<div class="live-label">
+Latest Incident
+</div>
+
 <div class="live-value" id="latestDeath">
 Roks stood in fire.
 </div>
+
 <div class="live-note">
 Root cause analysis currently underway.
 </div>
+
 </div>
 
+
 <div class="live-card">
-<div class="live-label">Current Blame Target</div>
+
+<div class="live-label">
+Current Blame Target
+</div>
+
 <div class="live-value" id="blameTarget">
 Roks
 </div>
+
 <div class="live-note">
 Selected using evidence-based guild governance.
 </div>
+
 </div>
 
+
 <div class="live-card">
-<div class="live-label">Leadership Status</div>
+
+<div class="live-label">
+Leadership Status
+</div>
+
 <div class="live-value" id="leadershipStatus">
 Phinky pretending everything is under control.
 </div>
+
 <div class="live-note">
 Guild Master authority remains mostly ceremonial.
 </div>
+
 </div>
+
 
 </div>
 
@@ -1498,68 +1713,172 @@ Guild Master authority remains mostly ceremonial.
 
 <section>
 
+
 <div class="section-title">
-<h3>Performance &amp; Compliance</h3>
-<p>Because apparently playing the game wasn't complicated enough</p>
+
+<h3>
+Performance &amp; Compliance
+</h3>
+
+<p>
+Because apparently playing the game wasn't complicated enough
+</p>
+
 </div>
+
 
 <div class="metrics">
 
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Chris Gaming Ability</span>
-<span class="metric-value">100%</span>
-</div>
-<div class="bar"><div class="fill" style="width:100%"></div></div>
-<div class="metric-note">Self-reported. Peer review unavailable.</div>
-</div>
 
 <div class="metric">
+
 <div class="metric-top">
-<span class="metric-name">Roks Mechanic Awareness</span>
-<span class="metric-value">18%</span>
-</div>
-<div class="bar"><div class="fill" style="width:18%"></div></div>
-<div class="metric-note">Corrective action remains ineffective.</div>
+
+<span class="metric-name">
+Chris Gaming Ability
+</span>
+
+<span class="metric-value">
+100%
+</span>
+
 </div>
 
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Luffa Sobriety</span>
-<span class="metric-value">7%</span>
-</div>
-<div class="bar"><div class="fill" style="width:7%"></div></div>
-<div class="metric-note">Strong inverse correlation with time of evening.</div>
+<div class="bar">
+<div class="fill" style="width:100%"></div>
 </div>
 
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Aimless Directional Accuracy</span>
-<span class="metric-value">31%</span>
-</div>
-<div class="bar"><div class="fill" style="width:31%"></div></div>
-<div class="metric-note">Name appears statistically relevant.</div>
+<div class="metric-note">
+Self-reported. Peer review unavailable.
 </div>
 
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Phinky Leadership Confidence</span>
-<span class="metric-value">94%</span>
 </div>
-<div class="bar"><div class="fill" style="width:94%"></div></div>
+
+
+<div class="metric">
+
+<div class="metric-top">
+
+<span class="metric-name">
+Roks Mechanic Awareness
+</span>
+
+<span class="metric-value">
+18%
+</span>
+
+</div>
+
+<div class="bar">
+<div class="fill" style="width:18%"></div>
+</div>
+
+<div class="metric-note">
+Corrective action remains ineffective.
+</div>
+
+</div>
+
+
+<div class="metric">
+
+<div class="metric-top">
+
+<span class="metric-name">
+Luffa Sobriety
+</span>
+
+<span class="metric-value">
+7%
+</span>
+
+</div>
+
+<div class="bar">
+<div class="fill" style="width:7%"></div>
+</div>
+
+<div class="metric-note">
+Strong inverse correlation with time of evening.
+</div>
+
+</div>
+
+
+<div class="metric">
+
+<div class="metric-top">
+
+<span class="metric-name">
+Aimless Directional Accuracy
+</span>
+
+<span class="metric-value">
+31%
+</span>
+
+</div>
+
+<div class="bar">
+<div class="fill" style="width:31%"></div>
+</div>
+
+<div class="metric-note">
+Name appears statistically relevant.
+</div>
+
+</div>
+
+
+<div class="metric">
+
+<div class="metric-top">
+
+<span class="metric-name">
+Phinky Leadership Confidence
+</span>
+
+<span class="metric-value">
+94%
+</span>
+
+</div>
+
+<div class="bar">
+<div class="fill" style="width:94%"></div>
+</div>
+
 <div class="metric-note">
 Has somehow turned playing WoW into middle management.
 </div>
+
 </div>
 
+
 <div class="metric">
+
 <div class="metric-top">
-<span class="metric-name">Fayne Bladestorm Uptime</span>
-<span class="metric-value">100%</span>
+
+<span class="metric-name">
+Fayne Bladestorm Uptime
+</span>
+
+<span class="metric-value">
+100%
+</span>
+
 </div>
-<div class="bar"><div class="fill" style="width:100%"></div></div>
-<div class="metric-note">Mechanic participation measured separately.</div>
+
+<div class="bar">
+<div class="fill" style="width:100%"></div>
 </div>
+
+<div class="metric-note">
+Mechanic participation measured separately.
+</div>
+
+</div>
+
 
 </div>
 
@@ -1572,10 +1891,19 @@ Has somehow turned playing WoW into middle management.
 
 <section id="classes">
 
+
 <div class="section-title">
-<h3>Class Distribution</h3>
-<p>Current composition until everyone rerolls again</p>
+
+<h3>
+Class Distribution
+</h3>
+
+<p>
+Current composition until everyone rerolls again
+</p>
+
 </div>
+
 
 <div class="classes">
 
@@ -1626,6 +1954,7 @@ Has somehow turned playing WoW into middle management.
 
 </div>
 
+
 </section>
 
 
@@ -1635,33 +1964,67 @@ Has somehow turned playing WoW into middle management.
 
 <section>
 
+
 <div class="section-title">
-<h3>Guild Operations Centre</h3>
-<p>Monitoring AU TSM's ongoing descent into operational excellence</p>
+
+<h3>
+Guild Operations Centre
+</h3>
+
+<p>
+Monitoring AU TSM's ongoing descent into operational excellence
+</p>
+
 </div>
+
 
 <div class="feed" id="guildFeed">
 
-<div class="feed-item">
-<span class="feed-time">NOW</span>
-Roks has been reminded that fire is not a temporary buff.
-</div>
 
 <div class="feed-item">
-<span class="feed-time">2m</span>
+
+<span class="feed-time">
+NOW
+</span>
+
+Roks has been reminded that fire is not a temporary buff.
+
+</div>
+
+
+<div class="feed-item">
+
+<span class="feed-time">
+2m
+</span>
+
 Fayne has been assigned an important mechanic.
 Bladestorm availability is being investigated.
+
 </div>
 
+
 <div class="feed-item">
-<span class="feed-time">4m</span>
+
+<span class="feed-time">
+4m
+</span>
+
 Chris has completed another internal review confirming Chris is the best gamer.
+
 </div>
 
+
 <div class="feed-item">
-<span class="feed-time">6m</span>
+
+<span class="feed-time">
+6m
+</span>
+
 Luffa has entered the operationally impaired phase of the evening.
+
 </div>
+
 
 </div>
 
@@ -1674,74 +2037,178 @@ Luffa has entered the operationally impaired phase of the evening.
 
 <section>
 
+
 <div class="section-title">
-<h3>Personnel Readiness Matrix</h3>
-<p>Because a normal ready check wasn't sufficiently bureaucratic</p>
+
+<h3>
+Personnel Readiness Matrix
+</h3>
+
+<p>
+Because a normal ready check wasn't sufficiently bureaucratic
+</p>
+
 </div>
+
 
 <div class="raid-box">
 
-<div class="raid-row">
-<span>Tanks</span>
-<span class="good">Ready</span>
-</div>
 
 <div class="raid-row">
-<span>Healers</span>
-<span class="warning">Penny asked why Chris needs three healers</span>
+
+<span>
+Tanks
+</span>
+
+<span class="good">
+Ready
+</span>
+
 </div>
 
-<div class="raid-row">
-<span>DPS</span>
-<span class="good">Far too many</span>
-</div>
 
 <div class="raid-row">
-<span>Fayne</span>
+
+<span>
+Healers
+</span>
+
+<span class="warning">
+Penny asked why Chris needs three healers
+</span>
+
+</div>
+
+
+<div class="raid-row">
+
+<span>
+DPS
+</span>
+
+<span class="good">
+Far too many
+</span>
+
+</div>
+
+
+<div class="raid-row">
+
+<span>
+Fayne
+</span>
+
 <span class="good" id="fayneStatus">
 Ready — Bladestorm available
 </span>
+
 </div>
 
-<div class="raid-row">
-<span>Stiff</span>
-<span class="warning">AFK status unclear</span>
-</div>
 
 <div class="raid-row">
-<span>KP</span>
-<span class="good">Claims to be ready</span>
+
+<span>
+Stiff
+</span>
+
+<span class="warning">
+AFK status unclear
+</span>
+
 </div>
 
-<div class="raid-row">
-<span>Jaydo</span>
-<span class="warning">Has started a completely unrelated conversation</span>
-</div>
 
 <div class="raid-row">
-<span>Sev</span>
-<span class="good">Quietly carrying without acknowledgement</span>
+
+<span>
+KP
+</span>
+
+<span class="good">
+Claims to be ready
+</span>
+
 </div>
 
-<div class="raid-row">
-<span>Rulzy</span>
-<span class="warning">Currently disputing a loot interpretation</span>
-</div>
 
 <div class="raid-row">
-<span>Marsmallow</span>
-<span class="good">Present and somehow not involved in the drama</span>
+
+<span>
+Jaydo
+</span>
+
+<span class="warning">
+Has started a completely unrelated conversation
+</span>
+
 </div>
 
-<div class="raid-row">
-<span>Zomgs</span>
-<span class="warning">Connection status classified</span>
-</div>
 
 <div class="raid-row">
-<span>Roks</span>
-<span class="warning">Already dead</span>
+
+<span>
+Sev
+</span>
+
+<span class="good">
+Quietly carrying without acknowledgement
+</span>
+
 </div>
+
+
+<div class="raid-row">
+
+<span>
+Rulzy
+</span>
+
+<span class="warning">
+Currently disputing a loot interpretation
+</span>
+
+</div>
+
+
+<div class="raid-row">
+
+<span>
+Marsmallow
+</span>
+
+<span class="good">
+Present and somehow not involved in the drama
+</span>
+
+</div>
+
+
+<div class="raid-row">
+
+<span>
+Zomgs
+</span>
+
+<span class="warning">
+Connection status classified
+</span>
+
+</div>
+
+
+<div class="raid-row">
+
+<span>
+Roks
+</span>
+
+<span class="warning">
+Already dead
+</span>
+
+</div>
+
 
 </div>
 
@@ -1754,20 +2221,34 @@ Ready — Bladestorm available
 
 <section id="tools">
 
+
 <div class="section-title">
-<h3>Guild Tools</h3>
-<p>Enterprise-grade solutions to problems we created ourselves</p>
+
+<h3>
+Guild Tools
+</h3>
+
+<p>
+Enterprise-grade solutions to problems we created ourselves
+</p>
+
 </div>
+
 
 <div class="tools">
 
+
 <div class="tool">
 
-<h4>Raid Eligibility Scanner</h4>
+<h4>
+Raid Eligibility Scanner
+</h4>
 
 <p>
+
 Determine whether your character meets AU TSM's rigorous
 and frequently changing standards.
+
 </p>
 
 <button id="eligibilityButton">
@@ -1781,11 +2262,15 @@ Analyse Character
 
 <div class="tool">
 
-<h4>Oceanic Latency Diagnostic</h4>
+<h4>
+Oceanic Latency Diagnostic
+</h4>
 
 <p>
+
 Determine whether poor performance is your fault or can
 legally be blamed on Australian internet.
+
 </p>
 
 <button id="latencyButton">
@@ -1799,11 +2284,15 @@ Test Connection
 
 <div class="tool">
 
-<h4>Loot Council Priority</h4>
+<h4>
+Loot Council Priority
+</h4>
 
 <p>
+
 Proprietary governance technology calculates your likelihood
 of receiving the next contested epic.
+
 </p>
 
 <button id="lootButton">
@@ -1817,11 +2306,15 @@ Calculate Priority
 
 <div class="tool">
 
-<h4>Parse Improvement Engine</h4>
+<h4>
+Parse Improvement Engine
+</h4>
 
 <p>
+
 Advanced analytics provide personalised advice developed
 using decades of questionable expertise.
+
 </p>
 
 <button id="parseButton">
@@ -1831,6 +2324,7 @@ Improve My Parse
 <div class="result" id="parseResult"></div>
 
 </div>
+
 
 </div>
 
@@ -1843,66 +2337,128 @@ Improve My Parse
 
 <section id="announcements">
 
+
 <div class="section-title">
-<h3>Officer Announcements</h3>
-<p>Please read before asking the exact question answered below</p>
+
+<h3>
+Officer Announcements
+</h3>
+
+<p>
+Please read before asking the exact question answered below
+</p>
+
 </div>
 
 
 <div class="announcement">
-<strong>Guild Leadership:</strong>
+
+<strong>
+Guild Leadership:
+</strong>
+
 Phinky would like to remind everyone that Guild Master decisions
 are final unless Chris disagrees confidently enough.
+
 </div>
 
+
 <div class="announcement">
-<strong>Raid Attendance:</strong>
+
+<strong>
+Raid Attendance:
+</strong>
+
 "Maybe", "probably", "should be there" and "depends what the boys
 are doing" are not considered definitive answers.
+
 </div>
 
+
 <div class="announcement">
-<strong>Operational Excellence:</strong>
+
+<strong>
+Operational Excellence:
+</strong>
+
 Guild members are reminded that spending three hours optimising
 a theoretical 0.3% DPS increase remains completely reasonable
 provided somebody creates a spreadsheet first.
+
 </div>
 
+
 <div class="announcement">
-<strong>Luffa:</strong>
+
+<strong>
+Luffa:
+</strong>
+
 Raid leadership recommends completing all technically difficult
 mechanics before Luffa reaches beverage number four.
+
 </div>
 
+
 <div class="announcement">
-<strong>Roks:</strong>
+
+<strong>
+Roks:
+</strong>
+
 Following several incidents, Roks is no longer permitted to say
 "trust me" immediately before a pull.
+
 </div>
 
+
 <div class="announcement">
-<strong>Fayne:</strong>
+
+<strong>
+Fayne:
+</strong>
+
 Fayne is generally a good player. Unfortunately, mechanics occurring
 during Bladestorm are considered outside his jurisdiction.
+
 </div>
 
+
 <div class="announcement">
-<strong>Chris &amp; Penny:</strong>
+
+<strong>
+Chris &amp; Penny:
+</strong>
+
 Chris remains authorised to propose ambitious strategies.
 Penny retains unrestricted veto authority.
+
 </div>
 
+
 <div class="announcement">
-<strong>Guild Bank:</strong>
+
+<strong>
+Guild Bank:
+</strong>
+
 Please stop depositing grey items, broken teeth, six-slot bags
 and anything Stiff says "might be useful later."
+
 </div>
 
+
 <div class="announcement">
-<strong>Research &amp; Development:</strong>
+
+<strong>
+Research &amp; Development:
+</strong>
+
 Three hours have been allocated to determining whether a 0.4%
 theoretical DPS increase justifies completely rebuilding someone's character.
+
 </div>
+
 
 </section>
 
@@ -1916,7 +2472,10 @@ theoretical DPS increase justifies completely rebuilding someone's character.
 
 <footer>
 
-<strong>AU TSM</strong>
+<strong>
+AU TSM
+</strong>
+
 • HORDE • OCEANIC • WORLD OF WARCRAFT FOREVER
 
 <br><br>
@@ -1956,27 +2515,45 @@ but will be recorded, analysed and discussed at the next performance review.
 
 <div id="raidGameOverlay">
 
+
 <div class="raid-game-window">
 
 
 <div class="game-header">
 
 <div>
-<h3>AU TSM Raid Readiness Assessment</h3>
-<p>ONYXIA ENCOUNTER SIMULATION</p>
+
+<h3>
+AU TSM Raid Readiness Assessment
+</h3>
+
+<p>
+ONYXIA ENCOUNTER SIMULATION
+</p>
+
 </div>
 
-<button id="closeRaidGame">✕</button>
+
+<button id="closeRaidGame">
+✕
+</button>
 
 </div>
 
 
 <div class="game-hud">
 
+
 <div>
+
 PLAYER:
-<span id="gameHealth">❤ ❤ ❤</span>
+
+<span id="gameHealth">
+❤ ❤ ❤
+</span>
+
 </div>
+
 
 <div class="boss-hud">
 
@@ -1986,14 +2563,23 @@ ONYXIA
 <div id="bossHealthFill"></div>
 </div>
 
-<span id="bossHealthText">30 / 30</span>
+<span id="bossHealthText">
+30 / 30
+</span>
 
 </div>
+
 
 <div>
+
 ENRAGE:
-<span id="gameTimer">30.0</span>s
+
+<span id="gameTimer">
+30.0
+</span>s
+
 </div>
+
 
 </div>
 
@@ -2004,14 +2590,17 @@ ENRAGE:
 <div id="gamePlayer">
 
 <div class="player-hair"></div>
+
 <div class="player-head"></div>
 
 <div class="player-shoulder shoulder-left"></div>
+
 <div class="player-shoulder shoulder-right"></div>
 
 <div class="player-body"></div>
 
 <div class="player-leg leg-left"></div>
+
 <div class="player-leg leg-right"></div>
 
 </div>
@@ -2020,13 +2609,17 @@ ENRAGE:
 <div id="onyxia">
 
 <div class="dragon-wing dragon-wing-left"></div>
+
 <div class="dragon-wing dragon-wing-right"></div>
 
 <div class="dragon-body"></div>
+
 <div class="dragon-neck"></div>
 
 <div class="dragon-head">
+
 <div class="dragon-eye"></div>
+
 </div>
 
 <div class="dragon-tail"></div>
@@ -2039,7 +2632,10 @@ ENRAGE:
 
 <div id="gameMessage">
 
-<h2>ONYXIA</h2>
+<h2>
+ONYXIA
+</h2>
+
 
 <p>
 
@@ -2048,12 +2644,18 @@ AU TSM Raid Readiness Assessment.
 
 <br><br>
 
-<strong>Ground Fire:</strong>
+<strong>
+Ground Fire:
+</strong>
+
 Jump over it.
 
 <br>
 
-<strong>Fire Breath:</strong>
+<strong>
+Fire Breath:
+</strong>
+
 Stay low.
 
 <br><br>
@@ -2074,29 +2676,41 @@ without dying.
 
 </p>
 
+
 <button id="startRaidGame">
 PULL BOSS
 </button>
 
 </div>
 
+
 </div>
 
 
 <div class="game-controls">
 
+
 <div>
-<strong>JUMP:</strong>
+
+<strong>
+JUMP:
+</strong>
+
 SPACEBAR • ↑ • CLICK / TAP
+
 </div>
+
 
 <span>
 3 mechanic failures = Roks.
 </span>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </div>
 
@@ -2107,7 +2721,7 @@ SPACEBAR • ↑ • CLICK / TAP
 <script>
 
 /* =========================================================
-   GENERAL
+   HELPERS
 ========================================================= */
 
 function randomItem(array) {
@@ -2122,7 +2736,13 @@ function randomItem(array) {
 
 
 const toast =
-    document.getElementById("toast");
+    document.getElementById(
+        "toast"
+    );
+
+
+let toastTimeout =
+    null;
 
 
 function showToast(message) {
@@ -2133,95 +2753,153 @@ function showToast(message) {
     toast.style.display =
         "block";
 
-    setTimeout(function () {
 
-        toast.style.display =
-            "none";
+    if (
+        toastTimeout
+    ) {
 
-    },5000);
+        clearTimeout(
+            toastTimeout
+        );
+
+    }
+
+
+    toastTimeout =
+        setTimeout(function () {
+
+            toast.style.display =
+                "none";
+
+        },5000);
 
 }
 
 
 /* =========================================================
-   BACKGROUND MUSIC
+   AUDIO
 ========================================================= */
 
 const backgroundMusic =
-    document.getElementById("backgroundMusic");
+    document.getElementById(
+        "backgroundMusic"
+    );
+
+const readyCheckSound =
+    document.getElementById(
+        "readyCheckSound"
+    );
 
 const musicButton =
-    document.getElementById("musicButton");
+    document.getElementById(
+        "musicButton"
+    );
+
 
 let musicPlaying =
     false;
 
 
 /*
-Background music volume.
-
-0.18 = 18%
-
-You can change this later if you want:
-0.10 = quieter
-0.25 = louder
-0.50 = much louder
+Normal background music volume
 */
 
-backgroundMusic.volume =
+const NORMAL_MUSIC_VOLUME =
     0.18;
 
+
+/*
+Reduced background volume while
+ready-check sound is playing
+*/
+
+const DUCKED_MUSIC_VOLUME =
+    0.05;
+
+
+backgroundMusic.volume =
+    NORMAL_MUSIC_VOLUME;
+
+
+readyCheckSound.volume =
+    1.0;
+
+
+/* =========================================================
+   MUSIC TOGGLE
+========================================================= */
 
 musicButton.onclick =
     async function () {
 
-        if (!musicPlaying) {
+
+        if (
+            !musicPlaying
+        ) {
+
 
             try {
 
+
                 await backgroundMusic.play();
+
 
                 musicPlaying =
                     true;
 
+
                 musicButton.textContent =
                     "♫ MUSIC: ON";
+
 
                 musicButton.classList.add(
                     "music-on"
                 );
 
+
                 showToast(
                     "Azeroth ambience enabled."
                 );
 
+
             }
+
 
             catch (error) {
 
+
                 showToast(
-                    "Your browser blocked audio playback. Try clicking the music button again."
+                    "Your browser blocked audio playback. Click the music button again."
                 );
+
 
             }
 
+
         }
+
 
         else {
 
+
             backgroundMusic.pause();
+
 
             musicPlaying =
                 false;
 
+
             musicButton.textContent =
                 "♫ MUSIC: OFF";
+
 
             musicButton.classList.remove(
                 "music-on"
             );
 
+
         }
+
 
     };
 
@@ -2322,21 +3000,33 @@ const leadershipStatuses = [
 function updateLiveStatus() {
 
     document
-        .getElementById("latestDeath")
+        .getElementById(
+            "latestDeath"
+        )
         .textContent =
-        randomItem(deathReports);
+        randomItem(
+            deathReports
+        );
 
 
     document
-        .getElementById("blameTarget")
+        .getElementById(
+            "blameTarget"
+        )
         .textContent =
-        randomItem(blameTargets);
+        randomItem(
+            blameTargets
+        );
 
 
     document
-        .getElementById("leadershipStatus")
+        .getElementById(
+            "leadershipStatus"
+        )
         .textContent =
-        randomItem(leadershipStatuses);
+        randomItem(
+            leadershipStatuses
+        );
 
 }
 
@@ -2382,21 +3072,30 @@ let fayneStatusIndex =
 
 setInterval(function () {
 
+
     fayneStatusIndex =
-        (fayneStatusIndex + 1) %
+        (
+            fayneStatusIndex +
+            1
+        ) %
         fayneStatuses.length;
 
 
     document
-        .getElementById("fayneStatus")
+        .getElementById(
+            "fayneStatus"
+        )
         .textContent =
-        fayneStatuses[fayneStatusIndex];
+        fayneStatuses[
+            fayneStatusIndex
+        ];
+
 
 },2500);
 
 
 /* =========================================================
-   LIVE FEED
+   OPERATIONS FEED
 ========================================================= */
 
 const feedEvents = [
@@ -2448,18 +3147,28 @@ const feedEvents = [
 
 function addFeedEvent() {
 
+
     const feed =
-        document.getElementById("guildFeed");
+        document.getElementById(
+            "guildFeed"
+        );
+
 
     const item =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     item.className =
         "feed-item";
 
+
     item.innerHTML =
         '<span class="feed-time">NOW</span>' +
-        randomItem(feedEvents);
+        randomItem(
+            feedEvents
+        );
 
 
     feed.insertBefore(
@@ -2469,14 +3178,18 @@ function addFeedEvent() {
 
 
     while (
-        feed.children.length > 7
+        feed.children.length >
+        7
     ) {
+
 
         feed.removeChild(
             feed.lastChild
         );
 
+
     }
+
 
 }
 
@@ -2526,20 +3239,28 @@ const randomPopups = [
 
 function scheduleRandomPopup() {
 
+
     const delay =
         15000 +
-        Math.random() * 15000;
+        Math.random() *
+        15000;
 
 
     setTimeout(function () {
 
+
         showToast(
-            randomItem(randomPopups)
+            randomItem(
+                randomPopups
+            )
         );
+
 
         scheduleRandomPopup();
 
+
     },delay);
+
 
 }
 
@@ -2548,13 +3269,16 @@ scheduleRandomPopup();
 
 
 /* =========================================================
-   WEBSITE BUTTONS
+   JOIN BUTTON
 ========================================================= */
 
 document
-    .getElementById("joinButton")
+    .getElementById(
+        "joinButton"
+    )
     .onclick =
     function () {
+
 
         const applicationSteps = [
 
@@ -2576,50 +3300,175 @@ document
 
         ];
 
+
         let step =
             0;
 
+
         showToast(
-            applicationSteps[step]
+            applicationSteps[
+                step
+            ]
         );
+
 
         const applicationTimer =
             setInterval(function () {
 
+
                 step++;
+
 
                 if (
                     step >=
                     applicationSteps.length
                 ) {
 
+
                     clearInterval(
                         applicationTimer
                     );
 
+
                     return;
+
 
                 }
 
+
                 showToast(
-                    applicationSteps[step]
+                    applicationSteps[
+                        step
+                    ]
                 );
 
+
             },1000);
+
 
     };
 
 
-document
-    .getElementById("readyButton")
-    .onclick =
-    function () {
+/* =========================================================
+   READY CHECK + SOUND + 5 SECOND COOLDOWN
+========================================================= */
+
+const readyButton =
+    document.getElementById(
+        "readyButton"
+    );
+
+
+let readyCheckOnCooldown =
+    false;
+
+
+readyButton.onclick =
+    async function () {
+
+
+        /*
+        Stop people repeatedly clicking the sound.
+        */
+
+        if (
+            readyCheckOnCooldown
+        ) {
+
+            return;
+
+        }
+
+
+        readyCheckOnCooldown =
+            true;
+
+
+        readyButton.disabled =
+            true;
+
+
+        /*
+        Restart the sound from the beginning.
+        */
+
+        readyCheckSound.pause();
+
+
+        readyCheckSound.currentTime =
+            0;
+
+
+        /*
+        Temporarily reduce background music
+        so the Ready Check is clearly audible.
+        */
+
+        if (
+            musicPlaying
+        ) {
+
+            backgroundMusic.volume =
+                DUCKED_MUSIC_VOLUME;
+
+        }
+
+
+        try {
+
+
+            await readyCheckSound.play();
+
+
+        }
+
+
+        catch (error) {
+
+
+            showToast(
+                "Ready-check audio could not be played by this browser."
+            );
+
+
+        }
+
+
+        /*
+        Restore background music when the
+        sound finishes.
+        */
+
+        readyCheckSound.onended =
+            function () {
+
+
+                if (
+                    musicPlaying
+                ) {
+
+
+                    backgroundMusic.volume =
+                        NORMAL_MUSIC_VOLUME;
+
+
+                }
+
+
+            };
+
 
         showToast(
             "Initiating enterprise-grade ready check..."
         );
 
+
+        /*
+        Normal comedy result.
+        */
+
         setTimeout(function () {
+
 
             showToast(
                 randomItem([
@@ -2639,7 +3488,88 @@ document
                 ])
             );
 
+
         },1800);
+
+
+        /*
+        5 SECOND COOLDOWN
+        */
+
+        let remaining =
+            5;
+
+
+        readyButton.textContent =
+            "Ready Check Cooldown: " +
+            remaining +
+            "s";
+
+
+        const cooldownTimer =
+            setInterval(function () {
+
+
+                remaining--;
+
+
+                if (
+                    remaining > 0
+                ) {
+
+
+                    readyButton.textContent =
+                        "Ready Check Cooldown: " +
+                        remaining +
+                        "s";
+
+
+                }
+
+
+                else {
+
+
+                    clearInterval(
+                        cooldownTimer
+                    );
+
+
+                    readyCheckOnCooldown =
+                        false;
+
+
+                    readyButton.disabled =
+                        false;
+
+
+                    readyButton.textContent =
+                        "Initiate Ready Check";
+
+
+                    /*
+                    Make sure background audio
+                    has returned to normal even
+                    if the sound file behaves oddly.
+                    */
+
+                    if (
+                        musicPlaying
+                    ) {
+
+
+                        backgroundMusic.volume =
+                            NORMAL_MUSIC_VOLUME;
+
+
+                    }
+
+
+                }
+
+
+            },1000);
+
 
     };
 
@@ -2649,14 +3579,18 @@ document
 ========================================================= */
 
 document
-    .getElementById("eligibilityButton")
+    .getElementById(
+        "eligibilityButton"
+    )
     .onclick =
     function () {
+
 
         const result =
             document.getElementById(
                 "eligibilityResult"
             );
+
 
         result.textContent =
             "Retrieving character data...";
@@ -2664,13 +3598,16 @@ document
 
         setTimeout(function () {
 
+
             result.textContent =
                 "Analysing mechanic history...";
+
 
         },700);
 
 
         setTimeout(function () {
+
 
             result.textContent =
                 randomItem([
@@ -2687,20 +3624,26 @@ document
 
                 ]);
 
+
         },1500);
+
 
     };
 
 
 document
-    .getElementById("latencyButton")
+    .getElementById(
+        "latencyButton"
+    )
     .onclick =
     function () {
+
 
         const result =
             document.getElementById(
                 "latencyResult"
             );
+
 
         result.textContent =
             "Pinging Oceanic infrastructure...";
@@ -2708,36 +3651,46 @@ document
 
         setTimeout(function () {
 
+
             const ping =
                 Math.floor(
-                    Math.random() * 140
-                ) + 26;
+                    Math.random() *
+                    140
+                ) +
+                26;
 
 
             result.textContent =
                 ping +
                 " ms — sufficient evidence to blame latency.";
 
+
         },1300);
+
 
     };
 
 
 document
-    .getElementById("lootButton")
+    .getElementById(
+        "lootButton"
+    )
     .onclick =
     function () {
+
 
         const result =
             document.getElementById(
                 "lootResult"
             );
 
+
         result.textContent =
             "Consulting proprietary loot algorithm...";
 
 
         setTimeout(function () {
+
 
             result.textContent =
                 randomItem([
@@ -2754,26 +3707,33 @@ document
 
                 ]);
 
+
         },1400);
+
 
     };
 
 
 document
-    .getElementById("parseButton")
+    .getElementById(
+        "parseButton"
+    )
     .onclick =
     function () {
+
 
         const result =
             document.getElementById(
                 "parseResult"
             );
 
+
         result.textContent =
             "Analysing combat performance...";
 
 
         setTimeout(function () {
+
 
             result.textContent =
                 randomItem([
@@ -2790,13 +3750,15 @@ document
 
                 ]);
 
+
         },1300);
+
 
     };
 
 
 /* =========================================================
-   RAID GAME
+   RAID GAME VARIABLES
 ========================================================= */
 
 const overlay =
@@ -2804,35 +3766,42 @@ const overlay =
         "raidGameOverlay"
     );
 
+
 const gameArea =
     document.getElementById(
         "gameArea"
     );
+
 
 const player =
     document.getElementById(
         "gamePlayer"
     );
 
+
 const healthDisplay =
     document.getElementById(
         "gameHealth"
     );
+
 
 const timerDisplay =
     document.getElementById(
         "gameTimer"
     );
 
+
 const message =
     document.getElementById(
         "gameMessage"
     );
 
+
 const bossFill =
     document.getElementById(
         "bossHealthFill"
     );
+
 
 const bossText =
     document.getElementById(
@@ -2843,94 +3812,135 @@ const bossText =
 let gameRunning =
     false;
 
+
 let health =
     3;
+
 
 let bossHealth =
     30;
 
+
 let gameTime =
     30;
+
 
 let playerY =
     0;
 
+
 let velocityY =
     0;
+
 
 let lastFrame =
     0;
 
+
 let mechanicTimer =
     1;
+
 
 let lightningTimer =
     3;
 
+
 let mechanics =
     [];
 
+
 let bolts =
     [];
+
 
 let animation;
 
 
 /* =========================================================
-   OPEN / CLOSE GAME
+   OPEN / CLOSE RAID GAME
 ========================================================= */
 
 document
-    .getElementById("raidGameButton")
+    .getElementById(
+        "raidGameButton"
+    )
     .onclick =
     function () {
+
 
         overlay.style.display =
             "flex";
 
+
         resetGame();
+
 
     };
 
 
 document
-    .getElementById("closeRaidGame")
+    .getElementById(
+        "closeRaidGame"
+    )
     .onclick =
     function () {
 
+
         stopGame();
 
+
         clearObjects();
+
 
         overlay.style.display =
             "none";
 
+
     };
 
 
 document
-    .getElementById("startRaidGame")
+    .getElementById(
+        "startRaidGame"
+    )
     .onclick =
     startGame;
 
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
 
 document.addEventListener(
     "keydown",
     function (event) {
 
+
         if (
-            event.code === "Escape" &&
-            overlay.style.display === "flex"
+
+            event.code ===
+            "Escape"
+
+            &&
+
+            overlay.style.display ===
+            "flex"
+
         ) {
+
 
             stopGame();
 
+
             clearObjects();
+
 
             overlay.style.display =
                 "none";
 
+
         }
+
 
     }
 );
@@ -2942,35 +3952,47 @@ document.addEventListener(
 
 function resetGame() {
 
+
     stopGame();
 
+
     clearObjects();
+
 
     health =
         3;
 
+
     bossHealth =
         30;
+
 
     gameTime =
         30;
 
+
     playerY =
         0;
+
 
     velocityY =
         0;
 
+
     healthDisplay.textContent =
         "❤ ❤ ❤";
+
 
     timerDisplay.textContent =
         "30.0";
 
+
     updateBoss();
+
 
     player.style.bottom =
         "55px";
+
 
     message.style.display =
         "flex";
@@ -2978,7 +4000,9 @@ function resetGame() {
 
     message.innerHTML = `
 
-        <h2>ONYXIA</h2>
+        <h2>
+        ONYXIA
+        </h2>
 
         <p>
 
@@ -2987,28 +4011,40 @@ function resetGame() {
 
         <br><br>
 
-        <strong>Ground Fire:</strong>
+        <strong>
+        Ground Fire:
+        </strong>
+
         Jump over it.
 
         <br>
 
-        <strong>Fire Breath:</strong>
+        <strong>
+        Fire Breath:
+        </strong>
+
         Stay low.
 
         <br><br>
 
         Your character automatically casts
-        <strong>Lightning Bolt every 3 seconds</strong>.
+        <strong>
+        Lightning Bolt every 3 seconds
+        </strong>.
 
         <br>
 
         Each Lightning Bolt deals
-        <strong>3 damage</strong>.
+        <strong>
+        3 damage
+        </strong>.
 
         <br><br>
 
         Reduce Onyxia from
-        <strong>30 HP to 0 HP</strong>
+        <strong>
+        30 HP to 0 HP
+        </strong>
         without dying.
 
         </p>
@@ -3021,9 +4057,12 @@ function resetGame() {
 
 
     document
-        .getElementById("startAgain")
+        .getElementById(
+            "startAgain"
+        )
         .onclick =
         startGame;
+
 
 }
 
@@ -3034,55 +4073,73 @@ function resetGame() {
 
 function startGame() {
 
+
     stopGame();
 
+
     clearObjects();
+
 
     health =
         3;
 
+
     bossHealth =
         30;
+
 
     gameTime =
         30;
 
+
     playerY =
         0;
+
 
     velocityY =
         0;
 
+
     mechanicTimer =
         1.2;
+
 
     lightningTimer =
         3;
 
+
     healthDisplay.textContent =
         "❤ ❤ ❤";
+
 
     timerDisplay.textContent =
         "30.0";
 
+
     player.style.bottom =
         "55px";
 
+
     updateBoss();
+
 
     message.style.display =
         "none";
 
+
     gameRunning =
         true;
 
+
     lastFrame =
         performance.now();
+
 
     animation =
         requestAnimationFrame(
             gameLoop
         );
+
 
 }
 
@@ -3093,18 +4150,28 @@ function startGame() {
 
 function jump() {
 
-    if (!gameRunning)
+
+    if (
+        !gameRunning
+    ) {
+
         return;
+
+    }
 
 
     if (
-        playerY <= 1
+        playerY <=
+        1
     ) {
+
 
         velocityY =
             570;
 
+
     }
+
 
 }
 
@@ -3113,16 +4180,28 @@ document.addEventListener(
     "keydown",
     function (event) {
 
+
         if (
-            event.code === "Space" ||
-            event.code === "ArrowUp"
+
+            event.code ===
+            "Space"
+
+            ||
+
+            event.code ===
+            "ArrowUp"
+
         ) {
+
 
             event.preventDefault();
 
+
             jump();
 
+
         }
+
 
     }
 );
@@ -3132,17 +4211,22 @@ gameArea.addEventListener(
     "pointerdown",
     function (event) {
 
+
         if (
             event.target.closest(
                 "#gameMessage button"
             )
         ) {
 
+
             return;
+
 
         }
 
+
         jump();
+
 
     }
 );
@@ -3154,13 +4238,23 @@ gameArea.addEventListener(
 
 function gameLoop(time) {
 
-    if (!gameRunning)
+
+    if (
+        !gameRunning
+    ) {
+
         return;
+
+    }
 
 
     const delta =
         Math.min(
-            (time - lastFrame) / 1000,
+            (
+                time -
+                lastFrame
+            ) /
+            1000,
             0.05
         );
 
@@ -3174,17 +4268,25 @@ function gameLoop(time) {
 
 
     if (
-        gameTime < 0
+        gameTime <
+        0
     ) {
+
 
         gameTime =
             0;
+
 
     }
 
 
     timerDisplay.textContent =
-        gameTime.toFixed(1);
+        gameTime.toFixed(
+            1
+        );
+
+
+    /* PLAYER PHYSICS */
 
 
     velocityY -=
@@ -3198,21 +4300,31 @@ function gameLoop(time) {
 
 
     if (
-        playerY < 0
+        playerY <
+        0
     ) {
+
 
         playerY =
             0;
 
+
         velocityY =
             0;
+
 
     }
 
 
     player.style.bottom =
-        (55 + playerY) +
+        (
+            55 +
+            playerY
+        ) +
         "px";
+
+
+    /* BOSS MECHANICS */
 
 
     mechanicTimer -=
@@ -3220,8 +4332,10 @@ function gameLoop(time) {
 
 
     if (
-        mechanicTimer <= 0
+        mechanicTimer <=
+        0
     ) {
+
 
         spawnMechanic();
 
@@ -3230,7 +4344,11 @@ function gameLoop(time) {
             1.05 +
             Math.random();
 
+
     }
+
+
+    /* LIGHTNING */
 
 
     lightningTimer -=
@@ -3238,13 +4356,17 @@ function gameLoop(time) {
 
 
     if (
-        lightningTimer <= 0
+        lightningTimer <=
+        0
     ) {
+
 
         castLightning();
 
+
         lightningTimer +=
             3;
+
 
     }
 
@@ -3264,6 +4386,7 @@ function gameLoop(time) {
             gameLoop
         );
 
+
 }
 
 
@@ -3273,6 +4396,7 @@ function gameLoop(time) {
 
 function spawnMechanic() {
 
+
     const element =
         document.createElement(
             "div"
@@ -3280,21 +4404,28 @@ function spawnMechanic() {
 
 
     if (
-        Math.random() < 0.65
+        Math.random() <
+        0.65
     ) {
+
 
         element.className =
             "game-fire";
 
+
     }
 
+
     else {
+
 
         element.className =
             "game-breath";
 
+
         element.style.bottom =
             "150px";
+
 
     }
 
@@ -3316,40 +4447,52 @@ function spawnMechanic() {
 
     mechanics.push({
 
-        element: element,
+        element:
+            element,
 
-        x: x,
+        x:
+            x,
 
         speed:
             300 +
-            Math.random() * 65
+            Math.random() *
+            65
 
     });
+
 
 }
 
 
 /* =========================================================
-   UPDATE MECHANICS
+   UPDATE BOSS MECHANICS
 ========================================================= */
 
 function updateMechanics(delta) {
+
 
     const playerRect =
         player.getBoundingClientRect();
 
 
     for (
-        let i =
-            mechanics.length - 1;
 
-        i >= 0;
+        let i =
+            mechanics.length -
+            1;
+
+        i >=
+        0;
 
         i--
+
     ) {
 
+
         const mechanic =
-            mechanics[i];
+            mechanics[
+                i
+            ];
 
 
         mechanic.x -=
@@ -3374,6 +4517,7 @@ function updateMechanics(delta) {
             )
         ) {
 
+
             mechanic.element.remove();
 
 
@@ -3388,6 +4532,7 @@ function updateMechanics(delta) {
 
             continue;
 
+
         }
 
 
@@ -3395,6 +4540,7 @@ function updateMechanics(delta) {
             mechanic.x <
             -150
         ) {
+
 
             mechanic.element.remove();
 
@@ -3404,9 +4550,12 @@ function updateMechanics(delta) {
                 1
             );
 
+
         }
 
+
     }
+
 
 }
 
@@ -3417,21 +4566,26 @@ function updateMechanics(delta) {
 
 function castLightning() {
 
-    if (!gameRunning)
+
+    if (
+        !gameRunning
+    ) {
+
         return;
 
+    }
 
-    /*
-    Damage happens when the spell is cast.
-
-    The projectile is visual only.
-    */
 
     damageBoss();
 
 
-    if (!gameRunning)
+    if (
+        !gameRunning
+    ) {
+
         return;
+
+    }
 
 
     const bolt =
@@ -3449,7 +4603,11 @@ function castLightning() {
 
 
     bolt.style.bottom =
-        (55 + playerY + 38) +
+        (
+            55 +
+            playerY +
+            38
+        ) +
         "px";
 
 
@@ -3460,22 +4618,27 @@ function castLightning() {
 
     bolts.push({
 
-        element: bolt,
+        element:
+            bolt,
 
-        x: 135,
+        x:
+            135,
 
-        speed: 680
+        speed:
+            680
 
     });
+
 
 }
 
 
 /* =========================================================
-   LIGHTNING VISUAL
+   UPDATE LIGHTNING
 ========================================================= */
 
 function updateBolts(delta) {
+
 
     const target =
         gameArea.clientWidth -
@@ -3483,16 +4646,23 @@ function updateBolts(delta) {
 
 
     for (
-        let i =
-            bolts.length - 1;
 
-        i >= 0;
+        let i =
+            bolts.length -
+            1;
+
+        i >=
+        0;
 
         i--
+
     ) {
 
+
         const bolt =
-            bolts[i];
+            bolts[
+                i
+            ];
 
 
         bolt.x +=
@@ -3510,6 +4680,7 @@ function updateBolts(delta) {
             target
         ) {
 
+
             bolt.element.remove();
 
 
@@ -3518,21 +4689,30 @@ function updateBolts(delta) {
                 1
             );
 
+
         }
 
+
     }
+
 
 }
 
 
 /* =========================================================
-   BOSS DAMAGE
+   DAMAGE BOSS
 ========================================================= */
 
 function damageBoss() {
 
-    if (!gameRunning)
+
+    if (
+        !gameRunning
+    ) {
+
         return;
+
+    }
 
 
     bossHealth -=
@@ -3540,11 +4720,14 @@ function damageBoss() {
 
 
     if (
-        bossHealth < 0
+        bossHealth <
+        0
     ) {
+
 
         bossHealth =
             0;
+
 
     }
 
@@ -3573,31 +4756,41 @@ function damageBoss() {
 
     setTimeout(function () {
 
+
         impact.remove();
+
 
     },350);
 
 
     if (
-        bossHealth <= 0
+        bossHealth <=
+        0
     ) {
+
 
         victory();
 
+
     }
+
 
 }
 
 
 /* =========================================================
-   BOSS HEALTH
+   UPDATE BOSS HEALTH
 ========================================================= */
 
 function updateBoss() {
 
+
     bossFill.style.width =
         (
-            (bossHealth / 30) *
+            (
+                bossHealth /
+                30
+            ) *
             100
         ) +
         "%";
@@ -3607,6 +4800,7 @@ function updateBoss() {
         bossHealth +
         " / 30";
 
+
 }
 
 
@@ -3614,7 +4808,11 @@ function updateBoss() {
    COLLISION
 ========================================================= */
 
-function overlap(a,b) {
+function overlap(
+    a,
+    b
+) {
+
 
     const pad =
         7;
@@ -3622,19 +4820,34 @@ function overlap(a,b) {
 
     return !(
 
-        a.right - pad <
-            b.left + pad ||
+        a.right -
+        pad <
+        b.left +
+        pad
 
-        a.left + pad >
-            b.right - pad ||
+        ||
 
-        a.bottom - pad <
-            b.top + pad ||
+        a.left +
+        pad >
+        b.right -
+        pad
 
-        a.top + pad >
-            b.bottom - pad
+        ||
+
+        a.bottom -
+        pad <
+        b.top +
+        pad
+
+        ||
+
+        a.top +
+        pad >
+        b.bottom -
+        pad
 
     );
+
 
 }
 
@@ -3645,32 +4858,41 @@ function overlap(a,b) {
 
 function damagePlayer() {
 
+
     health--;
 
 
     if (
-        health === 2
+        health ===
+        2
     ) {
+
 
         healthDisplay.textContent =
             "❤ ❤ ♡";
 
+
     }
 
 
     if (
-        health === 1
+        health ===
+        1
     ) {
+
 
         healthDisplay.textContent =
             "❤ ♡ ♡";
 
+
     }
 
 
     if (
-        health <= 0
+        health <=
+        0
     ) {
+
 
         healthDisplay.textContent =
             "♡ ♡ ♡";
@@ -3678,7 +4900,9 @@ function damagePlayer() {
 
         wipe();
 
+
     }
+
 
 }
 
@@ -3688,6 +4912,7 @@ function damagePlayer() {
 ========================================================= */
 
 function wipe() {
+
 
     stopGame();
 
@@ -3699,8 +4924,11 @@ function wipe() {
     message.innerHTML = `
 
         <h2 style="color:#d05245">
+
         ☠ ROKS IS DEAD AGAIN
+
         </h2>
+
 
         <p>
 
@@ -3724,17 +4952,23 @@ function wipe() {
 
         </p>
 
+
         <button id="retry">
+
         RELEASE SPIRIT &amp; TRY AGAIN
+
         </button>
 
     `;
 
 
     document
-        .getElementById("retry")
+        .getElementById(
+            "retry"
+        )
         .onclick =
         startGame;
+
 
 }
 
@@ -3745,8 +4979,14 @@ function wipe() {
 
 function victory() {
 
-    if (!gameRunning)
+
+    if (
+        !gameRunning
+    ) {
+
         return;
+
+    }
 
 
     stopGame();
@@ -3769,32 +5009,44 @@ function victory() {
 
     message.innerHTML = `
 
+
     <div class="loot-window">
 
 
         <div class="loot-title">
+
         🏆 ONYXIA DEFEATED
+
         </div>
 
 
         <div class="loot-subtitle">
+
         RAID READINESS ASSESSMENT PASSED
+
         </div>
 
 
         <div class="victory-congratulations">
 
+
             <strong>
+
             Good job Chris!
+
             </strong>
 
+
             And thanks to everyone else who participated.
+
 
         </div>
 
 
         <div class="loot-subtitle">
+
         MASTER LOOT ACTIVE
+
         </div>
 
 
@@ -3803,84 +5055,132 @@ function victory() {
 
             <div class="loot-item">
 
+
                 <div class="loot-icon">
+
                 ⚔
+
                 </div>
+
 
                 <div>
 
+
                     <div class="loot-name">
+
                     Dragonfire Greatblade
+
                     </div>
 
+
                     <div class="loot-type">
+
                     Epic Two-Handed Sword
+
                     </div>
 
+
                 </div>
+
 
             </div>
 
 
             <div class="loot-item">
 
+
                 <div class="loot-icon">
+
                 💍
+
                 </div>
+
 
                 <div>
 
+
                     <div class="loot-name">
+
                     Band of the Spreadsheet
+
                     </div>
 
+
                     <div class="loot-type">
+
                     Epic Ring
+
                     </div>
 
+
                 </div>
+
 
             </div>
 
 
             <div class="loot-item">
 
+
                 <div class="loot-icon">
+
                 🪓
+
                 </div>
+
 
                 <div>
 
+
                     <div class="loot-name">
+
                     Fayne's Bladestorm Management Tool
+
                     </div>
+
 
                     <div class="loot-type">
+
                     Epic Axe
+
                     </div>
 
+
                 </div>
+
 
             </div>
 
 
             <div class="loot-item">
 
+
                 <div class="loot-icon">
+
                 🔥
+
                 </div>
+
 
                 <div>
 
+
                     <div class="loot-name">
+
                     Roks' Fire Resistance Trinket
+
                     </div>
+
 
                     <div class="loot-type">
+
                     Epic Trinket • Still Insufficient
+
                     </div>
 
+
                 </div>
+
 
             </div>
 
@@ -3892,16 +5192,21 @@ function victory() {
 
 
             <div class="loot-reserved-title">
+
             LOOT COUNCIL DECISION
+
             </div>
 
 
             <div class="loot-reserved-main">
+
             ALL ITEMS RESERVED BY PHINKY
+
             </div>
 
 
             <div class="loot-reserved-note">
+
 
             Sorry.
 
@@ -3914,6 +5219,7 @@ function victory() {
             Appeals may be submitted directly to Phinky
             and will be ignored in the order received.
 
+
             </div>
 
 
@@ -3921,19 +5227,25 @@ function victory() {
 
 
         <button id="resetInstance">
+
         RESET INSTANCE
+
         </button>
 
 
     </div>
 
+
     `;
 
 
     document
-        .getElementById("resetInstance")
+        .getElementById(
+            "resetInstance"
+        )
         .onclick =
         startGame;
+
 
 }
 
@@ -3944,6 +5256,7 @@ function victory() {
 
 function stopGame() {
 
+
     gameRunning =
         false;
 
@@ -3952,21 +5265,27 @@ function stopGame() {
         animation
     ) {
 
+
         cancelAnimationFrame(
             animation
         );
 
+
     }
+
 
 }
 
 
 function clearObjects() {
 
+
     mechanics.forEach(
         function (object) {
 
+
             object.element.remove();
+
 
         }
     );
@@ -3975,7 +5294,9 @@ function clearObjects() {
     bolts.forEach(
         function (object) {
 
+
             object.element.remove();
+
 
         }
     );
@@ -3988,9 +5309,11 @@ function clearObjects() {
     bolts =
         [];
 
+
 }
 
 </script>
 
 </body>
+
 </html>
