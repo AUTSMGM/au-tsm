@@ -39,15 +39,18 @@ function manualClassIcon(className) {
         encodeURIComponent(String(className).toLowerCase()) + '.jpg';
 }
 
-function setCreatorMode(mode) {
-    creatorMode = mode === 'wheel' ? 'wheel' : 'manual';
-    const wheelActive = creatorMode === 'wheel';
+function applyCreatorFace(mode) {
+    const wheelActive = mode === 'wheel';
+    document.body.dataset.creatorMode = mode;
 
-    document.body.dataset.creatorMode = creatorMode;
-
+    // Set inline display as well as hidden. This avoids browser/cache/CSS precedence
+    // issues and makes the switch reliable even if an older stylesheet is cached.
     manualCreationMode.hidden = wheelActive;
     wheelBadLuckPanel.hidden = !wheelActive;
     wheelCentrePanel.hidden = !wheelActive;
+    manualCreationMode.style.display = wheelActive ? 'none' : 'block';
+    wheelBadLuckPanel.style.display = wheelActive ? 'block' : 'none';
+    wheelCentrePanel.style.display = wheelActive ? 'flex' : 'none';
 
     manualModeButton.classList.toggle('active', !wheelActive);
     wheelModeButton.classList.toggle('active', wheelActive);
@@ -61,6 +64,52 @@ function setCreatorMode(mode) {
         creatorModeHeading.textContent = 'Create Your Forever Character';
         creatorModeDescription.textContent = 'Choose the character you actually want. Responsibility for the outcome is now entirely yours.';
     }
+}
+
+let creatorTransitioning = false;
+
+function setCreatorMode(mode, animate = true) {
+    const nextMode = mode === 'wheel' ? 'wheel' : 'manual';
+    if (creatorTransitioning || (nextMode === creatorMode && animate)) return;
+
+    if (!animate) {
+        creatorMode = nextMode;
+        applyCreatorFace(nextMode);
+        return;
+    }
+
+    creatorTransitioning = true;
+    manualModeButton.disabled = true;
+    wheelModeButton.disabled = true;
+
+    const leaving = creatorMode === 'wheel'
+        ? [wheelBadLuckPanel, wheelCentrePanel]
+        : [manualCreationMode];
+
+    leaving.forEach(el => el.classList.add('creator-face-leaving'));
+
+    window.setTimeout(() => {
+        leaving.forEach(el => el.classList.remove('creator-face-leaving'));
+        creatorMode = nextMode;
+        applyCreatorFace(nextMode);
+
+        const entering = nextMode === 'wheel'
+            ? [wheelBadLuckPanel, wheelCentrePanel]
+            : [manualCreationMode];
+
+        entering.forEach(el => el.classList.add('creator-face-entering'));
+        // Force a layout pass so the browser sees the 90deg starting position.
+        void document.body.offsetWidth;
+        entering.forEach(el => el.classList.add('creator-face-entering-active'));
+
+        window.setTimeout(() => {
+            entering.forEach(el => el.classList.remove('creator-face-entering','creator-face-entering-active'));
+            manualModeButton.disabled = false;
+            wheelModeButton.disabled = false;
+            creatorTransitioning = false;
+            window.dispatchEvent(new Event('resize'));
+        }, 290);
+    }, 260);
 }
 
 function renderManualClasses() {
@@ -202,4 +251,4 @@ renderManualClasses();
 renderManualRoles();
 renderManualBodies();
 updateManualCreateState();
-setCreatorMode('manual');
+setCreatorMode('manual', false);

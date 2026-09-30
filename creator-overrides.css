@@ -549,3 +549,176 @@ body[data-creator-mode="manual"] .wheel-dashboard > .roll-history {
         grid-template-columns:1fr !important;
     }
 }
+
+/* =========================================================
+   CREATOR FACE FLIP + COMPACT WHEEL FACE
+   Manual and wheel modes occupy the same left/centre footprint.
+========================================================= */
+.creator-mode-selector { perspective: 1200px; }
+.creator-mode-button:disabled { cursor: wait; }
+
+#manualCreationMode,
+#wheelBadLuckPanel,
+#wheelCentrePanel {
+    transform-origin: 50% 50%;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+}
+
+.creator-face-leaving {
+    animation: creatorDoorOut .26s cubic-bezier(.55,.05,.75,.25) forwards !important;
+}
+.creator-face-entering {
+    transform: perspective(1200px) rotateY(88deg) scale(.985) !important;
+    opacity: .18 !important;
+}
+.creator-face-entering.creator-face-entering-active {
+    transform: perspective(1200px) rotateY(0deg) scale(1) !important;
+    opacity: 1 !important;
+    transition: transform .29s cubic-bezier(.18,.75,.25,1), opacity .20s ease !important;
+}
+@keyframes creatorDoorOut {
+    from { transform: perspective(1200px) rotateY(0deg) scale(1); opacity:1; }
+    to   { transform: perspective(1200px) rotateY(-88deg) scale(.985); opacity:.12; }
+}
+
+/* Wheel face: same 620px canvas used by the manual creator. */
+body[data-creator-mode="wheel"] #wheelBadLuckPanel,
+body[data-creator-mode="wheel"] #wheelCentrePanel {
+    height: 620px !important;
+    min-height: 620px !important;
+    max-height: 620px !important;
+    box-sizing: border-box;
+}
+body[data-creator-mode="wheel"] .wheel-dashboard > .roll-history {
+    height: 620px !important;
+    max-height: 620px !important;
+}
+
+/* Name stays in the left-hand identity position on the wheel face. */
+#wheelBadLuckPanel {
+    padding: 13px !important;
+    overflow: hidden !important;
+    background: linear-gradient(180deg,#12100e,#0d0c0b) !important;
+}
+.wheel-name-card {
+    margin: 0 0 9px;
+    padding: 10px;
+    border: 1px solid #352c23;
+    background: rgba(7,6,5,.62);
+}
+.wheel-name-card .character-entry {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+.wheel-name-card .character-entry-title {
+    margin-bottom: 7px;
+    color:#d7a94b;
+    font-size:8px;
+    letter-spacing:1.4px;
+}
+.wheel-name-card .character-name-grid {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+}
+.wheel-name-card .character-name-field label {
+    margin-bottom:3px;
+    font-size:6px;
+}
+.wheel-name-card .character-name-field input {
+    height: 32px;
+    padding: 6px 8px;
+    font-size: 10px;
+}
+.wheel-name-card .character-note {
+    margin-top:6px;
+    font-size:6.5px;
+    line-height:1.3;
+}
+
+/* Compress Bad Luck Protection so everything remains visible without scrolling. */
+#wheelBadLuckPanel .bad-luck-header { margin-bottom:5px; }
+#wheelBadLuckPanel .bad-luck-title { font-size:13px; }
+#wheelBadLuckPanel .token-counter { margin-top:3px; font-size:8px; }
+#wheelBadLuckPanel .bad-luck-description {
+    margin:5px 0 7px;
+    font-size:6.5px;
+    line-height:1.35;
+}
+#wheelBadLuckPanel .protection-subtitle {
+    margin:6px 0 4px;
+    font-size:6px;
+    letter-spacing:1.25px;
+}
+#wheelBadLuckPanel .exclusion-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    gap:4px !important;
+}
+#wheelBadLuckPanel .exclusion-button.class-option {
+    min-height:37px !important;
+    padding:4px !important;
+    gap:4px !important;
+    font-size:6.5px !important;
+}
+#wheelBadLuckPanel .class-option-icon {
+    width:25px !important;
+    height:25px !important;
+}
+#wheelBadLuckPanel .body-exclusion-row {
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:4px !important;
+}
+#wheelBadLuckPanel .body-exclusion-row .exclusion-button {
+    min-height:31px !important;
+    padding:4px !important;
+    font-size:6px !important;
+}
+#wheelBadLuckPanel .role-exclusion-row { gap:4px !important; }
+#wheelBadLuckPanel .role-exclusion-button {
+    min-height:39px !important;
+    padding:4px !important;
+}
+#wheelBadLuckPanel .wow-role-icon { width:20px !important; height:20px !important; font-size:11px !important; }
+#wheelBadLuckPanel .role-button-copy strong { font-size:6.5px !important; }
+#wheelBadLuckPanel .role-button-copy small { font-size:5.5px !important; }
+#wheelBadLuckPanel .role-protection-note { margin-top:4px; font-size:5.5px; line-height:1.25; }
+#wheelBadLuckPanel .protection-warning { min-height:0; margin-top:3px; font-size:6px; }
+
+/* With the name moved left, the centre is a purpose-built wheel machine. */
+#wheelCentrePanel {
+    border:1px solid #493a2b;
+    background: radial-gradient(circle at 50% 45%,rgba(126,84,31,.08),transparent 48%),#0d0c0b;
+    padding: 12px !important;
+    justify-content:center;
+}
+#wheelCentrePanel .wheel-machine {
+    width:100%;
+    height:100%;
+    min-height:0;
+    margin:0 !important;
+    padding:12px 16px !important;
+    box-sizing:border-box;
+    grid-template-columns:minmax(420px,1fr) 128px !important;
+    gap:14px !important;
+    align-items:center;
+}
+#wheelCentrePanel .wheel-stage {
+    width:min(500px,100%) !important;
+    margin:auto;
+}
+#wheelCentrePanel .wheel-controls { gap:10px; }
+#wheelCentrePanel .role-reveal-panel,
+#wheelCentrePanel .body-slot-panel,
+#wheelCentrePanel .lever-machine { transform:scale(.92); transform-origin:center; }
+
+@media (prefers-reduced-motion: reduce) {
+    .creator-face-leaving { animation:none !important; }
+    .creator-face-entering,
+    .creator-face-entering.creator-face-entering-active {
+        transform:none !important;
+        opacity:1 !important;
+        transition:none !important;
+    }
+}
