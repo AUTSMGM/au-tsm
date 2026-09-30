@@ -3728,7 +3728,7 @@ footer strong {
 ========================================================= */
 
 .wheel-section {
-    width: min(1480px, calc(100vw - 36px));
+    width: min(1700px, calc(100vw - 36px));
     max-width: none;
     margin-left: 50%;
     margin-right: 0;
@@ -3737,13 +3737,15 @@ footer strong {
 
 .wheel-dashboard {
     display: grid;
-    grid-template-columns: 285px minmax(650px, 1fr) 330px;
+    grid-template-columns: 285px minmax(650px, 1fr) 480px;
     gap: 22px;
-    align-items: start;
+    align-items: stretch;
 }
 
 .wheel-centre-column {
     min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .wheel-centre-column .character-entry {
@@ -3752,7 +3754,7 @@ footer strong {
 }
 
 .wheel-centre-column .wheel-machine {
-    grid-template-columns: minmax(470px, 1fr) 145px;
+    grid-template-columns: minmax(470px, 1fr) 155px;
     gap: 22px;
     padding: 25px;
 }
@@ -3765,17 +3767,21 @@ footer strong {
     margin-top: 16px;
 }
 
+/* Side panels deliberately stretch to the complete centre column height,
+   including the result panel at the bottom. */
 .wheel-side-panel {
-    position: sticky;
-    top: 92px;
+    position: static;
     margin: 0;
     max-width: none;
     min-width: 0;
+    height: 100%;
+    align-self: stretch;
 }
 
 .wheel-dashboard .bad-luck-panel {
     margin: 0;
     padding: 18px;
+    height: 100%;
 }
 
 .wheel-dashboard .bad-luck-header {
@@ -3864,11 +3870,159 @@ footer strong {
     background: rgba(255,255,255,.30);
 }
 
-/* Last 30 rolls sit beside the wheel and scroll inside their own panel. */
+/* =========================================================
+   ROLE REVEAL DOOR
+========================================================= */
+
+.role-reveal-panel {
+    width: 100%;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.role-reveal-title {
+    color: #82796e;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.role-door {
+    position: relative;
+    width: 130px;
+    height: 82px;
+    margin: auto;
+    overflow: hidden;
+    border: 3px solid #6d5535;
+    border-radius: 5px;
+    background:
+        radial-gradient(circle at center, #261e15 0%, #0b0907 70%);
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,.92),
+        0 4px 12px rgba(0,0,0,.45);
+}
+
+.role-door::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(215,169,75,.25);
+    pointer-events: none;
+    z-index: 6;
+}
+
+.role-door-leaf {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 4;
+    background:
+        linear-gradient(90deg, #17120e, #49351f 70%, #221810);
+    border-color: #765638;
+    transition: transform .65s cubic-bezier(.55,.05,.32,1), opacity .55s ease;
+}
+
+.role-door-leaf.left {
+    left: 0;
+    border-right: 1px solid #8a653d;
+}
+
+.role-door-leaf.right {
+    right: 0;
+    border-left: 1px solid #8a653d;
+}
+
+.role-door-question {
+    position: absolute;
+    inset: 0;
+    z-index: 7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #d7a94b;
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: bold;
+    text-shadow: 0 0 12px rgba(215,169,75,.25);
+    transition: opacity .2s ease;
+}
+
+.role-door-result {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    color: #f6e8c9;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: scale(.8);
+    transition: opacity .35s ease .25s, transform .4s ease .25s;
+}
+
+.role-door.checking .role-door-question {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.role-door.revealed .role-door-leaf.left {
+    transform: translateX(-102%);
+    opacity: .15;
+}
+
+.role-door.revealed .role-door-leaf.right {
+    transform: translateX(102%);
+    opacity: .15;
+}
+
+.role-door.revealed .role-door-question {
+    opacity: 0;
+}
+
+.role-door.revealed .role-door-result {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.role-door[data-role="Tank"] .role-door-result {
+    color: #8ec8ff;
+    text-shadow: 0 0 10px rgba(73,151,221,.45);
+}
+
+.role-door[data-role="Healer"] .role-door-result {
+    color: #86e18c;
+    text-shadow: 0 0 10px rgba(89,190,95,.42);
+}
+
+.role-door[data-role="DPS"] .role-door-result {
+    color: #ff9b81;
+    text-shadow: 0 0 10px rgba(220,82,60,.42);
+}
+
+#wheelResultRole {
+    display: inline-block;
+    margin: 6px 0 0 6px;
+    padding: 5px 13px;
+    border-radius: 3px;
+    background: #28211a;
+    border: 1px solid #5b4c3c;
+    color: #ead9b8;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Last 30 rolls beside the wheel, two columns of up to 15. */
 .wheel-dashboard .roll-history {
     margin: 0;
     max-width: none;
-    height: 710px;
+    height: 100%;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -3882,16 +4036,29 @@ footer strong {
 
 .wheel-dashboard #rollHistory {
     flex: 1 1 auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    border-top: 1px solid #25211c;
+}
+
+.roll-history-column {
+    min-width: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: thin;
     scrollbar-color: #725938 #15120f;
 }
 
+.roll-history-column + .roll-history-column {
+    border-left: 1px solid #322920;
+}
+
 .wheel-dashboard .roll-row {
-    grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
-    gap: 8px;
-    padding: 10px 12px;
+    grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr);
+    gap: 7px;
+    padding: 10px 10px;
 }
 
 .wheel-dashboard .roll-character,
@@ -3909,7 +4076,7 @@ footer strong {
 .wheel-dashboard .roll-class {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     font-weight: 800;
 }
 
@@ -3935,23 +4102,27 @@ footer strong {
     transition: color .2s ease;
 }
 
-@media(max-width: 1260px) {
+@media(max-width: 1450px) {
     .wheel-section {
-        width: min(1120px, calc(100vw - 30px));
+        width: min(1180px, calc(100vw - 30px));
     }
 
     .wheel-dashboard {
-        grid-template-columns: 250px minmax(0,1fr);
+        grid-template-columns: 260px minmax(0,1fr);
+        align-items: start;
+    }
+
+    .wheel-side-panel {
+        height: auto;
     }
 
     .wheel-dashboard .roll-history {
         grid-column: 1 / -1;
-        height: 360px;
-        position: static;
+        height: 430px;
     }
 
     .wheel-centre-column .wheel-machine {
-        grid-template-columns: minmax(400px,1fr) 135px;
+        grid-template-columns: minmax(400px,1fr) 145px;
     }
 }
 
@@ -3978,7 +4149,21 @@ footer strong {
 
     .wheel-dashboard .roll-history {
         grid-column: auto;
-        height: 380px;
+        height: 500px;
+    }
+
+    .wheel-dashboard #rollHistory {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+
+    .roll-history-column {
+        overflow: visible;
+    }
+
+    .roll-history-column + .roll-history-column {
+        border-left: 0;
+        border-top: 1px solid #322920;
     }
 }
 
@@ -4414,6 +4599,21 @@ AU<br>TSM
 
 <div class="wheel-controls">
 
+<div class="role-reveal-panel">
+
+<div class="role-reveal-title">
+ROLE
+</div>
+
+<div id="roleDoor" class="role-door">
+<div class="role-door-leaf left"></div>
+<div class="role-door-leaf right"></div>
+<div id="roleDoorQuestion" class="role-door-question">?</div>
+<div id="roleDoorResult" class="role-door-result">?</div>
+</div>
+
+</div>
+
 <div class="body-slot-panel">
 
 <div class="body-slot-title">
@@ -4454,6 +4654,7 @@ BODY TYPE
 <div id="wheelResultName">Awaiting victim...</div>
 <div id="wheelResultClass">?</div>
 <div id="wheelResultBody" style="display:none;">?</div>
+<div id="wheelResultRole" style="display:none;">?</div>
 <div id="wheelResultMessage">Enter a character name before pulling the lever.</div>
 </div>
 
@@ -5847,7 +6048,7 @@ function renderRollHistory() {
         container.innerHTML =
             `
 
-            <div class="empty-history">
+            <div class="empty-history" style="grid-column:1 / -1;">
 
             No shared rolls recorded yet.
 
@@ -5875,67 +6076,80 @@ function renderRollHistory() {
     };
 
 
-    container.innerHTML =
+    function renderRoll(roll) {
+
+        const safeName =
+            escapeHtml(
+                roll.character_name
+            );
+
+
+        const safeClass =
+            escapeHtml(
+                roll.class_name
+            );
+
+
+        const classColour =
+            classColours[
+                roll.class_name
+            ]
+            ||
+            "#d7a94b";
+
+
+        const classIcon =
+            "https://wow.zamimg.com/images/wow/icons/large/classicon_"
+            +
+            encodeURIComponent(
+                String(roll.class_name).toLowerCase()
+            )
+            +
+            ".jpg";
+
+
+        return `
+
+        <div class="roll-row">
+
+            <div class="roll-character" style="color:${classColour}">
+            ${safeName}
+            </div>
+
+            <div class="roll-class" style="color:${classColour}">
+            <img class="roll-class-icon" src="${classIcon}" alt="">
+            <span>${safeClass}</span>
+            </div>
+
+            <div class="roll-body">
+            Body Type ${roll.body_type}
+            </div>
+
+        </div>
+
+        `;
+    }
+
+
+    const leftColumn =
         recentRolls
-        .map(
-            function(roll) {
-
-                const safeName =
-                    escapeHtml(
-                        roll.character_name
-                    );
+        .slice(0,15)
+        .map(renderRoll)
+        .join("");
 
 
-                const safeClass =
-                    escapeHtml(
-                        roll.class_name
-                    );
+    const rightColumn =
+        recentRolls
+        .slice(15,30)
+        .map(renderRoll)
+        .join("");
 
 
-                const classColour =
-                    classColours[
-                        roll.class_name
-                    ]
-                    ||
-                    "#d7a94b";
-
-
-                const classIcon =
-                    "https://wow.zamimg.com/images/wow/icons/large/classicon_"
-                    +
-                    encodeURIComponent(
-                        String(roll.class_name).toLowerCase()
-                    )
-                    +
-                    ".jpg";
-
-
-                return `
-
-                <div class="roll-row">
-
-                    <div class="roll-character" style="color:${classColour}">
-                    ${safeName}
-                    </div>
-
-                    <div class="roll-class" style="color:${classColour}">
-                    <img class="roll-class-icon" src="${classIcon}" alt="">
-                    <span>${safeClass}</span>
-                    </div>
-
-                    <div class="roll-body">
-                    Body Type ${roll.body_type}
-                    </div>
-
-                </div>
-
-                `;
-
-            }
-        )
-        .join(
-            ""
-        );
+    container.innerHTML =
+        `
+        <div class="roll-history-column">${leftColumn}</div>
+        <div class="roll-history-column">${rightColumn}</div>
+        `;
 
 }
 
@@ -6206,6 +6420,40 @@ const bodyTypes =
 ];
 
 
+/* =========================================================
+   CLASS ROLE VALIDATION
+========================================================= */
+
+const classRoles =
+{
+    Warrior: ["Tank","DPS"],
+    Paladin: ["Tank","Healer","DPS"],
+    Hunter: ["DPS"],
+    Rogue: ["DPS"],
+    Priest: ["Healer","DPS"],
+    Shaman: ["Healer","DPS"],
+    Mage: ["DPS"],
+    Warlock: ["DPS"],
+    Druid: ["Tank","Healer","DPS"]
+};
+
+
+function getValidRoleForClass(className) {
+
+    const validRoles =
+        classRoles[className]
+        ||
+        ["DPS"];
+
+
+    return randomItem(
+        validRoles
+    );
+
+}
+
+
+
 const wheelMessages =
 [
 
@@ -6258,6 +6506,21 @@ const leverMachine =
 const bodySlotTrack =
     document.getElementById(
         "bodySlotTrack"
+    );
+
+const roleDoor =
+    document.getElementById(
+        "roleDoor"
+    );
+
+const roleDoorQuestion =
+    document.getElementById(
+        "roleDoorQuestion"
+    );
+
+const roleDoorResult =
+    document.getElementById(
+        "roleDoorResult"
     );
 
 const characterNameInput =
@@ -6711,6 +6974,123 @@ function spinBodySlot(
 
 
 /* =========================================================
+   ROLE DOOR
+========================================================= */
+
+function resetRoleDoor() {
+
+    roleDoor.classList.remove(
+        "revealed",
+        "checking"
+    );
+
+
+    roleDoor.removeAttribute(
+        "data-role"
+    );
+
+
+    roleDoorQuestion.textContent =
+        "?";
+
+
+    roleDoorResult.textContent =
+        "?";
+
+
+    const resultRole =
+        document.getElementById(
+            "wheelResultRole"
+        );
+
+
+    resultRole.style.display =
+        "none";
+
+
+    resultRole.textContent =
+        "?";
+
+}
+
+
+function beginRoleValidation() {
+
+    roleDoor.classList.remove(
+        "revealed"
+    );
+
+
+    roleDoor.classList.add(
+        "checking"
+    );
+
+
+    roleDoorQuestion.textContent =
+        "CHECKING...";
+
+}
+
+
+function revealRole(role) {
+
+    roleDoor.classList.remove(
+        "checking"
+    );
+
+
+    roleDoor.setAttribute(
+        "data-role",
+        role
+    );
+
+
+    roleDoorResult.textContent =
+        role;
+
+
+    roleDoor.classList.add(
+        "revealed"
+    );
+
+
+    const resultRole =
+        document.getElementById(
+            "wheelResultRole"
+        );
+
+
+    resultRole.textContent =
+        role;
+
+
+    resultRole.style.display =
+        "inline-block";
+
+
+    if (
+        role ===
+        "Tank"
+    ) {
+        resultRole.style.color = "#8ec8ff";
+        resultRole.style.borderColor = "#416f96";
+    }
+    else if (
+        role ===
+        "Healer"
+    ) {
+        resultRole.style.color = "#86e18c";
+        resultRole.style.borderColor = "#477d4b";
+    }
+    else {
+        resultRole.style.color = "#ff9b81";
+        resultRole.style.borderColor = "#8f4a3b";
+    }
+
+}
+
+
+/* =========================================================
    SPIN
 ========================================================= */
 
@@ -6853,6 +7233,9 @@ spinWheelButton.onclick =
             "Consulting the ancient algorithm...";
 
 
+        resetRoleDoor();
+
+
         spinBodySlot(
             winningBody.id
         );
@@ -6989,34 +7372,11 @@ spinWheelButton.onclick =
                     false;
 
 
-                wheelSpinning =
-                    false;
-
-
-                spinWheelButton.disabled =
-                    false;
-
-
-                characterNameInput.disabled =
-                    false;
-
-
-                document
-                .querySelectorAll(
-                    ".exclusion-button"
-                )
-                .forEach(
-                    function(button) {
-
-                        button.disabled =
-                            false;
-
-                    }
-                );
+                beginRoleValidation();
 
 
                 spinWheelButton.textContent =
-                    "PULL";
+                    "VALIDATING";
 
 
                 const resultClass =
@@ -7061,14 +7421,70 @@ spinWheelButton.onclick =
                     winningBody.colour;
 
 
+                const winningRole =
+                    getValidRoleForClass(
+                        winningClass.name
+                    );
+
+
                 document
                 .getElementById(
                     "wheelResultMessage"
                 )
                 .textContent =
-                    randomItem(
-                        wheelMessages
-                    );
+                    "Class validated. Determining a legal role...";
+
+
+                setTimeout(
+                    function() {
+
+                        revealRole(
+                            winningRole
+                        );
+
+
+                        document
+                        .getElementById(
+                            "wheelResultMessage"
+                        )
+                        .textContent =
+                            randomItem(
+                                wheelMessages
+                            );
+
+
+                        wheelSpinning =
+                            false;
+
+
+                        spinWheelButton.disabled =
+                            false;
+
+
+                        characterNameInput.disabled =
+                            false;
+
+
+                        document
+                        .querySelectorAll(
+                            ".exclusion-button"
+                        )
+                        .forEach(
+                            function(button) {
+
+                                button.disabled =
+                                    false;
+
+                            }
+                        );
+
+
+                        spinWheelButton.textContent =
+                            "PULL";
+
+                    },
+                    700
+                );
 
 
                 await saveRoll(
@@ -9706,6 +10122,8 @@ document
 ========================================================= */
 
 updateProtectionDisplay();
+
+resetRoleDoor();
 
 loadRecentRolls();
 
