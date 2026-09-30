@@ -100,7 +100,7 @@ header {
 
 nav {
     display: flex;
-    gap: 24px;
+    gap: 20px;
 }
 
 nav a {
@@ -279,6 +279,7 @@ nav a:hover {
     top: 25px;
     bottom: 22px;
     border-radius: 8px;
+
     background: linear-gradient(
         90deg,
         #66291b,
@@ -287,8 +288,10 @@ nav a:hover {
         #f0c568,
         #66291b
     );
+
     background-size: 300% 100%;
     animation: raidBorderGlow 4s linear infinite;
+
     z-index: 0;
 }
 
@@ -299,6 +302,7 @@ nav a:hover {
     padding: 22px 25px 19px;
     border: 1px solid #d7a94b;
     border-radius: 5px;
+
     background:
         radial-gradient(
             circle at center,
@@ -306,6 +310,7 @@ nav a:hover {
             #421913 50%,
             #1b0d0b 100%
         );
+
     color: #f5d88c;
     font-family: Georgia,serif;
 }
@@ -346,8 +351,13 @@ nav a:hover {
 }
 
 @keyframes raidBorderGlow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
 }
 
 
@@ -534,6 +544,511 @@ nav a:hover {
 .mage { color:#69CCF0; }
 .warlock { color:#9482C9; }
 .druid { color:#FF7D0A; }
+
+
+/* =========================================================
+   CLASS SPIN WHEEL
+========================================================= */
+
+.wheel-section {
+    max-width: 930px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wheel-machine {
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(111,80,39,.12),
+            transparent 55%
+        ),
+        #11100e;
+
+    border: 1px solid #44382b;
+
+    box-shadow:
+        inset 0 0 30px rgba(0,0,0,.7),
+        0 20px 50px rgba(0,0,0,.35);
+
+    padding: 35px;
+
+    display: grid;
+    grid-template-columns: 1fr 145px;
+    align-items: center;
+    gap: 35px;
+}
+
+.wheel-stage {
+    position: relative;
+
+    width: min(520px,100%);
+    aspect-ratio: 1 / 1;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* OUTER METAL FRAME */
+
+.wheel-frame {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    padding: 17px;
+
+    background:
+        radial-gradient(
+            circle,
+            #a7824d 0%,
+            #5c4328 55%,
+            #201811 74%,
+            #0c0a08 100%
+        );
+
+    box-shadow:
+        0 0 0 4px #241a11,
+        0 0 0 7px #735332,
+        0 0 30px rgba(215,169,75,.18);
+}
+
+
+/* POINTER */
+
+.wheel-pointer {
+    position: absolute;
+
+    top: -23px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 30;
+
+    width: 0;
+    height: 0;
+
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 48px solid #d7a94b;
+
+    filter:
+        drop-shadow(0 3px 2px black)
+        drop-shadow(0 0 5px rgba(215,169,75,.4));
+
+    transform-origin: 50% 5px;
+}
+
+.wheel-pointer.ticking {
+    animation: pointerTick .12s ease;
+}
+
+@keyframes pointerTick {
+
+    0% {
+        transform:
+            translateX(-50%)
+            rotate(0deg);
+    }
+
+    45% {
+        transform:
+            translateX(-50%)
+            rotate(10deg);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            rotate(0deg);
+    }
+
+}
+
+
+/* ACTUAL WHEEL */
+
+#classWheel {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background:
+        conic-gradient(
+            from -20deg,
+
+            #C79C6E 0deg 40deg,
+            #F58CBA 40deg 80deg,
+            #ABD473 80deg 120deg,
+            #FFF569 120deg 160deg,
+            #E7E7E7 160deg 200deg,
+            #0070DE 200deg 240deg,
+            #69CCF0 240deg 280deg,
+            #9482C9 280deg 320deg,
+            #FF7D0A 320deg 360deg
+        );
+
+    border: 5px solid #15110d;
+
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,.65);
+
+    transition:
+        transform 6.2s
+        cubic-bezier(.10,.67,.12,1);
+
+    transform:
+        rotate(0deg);
+}
+
+
+/* DARK LAYER HELPS TEXT */
+
+#classWheel::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 0%,
+            transparent 48%,
+            rgba(0,0,0,.12) 82%,
+            rgba(0,0,0,.28) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* DIVIDING LINES */
+
+.wheel-divider {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 2px;
+    height: 50%;
+
+    background:
+        rgba(20,15,10,.65);
+
+    transform-origin:
+        center bottom;
+
+    z-index: 3;
+}
+
+
+/* CLASS LABELS */
+
+.wheel-label {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 112px;
+    margin-left: -56px;
+
+    text-align: center;
+
+    color: #13100c;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: .5px;
+
+    text-shadow:
+        0 1px rgba(255,255,255,.28);
+
+    z-index: 5;
+
+    transform-origin:
+        50% 0;
+}
+
+
+/* INNER HUB */
+
+.wheel-hub {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 105px;
+    height: 105px;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index: 15;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #3e3020 0%,
+            #1b1610 60%,
+            #090807 100%
+        );
+
+    border: 4px solid #9c7540;
+
+    box-shadow:
+        0 0 0 4px #17110c,
+        0 0 18px rgba(0,0,0,.7);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: #d7a94b;
+
+    font-family: Georgia,serif;
+    font-weight: bold;
+
+    font-size: 17px;
+    line-height: 1.1;
+}
+
+
+/* =========================================================
+   WHEEL LEVER
+========================================================= */
+
+.wheel-controls {
+    height: 350px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.lever-machine {
+    width: 100px;
+    height: 245px;
+
+    position: relative;
+
+    border: 2px solid #5b472f;
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #15110d,
+            #2d241b,
+            #15110d
+        );
+
+    box-shadow:
+        inset 0 0 12px rgba(0,0,0,.8);
+}
+
+.lever-slot {
+    position: absolute;
+
+    left: 50%;
+    top: 38px;
+
+    transform:
+        translateX(-50%);
+
+    width: 18px;
+    height: 150px;
+
+    border-radius: 10px;
+
+    background: #090807;
+
+    border: 1px solid #443627;
+}
+
+.lever-arm {
+    position: absolute;
+
+    left: 50%;
+    top: 46px;
+
+    transform:
+        translateX(-50%);
+
+    width: 10px;
+    height: 100px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #5e5a52,
+            #b9b3a6,
+            #514e48
+        );
+
+    border-radius: 5px;
+
+    transform-origin:
+        bottom center;
+
+    transition:
+        top .25s ease,
+        height .25s ease;
+}
+
+.lever-handle {
+    position: absolute;
+
+    left: 50%;
+    top: -23px;
+
+    transform:
+        translateX(-50%);
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #e15b4d,
+            #9d2119 60%,
+            #52100d 100%
+        );
+
+    border: 3px solid #32100d;
+
+    box-shadow:
+        0 5px 8px rgba(0,0,0,.5);
+}
+
+
+/* PULLED LEVER */
+
+.lever-machine.pulled .lever-arm {
+    top: 112px;
+    height: 72px;
+}
+
+
+/* SPIN BUTTON */
+
+#spinWheelButton {
+    position: absolute;
+
+    left: 50%;
+    bottom: 15px;
+
+    transform:
+        translateX(-50%);
+
+    width: 76px;
+
+    padding:
+        8px 5px;
+
+    border: 1px solid #b78a48;
+
+    background:
+        #19140e;
+
+    color:
+        #d7a94b;
+
+    font-size: 10px;
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+#spinWheelButton:hover {
+    background: #2b2114;
+}
+
+#spinWheelButton:disabled {
+    opacity: .45;
+}
+
+
+/* =========================================================
+   WHEEL RESULT
+========================================================= */
+
+.wheel-result {
+    max-width: 700px;
+
+    margin:
+        25px auto 0;
+
+    min-height: 85px;
+
+    text-align: center;
+
+    padding: 18px;
+
+    border:
+        1px solid #383027;
+
+    background:
+        #141210;
+}
+
+.wheel-result-label {
+    color: #70685e;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+#wheelResultClass {
+    margin-top: 6px;
+
+    color: #d7a94b;
+
+    font-family: Georgia,serif;
+
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#wheelResultMessage {
+    margin-top: 6px;
+
+    color: #8d857a;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
 
 
 /* =========================================================
@@ -734,7 +1249,9 @@ footer strong {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     padding: 15px 20px;
+
     border-bottom: 1px solid #493a2b;
 }
 
@@ -767,8 +1284,11 @@ footer strong {
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     gap: 20px;
+
     padding: 11px 20px;
+
     background: #090908;
+
     font-size: 11px;
 }
 
@@ -785,22 +1305,33 @@ footer strong {
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 10px;
+
     color: #c84c42;
+
     font-weight: bold;
 }
 
 .boss-health-bar {
     width: 250px;
     height: 12px;
+
     background: #28100e;
+
     border: 1px solid #653029;
 }
 
 #bossHealthFill {
     height: 100%;
     width: 100%;
-    background: linear-gradient(90deg,#8e1f18,#d24c3d);
+
+    background:
+        linear-gradient(
+            90deg,
+            #8e1f18,
+            #d24c3d
+        );
 }
 
 
@@ -820,73 +1351,114 @@ footer strong {
 
 #gameArea {
     height: 440px;
+
     position: relative;
+
     overflow: hidden;
+
     background:
         radial-gradient(
             circle at 75% 35%,
             rgba(110,30,20,.22),
             transparent 35%
         ),
-        linear-gradient(#151313,#0a0909);
+        linear-gradient(
+            #151313,
+            #0a0909
+        );
+
     cursor: pointer;
+
     user-select: none;
 }
 
 #gameGround {
     position: absolute;
+
     left: 0;
     right: 0;
     bottom: 0;
+
     height: 55px;
+
     background: #26221d;
-    border-top: 2px solid #5d4936;
+
+    border-top:
+        2px solid #5d4936;
 }
 
 
 /* =========================================================
-   RAID WARNING - CENTER
+   RAID WARNING
 ========================================================= */
 
 #raidWarning {
     position: absolute;
+
     top: 58px;
     left: 50%;
-    transform: translateX(-50%);
+
+    transform:
+        translateX(-50%);
+
     z-index: 90;
+
     width: 70%;
+
     text-align: center;
+
     color: #ffd55f;
+
     font-family: Georgia,serif;
+
     font-weight: bold;
     font-size: 23px;
+
     text-shadow:
         0 2px 2px black,
         0 0 8px black;
+
     pointer-events: none;
+
     opacity: 0;
 }
 
 #raidWarning.show {
-    animation: warningFlash 1.8s ease;
+    animation:
+        warningFlash
+        1.8s ease;
 }
 
 @keyframes warningFlash {
+
     0% {
         opacity: 0;
-        transform: translateX(-50%) scale(.8);
+
+        transform:
+            translateX(-50%)
+            scale(.8);
     }
+
     15% {
         opacity: 1;
-        transform: translateX(-50%) scale(1.08);
+
+        transform:
+            translateX(-50%)
+            scale(1.08);
     }
+
     75% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
-        transform: translateX(-50%) scale(1);
+
+        transform:
+            translateX(-50%)
+            scale(1);
     }
+
 }
 
 
@@ -896,33 +1468,56 @@ footer strong {
 
 #leftCombatFeed {
     position: absolute;
+
     left: 18px;
     top: 95px;
+
     width: 270px;
+
     z-index: 75;
+
     pointer-events: none;
 }
 
 .left-event {
     margin-bottom: 7px;
+
     padding: 7px 10px;
-    border-left: 3px solid #69c96b;
-    background: rgba(5,12,5,.72);
-    color: #8ce58e;
+
+    border-left:
+        3px solid #69c96b;
+
+    background:
+        rgba(5,12,5,.72);
+
+    color:
+        #8ce58e;
+
     font-size: 12px;
+
     line-height: 1.35;
-    text-shadow: 0 1px 2px black;
-    animation: feedIn .2s ease;
+
+    text-shadow:
+        0 1px 2px black;
+
+    animation:
+        feedIn .2s ease;
 }
 
 .left-event.buff {
-    border-left-color: #d7a94b;
-    color: #f3ce7c;
+    border-left-color:
+        #d7a94b;
+
+    color:
+        #f3ce7c;
 }
 
 .left-event.warning-event {
-    border-left-color: #d55d4d;
-    color: #e17a6c;
+    border-left-color:
+        #d55d4d;
+
+    color:
+        #e17a6c;
 }
 
 
@@ -932,83 +1527,133 @@ footer strong {
 
 #rightDamageFeed {
     position: absolute;
+
     right: 12px;
     top: 100px;
+
     width: 170px;
+
     z-index: 75;
+
     text-align: right;
+
     pointer-events: none;
 }
 
 .damage-event {
     margin-bottom: 5px;
+
     color: #9beaff;
+
     font-weight: bold;
     font-size: 17px;
+
     text-shadow:
         0 2px 3px black,
         0 0 5px #236a95;
-    animation: damageFade 1.15s forwards;
+
+    animation:
+        damageFade
+        1.15s forwards;
 }
 
 .damage-event.crit {
     color: #ffd84c;
-    font-family: Georgia,serif;
+
+    font-family:
+        Georgia,serif;
+
     font-size: 27px;
+
     text-shadow:
         0 2px 3px black,
         0 0 10px #ff8b00;
-    animation: critBurst 1.25s forwards;
+
+    animation:
+        critBurst
+        1.25s forwards;
 }
 
 @keyframes feedIn {
+
     from {
-        transform: translateX(-15px);
+        transform:
+            translateX(-15px);
+
         opacity: 0;
     }
+
     to {
-        transform: translateX(0);
+        transform:
+            translateX(0);
+
         opacity: 1;
     }
+
 }
 
 @keyframes damageFade {
+
     0% {
         opacity: 0;
-        transform: translateX(15px);
+
+        transform:
+            translateX(15px);
     }
+
     15% {
         opacity: 1;
-        transform: translateX(0);
+
+        transform:
+            translateX(0);
     }
+
     70% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
-        transform: translateY(-20px);
+
+        transform:
+            translateY(-20px);
     }
+
 }
 
 @keyframes critBurst {
+
     0% {
         opacity: 0;
-        transform: scale(.5);
+
+        transform:
+            scale(.5);
     }
+
     18% {
         opacity: 1;
-        transform: scale(1.3);
+
+        transform:
+            scale(1.3);
     }
+
     35% {
-        transform: scale(1);
+        transform:
+            scale(1);
     }
+
     75% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
-        transform: translateY(-25px) scale(.95);
+
+        transform:
+            translateY(-25px)
+            scale(.95);
     }
+
 }
 
 
@@ -1018,20 +1663,34 @@ footer strong {
 
 #raidActionPrompt {
     position: absolute;
+
     left: 50%;
     bottom: 72px;
-    transform: translateX(-50%);
+
+    transform:
+        translateX(-50%);
+
     z-index: 85;
+
     display: none;
 }
 
 #raidActionButton {
     padding: 14px 22px;
-    border: 2px solid #d7a94b;
-    background: #4d3213;
-    color: #ffe086;
+
+    border:
+        2px solid #d7a94b;
+
+    background:
+        #4d3213;
+
+    color:
+        #ffe086;
+
     font-weight: bold;
-    box-shadow: 0 0 16px rgba(215,169,75,.35);
+
+    box-shadow:
+        0 0 16px rgba(215,169,75,.35);
 }
 
 
@@ -1040,40 +1699,72 @@ footer strong {
 ========================================================= */
 
 .dps-meter {
-    background: #0c0b0a;
-    border-left: 1px solid #493a2b;
-    padding: 12px 10px;
+    background:
+        #0c0b0a;
+
+    border-left:
+        1px solid #493a2b;
+
+    padding:
+        12px 10px;
 }
 
 .dps-title {
-    color: #d7a94b;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-align: center;
-    margin-bottom: 12px;
+    color:
+        #d7a94b;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        1.5px;
+
+    text-align:
+        center;
+
+    margin-bottom:
+        12px;
 }
 
 .dps-row {
-    margin-bottom: 9px;
+    margin-bottom:
+        9px;
 }
 
 .dps-name {
-    display: flex;
-    justify-content: space-between;
-    color: #aaa195;
-    font-size: 10px;
-    margin-bottom: 3px;
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    color:
+        #aaa195;
+
+    font-size:
+        10px;
+
+    margin-bottom:
+        3px;
 }
 
 .dps-bar {
-    height: 5px;
-    background: #28231e;
+    height:
+        5px;
+
+    background:
+        #28231e;
 }
 
 .dps-fill {
-    height: 100%;
-    background: #9b7138;
-    transition: width .2s;
+    height:
+        100%;
+
+    background:
+        #9b7138;
+
+    transition:
+        width .2s;
 }
 
 
@@ -1083,67 +1774,111 @@ footer strong {
 
 #gamePlayer {
     position: absolute;
+
     left: 95px;
     bottom: 55px;
+
     width: 46px;
     height: 76px;
+
     z-index: 20;
 }
 
 .player-head {
     position: absolute;
+
     left: 12px;
     top: 5px;
+
     width: 23px;
     height: 27px;
+
     border-radius: 50%;
-    background: #c38f6a;
+
+    background:
+        #c38f6a;
 }
 
 .player-hair {
     position: absolute;
+
     left: 11px;
     top: 2px;
+
     width: 26px;
     height: 13px;
-    background: #2b211c;
-    border-radius: 50%;
-    z-index: 3;
+
+    background:
+        #2b211c;
+
+    border-radius:
+        50%;
+
+    z-index:
+        3;
 }
 
 .player-body {
     position: absolute;
+
     left: 8px;
     top: 30px;
+
     width: 31px;
     height: 33px;
-    background: #36506b;
-    border: 2px solid #94703d;
+
+    background:
+        #36506b;
+
+    border:
+        2px solid #94703d;
 }
 
 .player-shoulder {
     position: absolute;
+
     top: 30px;
+
     width: 15px;
     height: 13px;
-    background: #53412c;
-    border: 2px solid #a78447;
-    border-radius: 50%;
+
+    background:
+        #53412c;
+
+    border:
+        2px solid #a78447;
+
+    border-radius:
+        50%;
 }
 
-.shoulder-left { left: 1px; }
-.shoulder-right { right: 0; }
+.shoulder-left {
+    left: 1px;
+}
+
+.shoulder-right {
+    right: 0;
+}
 
 .player-leg {
     position: absolute;
+
     bottom: 0;
+
     width: 10px;
     height: 19px;
-    background: #332f2c;
+
+    background:
+        #332f2c;
 }
 
-.leg-left { left: 11px; }
-.leg-right { right: 11px; }
+.leg-left {
+    left: 11px;
+}
+
+.leg-right {
+    right: 11px;
+}
 
 
 /* =========================================================
@@ -1152,85 +1887,146 @@ footer strong {
 
 #onyxia {
     position: absolute;
+
     right: 45px;
     bottom: 55px;
+
     width: 225px;
     height: 225px;
+
     z-index: 12;
 }
 
 .dragon-body {
     position: absolute;
+
     right: 25px;
     bottom: 15px;
+
     width: 115px;
     height: 95px;
-    border-radius: 55%;
-    background: #21191c;
-    border: 3px solid #5b4749;
+
+    border-radius:
+        55%;
+
+    background:
+        #21191c;
+
+    border:
+        3px solid #5b4749;
 }
 
 .dragon-wing {
     position: absolute;
+
     width: 95px;
     height: 130px;
-    background: #35272d;
-    border: 3px solid #594148;
+
+    background:
+        #35272d;
+
+    border:
+        3px solid #594148;
 }
 
 .dragon-wing-left {
     right: 100px;
     bottom: 65px;
-    clip-path: polygon(100% 100%,0% 50%,80% 0%);
+
+    clip-path:
+        polygon(
+            100% 100%,
+            0% 50%,
+            80% 0%
+        );
 }
 
 .dragon-wing-right {
     right: 5px;
     bottom: 80px;
-    clip-path: polygon(0% 100%,20% 0%,100% 45%);
+
+    clip-path:
+        polygon(
+            0% 100%,
+            20% 0%,
+            100% 45%
+        );
 }
 
 .dragon-neck {
     position: absolute;
+
     right: 120px;
     bottom: 65px;
+
     width: 55px;
     height: 100px;
-    background: #21191c;
-    border: 3px solid #554045;
-    transform: rotate(-24deg);
-    border-radius: 50%;
+
+    background:
+        #21191c;
+
+    border:
+        3px solid #554045;
+
+    transform:
+        rotate(-24deg);
+
+    border-radius:
+        50%;
 }
 
 .dragon-head {
     position: absolute;
+
     right: 150px;
     top: 37px;
+
     width: 66px;
     height: 49px;
-    background: #241a1d;
-    border: 3px solid #594147;
-    border-radius: 50%;
+
+    background:
+        #241a1d;
+
+    border:
+        3px solid #594147;
+
+    border-radius:
+        50%;
 }
 
 .dragon-eye {
     position: absolute;
+
     left: 16px;
     top: 15px;
+
     width: 8px;
     height: 5px;
-    background: #ff9d28;
-    box-shadow: 0 0 8px #ff5e00;
+
+    background:
+        #ff9d28;
+
+    box-shadow:
+        0 0 8px #ff5e00;
 }
 
 .dragon-tail {
     position: absolute;
+
     right: -65px;
     bottom: 40px;
+
     width: 115px;
     height: 22px;
-    background: #21191c;
-    border: 3px solid #554045;
+
+    background:
+        #21191c;
+
+    border:
+        3px solid #554045;
+
+    border-radius:
+        50%;
 }
 
 
@@ -1240,9 +2036,12 @@ footer strong {
 
 .game-fire {
     position: absolute;
+
     bottom: 55px;
+
     width: 62px;
     height: 42px;
+
     background:
         radial-gradient(
             ellipse at bottom,
@@ -1255,9 +2054,13 @@ footer strong {
 
 .game-breath {
     position: absolute;
+
     width: 125px;
     height: 37px;
-    border-radius: 50%;
+
+    border-radius:
+        50%;
+
     background:
         linear-gradient(
             90deg,
@@ -1276,16 +2079,25 @@ footer strong {
 
 .lightning-bolt {
     position: absolute;
+
     height: 6px;
     width: 45px;
-    background: #a9ecff;
-    box-shadow: 0 0 12px #459cff;
+
+    background:
+        #a9ecff;
+
+    box-shadow:
+        0 0 12px #459cff;
+
     z-index: 25;
 }
 
 .lightning-bolt.crit-bolt {
     height: 9px;
-    background: #fff57a;
+
+    background:
+        #fff57a;
+
     box-shadow:
         0 0 18px #ffd800,
         0 0 30px #ff9900;
@@ -1298,41 +2110,75 @@ footer strong {
 
 #gameMessage {
     position: absolute;
+
     inset: 0;
+
     z-index: 100;
-    background: rgba(5,5,5,.88);
+
+    background:
+        rgba(5,5,5,.88);
 
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
 
-    text-align: center;
+    flex-direction:
+        column;
 
-    padding: 50px 30px 40px;
+    align-items:
+        center;
 
-    overflow-y: auto;
-    overflow-x: hidden;
+    justify-content:
+        flex-start;
+
+    text-align:
+        center;
+
+    padding:
+        50px 30px 40px;
+
+    overflow-y:
+        auto;
+
+    overflow-x:
+        hidden;
 }
 
 #gameMessage h2 {
-    font-family: Georgia,serif;
-    color: #d7a94b;
-    margin-bottom: 15px;
+    font-family:
+        Georgia,serif;
+
+    color:
+        #d7a94b;
+
+    margin-bottom:
+        15px;
 }
 
 #gameMessage p {
-    color: #a69b8d;
-    line-height: 1.8;
-    margin-bottom: 20px;
+    color:
+        #a69b8d;
+
+    line-height:
+        1.8;
+
+    margin-bottom:
+        20px;
 }
 
 #gameMessage button {
-    padding: 12px 22px;
-    background: #b38538;
-    border: 1px solid #d7a94b;
-    font-weight: bold;
-    flex-shrink: 0;
+    padding:
+        12px 22px;
+
+    background:
+        #b38538;
+
+    border:
+        1px solid #d7a94b;
+
+    font-weight:
+        bold;
+
+    flex-shrink:
+        0;
 }
 
 
@@ -1341,13 +2187,26 @@ footer strong {
 ========================================================= */
 
 .game-controls {
-    padding: 13px 18px;
-    background: #151310;
-    color: #837a6f;
-    font-size: 11px;
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
+    padding:
+        13px 18px;
+
+    background:
+        #151310;
+
+    color:
+        #837a6f;
+
+    font-size:
+        11px;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
 }
 
 
@@ -1356,116 +2215,240 @@ footer strong {
 ========================================================= */
 
 .loot-window {
-    width: min(600px,96%);
-    background: #11100e;
-    border: 2px solid #806039;
+    width:
+        min(600px,96%);
+
+    background:
+        #11100e;
+
+    border:
+        2px solid #806039;
+
     box-shadow:
         0 0 0 1px #2a221b,
         0 15px 45px rgba(0,0,0,.8);
-    padding: 20px;
-    text-align: left;
-    margin: auto;
+
+    padding:
+        20px;
+
+    text-align:
+        left;
+
+    margin:
+        auto;
 }
 
 .loot-title {
-    text-align: center;
-    color: #d7a94b;
-    font-family: Georgia,serif;
-    font-size: 25px;
-    margin-bottom: 6px;
+    text-align:
+        center;
+
+    color:
+        #d7a94b;
+
+    font-family:
+        Georgia,serif;
+
+    font-size:
+        25px;
+
+    margin-bottom:
+        6px;
 }
 
 .loot-subtitle {
-    text-align: center;
-    color: #746c61;
-    font-size: 10px;
-    letter-spacing: 2px;
-    margin-bottom: 14px;
+    text-align:
+        center;
+
+    color:
+        #746c61;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        2px;
+
+    margin-bottom:
+        14px;
 }
 
 .victory-congratulations {
-    text-align: center;
-    color: #aaa195;
-    line-height: 1.6;
-    margin-bottom: 16px;
-    font-size: 13px;
+    text-align:
+        center;
+
+    color:
+        #aaa195;
+
+    line-height:
+        1.6;
+
+    margin-bottom:
+        16px;
+
+    font-size:
+        13px;
 }
 
 .victory-congratulations strong {
-    display: block;
-    color: #d7a94b;
-    font-family: Georgia,serif;
-    font-size: 21px;
-    margin-bottom: 3px;
+    display:
+        block;
+
+    color:
+        #d7a94b;
+
+    font-family:
+        Georgia,serif;
+
+    font-size:
+        21px;
+
+    margin-bottom:
+        3px;
 }
 
 .loot-list {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 8px;
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:
+        8px;
 }
 
 .loot-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px;
-    background: #171513;
-    border: 1px solid #40362d;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    padding:
+        9px;
+
+    background:
+        #171513;
+
+    border:
+        1px solid #40362d;
 }
 
 .loot-icon {
-    width: 36px;
-    height: 36px;
-    flex: 0 0 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #a335ee;
+    width:
+        36px;
+
+    height:
+        36px;
+
+    flex:
+        0 0 36px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        2px solid #a335ee;
+
     background:
-        radial-gradient(circle,#48205e,#1d1025);
-    color: #ddb3ff;
+        radial-gradient(
+            circle,
+            #48205e,
+            #1d1025
+        );
+
+    color:
+        #ddb3ff;
 }
 
 .loot-name {
-    color: #a335ee;
-    font-size: 12px;
-    font-weight: bold;
+    color:
+        #a335ee;
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
 }
 
 .loot-type {
-    margin-top: 3px;
-    color: #777067;
-    font-size: 9px;
+    margin-top:
+        3px;
+
+    color:
+        #777067;
+
+    font-size:
+        9px;
 }
 
 .loot-reserved {
-    margin-top: 15px;
-    padding: 13px;
-    text-align: center;
-    background: #28100d;
-    border: 1px solid #7d3328;
+    margin-top:
+        15px;
+
+    padding:
+        13px;
+
+    text-align:
+        center;
+
+    background:
+        #28100d;
+
+    border:
+        1px solid #7d3328;
 }
 
 .loot-reserved-title {
-    color: #db6758;
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 2px;
+    color:
+        #db6758;
+
+    font-size:
+        10px;
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        2px;
 }
 
 .loot-reserved-main {
-    margin-top: 6px;
-    color: #eee1cb;
-    font-size: 17px;
-    font-weight: bold;
+    margin-top:
+        6px;
+
+    color:
+        #eee1cb;
+
+    font-size:
+        17px;
+
+    font-weight:
+        bold;
 }
 
 .loot-reserved-note {
-    margin-top: 5px;
-    color: #8f8175;
-    font-size: 10px;
-    line-height: 1.5;
+    margin-top:
+        5px;
+
+    color:
+        #8f8175;
+
+    font-size:
+        10px;
+
+    line-height:
+        1.5;
 }
 
 
@@ -1485,24 +2468,47 @@ footer strong {
 
     .stats,
     .live-grid {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     .metrics,
     .tools {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .classes {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .wheel-machine {
+        grid-template-columns:
+            1fr;
+
+        padding:
+            25px 15px;
+    }
+
+    .wheel-controls {
+        height:
+            auto;
+    }
+
+    .lever-machine {
+        height:
+            210px;
     }
 
     .raid-body {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .dps-meter {
-        display: none;
+        display:
+            none;
     }
 
 }
@@ -1510,41 +2516,61 @@ footer strong {
 @media(max-width:600px) {
 
     #raidGameOverlay {
-        padding: 8px;
+        padding:
+            8px;
     }
 
     #gameArea {
-        height: 380px;
+        height:
+            380px;
     }
 
     #gamePlayer {
-        left: 40px;
+        left:
+            40px;
     }
 
     #onyxia {
-        right: -20px;
-        transform: scale(.78);
-        transform-origin: bottom right;
+        right:
+            -20px;
+
+        transform:
+            scale(.78);
+
+        transform-origin:
+            bottom right;
     }
 
     #leftCombatFeed {
-        width: 190px;
-        left: 7px;
-        top: 100px;
+        width:
+            190px;
+
+        left:
+            7px;
+
+        top:
+            100px;
     }
 
     #rightDamageFeed {
-        width: 125px;
-        right: 5px;
+        width:
+            125px;
+
+        right:
+            5px;
     }
 
     .game-hud {
-        grid-template-columns: 1fr;
-        text-align: center;
+        grid-template-columns:
+            1fr;
+
+        text-align:
+            center;
     }
 
     .loot-list {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
 }
@@ -1554,7 +2580,35 @@ footer strong {
     .stats,
     .live-grid,
     .classes {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
+    }
+
+    .wheel-machine {
+        padding:
+            18px 8px;
+    }
+
+    .wheel-label {
+        font-size:
+            9px;
+
+        width:
+            88px;
+
+        margin-left:
+            -44px;
+    }
+
+    .wheel-hub {
+        width:
+            78px;
+
+        height:
+            78px;
+
+        font-size:
+            13px;
     }
 
 }
@@ -1562,6 +2616,7 @@ footer strong {
 </style>
 
 </head>
+
 
 <body>
 
@@ -1615,10 +2670,27 @@ footer strong {
 <div class="header-right">
 
 <nav>
-<a href="#stats">Statistics</a>
-<a href="#classes">Roster</a>
-<a href="#tools">Guild Tools</a>
-<a href="#announcements">Announcements</a>
+
+<a href="#stats">
+Statistics
+</a>
+
+<a href="#classes">
+Roster
+</a>
+
+<a href="#class-wheel-section">
+Class Wheel
+</a>
+
+<a href="#tools">
+Guild Tools
+</a>
+
+<a href="#announcements">
+Announcements
+</a>
+
 </nav>
 
 <button id="musicButton">
@@ -1650,21 +2722,30 @@ AU <span>TSM</span>
 </h2>
 
 <div class="guild-tagline">
+
 PROFESSIONAL TEAM SOLO MID PLAYERS
-<span>WITH A HINT OF DEGENERACY</span>
+
+<span>
+WITH A HINT OF DEGENERACY
+</span>
+
 </div>
 
 <p class="hero-description">
+
 An Oceanic World of Warcraft Forever guild combining questionable
 sleep schedules, unnecessary optimisation, excessive spreadsheets
 and the unwavering belief that the next pull is definitely the one.
+
 </p>
 
 <div class="horde-badge">
 ⚔ FOR THE HORDE ⚔
 </div>
 
+
 <div class="hero-buttons">
+
 
 <div class="raid-ready-callout">
 
@@ -1715,35 +2796,88 @@ Initiate Ready Check
 <section id="stats">
 
 <div class="section-title">
-<h3>Guild Statistics</h3>
-<p>Key performance indicators for a highly professional gaming organisation</p>
+
+<h3>
+Guild Statistics
+</h3>
+
+<p>
+Key performance indicators for a highly professional gaming organisation
+</p>
+
 </div>
+
 
 <div class="stats">
 
-<div class="stat">
-<span class="stat-number">42</span>
-<span class="stat-label">Guild Members</span>
-<span class="stat-subtext">Social skills vary considerably</span>
-</div>
 
 <div class="stat">
-<span class="stat-number">67</span>
-<span class="stat-label">Characters</span>
-<span class="stat-subtext">Character ownership records remain unreliable</span>
+
+<span class="stat-number">
+42
+</span>
+
+<span class="stat-label">
+Guild Members
+</span>
+
+<span class="stat-subtext">
+Social skills vary considerably
+</span>
+
 </div>
 
-<div class="stat">
-<span class="stat-number">1</span>
-<span class="stat-label">Best Gamer</span>
-<span class="stat-subtext">Chris insists this metric is objective</span>
-</div>
 
 <div class="stat">
-<span class="stat-number">∞</span>
-<span class="stat-label">Roks Incidents</span>
-<span class="stat-subtext">Counter exceeded technical limit</span>
+
+<span class="stat-number">
+67
+</span>
+
+<span class="stat-label">
+Characters
+</span>
+
+<span class="stat-subtext">
+Character ownership records remain unreliable
+</span>
+
 </div>
+
+
+<div class="stat">
+
+<span class="stat-number">
+1
+</span>
+
+<span class="stat-label">
+Best Gamer
+</span>
+
+<span class="stat-subtext">
+Chris insists this metric is objective
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<span class="stat-number">
+∞
+</span>
+
+<span class="stat-label">
+Roks Incidents
+</span>
+
+<span class="stat-subtext">
+Counter exceeded technical limit
+</span>
+
+</div>
+
 
 </div>
 
@@ -1751,37 +2885,77 @@ Initiate Ready Check
 
 
 <!-- =========================================================
-     LIVE
+     LIVE OPERATIONS
 ========================================================= -->
 
 <section>
 
 <div class="section-title">
-<h3>Live Guild Operations</h3>
-<p>Real-time monitoring of a completely normal group of adults playing a video game</p>
+
+<h3>
+Live Guild Operations
+</h3>
+
+<p>
+Real-time monitoring of a completely normal group of adults playing a video game
+</p>
+
 </div>
+
 
 <div class="live-grid">
 
-<div class="live-card">
-<div class="live-label">Latest Incident</div>
-<div class="live-value" id="latestDeath">Roks stood in fire.</div>
-<div class="live-note">Root cause analysis currently underway.</div>
-</div>
 
 <div class="live-card">
-<div class="live-label">Current Blame Target</div>
-<div class="live-value" id="blameTarget">Roks</div>
-<div class="live-note">Selected using evidence-based guild governance.</div>
+
+<div class="live-label">
+Latest Incident
 </div>
 
+<div class="live-value" id="latestDeath">
+Roks stood in fire.
+</div>
+
+<div class="live-note">
+Root cause analysis currently underway.
+</div>
+
+</div>
+
+
 <div class="live-card">
-<div class="live-label">Leadership Status</div>
+
+<div class="live-label">
+Current Blame Target
+</div>
+
+<div class="live-value" id="blameTarget">
+Roks
+</div>
+
+<div class="live-note">
+Selected using evidence-based guild governance.
+</div>
+
+</div>
+
+
+<div class="live-card">
+
+<div class="live-label">
+Leadership Status
+</div>
+
 <div class="live-value" id="leadershipStatus">
 Phinky pretending everything is under control.
 </div>
-<div class="live-note">Guild Master authority remains mostly ceremonial.</div>
+
+<div class="live-note">
+Guild Master authority remains mostly ceremonial.
 </div>
+
+</div>
+
 
 </div>
 
@@ -1795,65 +2969,170 @@ Phinky pretending everything is under control.
 <section>
 
 <div class="section-title">
-<h3>Performance &amp; Compliance</h3>
-<p>Because apparently playing the game wasn't complicated enough</p>
+
+<h3>
+Performance &amp; Compliance
+</h3>
+
+<p>
+Because apparently playing the game wasn't complicated enough
+</p>
+
 </div>
+
 
 <div class="metrics">
 
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Chris Gaming Ability</span>
-<span class="metric-value">100%</span>
-</div>
-<div class="bar"><div class="fill" style="width:100%"></div></div>
-<div class="metric-note">Self-reported. Peer review unavailable.</div>
-</div>
 
 <div class="metric">
+
 <div class="metric-top">
-<span class="metric-name">Roks Mechanic Awareness</span>
-<span class="metric-value">18%</span>
-</div>
-<div class="bar"><div class="fill" style="width:18%"></div></div>
-<div class="metric-note">Corrective action remains ineffective.</div>
+
+<span class="metric-name">
+Chris Gaming Ability
+</span>
+
+<span class="metric-value">
+100%
+</span>
+
 </div>
 
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Luffa Sobriety</span>
-<span class="metric-value">7%</span>
-</div>
-<div class="bar"><div class="fill" style="width:7%"></div></div>
-<div class="metric-note">Strong inverse correlation with time of evening.</div>
+<div class="bar">
+<div class="fill" style="width:100%"></div>
 </div>
 
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Aimless Directional Accuracy</span>
-<span class="metric-value">31%</span>
-</div>
-<div class="bar"><div class="fill" style="width:31%"></div></div>
-<div class="metric-note">Name appears statistically relevant.</div>
+<div class="metric-note">
+Self-reported. Peer review unavailable.
 </div>
 
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Phinky Leadership Confidence</span>
-<span class="metric-value">94%</span>
-</div>
-<div class="bar"><div class="fill" style="width:94%"></div></div>
-<div class="metric-note">Has somehow turned WoW into middle management.</div>
 </div>
 
+
 <div class="metric">
+
 <div class="metric-top">
-<span class="metric-name">Fayne Bladestorm Uptime</span>
-<span class="metric-value">100%</span>
+
+<span class="metric-name">
+Roks Mechanic Awareness
+</span>
+
+<span class="metric-value">
+18%
+</span>
+
 </div>
-<div class="bar"><div class="fill" style="width:100%"></div></div>
-<div class="metric-note">Mechanic participation measured separately.</div>
+
+<div class="bar">
+<div class="fill" style="width:18%"></div>
 </div>
+
+<div class="metric-note">
+Corrective action remains ineffective.
+</div>
+
+</div>
+
+
+<div class="metric">
+
+<div class="metric-top">
+
+<span class="metric-name">
+Luffa Sobriety
+</span>
+
+<span class="metric-value">
+7%
+</span>
+
+</div>
+
+<div class="bar">
+<div class="fill" style="width:7%"></div>
+</div>
+
+<div class="metric-note">
+Strong inverse correlation with time of evening.
+</div>
+
+</div>
+
+
+<div class="metric">
+
+<div class="metric-top">
+
+<span class="metric-name">
+Aimless Directional Accuracy
+</span>
+
+<span class="metric-value">
+31%
+</span>
+
+</div>
+
+<div class="bar">
+<div class="fill" style="width:31%"></div>
+</div>
+
+<div class="metric-note">
+Name appears statistically relevant.
+</div>
+
+</div>
+
+
+<div class="metric">
+
+<div class="metric-top">
+
+<span class="metric-name">
+Phinky Leadership Confidence
+</span>
+
+<span class="metric-value">
+94%
+</span>
+
+</div>
+
+<div class="bar">
+<div class="fill" style="width:94%"></div>
+</div>
+
+<div class="metric-note">
+Has somehow turned WoW into middle management.
+</div>
+
+</div>
+
+
+<div class="metric">
+
+<div class="metric-top">
+
+<span class="metric-name">
+Fayne Bladestorm Uptime
+</span>
+
+<span class="metric-value">
+100%
+</span>
+
+</div>
+
+<div class="bar">
+<div class="fill" style="width:100%"></div>
+</div>
+
+<div class="metric-note">
+Mechanic participation measured separately.
+</div>
+
+</div>
+
 
 </div>
 
@@ -1867,23 +3146,296 @@ Phinky pretending everything is under control.
 <section id="classes">
 
 <div class="section-title">
-<h3>Class Distribution</h3>
-<p>Current composition until everyone rerolls again</p>
+
+<h3>
+Class Distribution
+</h3>
+
+<p>
+Current composition until everyone rerolls again
+</p>
+
 </div>
+
 
 <div class="classes">
 
-<div class="class-card"><span>Warrior</span><span class="class-count warrior">12</span></div>
-<div class="class-card"><span>Paladin</span><span class="class-count paladin">4</span></div>
-<div class="class-card"><span>Hunter</span><span class="class-count hunter">9</span></div>
-<div class="class-card"><span>Rogue</span><span class="class-count rogue">7</span></div>
-<div class="class-card"><span>Priest</span><span class="class-count priest">3</span></div>
-<div class="class-card"><span>Shaman</span><span class="class-count shaman">10</span></div>
-<div class="class-card"><span>Mage</span><span class="class-count mage">8</span></div>
-<div class="class-card"><span>Warlock</span><span class="class-count warlock">6</span></div>
-<div class="class-card"><span>Druid</span><span class="class-count druid">8</span></div>
+<div class="class-card">
+<span>Warrior</span>
+<span class="class-count warrior">12</span>
+</div>
+
+<div class="class-card">
+<span>Paladin</span>
+<span class="class-count paladin">4</span>
+</div>
+
+<div class="class-card">
+<span>Hunter</span>
+<span class="class-count hunter">9</span>
+</div>
+
+<div class="class-card">
+<span>Rogue</span>
+<span class="class-count rogue">7</span>
+</div>
+
+<div class="class-card">
+<span>Priest</span>
+<span class="class-count priest">3</span>
+</div>
+
+<div class="class-card">
+<span>Shaman</span>
+<span class="class-count shaman">10</span>
+</div>
+
+<div class="class-card">
+<span>Mage</span>
+<span class="class-count mage">8</span>
+</div>
+
+<div class="class-card">
+<span>Warlock</span>
+<span class="class-count warlock">6</span>
+</div>
+
+<div class="class-card">
+<span>Druid</span>
+<span class="class-count druid">8</span>
+</div>
 
 </div>
+
+</section>
+
+
+<!-- =========================================================
+     CLASS ROULETTE
+========================================================= -->
+
+<section
+    id="class-wheel-section"
+    class="wheel-section"
+>
+
+<div class="section-title">
+
+<h3>
+Which Class Will You Roll? (Spin)
+</h3>
+
+<p>
+Because choosing your own character would imply personal responsibility
+</p>
+
+</div>
+
+
+<div class="wheel-machine">
+
+
+<div class="wheel-stage">
+
+
+<div
+    id="wheelPointer"
+    class="wheel-pointer"
+></div>
+
+
+<div class="wheel-frame">
+
+
+<div id="classWheel">
+
+
+<!-- DIVIDERS -->
+
+<div
+    class="wheel-divider"
+    style="transform:translate(-50%,-100%) rotate(20deg);"
+></div>
+
+<div
+    class="wheel-divider"
+    style="transform:translate(-50%,-100%) rotate(60deg);"
+></div>
+
+<div
+    class="wheel-divider"
+    style="transform:translate(-50%,-100%) rotate(100deg);"
+></div>
+
+<div
+    class="wheel-divider"
+    style="transform:translate(-50%,-100%) rotate(140deg);"
+></div>
+
+<div
+    class="wheel-divider"
+    style="transform:translate(-50%,-100%) rotate(180deg);"
+></div>
+
+<div
+    class="wheel-divider"
+    style="transform:translate(-50%,-100%) rotate(220deg);"
+></div>
+
+<div
+    class="wheel-divider"
+    style="transform:translate(-50%,-100%) rotate(260deg);"
+></div>
+
+<div
+    class="wheel-divider"
+    style="transform:translate(-50%,-100%) rotate(300deg);"
+></div>
+
+<div
+    class="wheel-divider"
+    style="transform:translate(-50%,-100%) rotate(340deg);"
+></div>
+
+
+<!-- CLASS NAMES -->
+
+<div
+    class="wheel-label"
+    style="transform:rotate(0deg) translateY(-190px) rotate(0deg);"
+>
+Warrior
+</div>
+
+
+<div
+    class="wheel-label"
+    style="transform:rotate(40deg) translateY(-190px) rotate(-40deg);"
+>
+Paladin
+</div>
+
+
+<div
+    class="wheel-label"
+    style="transform:rotate(80deg) translateY(-190px) rotate(-80deg);"
+>
+Hunter
+</div>
+
+
+<div
+    class="wheel-label"
+    style="transform:rotate(120deg) translateY(-190px) rotate(-120deg);"
+>
+Rogue
+</div>
+
+
+<div
+    class="wheel-label"
+    style="transform:rotate(160deg) translateY(-190px) rotate(-160deg);"
+>
+Priest
+</div>
+
+
+<div
+    class="wheel-label"
+    style="transform:rotate(200deg) translateY(-190px) rotate(-200deg);"
+>
+Shaman
+</div>
+
+
+<div
+    class="wheel-label"
+    style="transform:rotate(240deg) translateY(-190px) rotate(-240deg);"
+>
+Mage
+</div>
+
+
+<div
+    class="wheel-label"
+    style="transform:rotate(280deg) translateY(-190px) rotate(-280deg);"
+>
+Warlock
+</div>
+
+
+<div
+    class="wheel-label"
+    style="transform:rotate(320deg) translateY(-190px) rotate(-320deg);"
+>
+Druid
+</div>
+
+
+</div>
+
+
+<div class="wheel-hub">
+AU<br>TSM
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- LEVER -->
+
+<div class="wheel-controls">
+
+
+<div
+    id="leverMachine"
+    class="lever-machine"
+>
+
+
+<div class="lever-slot"></div>
+
+
+<div class="lever-arm">
+
+<div class="lever-handle"></div>
+
+</div>
+
+
+<button id="spinWheelButton">
+PULL
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="wheel-result">
+
+<div class="wheel-result-label">
+THE WHEEL HAS NOT YET JUDGED YOU
+</div>
+
+<div id="wheelResultClass">
+?
+</div>
+
+<div id="wheelResultMessage">
+Pull the lever and surrender control of your future.
+</div>
+
+</div>
+
 
 </section>
 
@@ -1895,31 +3447,64 @@ Phinky pretending everything is under control.
 <section>
 
 <div class="section-title">
-<h3>Guild Operations Centre</h3>
-<p>Monitoring AU TSM's ongoing descent into operational excellence</p>
+
+<h3>
+Guild Operations Centre
+</h3>
+
+<p>
+Monitoring AU TSM's ongoing descent into operational excellence
+</p>
+
 </div>
+
 
 <div class="feed" id="guildFeed">
 
+
 <div class="feed-item">
-<span class="feed-time">NOW</span>
+
+<span class="feed-time">
+NOW
+</span>
+
 Roks has been reminded that fire is not a temporary buff.
+
 </div>
 
+
 <div class="feed-item">
-<span class="feed-time">2m</span>
+
+<span class="feed-time">
+2m
+</span>
+
 Fayne has been assigned an important mechanic. Bladestorm availability is being investigated.
+
 </div>
 
+
 <div class="feed-item">
-<span class="feed-time">4m</span>
+
+<span class="feed-time">
+4m
+</span>
+
 Chris has completed another internal review confirming Chris is the best gamer.
+
 </div>
 
+
 <div class="feed-item">
-<span class="feed-time">6m</span>
+
+<span class="feed-time">
+6m
+</span>
+
 Luffa has entered the operationally impaired phase of the evening.
+
 </div>
+
 
 </div>
 
@@ -1933,29 +3518,104 @@ Luffa has entered the operationally impaired phase of the evening.
 <section>
 
 <div class="section-title">
-<h3>Personnel Readiness Matrix</h3>
-<p>Because a normal ready check wasn't sufficiently bureaucratic</p>
+
+<h3>
+Personnel Readiness Matrix
+</h3>
+
+<p>
+Because a normal ready check wasn't sufficiently bureaucratic
+</p>
+
 </div>
+
 
 <div class="raid-box">
 
-<div class="raid-row"><span>Tanks</span><span class="good">Ready</span></div>
-<div class="raid-row"><span>Healers</span><span class="warning">Penny asked why Chris needs three healers</span></div>
-<div class="raid-row"><span>DPS</span><span class="good">Far too many</span></div>
+<div class="raid-row">
+<span>Tanks</span>
+<span class="good">Ready</span>
+</div>
+
+<div class="raid-row">
+<span>Healers</span>
+<span class="warning">
+Penny asked why Chris needs three healers
+</span>
+</div>
+
+<div class="raid-row">
+<span>DPS</span>
+<span class="good">
+Far too many
+</span>
+</div>
 
 <div class="raid-row">
 <span>Fayne</span>
-<span class="good" id="fayneStatus">Ready — Bladestorm available</span>
+<span
+    class="good"
+    id="fayneStatus"
+>
+Ready — Bladestorm available
+</span>
 </div>
 
-<div class="raid-row"><span>Stiff</span><span class="warning">AFK status unclear</span></div>
-<div class="raid-row"><span>KP</span><span class="good">Claims to be ready</span></div>
-<div class="raid-row"><span>Jaydo</span><span class="warning">Has started a completely unrelated conversation</span></div>
-<div class="raid-row"><span>Sev</span><span class="good">Quietly carrying without acknowledgement</span></div>
-<div class="raid-row"><span>Rulzy</span><span class="warning">Currently disputing a loot interpretation</span></div>
-<div class="raid-row"><span>Marsmallow</span><span class="good">Present and somehow not involved in the drama</span></div>
-<div class="raid-row"><span>Zomgs</span><span class="warning">Connection status classified</span></div>
-<div class="raid-row"><span>Roks</span><span class="warning">Already dead</span></div>
+<div class="raid-row">
+<span>Stiff</span>
+<span class="warning">
+AFK status unclear
+</span>
+</div>
+
+<div class="raid-row">
+<span>KP</span>
+<span class="good">
+Claims to be ready
+</span>
+</div>
+
+<div class="raid-row">
+<span>Jaydo</span>
+<span class="warning">
+Has started a completely unrelated conversation
+</span>
+</div>
+
+<div class="raid-row">
+<span>Sev</span>
+<span class="good">
+Quietly carrying without acknowledgement
+</span>
+</div>
+
+<div class="raid-row">
+<span>Rulzy</span>
+<span class="warning">
+Currently disputing a loot interpretation
+</span>
+</div>
+
+<div class="raid-row">
+<span>Marsmallow</span>
+<span class="good">
+Present and somehow not involved in the drama
+</span>
+</div>
+
+<div class="raid-row">
+<span>Zomgs</span>
+<span class="warning">
+Connection status classified
+</span>
+</div>
+
+<div class="raid-row">
+<span>Roks</span>
+<span class="warning">
+Already dead
+</span>
+</div>
 
 </div>
 
@@ -1969,39 +3629,108 @@ Luffa has entered the operationally impaired phase of the evening.
 <section id="tools">
 
 <div class="section-title">
-<h3>Guild Tools</h3>
-<p>Enterprise-grade solutions to problems we created ourselves</p>
+
+<h3>
+Guild Tools
+</h3>
+
+<p>
+Enterprise-grade solutions to problems we created ourselves
+</p>
+
 </div>
+
 
 <div class="tools">
 
-<div class="tool">
-<h4>Raid Eligibility Scanner</h4>
-<p>Determine whether your character meets AU TSM's rigorous and frequently changing standards.</p>
-<button id="eligibilityButton">Analyse Character</button>
-<div class="result" id="eligibilityResult"></div>
-</div>
 
 <div class="tool">
-<h4>Oceanic Latency Diagnostic</h4>
-<p>Determine whether poor performance is your fault or can legally be blamed on Australian internet.</p>
-<button id="latencyButton">Test Connection</button>
-<div class="result" id="latencyResult"></div>
+
+<h4>
+Raid Eligibility Scanner
+</h4>
+
+<p>
+Determine whether your character meets AU TSM's rigorous and frequently changing standards.
+</p>
+
+<button id="eligibilityButton">
+Analyse Character
+</button>
+
+<div
+    class="result"
+    id="eligibilityResult"
+></div>
+
 </div>
 
-<div class="tool">
-<h4>Loot Council Priority</h4>
-<p>Proprietary governance technology calculates your likelihood of receiving the next contested epic.</p>
-<button id="lootButton">Calculate Priority</button>
-<div class="result" id="lootResult"></div>
-</div>
 
 <div class="tool">
-<h4>Parse Improvement Engine</h4>
-<p>Advanced analytics provide personalised advice developed using decades of questionable expertise.</p>
-<button id="parseButton">Improve My Parse</button>
-<div class="result" id="parseResult"></div>
+
+<h4>
+Oceanic Latency Diagnostic
+</h4>
+
+<p>
+Determine whether poor performance is your fault or can legally be blamed on Australian internet.
+</p>
+
+<button id="latencyButton">
+Test Connection
+</button>
+
+<div
+    class="result"
+    id="latencyResult"
+></div>
+
 </div>
+
+
+<div class="tool">
+
+<h4>
+Loot Council Priority
+</h4>
+
+<p>
+Proprietary governance technology calculates your likelihood of receiving the next contested epic.
+</p>
+
+<button id="lootButton">
+Calculate Priority
+</button>
+
+<div
+    class="result"
+    id="lootResult"
+></div>
+
+</div>
+
+
+<div class="tool">
+
+<h4>
+Parse Improvement Engine
+</h4>
+
+<p>
+Advanced analytics provide personalised advice developed using decades of questionable expertise.
+</p>
+
+<button id="parseButton">
+Improve My Parse
+</button>
+
+<div
+    class="result"
+    id="parseResult"
+></div>
+
+</div>
+
 
 </div>
 
@@ -2015,34 +3744,72 @@ Luffa has entered the operationally impaired phase of the evening.
 <section id="announcements">
 
 <div class="section-title">
-<h3>Officer Announcements</h3>
-<p>Please read before asking the exact question answered below</p>
+
+<h3>
+Officer Announcements
+</h3>
+
+<p>
+Please read before asking the exact question answered below
+</p>
+
 </div>
 
+
 <div class="announcement">
-<strong>Guild Leadership:</strong>
+
+<strong>
+Guild Leadership:
+</strong>
+
 Phinky would like to remind everyone that Guild Master decisions are final unless Chris disagrees confidently enough.
+
 </div>
 
+
 <div class="announcement">
-<strong>Luffa:</strong>
+
+<strong>
+Luffa:
+</strong>
+
 Raid leadership recommends completing all technically difficult mechanics before Luffa reaches beverage number four.
+
 </div>
 
+
 <div class="announcement">
-<strong>Roks:</strong>
+
+<strong>
+Roks:
+</strong>
+
 Following several incidents, Roks is no longer permitted to say "trust me" immediately before a pull.
+
 </div>
 
+
 <div class="announcement">
-<strong>Fayne:</strong>
+
+<strong>
+Fayne:
+</strong>
+
 Fayne is generally a good player. Unfortunately, mechanics occurring during Bladestorm are considered outside his jurisdiction.
+
 </div>
 
+
 <div class="announcement">
-<strong>Guild Bank:</strong>
+
+<strong>
+Guild Bank:
+</strong>
+
 Please stop depositing grey items, broken teeth, six-slot bags and anything Stiff says "might be useful later."
+
 </div>
+
 
 </section>
 
@@ -2050,9 +3817,16 @@ Please stop depositing grey items, broken teeth, six-slot bags and anything Stif
 </main>
 
 
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
 
-<strong>AU TSM</strong>
+<strong>
+AU TSM
+</strong>
+
 • HORDE • OCEANIC • WORLD OF WARCRAFT FOREVER
 
 <br><br>
@@ -2084,8 +3858,15 @@ or any incident involving Roks.
 <div class="game-header">
 
 <div>
-<h3>AU TSM Raid Readiness Assessment</h3>
-<p>ONYXIA • NORMALISH DIFFICULTY</p>
+
+<h3>
+AU TSM Raid Readiness Assessment
+</h3>
+
+<p>
+ONYXIA • NORMALISH DIFFICULTY
+</p>
+
 </div>
 
 <button id="closeRaidGame">
@@ -2097,19 +3878,26 @@ or any incident involving Roks.
 
 <div class="game-hud">
 
+
 <div>
+
 PLAYER:
+
 <span id="gameHealth">
 ❤ ❤ ❤ ❤ ❤
 </span>
+
 </div>
+
 
 <div class="boss-hud">
 
 ONYXIA
 
 <div class="boss-health-bar">
+
 <div id="bossHealthFill"></div>
+
 </div>
 
 <span id="bossHealthText">
@@ -2118,10 +3906,17 @@ ONYXIA
 
 </div>
 
+
 <div>
+
 FIGHT:
-<span id="fightTimer">0.0</span>s
+
+<span id="fightTimer">
+0.0
+</span>s
+
 </div>
+
 
 </div>
 
@@ -2140,20 +3935,28 @@ FIGHT:
 
 
 <div id="raidActionPrompt">
+
 <button id="raidActionButton">
 USE ITEM
 </button>
+
 </div>
 
 
 <div id="gamePlayer">
 
 <div class="player-hair"></div>
+
 <div class="player-head"></div>
+
 <div class="player-shoulder shoulder-left"></div>
+
 <div class="player-shoulder shoulder-right"></div>
+
 <div class="player-body"></div>
+
 <div class="player-leg leg-left"></div>
+
 <div class="player-leg leg-right"></div>
 
 </div>
@@ -2162,12 +3965,17 @@ USE ITEM
 <div id="onyxia">
 
 <div class="dragon-wing dragon-wing-left"></div>
+
 <div class="dragon-wing dragon-wing-right"></div>
+
 <div class="dragon-body"></div>
+
 <div class="dragon-neck"></div>
 
 <div class="dragon-head">
+
 <div class="dragon-eye"></div>
+
 </div>
 
 <div class="dragon-tail"></div>
@@ -2180,38 +3988,60 @@ USE ITEM
 
 <div id="gameMessage">
 
+
 <h2>
 ONYXIA
 </h2>
 
+
 <p>
 
-Onyxia has <strong>220 HP</strong>.
+Onyxia has
+<strong>220 HP</strong>.
 
 <br><br>
 
-<strong>PHASE 1 — 100% to 70%</strong>
+<strong>
+PHASE 1 — 100% to 70%
+</strong>
+
 <br>
+
 Ground fire only.
+
 <br>
+
 Jump over it.
 
 <br><br>
 
-<strong>PHASE 2 — 70% to 40%</strong>
+
+<strong>
+PHASE 2 — 70% to 40%
+</strong>
+
 <br>
+
 Ground fire plus fire breath.
+
 <br>
+
 Jump fire, stay low for breath.
 
 <br><br>
 
-<strong>PHASE 3 — below 40%</strong>
+
+<strong>
+PHASE 3 — below 40%
+</strong>
+
 <br>
+
 Same mechanics as Phase 2,
 but approximately twice as fast.
 
 <br><br>
+
 
 Your Lightning Bolt deals
 <strong>5 damage</strong>
@@ -2224,6 +4054,7 @@ Critical strikes deal
 <strong>10 damage</strong>.
 
 <br><br>
+
 
 You have
 <strong>5 hearts</strong>.
@@ -2240,71 +4071,157 @@ Kill Onyxia before AU TSM kills itself.
 
 </p>
 
+
 <button id="startRaidGame">
 PULL BOSS
 </button>
 
-</div>
-
 
 </div>
 
+
+</div>
+
+
+<!-- DPS METER -->
 
 <div class="dps-meter">
+
 
 <div class="dps-title">
 DAMAGE
 </div>
 
-<div class="dps-row">
-<div class="dps-name">
-<span>Chris</span>
-<span id="dpsChris">0</span>
-</div>
-<div class="dps-bar">
-<div class="dps-fill" id="barChris"></div>
-</div>
-</div>
 
 <div class="dps-row">
+
 <div class="dps-name">
-<span>You</span>
-<span id="dpsPlayer">0</span>
-</div>
-<div class="dps-bar">
-<div class="dps-fill" id="barPlayer"></div>
-</div>
+
+<span>
+Chris
+</span>
+
+<span id="dpsChris">
+0
+</span>
+
 </div>
 
-<div class="dps-row">
-<div class="dps-name">
-<span>Fayne</span>
-<span id="dpsFayne">0</span>
-</div>
 <div class="dps-bar">
-<div class="dps-fill" id="barFayne"></div>
-</div>
+
+<div
+    class="dps-fill"
+    id="barChris"
+></div>
+
 </div>
 
-<div class="dps-row">
-<div class="dps-name">
-<span>Sev</span>
-<span id="dpsSev">0</span>
-</div>
-<div class="dps-bar">
-<div class="dps-fill" id="barSev"></div>
-</div>
 </div>
 
+
 <div class="dps-row">
+
 <div class="dps-name">
-<span>Roks</span>
-<span id="dpsRoks">0</span>
+
+<span>
+You
+</span>
+
+<span id="dpsPlayer">
+0
+</span>
+
 </div>
+
 <div class="dps-bar">
-<div class="dps-fill" id="barRoks"></div>
+
+<div
+    class="dps-fill"
+    id="barPlayer"
+></div>
+
 </div>
+
 </div>
+
+
+<div class="dps-row">
+
+<div class="dps-name">
+
+<span>
+Fayne
+</span>
+
+<span id="dpsFayne">
+0
+</span>
+
+</div>
+
+<div class="dps-bar">
+
+<div
+    class="dps-fill"
+    id="barFayne"
+></div>
+
+</div>
+
+</div>
+
+
+<div class="dps-row">
+
+<div class="dps-name">
+
+<span>
+Sev
+</span>
+
+<span id="dpsSev">
+0
+</span>
+
+</div>
+
+<div class="dps-bar">
+
+<div
+    class="dps-fill"
+    id="barSev"
+></div>
+
+</div>
+
+</div>
+
+
+<div class="dps-row">
+
+<div class="dps-name">
+
+<span>
+Roks
+</span>
+
+<span id="dpsRoks">
+0
+</span>
+
+</div>
+
+<div class="dps-bar">
+
+<div
+    class="dps-fill"
+    id="barRoks"
+></div>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -2315,8 +4232,13 @@ DAMAGE
 <div class="game-controls">
 
 <div>
-<strong>JUMP:</strong>
+
+<strong>
+JUMP:
+</strong>
+
 SPACEBAR • ↑ • CLICK / TAP
+
 </div>
 
 <span id="combatStatus">
@@ -2352,7 +4274,10 @@ function randomItem(array) {
 }
 
 
-function randomNumber(minimum, maximum) {
+function randomNumber(
+    minimum,
+    maximum
+) {
 
     return Math.floor(
         Math.random() *
@@ -2372,7 +4297,10 @@ function randomNumber(minimum, maximum) {
 ========================================================= */
 
 const toast =
-    document.getElementById("toast");
+    document.getElementById(
+        "toast"
+    );
+
 
 let toastTimeout =
     null;
@@ -2383,16 +4311,21 @@ function showToast(text) {
     toast.textContent =
         text;
 
+
     toast.style.display =
         "block";
 
-    if (toastTimeout) {
+
+    if (
+        toastTimeout
+    ) {
 
         clearTimeout(
             toastTimeout
         );
 
     }
+
 
     toastTimeout =
         setTimeout(function() {
@@ -2410,28 +4343,44 @@ function showToast(text) {
 ========================================================= */
 
 const backgroundMusic =
-    document.getElementById("backgroundMusic");
+    document.getElementById(
+        "backgroundMusic"
+    );
 
 const readyCheckSound =
-    document.getElementById("readyCheckSound");
+    document.getElementById(
+        "readyCheckSound"
+    );
 
 const verySlowlySound =
-    document.getElementById("verySlowlySound");
+    document.getElementById(
+        "verySlowlySound"
+    );
 
 const wtfSound =
-    document.getElementById("wtfSound");
+    document.getElementById(
+        "wtfSound"
+    );
 
 const moreDotsSound =
-    document.getElementById("moreDotsSound");
+    document.getElementById(
+        "moreDotsSound"
+    );
 
 const gratzSound =
-    document.getElementById("gratzSound");
+    document.getElementById(
+        "gratzSound"
+    );
 
 const levelUpSound =
-    document.getElementById("levelUpSound");
+    document.getElementById(
+        "levelUpSound"
+    );
 
 const musicButton =
-    document.getElementById("musicButton");
+    document.getElementById(
+        "musicButton"
+    );
 
 
 const NORMAL_MUSIC_VOLUME =
@@ -2475,6 +4424,7 @@ let musicPlaying =
 const soundQueue =
     [];
 
+
 let foregroundSoundPlaying =
     false;
 
@@ -2485,7 +4435,9 @@ function queueSound(
 ) {
 
     if (!audio) {
+
         return;
+
     }
 
 
@@ -2585,10 +4537,12 @@ async function processSoundQueue() {
             foregroundSoundPlaying =
                 false;
 
+
             setTimeout(
                 processSoundQueue,
                 SOUND_GAP
             );
+
 
             return;
 
@@ -2600,6 +4554,7 @@ async function processSoundQueue() {
 
                 foregroundSoundPlaying =
                     false;
+
 
                 setTimeout(
                     processSoundQueue,
@@ -2642,8 +4597,10 @@ musicButton.onclick =
 
                 await backgroundMusic.play();
 
+
                 musicPlaying =
                     true;
+
 
                 backgroundMusic.volume =
                     foregroundSoundPlaying
@@ -2652,8 +4609,10 @@ musicButton.onclick =
                     :
                     NORMAL_MUSIC_VOLUME;
 
+
                 musicButton.textContent =
                     "♫ MUSIC: ON";
+
 
                 musicButton.classList.add(
                     "music-on"
@@ -2675,11 +4634,14 @@ musicButton.onclick =
 
             backgroundMusic.pause();
 
+
             musicPlaying =
                 false;
 
+
             musicButton.textContent =
                 "♫ MUSIC: OFF";
+
 
             musicButton.classList.remove(
                 "music-on"
@@ -2756,19 +4718,33 @@ const leadershipStatuses = [
 function updateLiveStatus() {
 
     document
-        .getElementById("latestDeath")
+        .getElementById(
+            "latestDeath"
+        )
         .textContent =
-        randomItem(deathReports);
+        randomItem(
+            deathReports
+        );
+
 
     document
-        .getElementById("blameTarget")
+        .getElementById(
+            "blameTarget"
+        )
         .textContent =
-        randomItem(blameTargets);
+        randomItem(
+            blameTargets
+        );
+
 
     document
-        .getElementById("leadershipStatus")
+        .getElementById(
+            "leadershipStatus"
+        )
         .textContent =
-        randomItem(leadershipStatuses);
+        randomItem(
+            leadershipStatuses
+        );
 
 }
 
@@ -2812,15 +4788,437 @@ setInterval(function() {
         (
             fayneIndex +
             1
-        ) %
+        )
+        %
         fayneStatuses.length;
 
+
     document
-        .getElementById("fayneStatus")
+        .getElementById(
+            "fayneStatus"
+        )
         .textContent =
-        fayneStatuses[fayneIndex];
+        fayneStatuses[
+            fayneIndex
+        ];
 
 },2500);
+
+
+/* =========================================================
+   CLASS WHEEL
+========================================================= */
+
+const classWheel =
+    document.getElementById(
+        "classWheel"
+    );
+
+const spinWheelButton =
+    document.getElementById(
+        "spinWheelButton"
+    );
+
+const leverMachine =
+    document.getElementById(
+        "leverMachine"
+    );
+
+const wheelPointer =
+    document.getElementById(
+        "wheelPointer"
+    );
+
+const wheelResultClass =
+    document.getElementById(
+        "wheelResultClass"
+    );
+
+const wheelResultMessage =
+    document.getElementById(
+        "wheelResultMessage"
+    );
+
+
+const wheelClasses = [
+
+    {
+        name:
+            "Warrior",
+
+        colour:
+            "#C79C6E"
+    },
+
+    {
+        name:
+            "Paladin",
+
+        colour:
+            "#F58CBA"
+    },
+
+    {
+        name:
+            "Hunter",
+
+        colour:
+            "#ABD473"
+    },
+
+    {
+        name:
+            "Rogue",
+
+        colour:
+            "#FFF569"
+    },
+
+    {
+        name:
+            "Priest",
+
+        colour:
+            "#FFFFFF"
+    },
+
+    {
+        name:
+            "Shaman",
+
+        colour:
+            "#0070DE"
+    },
+
+    {
+        name:
+            "Mage",
+
+        colour:
+            "#69CCF0"
+    },
+
+    {
+        name:
+            "Warlock",
+
+        colour:
+            "#9482C9"
+    },
+
+    {
+        name:
+            "Druid",
+
+        colour:
+            "#FF7D0A"
+    }
+
+];
+
+
+const wheelMessages = [
+
+    "The wheel has spoken. Any reroll before level 20 will be investigated.",
+
+    "Congratulations. Your carefully planned class choice has been outsourced to JavaScript.",
+
+    "Locked in. Chris has already begun explaining why his class is better.",
+
+    "The decision is final unless Phinky changes the rules.",
+
+    "Character planning complete. Time to spend six hours choosing a name.",
+
+    "AU TSM recruitment analytics confirm this was probably a mistake.",
+
+    "Your fate is sealed. Please update the spreadsheet.",
+
+    "Excellent. Now immediately begin researching your second character.",
+
+    "Roks recommends ignoring this result and rolling something completely different."
+
+];
+
+
+let wheelSpinning =
+    false;
+
+
+let wheelRotation =
+    0;
+
+
+let wheelTickerTimer =
+    null;
+
+
+/* =========================================================
+   WHEEL POINTER TICK EFFECT
+========================================================= */
+
+function tickWheelPointer() {
+
+    wheelPointer.classList.remove(
+        "ticking"
+    );
+
+
+    void wheelPointer.offsetWidth;
+
+
+    wheelPointer.classList.add(
+        "ticking"
+    );
+
+}
+
+
+/* =========================================================
+   SPIN WHEEL
+========================================================= */
+
+spinWheelButton.onclick =
+    function() {
+
+
+        if (
+            wheelSpinning
+        ) {
+
+            return;
+
+        }
+
+
+        wheelSpinning =
+            true;
+
+
+        spinWheelButton.disabled =
+            true;
+
+
+        spinWheelButton.textContent =
+            "SPINNING";
+
+
+        leverMachine.classList.add(
+            "pulled"
+        );
+
+
+        wheelResultClass.textContent =
+            "...";
+
+
+        wheelResultClass.style.color =
+            "#d7a94b";
+
+
+        wheelResultMessage.textContent =
+            "Calculating the class you will abandon at level 17...";
+
+
+        /*
+        Randomly choose one of the nine class segments.
+        */
+
+        const winnerIndex =
+            randomNumber(
+                0,
+                wheelClasses.length -
+                1
+            );
+
+
+        const segmentSize =
+            360 /
+            wheelClasses.length;
+
+
+        /*
+        Segment zero is centred under the pointer
+        when wheel rotation = 0 degrees.
+
+        To place another segment beneath the fixed
+        pointer we rotate the wheel backwards by
+        that segment's angle.
+        */
+
+        const targetPosition =
+            (
+                360 -
+                (
+                    winnerIndex *
+                    segmentSize
+                )
+            )
+            %
+            360;
+
+
+        const currentNormal =
+            (
+                (
+                    wheelRotation %
+                    360
+                )
+                +
+                360
+            )
+            %
+            360;
+
+
+        const extraDistance =
+            (
+                targetPosition -
+                currentNormal +
+                360
+            )
+            %
+            360;
+
+
+        const fullTurns =
+            randomNumber(
+                6,
+                9
+            );
+
+
+        wheelRotation +=
+            (
+                fullTurns *
+                360
+            )
+            +
+            extraDistance;
+
+
+        /*
+        Start pointer ticking rapidly,
+        then gradually slow the ticker.
+        */
+
+        let tickDelay =
+            90;
+
+
+        function scheduleTick() {
+
+            if (
+                !wheelSpinning
+            ) {
+
+                return;
+
+            }
+
+
+            tickWheelPointer();
+
+
+            tickDelay +=
+                10;
+
+
+            wheelTickerTimer =
+                setTimeout(
+                    scheduleTick,
+                    Math.min(
+                        tickDelay,
+                        380
+                    )
+                );
+
+        }
+
+
+        scheduleTick();
+
+
+        /*
+        Start wheel rotation.
+        */
+
+        classWheel.style.transform =
+            "rotate(" +
+            wheelRotation +
+            "deg)";
+
+
+        /*
+        Lever springs back shortly after pull.
+        */
+
+        setTimeout(function() {
+
+            leverMachine.classList.remove(
+                "pulled"
+            );
+
+        },500);
+
+
+        /*
+        Wheel transition is 6.2 seconds.
+        Reveal result just afterwards.
+        */
+
+        setTimeout(function() {
+
+
+            wheelSpinning =
+                false;
+
+
+            if (
+                wheelTickerTimer
+            ) {
+
+                clearTimeout(
+                    wheelTickerTimer
+                );
+
+            }
+
+
+            tickWheelPointer();
+
+
+            spinWheelButton.disabled =
+                false;
+
+
+            spinWheelButton.textContent =
+                "PULL";
+
+
+            const winner =
+                wheelClasses[
+                    winnerIndex
+                ];
+
+
+            wheelResultClass.textContent =
+                winner.name;
+
+
+            wheelResultClass.style.color =
+                winner.colour;
+
+
+            wheelResultMessage.textContent =
+                randomItem(
+                    wheelMessages
+                );
+
+
+        },6350);
+
+
+    };
 
 
 /* =========================================================
@@ -2828,13 +5226,17 @@ setInterval(function() {
 ========================================================= */
 
 document
-    .getElementById("joinButton")
+    .getElementById(
+        "joinButton"
+    )
     .onclick =
     function() {
+
 
         queueSound(
             levelUpSound
         );
+
 
         const applicationSteps = [
 
@@ -2852,17 +5254,24 @@ document
 
         ];
 
+
         let step =
             0;
 
+
         showToast(
-            applicationSteps[step]
+            applicationSteps[
+                step
+            ]
         );
+
 
         const timer =
             setInterval(function() {
 
+
                 step++;
+
 
                 if (
                     step >=
@@ -2873,15 +5282,21 @@ document
                         timer
                     );
 
+
                     return;
 
                 }
 
+
                 showToast(
-                    applicationSteps[step]
+                    applicationSteps[
+                        step
+                    ]
                 );
 
+
             },1000);
+
 
     };
 
@@ -2895,12 +5310,14 @@ const readyButton =
         "readyButton"
     );
 
+
 let readyCooldown =
     false;
 
 
 readyButton.onclick =
     function() {
+
 
         if (
             readyCooldown
@@ -2910,22 +5327,28 @@ readyButton.onclick =
 
         }
 
+
         readyCooldown =
             true;
 
+
         readyButton.disabled =
             true;
+
 
         queueSound(
             readyCheckSound
         );
 
+
         showToast(
             "Initiating enterprise-grade ready check..."
         );
 
+
         let remaining =
             5;
+
 
         readyButton.textContent =
             "Cooldown: 5s";
@@ -2934,37 +5357,49 @@ readyButton.onclick =
         const timer =
             setInterval(function() {
 
+
                 remaining--;
 
+
                 if (
-                    remaining > 0
+                    remaining >
+                    0
                 ) {
+
 
                     readyButton.textContent =
                         "Cooldown: " +
                         remaining +
                         "s";
 
+
                 }
 
                 else {
+
 
                     clearInterval(
                         timer
                     );
 
+
                     readyCooldown =
                         false;
+
 
                     readyButton.disabled =
                         false;
 
+
                     readyButton.textContent =
                         "Initiate Ready Check";
 
+
                 }
 
+
             },1000);
+
 
     };
 
@@ -2974,12 +5409,16 @@ readyButton.onclick =
 ========================================================= */
 
 document
-.getElementById("eligibilityButton")
+.getElementById(
+    "eligibilityButton"
+)
 .onclick =
 function() {
 
     document
-    .getElementById("eligibilityResult")
+    .getElementById(
+        "eligibilityResult"
+    )
     .textContent =
         randomItem([
 
@@ -2997,7 +5436,9 @@ function() {
 
 
 document
-.getElementById("latencyButton")
+.getElementById(
+    "latencyButton"
+)
 .onclick =
 function() {
 
@@ -3007,8 +5448,11 @@ function() {
             170
         );
 
+
     document
-    .getElementById("latencyResult")
+    .getElementById(
+        "latencyResult"
+    )
     .textContent =
         ping +
         " ms — enough evidence to blame Australian internet.";
@@ -3017,12 +5461,16 @@ function() {
 
 
 document
-.getElementById("lootButton")
+.getElementById(
+    "lootButton"
+)
 .onclick =
 function() {
 
     document
-    .getElementById("lootResult")
+    .getElementById(
+        "lootResult"
+    )
     .textContent =
         randomItem([
 
@@ -3040,12 +5488,16 @@ function() {
 
 
 document
-.getElementById("parseButton")
+.getElementById(
+    "parseButton"
+)
 .onclick =
 function() {
 
     document
-    .getElementById("parseResult")
+    .getElementById(
+        "parseResult"
+    )
     .textContent =
         randomItem([
 
@@ -3228,15 +5680,20 @@ let actionTimeout =
 let raidDamage =
 {
 
-    Chris: 0,
+    Chris:
+        0,
 
-    Player: 0,
+    Player:
+        0,
 
-    Fayne: 0,
+    Fayne:
+        0,
 
-    Sev: 0,
+    Sev:
+        0,
 
-    Roks: 0
+    Roks:
+        0
 
 };
 
@@ -3246,32 +5703,44 @@ let raidDamage =
 ========================================================= */
 
 document
-.getElementById("raidGameButton")
+.getElementById(
+    "raidGameButton"
+)
 .onclick =
 function() {
+
 
     overlay.style.display =
         "flex";
 
+
     overlay.scrollTop =
         0;
 
+
     resetGame();
+
 
 };
 
 
 document
-.getElementById("closeRaidGame")
+.getElementById(
+    "closeRaidGame"
+)
 .onclick =
 function() {
 
+
     stopGame();
+
 
     clearObjects();
 
+
     overlay.style.display =
         "none";
+
 
 };
 
@@ -3282,76 +5751,103 @@ function() {
 
 function resetGame() {
 
+
     stopGame();
+
 
     clearObjects();
 
+
     clearCombatFeeds();
+
 
     health =
         PLAYER_MAX_HEALTH;
 
+
     bossHealth =
         BOSS_MAX_HP;
+
 
     fightTime =
         0;
 
+
     playerY =
         0;
+
 
     velocityY =
         0;
 
+
     currentPhase =
         1;
+
 
     moreDotsTriggered =
         false;
 
+
     reviveUsed =
         false;
+
 
     dpsPausedUntil =
         0;
 
+
     damagePenaltyUntil =
         0;
+
 
     raidDamage =
     {
 
-        Chris: 0,
+        Chris:
+            0,
 
-        Player: 0,
+        Player:
+            0,
 
-        Fayne: 0,
+        Fayne:
+            0,
 
-        Sev: 0,
+        Sev:
+            0,
 
-        Roks: 0
+        Roks:
+            0
 
     };
 
 
     updateHealthDisplay();
 
+
     updateBoss();
+
 
     updateDpsMeter();
 
+
     updateCombatStatus();
+
 
     fightTimerDisplay.textContent =
         "0.0";
 
+
     player.style.bottom =
         "55px";
 
+
     hideActionPrompt();
+
 
     message.style.display =
         "flex";
+
 
     message.scrollTop =
         0;
@@ -3370,24 +5866,40 @@ function resetGame() {
 
         <br><br>
 
-        <strong>PHASE 1 — 100% to 70%</strong>
+        <strong>
+        PHASE 1 — 100% to 70%
+        </strong>
+
         <br>
+
         Ground fire only.
+
         <br>
+
         Jump over it.
 
         <br><br>
 
-        <strong>PHASE 2 — 70% to 40%</strong>
+        <strong>
+        PHASE 2 — 70% to 40%
+        </strong>
+
         <br>
+
         Ground fire plus fire breath.
+
         <br>
+
         Jump fire, stay low for breath.
 
         <br><br>
 
-        <strong>PHASE 3 — below 40%</strong>
+        <strong>
+        PHASE 3 — below 40%
+        </strong>
+
         <br>
+
         Same mechanics as Phase 2,
         but approximately twice as fast.
 
@@ -3399,7 +5911,9 @@ function resetGame() {
         <br>
 
         You have a
-        <strong>25% chance to critically strike for 10 damage</strong>.
+        <strong>
+        25% chance to critically strike for 10 damage
+        </strong>.
 
         <br><br>
 
@@ -3416,9 +5930,12 @@ function resetGame() {
 
 
     document
-    .getElementById("startAgain")
+    .getElementById(
+        "startAgain"
+    )
     .onclick =
         startGame;
+
 
 }
 
@@ -3429,41 +5946,55 @@ function resetGame() {
 
 function startGame() {
 
+
     stopGame();
+
 
     clearObjects();
 
+
     clearCombatFeeds();
+
 
     health =
         PLAYER_MAX_HEALTH;
 
+
     bossHealth =
         BOSS_MAX_HP;
+
 
     fightTime =
         0;
 
+
     playerY =
         0;
+
 
     velocityY =
         0;
 
+
     currentPhase =
         1;
+
 
     moreDotsTriggered =
         false;
 
+
     reviveUsed =
         false;
+
 
     mechanicTimer =
         2.5;
 
+
     attackTimer =
         2.6;
+
 
     guildEventTimer =
         randomNumber(
@@ -3471,49 +6002,66 @@ function startGame() {
             9
         );
 
+
     dpsTickTimer =
         1;
+
 
     dpsPausedUntil =
         0;
 
+
     damagePenaltyUntil =
         0;
+
 
     raidDamage =
     {
 
-        Chris: 0,
+        Chris:
+            0,
 
-        Player: 0,
+        Player:
+            0,
 
-        Fayne: 0,
+        Fayne:
+            0,
 
-        Sev: 0,
+        Sev:
+            0,
 
-        Roks: 0
+        Roks:
+            0
 
     };
 
 
     updateHealthDisplay();
 
+
     updateBoss();
+
 
     updateDpsMeter();
 
+
     updateCombatStatus();
+
 
     fightTimerDisplay.textContent =
         "0.0";
 
+
     player.style.bottom =
         "55px";
 
+
     hideActionPrompt();
+
 
     message.style.display =
         "none";
+
 
     gameRunning =
         true;
@@ -3544,6 +6092,7 @@ function startGame() {
             gameLoop
         );
 
+
 }
 
 
@@ -3552,6 +6101,7 @@ function startGame() {
 ========================================================= */
 
 function jump() {
+
 
     if (
         !gameRunning
@@ -3567,10 +6117,13 @@ function jump() {
         1
     ) {
 
+
         velocityY =
             570;
 
+
     }
+
 
 }
 
@@ -3579,17 +6132,28 @@ document.addEventListener(
     "keydown",
     function(event) {
 
+
         if (
-            event.code === "Space"
+
+            event.code ===
+            "Space"
+
             ||
-            event.code === "ArrowUp"
+
+            event.code ===
+            "ArrowUp"
+
         ) {
+
 
             event.preventDefault();
 
+
             jump();
 
+
         }
+
 
     }
 );
@@ -3598,6 +6162,7 @@ document.addEventListener(
 gameArea.addEventListener(
     "pointerdown",
     function(event) {
+
 
         if (
             event.target.closest(
@@ -3609,7 +6174,9 @@ gameArea.addEventListener(
 
         }
 
+
         jump();
+
 
     }
 );
@@ -3620,6 +6187,7 @@ gameArea.addEventListener(
 ========================================================= */
 
 function gameLoop(time) {
+
 
     if (
         !gameRunning
@@ -3635,7 +6203,8 @@ function gameLoop(time) {
             (
                 time -
                 lastFrame
-            ) /
+            )
+            /
             1000,
             .05
         );
@@ -3655,96 +6224,130 @@ function gameLoop(time) {
         );
 
 
+    /* PLAYER PHYSICS */
+
     velocityY -=
         1500 *
         delta;
+
 
     playerY +=
         velocityY *
         delta;
 
+
     if (
-        playerY < 0
+        playerY <
+        0
     ) {
+
 
         playerY =
             0;
 
+
         velocityY =
             0;
 
+
     }
+
 
     player.style.bottom =
         (
             55 +
             playerY
-        ) +
+        )
+        +
         "px";
 
 
+    /* MECHANICS */
+
     mechanicTimer -=
         delta;
+
 
     if (
         mechanicTimer <=
         0
     ) {
 
+
         spawnMechanic();
+
 
         mechanicTimer =
             getMechanicInterval();
 
+
     }
 
 
+    /* PLAYER ATTACK */
+
     attackTimer -=
         delta;
+
 
     if (
         attackTimer <=
         0
     ) {
 
+
         playerAttack();
+
 
         attackTimer =
             2.55 +
             Math.random() *
             .35;
 
+
     }
 
 
+    /* GUILD EVENT */
+
     guildEventTimer -=
         delta;
+
 
     if (
         guildEventTimer <=
         0
     ) {
 
+
         triggerGuildEvent();
+
 
         guildEventTimer =
             getGuildEventInterval();
 
+
     }
 
 
+    /* DPS */
+
     dpsTickTimer -=
         delta;
+
 
     if (
         dpsTickTimer <=
         0
     ) {
 
+
         simulateRaidDamage();
+
 
         dpsTickTimer =
             1;
+
 
     }
 
@@ -3752,6 +6355,7 @@ function gameLoop(time) {
     updateMechanics(
         delta
     );
+
 
     updateBolts(
         delta
@@ -3763,18 +6367,16 @@ function gameLoop(time) {
             gameLoop
         );
 
+
 }
 
 
 /* =========================================================
    PHASES
-
-   Phase 1 = 100% -> 70%
-   Phase 2 = 70% -> 40%
-   Phase 3 = 40% -> 0%
 ========================================================= */
 
 function updatePhase() {
+
 
     let newPhase =
         1;
@@ -3786,8 +6388,10 @@ function updatePhase() {
         0.70
     ) {
 
+
         newPhase =
             2;
+
 
     }
 
@@ -3798,8 +6402,10 @@ function updatePhase() {
         0.40
     ) {
 
+
         newPhase =
             3;
+
 
     }
 
@@ -3809,7 +6415,9 @@ function updatePhase() {
         currentPhase
     ) {
 
+
         return;
+
 
     }
 
@@ -3826,14 +6434,17 @@ function updatePhase() {
         2
     ) {
 
+
         showRaidWarning(
             "PHASE 2 — DEEP BREATHS INCOMING"
         );
+
 
         addLeftEvent(
             "Phase 2: Onyxia remembered she can breathe fire.",
             "buff"
         );
+
 
     }
 
@@ -3843,38 +6454,44 @@ function updatePhase() {
         3
     ) {
 
+
         showRaidWarning(
             "PHASE 3 — PHINKY HAS BEGUN SHOUTING"
         );
+
 
         addLeftEvent(
             "Phase 3: Same mechanics. Twice the panic.",
             "warning-event"
         );
 
+
     }
+
 
 }
 
 
 /* =========================================================
    MECHANIC INTERVALS
-
-   Phase 3 is roughly twice as fast as Phase 2.
 ========================================================= */
 
 function getMechanicInterval() {
+
 
     if (
         currentPhase ===
         1
     ) {
 
+
         return randomNumber(
             24,
             32
-        ) /
+        )
+        /
         10;
+
 
     }
 
@@ -3884,42 +6501,51 @@ function getMechanicInterval() {
         2
     ) {
 
+
         return randomNumber(
             20,
             26
-        ) /
+        )
+        /
         10;
+
 
     }
 
 
+    /*
+    Roughly double Phase 2 frequency.
+    */
+
     return randomNumber(
         10,
         13
-    ) /
+    )
+    /
     10;
+
 
 }
 
 
 /* =========================================================
    MECHANIC SPEED
-
-   Phase 3 only increases movement speed slightly.
-   The main difficulty increase is spawn frequency.
 ========================================================= */
 
 function getMechanicSpeed() {
+
 
     if (
         currentPhase ===
         1
     ) {
 
+
         return randomNumber(
             285,
             320
         );
+
 
     }
 
@@ -3929,18 +6555,26 @@ function getMechanicSpeed() {
         2
     ) {
 
+
         return randomNumber(
             295,
             335
         );
 
+
     }
 
+
+    /*
+    Phase 3 only slightly faster movement.
+    Spawn frequency provides most difficulty.
+    */
 
     return randomNumber(
         310,
         350
     );
+
 
 }
 
@@ -3951,26 +6585,33 @@ function getMechanicSpeed() {
 
 function getGuildEventInterval() {
 
+
     if (
-        currentPhase === 1
+        currentPhase ===
+        1
     ) {
+
 
         return randomNumber(
             7,
             10
         );
 
+
     }
 
 
     if (
-        currentPhase === 2
+        currentPhase ===
+        2
     ) {
+
 
         return randomNumber(
             6,
             9
         );
+
 
     }
 
@@ -3980,24 +6621,16 @@ function getGuildEventInterval() {
         8
     );
 
+
 }
 
 
 /* =========================================================
    SPAWN MECHANIC
-
-   Phase 1:
-   - ground fire only
-
-   Phase 2:
-   - ground fire
-   - fire breath
-
-   Phase 3:
-   - same as Phase 2
 ========================================================= */
 
 function spawnMechanic() {
+
 
     const element =
         document.createElement(
@@ -4005,17 +6638,31 @@ function spawnMechanic() {
         );
 
 
+    /*
+    PHASE 1:
+    Ground fire only.
+    */
+
     if (
         currentPhase ===
         1
     ) {
 
+
         element.className =
             "game-fire";
 
+
     }
 
+
+    /*
+    PHASE 2 + 3:
+    Fire or breath.
+    */
+
     else {
+
 
         const groundFire =
             Math.random() <
@@ -4026,12 +6673,15 @@ function spawnMechanic() {
             groundFire
         ) {
 
+
             element.className =
                 "game-fire";
+
 
         }
 
         else {
+
 
             element.className =
                 "game-breath";
@@ -4045,7 +6695,9 @@ function spawnMechanic() {
                 "DEEP BREATH — STAY LOW"
             );
 
+
         }
+
 
     }
 
@@ -4082,6 +6734,7 @@ function spawnMechanic() {
 
     });
 
+
 }
 
 
@@ -4091,20 +6744,25 @@ function spawnMechanic() {
 
 function spawnReverseFire() {
 
+
     const element =
         document.createElement(
             "div"
         );
 
+
     element.className =
         "game-fire";
+
 
     element.style.left =
         "-20px";
 
+
     gameArea.appendChild(
         element
     );
+
 
     mechanics.push(
     {
@@ -4123,6 +6781,7 @@ function spawnReverseFire() {
 
     });
 
+
 }
 
 
@@ -4132,21 +6791,29 @@ function spawnReverseFire() {
 
 function updateMechanics(delta) {
 
+
     const playerRect =
         player.getBoundingClientRect();
 
 
     for (
-        let i =
-            mechanics.length - 1;
 
-        i >= 0;
+        let i =
+            mechanics.length -
+            1;
+
+        i >=
+        0;
 
         i--
+
     ) {
 
+
         const mechanic =
-            mechanics[i];
+            mechanics[
+                i
+            ];
 
 
         mechanic.x +=
@@ -4172,38 +6839,53 @@ function updateMechanics(delta) {
             )
         ) {
 
+
             mechanic.element.remove();
+
 
             mechanics.splice(
                 i,
                 1
             );
 
+
             damagePlayer();
 
+
             continue;
+
 
         }
 
 
         if (
-            mechanic.x < -180
+
+            mechanic.x <
+            -180
+
             ||
+
             mechanic.x >
             gameArea.clientWidth +
             180
+
         ) {
 
+
             mechanic.element.remove();
+
 
             mechanics.splice(
                 i,
                 1
             );
 
+
         }
 
+
     }
+
 
 }
 
@@ -4213,6 +6895,7 @@ function updateMechanics(delta) {
 ========================================================= */
 
 function playerAttack() {
+
 
     if (
         !gameRunning
@@ -4228,12 +6911,15 @@ function playerAttack() {
         dpsPausedUntil
     ) {
 
+
         addLeftEvent(
             "Phinky called STOP DPS. You were apparently the only person listening.",
             "warning-event"
         );
 
+
         return;
+
 
     }
 
@@ -4256,6 +6942,7 @@ function playerAttack() {
         damagePenaltyUntil
     ) {
 
+
         damage =
             Math.max(
                 3,
@@ -4264,6 +6951,7 @@ function playerAttack() {
                     .7
                 )
             );
+
 
     }
 
@@ -4283,6 +6971,7 @@ function playerAttack() {
         crit
     );
 
+
 }
 
 
@@ -4291,6 +6980,7 @@ function playerAttack() {
 ========================================================= */
 
 function castLightningVisual(crit) {
+
 
     const bolt =
         document.createElement(
@@ -4306,9 +6996,11 @@ function castLightningVisual(crit) {
         crit
     ) {
 
+
         bolt.classList.add(
             "crit-bolt"
         );
+
 
     }
 
@@ -4322,7 +7014,8 @@ function castLightningVisual(crit) {
             55 +
             playerY +
             38
-        ) +
+        )
+        +
         "px";
 
 
@@ -4349,6 +7042,7 @@ function castLightningVisual(crit) {
 
     });
 
+
 }
 
 
@@ -4358,22 +7052,30 @@ function castLightningVisual(crit) {
 
 function updateBolts(delta) {
 
+
     const target =
         gameArea.clientWidth -
         180;
 
 
     for (
-        let i =
-            bolts.length - 1;
 
-        i >= 0;
+        let i =
+            bolts.length -
+            1;
+
+        i >=
+        0;
 
         i--
+
     ) {
 
+
         const bolt =
-            bolts[i];
+            bolts[
+                i
+            ];
 
 
         bolt.x +=
@@ -4391,16 +7093,21 @@ function updateBolts(delta) {
             target
         ) {
 
+
             bolt.element.remove();
+
 
             bolts.splice(
                 i,
                 1
             );
 
+
         }
 
+
     }
+
 
 }
 
@@ -4413,6 +7120,7 @@ function damageBoss(
     amount,
     crit = false
 ) {
+
 
     if (
         !gameRunning
@@ -4432,13 +7140,16 @@ function damageBoss(
         0
     ) {
 
+
         bossHealth =
             0;
+
 
     }
 
 
     updateBoss();
+
 
     updatePhase();
 
@@ -4450,23 +7161,31 @@ function damageBoss(
 
 
     if (
+
         bossHealth <=
         BOSS_MAX_HP /
         2
+
         &&
+
         !moreDotsTriggered
+
     ) {
+
 
         moreDotsTriggered =
             true;
+
 
         queueSound(
             moreDotsSound
         );
 
+
         showRaidWarning(
             "MORE DOTS"
         );
+
 
     }
 
@@ -4476,9 +7195,12 @@ function damageBoss(
         0
     ) {
 
+
         victory();
 
+
     }
+
 
 }
 
@@ -4491,6 +7213,7 @@ function addDamageEvent(
     amount,
     crit
 ) {
+
 
     const element =
         document.createElement(
@@ -4526,24 +7249,31 @@ function addDamageEvent(
         5
     ) {
 
+
         rightDamageFeed.removeChild(
             rightDamageFeed.lastChild
         );
+
 
     }
 
 
     setTimeout(function() {
 
+
         if (
             element.parentNode
         ) {
 
+
             element.remove();
+
 
         }
 
+
     },1300);
+
 
 }
 
@@ -4554,11 +7284,13 @@ function addDamageEvent(
 
 function updateBoss() {
 
+
     const percent =
         (
             bossHealth /
             BOSS_MAX_HP
-        ) *
+        )
+        *
         100;
 
 
@@ -4570,9 +7302,12 @@ function updateBoss() {
     bossText.textContent =
         Math.ceil(
             bossHealth
-        ) +
-        " / " +
+        )
+        +
+        " / "
+        +
         BOSS_MAX_HP;
+
 
 }
 
@@ -4585,6 +7320,7 @@ function addLeftEvent(
     text,
     type = ""
 ) {
+
 
     const element =
         document.createElement(
@@ -4600,9 +7336,11 @@ function addLeftEvent(
         type
     ) {
 
+
         element.classList.add(
             type
         );
+
 
     }
 
@@ -4621,24 +7359,31 @@ function addLeftEvent(
         5
     ) {
 
+
         leftCombatFeed.removeChild(
             leftCombatFeed.lastChild
         );
+
 
     }
 
 
     setTimeout(function() {
 
+
         if (
             element.parentNode
         ) {
 
+
             element.remove();
+
 
         }
 
+
     },5000);
+
 
 }
 
@@ -4648,6 +7393,7 @@ function addLeftEvent(
 ========================================================= */
 
 function triggerGuildEvent() {
+
 
     if (
         !gameRunning
@@ -4670,185 +7416,228 @@ function triggerGuildEvent() {
 
         case 1:
 
+
             addLeftEvent(
                 "Chris uses cooldowns. Of course he does.",
                 "buff"
             );
 
+
             raidDamage.Chris +=
                 950;
+
 
             damageBoss(
                 3,
                 false
             );
+
 
             break;
 
 
         case 2:
 
+
             addLeftEvent(
                 "Fayne activates Bladestorm. Mechanic responsibilities suspended.",
                 "buff"
             );
 
+
             raidDamage.Fayne +=
                 900;
+
 
             damageBoss(
                 3,
                 false
             );
 
+
             break;
 
 
         case 3:
+
 
             addLeftEvent(
                 "Roks stood in fire and died. Raid performance unchanged.",
                 "warning-event"
             );
 
+
             raidDamage.Roks +=
                 80;
+
 
             break;
 
 
         case 4:
 
+
             addLeftEvent(
                 "Luffa opens another beer. Accuracy reduced.",
                 "warning-event"
             );
 
+
             damagePenaltyUntil =
                 performance.now() +
                 4500;
+
 
             break;
 
 
         case 5:
 
+
             showRaidWarning(
                 "KP PULLS THREAT"
             );
 
+
             spawnMechanic();
+
 
             break;
 
 
         case 6:
 
+
             addLeftEvent(
                 "Aimless runs the wrong direction.",
                 "warning-event"
             );
 
+
             spawnReverseFire();
+
 
             break;
 
 
         case 7:
 
+
             addLeftEvent(
                 "Stiff goes AFK. No measurable performance change."
             );
+
 
             break;
 
 
         case 8:
 
+
             showRaidWarning(
                 "PHINKY: STOP DPS"
             );
 
+
             dpsPausedUntil =
                 performance.now() +
                 1800;
+
 
             break;
 
 
         case 9:
 
+
             addLeftEvent(
                 "Penny tells Chris to calm down. Effect estimated at 0.4 seconds."
             );
+
 
             break;
 
 
         case 10:
 
+
             addLeftEvent(
                 "Zomgs disconnected exactly when accountability became relevant.",
                 "warning-event"
             );
+
 
             break;
 
 
         case 11:
 
+
             healPlayer(
                 "Marsmallow"
             );
+
 
             break;
 
 
         case 12:
 
+
             healPlayer(
                 "Sev"
             );
+
 
             break;
 
 
         case 13:
 
+
             healPlayer(
                 "Jaydo"
             );
+
 
             break;
 
 
         case 14:
 
+
             spawnRaidAction(
                 "healthstone"
             );
+
 
             break;
 
 
         case 15:
 
+
             spawnRaidAction(
                 "bloodlust"
             );
+
 
             break;
 
 
         case 16:
 
+
             addLeftEvent(
                 "Rulzy disputes the strategy. No action taken pending arbitration."
             );
 
+
             break;
 
+
     }
+
 
 }
 
@@ -4859,19 +7648,27 @@ function triggerGuildEvent() {
 
 function healPlayer(name) {
 
+
     if (
+
         health >=
         PLAYER_MAX_HEALTH
+
         ||
+
         !gameRunning
+
     ) {
+
 
         addLeftEvent(
             name +
             " attempted a heal, but you were already full health."
         );
 
+
         return;
+
 
     }
 
@@ -4907,29 +7704,39 @@ function healPlayer(name) {
 
 
     addLeftEvent(
-        messages[name]
+        messages[
+            name
+        ]
         ||
         name +
         " heals you. +1 ❤"
     );
 
+
 }
 
 
 /* =========================================================
-   RANDOM HEAL CHANCE AFTER HIT
+   RANDOM HEAL
 ========================================================= */
 
 function maybeRandomHeal() {
 
+
     if (
+
         health >=
         PLAYER_MAX_HEALTH
+
         ||
+
         !gameRunning
+
     ) {
 
+
         return;
+
 
     }
 
@@ -4943,8 +7750,10 @@ function maybeRandomHeal() {
         3
     ) {
 
+
         chance =
             .23;
+
 
     }
 
@@ -4954,33 +7763,46 @@ function maybeRandomHeal() {
         chance
     ) {
 
+
         healPlayer(
             randomItem([
+
                 "Jaydo",
+
                 "Sev",
+
                 "Chris",
+
                 "Penny",
+
                 "Marsmallow",
+
                 "KP"
+
             ])
         );
 
+
     }
+
 
 }
 
 
 /* =========================================================
-   CONSUMABLES / BLOODLUST
+   CONSUMABLES
 ========================================================= */
 
 function spawnRaidAction(type) {
+
 
     if (
         currentAction
     ) {
 
+
         return;
+
 
     }
 
@@ -4998,13 +7820,16 @@ function spawnRaidAction(type) {
         "healthstone"
     ) {
 
+
         raidActionButton.textContent =
             "🧪 USE HEALTHSTONE";
+
 
         addLeftEvent(
             "Healthstone available!",
             "buff"
         );
+
 
     }
 
@@ -5014,13 +7839,16 @@ function spawnRaidAction(type) {
         "bloodlust"
     ) {
 
+
         raidActionButton.textContent =
             "⚡ BLOODLUST";
+
 
         addLeftEvent(
             "Bloodlust available!",
             "buff"
         );
+
 
     }
 
@@ -5028,15 +7856,18 @@ function spawnRaidAction(type) {
     actionTimeout =
         setTimeout(function() {
 
+
             if (
                 currentAction ===
                 "healthstone"
             ) {
 
+
                 addLeftEvent(
                     "Healthstone expired. Warlock has noted this.",
                     "warning-event"
                 );
+
 
             }
 
@@ -5046,17 +7877,21 @@ function spawnRaidAction(type) {
                 "bloodlust"
             ) {
 
+
                 addLeftEvent(
                     "Bloodlust opportunity missed. Officer review pending.",
                     "warning-event"
                 );
+
 
             }
 
 
             hideActionPrompt();
 
+
         },3800);
+
 
 }
 
@@ -5068,6 +7903,7 @@ function spawnRaidAction(type) {
 raidActionButton.onclick =
     function(event) {
 
+
         event.stopPropagation();
 
 
@@ -5075,7 +7911,9 @@ raidActionButton.onclick =
             !currentAction
         ) {
 
+
             return;
+
 
         }
 
@@ -5085,30 +7923,38 @@ raidActionButton.onclick =
             "healthstone"
         ) {
 
+
             if (
                 health <
                 PLAYER_MAX_HEALTH
             ) {
 
+
                 health++;
 
+
                 updateHealthDisplay();
+
 
                 addLeftEvent(
                     "Healthstone used. Warlock takes full credit. +1 ❤",
                     "buff"
                 );
 
+
             }
 
             else {
+
 
                 addLeftEvent(
                     "Healthstone used at full HP. Peak AU TSM efficiency.",
                     "warning-event"
                 );
 
+
             }
+
 
         }
 
@@ -5118,9 +7964,11 @@ raidActionButton.onclick =
             "bloodlust"
         ) {
 
+
             showRaidWarning(
                 "BLOODLUST"
             );
+
 
             addLeftEvent(
                 "Bloodlust activated. Button pressing intensified.",
@@ -5135,15 +7983,19 @@ raidActionButton.onclick =
             const burstTimer =
                 setInterval(function() {
 
+
                     if (
                         !gameRunning
                     ) {
+
 
                         clearInterval(
                             burstTimer
                         );
 
+
                         return;
+
 
                     }
 
@@ -5185,26 +8037,33 @@ raidActionButton.onclick =
                         3
                     ) {
 
+
                         clearInterval(
                             burstTimer
                         );
 
+
                     }
 
+
                 },500);
+
 
         }
 
 
         hideActionPrompt();
 
+
     };
 
 
 function hideActionPrompt() {
 
+
     currentAction =
         null;
+
 
     raidActionPrompt.style.display =
         "none";
@@ -5214,14 +8073,18 @@ function hideActionPrompt() {
         actionTimeout
     ) {
 
+
         clearTimeout(
             actionTimeout
         );
 
+
         actionTimeout =
             null;
 
+
     }
+
 
 }
 
@@ -5232,11 +8095,13 @@ function hideActionPrompt() {
 
 function simulateRaidDamage() {
 
+
     raidDamage.Chris +=
         randomNumber(
             330,
             390
         );
+
 
     raidDamage.Fayne +=
         randomNumber(
@@ -5244,11 +8109,13 @@ function simulateRaidDamage() {
             365
         );
 
+
     raidDamage.Sev +=
         randomNumber(
             245,
             320
         );
+
 
     raidDamage.Roks +=
         randomNumber(
@@ -5256,7 +8123,9 @@ function simulateRaidDamage() {
             55
         );
 
+
     updateDpsMeter();
+
 
 }
 
@@ -5266,6 +8135,7 @@ function simulateRaidDamage() {
 ========================================================= */
 
 function updateDpsMeter() {
+
 
     const values =
     [
@@ -5293,15 +8163,35 @@ function updateDpsMeter() {
     const entries =
     [
 
-        ["Chris","dpsChris","barChris"],
+        [
+            "Chris",
+            "dpsChris",
+            "barChris"
+        ],
 
-        ["Player","dpsPlayer","barPlayer"],
+        [
+            "Player",
+            "dpsPlayer",
+            "barPlayer"
+        ],
 
-        ["Fayne","dpsFayne","barFayne"],
+        [
+            "Fayne",
+            "dpsFayne",
+            "barFayne"
+        ],
 
-        ["Sev","dpsSev","barSev"],
+        [
+            "Sev",
+            "dpsSev",
+            "barSev"
+        ],
 
-        ["Roks","dpsRoks","barRoks"]
+        [
+            "Roks",
+            "dpsRoks",
+            "barRoks"
+        ]
 
     ];
 
@@ -5309,15 +8199,20 @@ function updateDpsMeter() {
     entries.forEach(
         function(entry) {
 
+
             const value =
                 raidDamage[
-                    entry[0]
+                    entry[
+                        0
+                    ]
                 ];
 
 
             document
             .getElementById(
-                entry[1]
+                entry[
+                    1
+                ]
             )
             .textContent =
                 Math.round(
@@ -5327,18 +8222,23 @@ function updateDpsMeter() {
 
             document
             .getElementById(
-                entry[2]
+                entry[
+                    2
+                ]
             )
             .style.width =
                 (
                     value /
                     maximum *
                     100
-                ) +
+                )
+                +
                 "%";
+
 
         }
     );
+
 
 }
 
@@ -5349,21 +8249,30 @@ function updateDpsMeter() {
 
 function damagePlayer() {
 
+
     if (
         !gameRunning
     ) {
 
+
         return;
+
 
     }
 
+
+    /*
+    Don't let WTF sounds pile up.
+    */
 
     const wtfAlreadyQueued =
         soundQueue.some(
             function(item) {
 
+
                 return item.audio ===
                     wtfSound;
+
 
             }
         );
@@ -5376,15 +8285,25 @@ function damagePlayer() {
 
 
     if (
+
         !wtfAlreadyQueued
+
         &&
+
         !wtfCurrentlyPlaying
+
     ) {
+
+
+        /*
+        Expires after 2 seconds.
+        */
 
         queueSound(
             wtfSound,
             2000
         );
+
 
     }
 
@@ -5409,9 +8328,12 @@ function damagePlayer() {
         0
     ) {
 
+
         attemptRevive();
 
+
     }
+
 
 }
 
@@ -5422,11 +8344,13 @@ function damagePlayer() {
 
 function updateHealthDisplay() {
 
+
     let hearts =
         "";
 
 
     for (
+
         let i =
             0;
 
@@ -5434,7 +8358,9 @@ function updateHealthDisplay() {
         PLAYER_MAX_HEALTH;
 
         i++
+
     ) {
+
 
         hearts +=
             i <
@@ -5443,6 +8369,7 @@ function updateHealthDisplay() {
             "❤ "
             :
             "♡ ";
+
 
     }
 
@@ -5453,6 +8380,7 @@ function updateHealthDisplay() {
 
     updateCombatStatus();
 
+
 }
 
 
@@ -5462,17 +8390,25 @@ function updateHealthDisplay() {
 
 function updateCombatStatus() {
 
+
     combatStatus.textContent =
-        "PHASE " +
-        currentPhase +
-        " • " +
+        "PHASE "
+        +
+        currentPhase
+        +
+        " • "
+        +
         Math.max(
             health,
             0
-        ) +
-        "/" +
-        PLAYER_MAX_HEALTH +
+        )
+        +
+        "/"
+        +
+        PLAYER_MAX_HEALTH
+        +
         " HP";
+
 
 }
 
@@ -5483,13 +8419,17 @@ function updateCombatStatus() {
 
 function attemptRevive() {
 
+
     if (
         reviveUsed
     ) {
 
+
         wipe();
 
+
         return;
+
 
     }
 
@@ -5503,24 +8443,31 @@ function attemptRevive() {
         .10
     ) {
 
+
         reviveUsed =
             true;
+
 
         health =
             1;
 
+
         updateHealthDisplay();
+
 
         showRaidWarning(
             "ANKH AVAILABLE"
         );
+
 
         addLeftEvent(
             "Phinky remembered he is a Shaman. You return with 1 ❤",
             "buff"
         );
 
+
         return;
+
 
     }
 
@@ -5530,29 +8477,37 @@ function attemptRevive() {
         .18
     ) {
 
+
         reviveUsed =
             true;
+
 
         health =
             1;
 
+
         updateHealthDisplay();
+
 
         showRaidWarning(
             "SOULSTONE"
         );
+
 
         addLeftEvent(
             "A Warlock accidentally prepared correctly. You return with 1 ❤",
             "buff"
         );
 
+
         return;
+
 
     }
 
 
     wipe();
+
 
 }
 
@@ -5563,12 +8518,16 @@ function attemptRevive() {
 
 function wipe() {
 
+
     stopGame();
+
 
     hideActionPrompt();
 
+
     message.style.display =
         "flex";
+
 
     message.scrollTop =
         0;
@@ -5605,6 +8564,7 @@ function wipe() {
         <br><br>
 
         Fight duration:
+
         <strong>
         ${fightTime.toFixed(1)} seconds
         </strong>
@@ -5621,9 +8581,12 @@ function wipe() {
 
 
     document
-    .getElementById("retry")
+    .getElementById(
+        "retry"
+    )
     .onclick =
         startGame;
+
 
 }
 
@@ -5634,21 +8597,27 @@ function wipe() {
 
 function victory() {
 
+
     if (
         !gameRunning
     ) {
 
+
         return;
+
 
     }
 
 
     stopGame();
 
+
     hideActionPrompt();
+
 
     bossHealth =
         0;
+
 
     updateBoss();
 
@@ -5666,6 +8635,7 @@ function victory() {
     message.style.display =
         "flex";
 
+
     message.scrollTop =
         0;
 
@@ -5675,17 +8645,23 @@ function victory() {
     <div class="loot-window">
 
         <div class="loot-title">
+
         🏆 ONYXIA DEFEATED
+
         </div>
 
         <div class="loot-subtitle">
+
         RAID READINESS ASSESSMENT PASSED
+
         </div>
 
         <div class="victory-congratulations">
 
             <strong>
+
             Good job Chris!
+
             </strong>
 
             And thanks to everyone else who participated.
@@ -5693,20 +8669,26 @@ function victory() {
             <br><br>
 
             Kill time:
+
             <strong style="
                 display:inline;
                 font-size:13px;
             ">
-                ${fightTime.toFixed(1)} seconds
+
+            ${fightTime.toFixed(1)} seconds
+
             </strong>
 
         </div>
 
         <div class="loot-subtitle">
+
         MASTER LOOT ACTIVE
+
         </div>
 
         <div class="loot-list">
+
 
             <div class="loot-item">
 
@@ -5715,13 +8697,19 @@ function victory() {
                 </div>
 
                 <div>
+
                     <div class="loot-name">
+
                     Dragonfire Greatblade
+
                     </div>
 
                     <div class="loot-type">
+
                     Epic Two-Handed Sword
+
                     </div>
+
                 </div>
 
             </div>
@@ -5734,13 +8722,19 @@ function victory() {
                 </div>
 
                 <div>
+
                     <div class="loot-name">
+
                     Band of the Spreadsheet
+
                     </div>
 
                     <div class="loot-type">
+
                     Epic Ring
+
                     </div>
+
                 </div>
 
             </div>
@@ -5753,13 +8747,19 @@ function victory() {
                 </div>
 
                 <div>
+
                     <div class="loot-name">
+
                     Fayne's Bladestorm Management Tool
+
                     </div>
 
                     <div class="loot-type">
+
                     Epic Axe
+
                     </div>
+
                 </div>
 
             </div>
@@ -5772,16 +8772,23 @@ function victory() {
                 </div>
 
                 <div>
+
                     <div class="loot-name">
+
                     Roks' Fire Resistance Trinket
+
                     </div>
 
                     <div class="loot-type">
+
                     Epic Trinket • Still Insufficient
+
                     </div>
+
                 </div>
 
             </div>
+
 
         </div>
 
@@ -5789,11 +8796,15 @@ function victory() {
         <div class="loot-reserved">
 
             <div class="loot-reserved-title">
+
             LOOT COUNCIL DECISION
+
             </div>
 
             <div class="loot-reserved-main">
+
             ALL ITEMS RESERVED BY PHINKY
+
             </div>
 
             <div class="loot-reserved-note">
@@ -5815,8 +8826,11 @@ function victory() {
 
 
         <button id="resetInstance">
+
         RESET INSTANCE
+
         </button>
+
 
     </div>
 
@@ -5824,9 +8838,12 @@ function victory() {
 
 
     document
-    .getElementById("resetInstance")
+    .getElementById(
+        "resetInstance"
+    )
     .onclick =
         startGame;
+
 
 }
 
@@ -5837,18 +8854,23 @@ function victory() {
 
 function showRaidWarning(text) {
 
+
     raidWarning.textContent =
         text;
+
 
     raidWarning.classList.remove(
         "show"
     );
 
+
     void raidWarning.offsetWidth;
+
 
     raidWarning.classList.add(
         "show"
     );
+
 
 }
 
@@ -5857,10 +8879,15 @@ function showRaidWarning(text) {
    COLLISION
 ========================================================= */
 
-function overlap(a,b) {
+function overlap(
+    a,
+    b
+) {
+
 
     const pad =
         7;
+
 
     return !(
 
@@ -5892,6 +8919,7 @@ function overlap(a,b) {
 
     );
 
+
 }
 
 
@@ -5901,41 +8929,52 @@ function overlap(a,b) {
 
 function stopGame() {
 
+
     gameRunning =
         false;
+
 
     if (
         animation
     ) {
 
+
         cancelAnimationFrame(
             animation
         );
 
+
         animation =
             null;
 
+
     }
+
 
 }
 
 
 /* =========================================================
-   CLEAR
+   CLEAR GAME OBJECTS
 ========================================================= */
 
 function clearObjects() {
 
+
     mechanics.forEach(
         function(object) {
+
 
             if (
                 object.element
             ) {
 
+
                 object.element.remove();
 
+
             }
+
 
         }
     );
@@ -5944,13 +8983,17 @@ function clearObjects() {
     bolts.forEach(
         function(object) {
 
+
             if (
                 object.element
             ) {
 
+
                 object.element.remove();
 
+
             }
+
 
         }
     );
@@ -5959,19 +9002,24 @@ function clearObjects() {
     mechanics =
         [];
 
+
     bolts =
         [];
+
 
 }
 
 
 function clearCombatFeeds() {
 
+
     leftCombatFeed.innerHTML =
         "";
 
+
     rightDamageFeed.innerHTML =
         "";
+
 
 }
 
@@ -5984,7 +9032,9 @@ document.addEventListener(
     "keydown",
     function(event) {
 
+
         if (
+
             event.code ===
             "Escape"
 
@@ -5992,29 +9042,38 @@ document.addEventListener(
 
             overlay.style.display ===
             "flex"
+
         ) {
+
 
             stopGame();
 
+
             clearObjects();
 
+
             hideActionPrompt();
+
 
             overlay.style.display =
                 "none";
 
+
         }
+
 
     }
 );
 
 
 /* =========================================================
-   START BUTTON
+   INITIAL RAID BUTTON
 ========================================================= */
 
 document
-.getElementById("startRaidGame")
+.getElementById(
+    "startRaidGame"
+)
 .onclick =
     startGame;
 
