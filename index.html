@@ -12,6 +12,7 @@
 
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="creator-overrides.css">
+<link rel="stylesheet" href="site-layout-v3.css">
 
 </head>
 
@@ -68,23 +69,8 @@
 <div class="header-right">
 
 <nav>
-
-<a href="#class-wheel-section">
-Roll
-</a>
-
-<a href="#stats">
-Statistics
-</a>
-
-<a href="roster.html">
-Official Roster
-</a>
-
-<a href="#tools">
-Guild Tools
-</a>
-
+<a href="index.html" class="active-nav">Home</a>
+<a href="admin.html">Guild Tools</a>
 </nav>
 
 <button id="musicButton">
@@ -576,8 +562,11 @@ BODY TYPE
 
 </aside>
 
-</div>
 
+
+<!-- RIGHT: CHARACTER PROGRESSION / RAID READY -->
+<aside class="progression-rail">
+<div class="progression-rail-heading">CHARACTER PROGRESSION</div>
 <div class="wheel-result-row">
 <div class="wheel-result">
 <div class="wheel-result-label">FOREVER CHARACTER RECORD</div>
@@ -623,9 +612,32 @@ Failure may result in automatic classification as Roks
 </div>
 
 </div>
+</aside>
+</div>
+
+
 
 </section>
 
+
+<!-- =========================================================
+     OFFICIAL FOREVER RAID ROSTER
+========================================================= -->
+<section id="official-roster-home" class="home-roster-section">
+<div class="section-title">
+<h3>Official Forever Raid Roster</h3>
+<p>Only characters personally approved by His True Holiness, the Great GM Phinkydo.</p>
+</div>
+
+<div class="roster-summary">
+<div class="roster-stat"><strong id="rosterTotal">0</strong><span>RAIDERS</span></div>
+<div class="roster-stat"><strong id="rosterTanks">0</strong><span>🛡 TANKS</span></div>
+<div class="roster-stat"><strong id="rosterDps">0</strong><span>⚔ DPS</span></div>
+<div class="roster-stat"><strong id="rosterHealers">0</strong><span>✚ HEALERS</span></div>
+</div>
+<div id="rosterStatus" class="roster-empty">Loading the official guild paperwork…</div>
+<div id="rosterContent"></div>
+</section>
 
 <!-- =========================================================
      GUILD STATISTICS
@@ -1396,6 +1408,7 @@ PHASE 1 • 5/5 HP
 <script src="js/jokes.js"></script>
 <script src="js/raid.js"></script>
 <script src="js/app.js"></script>
+<script src="js/roster.js"></script>
 
 
 </body>

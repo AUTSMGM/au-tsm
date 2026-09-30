@@ -6,23 +6,28 @@
 <title>AU TSM • Guild Management</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="site-layout-v3.css">
 </head>
 <body>
 <header>
 <div class="header-inner">
 <div class="logo"><h1>AU TSM</h1><p>GUILD MANAGEMENT</p></div>
 <div class="header-right"><nav>
-<a href="index.html">Character Creator</a>
-<a href="roster.html">Official Roster</a>
+<a href="index.html">Home</a>
+<a href="admin.html" class="active-nav">Guild Tools</a>
 </nav></div>
 </div>
 </header>
 <main class="page-shell">
-<div class="page-title"><h2>Guild Management</h2><p>Authorised middle management only.</p></div>
+<div class="page-title guild-tools-title">
+<h2>Guild Tools</h2>
+<p>This sanctified administrative chamber is reserved for <strong>His True Holiness, the Great GM Phinkydo</strong>, Supreme Keeper of the Spreadsheet, Lord of Loot Council and Final Arbiter of Questionable Applications.</p>
+</div>
 
 <section id="adminLogin" class="admin-login">
 <div class="admin-login-card">
-<h3>Phinky Authentication</h3>
+<h3>✦ PHINKYDO AUTHENTICATION ✦</h3>
+<p class="admin-holy-copy">Mortal visitors may observe the door. Only the anointed Guild Master may pass beyond it.</p>
 <label>Email</label><input id="adminEmail" type="email" autocomplete="username">
 <label>Password</label><input id="adminPassword" type="password" autocomplete="current-password">
 <button id="adminLoginButton" class="admin-button">LOGIN</button>

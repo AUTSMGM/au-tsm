@@ -1,0 +1,239 @@
+/* =========================================================
+   AU TSM HOME / CREATOR / ROSTER LAYOUT V3
+   Loaded last so this is the canonical page composition.
+========================================================= */
+
+/* Header: deliberately simple. */
+.header-right nav { display:flex; align-items:center; gap:6px; }
+.header-right nav a {
+    padding:8px 11px;
+    border:1px solid transparent;
+    color:#948a7e;
+    text-decoration:none;
+    font-size:9px;
+    letter-spacing:.4px;
+}
+.header-right nav a:hover,
+.header-right nav a.active-nav {
+    color:#e2b85c;
+    border-color:#4d3b28;
+    background:#15110d;
+}
+
+/* The main creator now has four logical columns:
+   history | bad-luck/identity | creator/wheel | progression.
+   Manual creation spans the two central columns. */
+.wheel-section {
+    width:min(1780px,calc(100vw - 34px)) !important;
+    max-width:none !important;
+}
+.creator-mode-selector { width:min(1180px,100%) !important; }
+.wheel-dashboard {
+    display:grid !important;
+    grid-template-columns:300px 255px minmax(560px,1fr) 335px !important;
+    gap:14px !important;
+    align-items:stretch !important;
+}
+
+/* Move shared activity to the left. */
+.wheel-dashboard > .roll-history {
+    grid-column:1 !important;
+    grid-row:1 !important;
+    height:620px !important;
+    max-height:620px !important;
+    min-height:620px !important;
+}
+
+/* Manual face fills the SAME centre footprint as wheel mode. */
+.manual-creator-panel {
+    grid-column:2 / 4 !important;
+    grid-row:1 !important;
+    height:620px !important;
+    min-height:620px !important;
+    max-height:620px !important;
+}
+body[data-creator-mode="wheel"] #wheelBadLuckPanel {
+    grid-column:2 !important;
+    grid-row:1 !important;
+}
+body[data-creator-mode="wheel"] #wheelCentrePanel {
+    grid-column:3 !important;
+    grid-row:1 !important;
+}
+
+/* Character record, Raid Ready and application remain visible beside creation. */
+.progression-rail {
+    grid-column:4;
+    grid-row:1;
+    height:620px;
+    min-height:620px;
+    max-height:620px;
+    box-sizing:border-box;
+    padding:12px;
+    overflow-y:auto;
+    border:1px solid #44382b;
+    background:linear-gradient(180deg,#11100e,#0c0b09);
+    scrollbar-width:thin;
+    scrollbar-color:#674c2f #100d0a;
+}
+.progression-rail-heading {
+    margin-bottom:10px;
+    padding-bottom:8px;
+    border-bottom:1px solid #30271f;
+    color:#8d7a5c;
+    font-size:7px;
+    font-weight:800;
+    letter-spacing:1.8px;
+    text-align:center;
+}
+.progression-rail .wheel-result-row {
+    display:block !important;
+    margin:0 0 12px !important;
+}
+.progression-rail .wheel-result-row .wheel-result {
+    width:100% !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:13px 10px !important;
+    box-sizing:border-box;
+    border-color:#3e342a;
+}
+.progression-rail #wheelResultName { font-size:12px !important; }
+.progression-rail #wheelResultClass { font-size:22px !important; }
+.progression-rail #characterSaveStatus,
+.progression-rail #wheelResultMessage { font-size:8px !important; line-height:1.35; }
+
+.progression-rail .raid-ready-callout {
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:11px !important;
+    box-sizing:border-box;
+    border:1px solid #4b3a28 !important;
+    background:#0d0b09 !important;
+}
+.progression-rail .raid-ready-label {
+    padding:5px 8px !important;
+    margin:0 auto 8px !important;
+    font-size:7px !important;
+    letter-spacing:1.3px !important;
+}
+.progression-rail .raid-ready-callout > p {
+    margin:0 0 8px !important;
+    padding:0 !important;
+    background:transparent !important;
+    color:#8f867a !important;
+    font-size:8px !important;
+    line-height:1.4 !important;
+}
+.progression-rail #raidGameButton {
+    padding:13px 8px !important;
+}
+.progression-rail .raid-button-main { font-size:14px !important; letter-spacing:1px !important; }
+.progression-rail .raid-ready-subtitle { font-size:7px !important; letter-spacing:1.8px !important; }
+.progression-rail .raid-ready-warning { font-size:6.5px !important; }
+.progression-rail .raid-application-panel {
+    width:100% !important;
+    max-width:none !important;
+    margin:10px 0 0 !important;
+    padding:10px !important;
+    box-sizing:border-box;
+}
+.progression-rail .application-status-title { font-size:12px !important; }
+.progression-rail .raid-application-panel p { font-size:8px !important; }
+.progression-rail #raidApplicationForm { grid-template-columns:1fr !important; gap:6px !important; }
+.progression-rail #raidApplicationForm input,
+.progression-rail #raidApplicationForm button { width:100%; box-sizing:border-box; }
+
+/* Fix the wheel clipping: padding is included inside the stated diameter. */
+#wheelCentrePanel,
+#wheelCentrePanel .wheel-machine { overflow:visible !important; }
+#wheelCentrePanel .wheel-machine {
+    grid-template-columns:minmax(0,1fr) 112px !important;
+    gap:8px !important;
+    padding:15px 11px !important;
+}
+#wheelCentrePanel .wheel-stage {
+    width:min(440px,calc(100% - 8px)) !important;
+    max-width:440px !important;
+}
+#wheelCentrePanel .wheel-frame,
+#wheelCentrePanel #classWheel {
+    box-sizing:border-box !important;
+}
+#wheelCentrePanel .wheel-frame { padding:12px !important; }
+#wheelCentrePanel .wheel-pointer {
+    top:-15px !important;
+    border-left-width:14px !important;
+    border-right-width:14px !important;
+    border-top-width:34px !important;
+}
+#wheelCentrePanel .wheel-controls { transform:scale(.88); transform-origin:center; }
+
+/* Keep both creator faces visually aligned. */
+body[data-creator-mode="wheel"] #wheelBadLuckPanel,
+body[data-creator-mode="wheel"] #wheelCentrePanel,
+.manual-creator-panel { border-color:#44382b !important; }
+
+/* Official roster now belongs directly beneath character creation. */
+.home-roster-section {
+    width:min(1380px,calc(100vw - 36px));
+    margin:46px auto 56px;
+    padding-top:8px;
+}
+.home-roster-section .section-title { margin-bottom:18px; }
+.home-roster-section .roster-summary { max-width:920px; margin:0 auto 18px; }
+.home-roster-section .roster-role-section { box-shadow:0 14px 28px rgba(0,0,0,.12); }
+
+/* Guild Tools shrine. */
+.guild-tools-title { max-width:780px; margin-left:auto; margin-right:auto; }
+.guild-tools-title strong { color:#e1b64e; }
+.admin-holy-copy {
+    margin:0 0 18px;
+    padding:10px;
+    border:1px solid #33291f;
+    background:#0b0a08;
+    color:#83796d;
+    font-size:10px;
+    line-height:1.5;
+    text-align:center;
+}
+
+@media (max-width:1550px) {
+    .wheel-dashboard {
+        grid-template-columns:270px 230px minmax(500px,1fr) 300px !important;
+        gap:10px !important;
+    }
+    #wheelCentrePanel .wheel-stage { width:min(405px,calc(100% - 6px)) !important; }
+    .progression-rail { padding:9px; }
+}
+
+@media (max-width:1260px) {
+    .wheel-dashboard {
+        grid-template-columns:250px minmax(0,1fr) 300px !important;
+    }
+    .wheel-dashboard > .roll-history { grid-column:1 !important; }
+    .manual-creator-panel { grid-column:2 !important; }
+    body[data-creator-mode="wheel"] #wheelBadLuckPanel { grid-column:1 !important; }
+    body[data-creator-mode="wheel"] #wheelCentrePanel { grid-column:2 !important; }
+    .progression-rail { grid-column:3 !important; }
+    body[data-creator-mode="manual"] .wheel-dashboard > .roll-history { display:none !important; }
+}
+
+@media (max-width:980px) {
+    .wheel-dashboard { grid-template-columns:1fr !important; }
+    .wheel-dashboard > .roll-history,
+    .manual-creator-panel,
+    body[data-creator-mode="wheel"] #wheelBadLuckPanel,
+    body[data-creator-mode="wheel"] #wheelCentrePanel,
+    .progression-rail {
+        grid-column:1 !important;
+        grid-row:auto !important;
+        width:100% !important;
+        height:auto !important;
+        min-height:0 !important;
+        max-height:none !important;
+    }
+    body[data-creator-mode="manual"] .wheel-dashboard > .roll-history { display:flex !important; height:420px !important; }
+    .progression-rail { overflow:visible; }
+}
