@@ -1,0 +1,145 @@
+/* =========================================================
+   AU TSM SHARED HEADER
+   Loaded last on every page so Home / Guild Tools / legacy roster
+   use the same banner geometry and controls.
+========================================================= */
+
+header {
+    position:sticky !important;
+    top:0 !important;
+    z-index:1000 !important;
+    width:100% !important;
+    background:rgba(7,7,7,.97) !important;
+    border-bottom:1px solid #654a29 !important;
+    backdrop-filter:blur(8px);
+}
+
+.header-inner {
+    width:min(1180px,calc(100vw - 40px)) !important;
+    max-width:1180px !important;
+    min-height:108px !important;
+    margin:0 auto !important;
+    padding:16px 0 !important;
+    box-sizing:border-box !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:28px !important;
+}
+
+.brand-home-link {
+    display:block !important;
+    flex:0 0 auto !important;
+    color:inherit !important;
+    text-decoration:none !important;
+}
+
+.brand-lockup {
+    display:flex !important;
+    align-items:center !important;
+    gap:12px !important;
+}
+
+.forever-header-logo {
+    width:76px !important;
+    height:64px !important;
+    object-fit:contain !important;
+    flex:0 0 76px !important;
+    display:block !important;
+}
+
+.brand-copy h1 {
+    margin:0 !important;
+    color:#d7a94b !important;
+    font-size:34px !important;
+    line-height:1 !important;
+    letter-spacing:4px !important;
+}
+
+.brand-copy p {
+    margin:7px 0 0 !important;
+    color:#978d7e !important;
+    font-size:11px !important;
+    line-height:1 !important;
+    letter-spacing:2px !important;
+    white-space:nowrap !important;
+}
+
+.header-right {
+    flex:0 0 auto !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:20px !important;
+}
+
+.header-right nav {
+    display:flex !important;
+    align-items:center !important;
+    gap:6px !important;
+    margin:0 !important;
+}
+
+.header-right nav a {
+    min-width:68px !important;
+    padding:9px 11px !important;
+    box-sizing:border-box !important;
+    border:1px solid transparent !important;
+    color:#948a7e !important;
+    text-decoration:none !important;
+    text-align:center !important;
+    font-size:10px !important;
+    line-height:1 !important;
+    letter-spacing:.35px !important;
+}
+
+.header-right nav a:hover,
+.header-right nav a.active-nav {
+    color:#e2b85c !important;
+    border-color:#4d3b28 !important;
+    background:#15110d !important;
+}
+
+#musicButton {
+    min-width:112px !important;
+    height:36px !important;
+    padding:0 12px !important;
+    box-sizing:border-box !important;
+    border:1px solid #594a38 !important;
+    background:#171513 !important;
+    color:#948a7e !important;
+    font-size:9px !important;
+    font-weight:bold !important;
+    letter-spacing:1.4px !important;
+    white-space:nowrap !important;
+}
+
+#musicButton.music-on {
+    color:#e2b85c !important;
+    border-color:#8b6734 !important;
+    background:#21180d !important;
+}
+
+.brand-home-link:hover .brand-copy h1,
+.brand-home-link:focus-visible .brand-copy h1 {
+    color:#edc362 !important;
+}
+
+@media(max-width:760px) {
+    .header-inner {
+        width:calc(100vw - 24px) !important;
+        min-height:84px !important;
+        padding:10px 0 !important;
+        gap:12px !important;
+    }
+    .forever-header-logo {
+        width:50px !important;
+        height:44px !important;
+        flex-basis:50px !important;
+    }
+    .brand-copy h1 { font-size:23px !important; letter-spacing:2px !important; }
+    .brand-copy p { font-size:7px !important; letter-spacing:1px !important; }
+    .header-right { gap:6px !important; }
+    .header-right nav a { min-width:0 !important; padding:7px 6px !important; font-size:8px !important; }
+    #musicButton { min-width:86px !important; height:32px !important; font-size:7px !important; padding:0 7px !important; }
+}
