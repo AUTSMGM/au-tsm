@@ -7,11 +7,15 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="site-layout-v3.css">
+<link rel="stylesheet" href="site-artwork.css">
 </head>
 <body>
 <header>
 <div class="header-inner">
-<div class="logo"><h1>AU TSM</h1><p>GUILD MANAGEMENT</p></div>
+<div class="logo brand-lockup">
+<img class="forever-header-logo" src="assets/forever-logo.jpg" alt="World of Warcraft Forever">
+<div class="brand-copy"><h1>AU TSM</h1><p>GUILD MANAGEMENT</p></div>
+</div>
 <div class="header-right"><nav>
 <a href="index.html">Home</a>
 <a href="admin.html" class="active-nav">Guild Tools</a>
@@ -38,7 +42,10 @@
 <section id="adminPanel" class="admin-panel" hidden>
 <div class="admin-toolbar">
 <div><strong id="adminIdentity">Authenticated</strong><div class="admin-meta">Guild Master controls active</div></div>
+<div class="admin-toolbar-actions">
+<button id="adminRefreshButton" class="admin-button">REFRESH</button>
 <button id="adminLogoutButton" class="admin-button">LOG OUT</button>
+</div>
 </div>
 
 <div class="admin-section">

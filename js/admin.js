@@ -74,28 +74,49 @@ function formatAdminDate(value) {
 }
 
 async function loadAdminData() {
-    const pending=await database.from('guild_rolls')
-        .select('*').eq('application_status','Pending')
-        .order('applied_at',{ascending:true,nullsFirst:false});
-    const raiders=await database.from('guild_rolls')
-        .select('*').eq('roster_active',true).eq('guild_rank','Raider')
-        .order('approved_at',{ascending:true,nullsFirst:false});
+    pendingContainer.innerHTML='<div class="admin-meta">Loading pending applications…</div>';
+    raiderContainer.innerHTML='<div class="admin-meta">Loading roster…</div>';
 
-    if (pending.error || raiders.error) {
-        console.error(pending.error || raiders.error);
-        pendingContainer.innerHTML='<div class="admin-meta">Could not load guild data.</div>';
-        return;
+    try {
+        const pendingQuery = database.from('guild_rolls')
+            .select('id,character_name,first_name,last_name,class_name,role,body_type,discord_name,guild_rank,application_status,roster_active,applied_at,approved_at')
+            .eq('application_status','Pending')
+            .order('applied_at',{ascending:true});
+
+        const raiderQuery = database.from('guild_rolls')
+            .select('id,character_name,first_name,last_name,class_name,role,body_type,discord_name,guild_rank,application_status,roster_active,applied_at,approved_at')
+            .eq('roster_active',true)
+            .eq('guild_rank','Raider')
+            .order('approved_at',{ascending:true});
+
+        const [pending, raiders] = await Promise.all([pendingQuery, raiderQuery]);
+
+        if (pending.error) throw pending.error;
+        if (raiders.error) throw raiders.error;
+
+        const pendingRows = pending.data || [];
+        const raiderRows = raiders.data || [];
+
+        pendingContainer.innerHTML=pendingRows.length
+            ? pendingRows.map(x=>adminCard(x,true)).join('')
+            : '<div class="admin-meta">No pending applications. The bureaucracy is temporarily winning.</div>';
+
+        raiderContainer.innerHTML=raiderRows.length
+            ? raiderRows.map(x=>adminCard(x,false)).join('')
+            : '<div class="admin-meta">No approved Raiders yet.</div>';
+
+        bindAdminActions();
+    } catch (error) {
+        console.error('Guild Tools data load failed:', error);
+        const detail = escapeHtml(error && error.message ? error.message : String(error));
+        pendingContainer.innerHTML =
+            '<div class="admin-load-error"><strong>Guild records could not be loaded.</strong><br>' +
+            detail +
+            '<br><button id="retryAdminLoad" class="admin-button">RETRY</button></div>';
+        raiderContainer.innerHTML =
+            '<div class="admin-meta">Roster unavailable until the database query succeeds.</div>';
+        document.getElementById('retryAdminLoad')?.addEventListener('click',loadAdminData);
     }
-
-    pendingContainer.innerHTML=pending.data.length
-        ? pending.data.map(x=>adminCard(x,true)).join('')
-        : '<div class="admin-meta">No pending applications. The bureaucracy is temporarily winning.</div>';
-
-    raiderContainer.innerHTML=raiders.data.length
-        ? raiders.data.map(x=>adminCard(x,false)).join('')
-        : '<div class="admin-meta">No approved Raiders yet.</div>';
-
-    bindAdminActions();
 }
 
 function bindAdminActions() {
@@ -148,3 +169,6 @@ async function removeRaider(id) {
     const {data}=await database.auth.getSession();
     if (data.session && data.session.user) await showAdmin(data.session.user);
 })();
+
+
+document.getElementById('adminRefreshButton')?.addEventListener('click', loadAdminData);

@@ -1,0 +1,125 @@
+
+/* =========================================================
+   AU TSM - FOREVER ARTWORK / FINAL CREATOR ALIGNMENT
+========================================================= */
+
+/* Main site: user-supplied Forever landscape remains fixed while content scrolls. */
+body.home-page {
+    background:
+        linear-gradient(rgba(8,7,6,.78), rgba(8,7,6,.91)),
+        url("assets/forever-background.jpg") center center / cover fixed no-repeat !important;
+    background-color:#0a0908 !important;
+}
+
+/* Panels stay readable while allowing the artwork to softly show around them. */
+.home-page .manual-creator-panel,
+.home-page .wheel-machine,
+.home-page .bad-luck-panel,
+.home-page .roll-history,
+.home-page .creator-mode-selector,
+.home-page .wheel-result,
+.home-page .raid-ready-callout,
+.home-page .home-roster-panel,
+.home-page .roster-role-section {
+    backdrop-filter: blur(2px);
+}
+
+.brand-lockup {
+    display:flex !important;
+    align-items:center;
+    gap:12px;
+}
+
+.forever-header-logo {
+    width:76px;
+    height:58px;
+    object-fit:contain;
+    display:block;
+    mix-blend-mode:screen;
+    opacity:.92;
+}
+
+.brand-copy h1,
+.brand-copy p {
+    margin-left:0 !important;
+}
+
+/* Manual role and body rows always use matched geometry.
+   3 role columns occupy 60%; 2 body columns occupy 40%, so each choice has
+   approximately the same visual width regardless of unavailable roles. */
+.manual-choice-row {
+    grid-template-columns: 3fr 2fr !important;
+    align-items:stretch !important;
+}
+
+.manual-choice-group {
+    min-width:0 !important;
+}
+
+.manual-role-grid {
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:8px !important;
+    width:100% !important;
+}
+
+.manual-body-grid {
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:8px !important;
+    width:100% !important;
+}
+
+.manual-role-button,
+.manual-body-button {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    min-width:0 !important;
+    height:96px !important;
+    min-height:96px !important;
+    max-height:96px !important;
+    box-sizing:border-box !important;
+}
+
+.manual-role-button:disabled {
+    display:flex !important;
+    opacity:.25 !important;
+    filter:grayscale(1) brightness(.62) !important;
+    cursor:not-allowed !important;
+}
+
+/* Guild Tools usability */
+.admin-toolbar-actions {
+    display:flex;
+    gap:8px;
+}
+
+.admin-load-error {
+    padding:14px;
+    border:1px solid #7c4438;
+    background:#1b0f0c;
+    color:#dba69c;
+    font-size:11px;
+    line-height:1.5;
+}
+
+.admin-load-error .admin-button {
+    margin-top:10px;
+}
+
+@media (max-width:800px) {
+    body.home-page {
+        background-attachment:scroll !important;
+        background-position:center top !important;
+    }
+    .forever-header-logo {
+        width:58px;
+        height:44px;
+    }
+    .manual-choice-row {
+        grid-template-columns:1fr !important;
+    }
+}
