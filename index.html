@@ -100,7 +100,7 @@ header {
 
 nav {
     display: flex;
-    gap: 20px;
+    gap: 18px;
 }
 
 nav a {
@@ -115,7 +115,7 @@ nav a:hover {
 
 
 /* =========================================================
-   MUSIC BUTTON
+   MUSIC
 ========================================================= */
 
 #musicButton {
@@ -291,7 +291,6 @@ nav a:hover {
 
     background-size: 300% 100%;
     animation: raidBorderGlow 4s linear infinite;
-
     z-index: 0;
 }
 
@@ -351,13 +350,8 @@ nav a:hover {
 }
 
 @keyframes raidBorderGlow {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 300% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
 }
 
 
@@ -384,7 +378,7 @@ nav a:hover {
 
 
 /* =========================================================
-   STATISTICS
+   STATS
 ========================================================= */
 
 .stats {
@@ -547,11 +541,11 @@ nav a:hover {
 
 
 /* =========================================================
-   CLASS SPIN WHEEL
+   CLASS WHEEL
 ========================================================= */
 
 .wheel-section {
-    max-width: 930px;
+    max-width: 980px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -574,35 +568,23 @@ nav a:hover {
     padding: 35px;
 
     display: grid;
-    grid-template-columns: 1fr 145px;
+    grid-template-columns: 1fr 175px;
     align-items: center;
     gap: 35px;
 }
 
 .wheel-stage {
     position: relative;
-
     width: min(520px,100%);
     aspect-ratio: 1 / 1;
-
     margin: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
-
-
-/* OUTER METAL FRAME */
 
 .wheel-frame {
     position: relative;
-
     width: 100%;
     height: 100%;
-
     border-radius: 50%;
-
     padding: 17px;
 
     background:
@@ -620,18 +602,12 @@ nav a:hover {
         0 0 30px rgba(215,169,75,.18);
 }
 
-
-/* POINTER */
-
 .wheel-pointer {
     position: absolute;
-
     top: -23px;
     left: 50%;
-
     transform: translateX(-50%);
-
-    z-index: 30;
+    z-index: 40;
 
     width: 0;
     height: 0;
@@ -673,17 +649,11 @@ nav a:hover {
 
 }
 
-
-/* ACTUAL WHEEL */
-
 #classWheel {
     position: relative;
-
     width: 100%;
     height: 100%;
-
     border-radius: 50%;
-
     overflow: hidden;
 
     background:
@@ -707,22 +677,15 @@ nav a:hover {
         inset 0 0 25px rgba(0,0,0,.65);
 
     transition:
-        transform 6.2s
-        cubic-bezier(.10,.67,.12,1);
+        transform 6.2s cubic-bezier(.10,.67,.12,1);
 
-    transform:
-        rotate(0deg);
+    transform: rotate(0deg);
 }
-
-
-/* DARK LAYER HELPS TEXT */
 
 #classWheel::before {
     content: "";
-
     position: absolute;
     inset: 0;
-
     border-radius: 50%;
 
     background:
@@ -735,31 +698,27 @@ nav a:hover {
         );
 
     pointer-events: none;
+    z-index: 2;
 }
 
-
-/* DIVIDING LINES */
+#wheelDisabledMask {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 4;
+}
 
 .wheel-divider {
     position: absolute;
-
     left: 50%;
     top: 50%;
-
     width: 2px;
     height: 50%;
-
-    background:
-        rgba(20,15,10,.65);
-
-    transform-origin:
-        center bottom;
-
-    z-index: 3;
+    background: rgba(20,15,10,.65);
+    transform-origin: center bottom;
+    z-index: 6;
 }
-
-
-/* CLASS LABELS */
 
 .wheel-label {
     position: absolute;
@@ -782,14 +741,15 @@ nav a:hover {
     text-shadow:
         0 1px rgba(255,255,255,.28);
 
-    z-index: 5;
+    z-index: 7;
 
-    transform-origin:
-        50% 0;
+    transform-origin: 50% 0;
 }
 
-
-/* INNER HUB */
+.wheel-label.disabled-label {
+    opacity: .26;
+    text-decoration: line-through;
+}
 
 .wheel-hub {
     position: absolute;
@@ -838,16 +798,116 @@ nav a:hover {
 
 
 /* =========================================================
+   SLOT / BODY TYPE
+========================================================= */
+
+.body-slot-panel {
+    width: 100%;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.body-slot-title {
+    color: #82796e;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.body-slot-window {
+    width: 130px;
+    height: 72px;
+    margin: auto;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 3px solid #6d5535;
+
+    border-radius: 5px;
+
+    background: #070707;
+
+    box-shadow:
+        inset 0 0 12px black,
+        0 4px 12px rgba(0,0,0,.45);
+}
+
+.body-slot-window::before,
+.body-slot-window::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 15px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.body-slot-window::before {
+    top: 0;
+    background: linear-gradient(#050505,transparent);
+}
+
+.body-slot-window::after {
+    bottom: 0;
+    background: linear-gradient(transparent,#050505);
+}
+
+#bodySlotTrack {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+
+    transition:
+        transform 5.8s cubic-bezier(.10,.70,.10,1);
+}
+
+.body-slot-item {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Georgia,serif;
+    font-size: 15px;
+    font-weight: bold;
+
+    color: white;
+
+    text-shadow:
+        0 2px 3px rgba(0,0,0,.65);
+}
+
+.body-one {
+    background:
+        linear-gradient(
+            135deg,
+            #173b68,
+            #297ac3
+        );
+}
+
+.body-two {
+    background:
+        linear-gradient(
+            135deg,
+            #7a284f,
+            #d75d94
+        );
+}
+
+
+/* =========================================================
    WHEEL LEVER
 ========================================================= */
 
 .wheel-controls {
-    height: 350px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .lever-machine {
@@ -912,9 +972,6 @@ nav a:hover {
 
     border-radius: 5px;
 
-    transform-origin:
-        bottom center;
-
     transition:
         top .25s ease,
         height .25s ease;
@@ -948,16 +1005,10 @@ nav a:hover {
         0 5px 8px rgba(0,0,0,.5);
 }
 
-
-/* PULLED LEVER */
-
 .lever-machine.pulled .lever-arm {
     top: 112px;
     height: 72px;
 }
-
-
-/* SPIN BUTTON */
 
 #spinWheelButton {
     position: absolute;
@@ -970,16 +1021,13 @@ nav a:hover {
 
     width: 76px;
 
-    padding:
-        8px 5px;
+    padding: 8px 5px;
 
     border: 1px solid #b78a48;
 
-    background:
-        #19140e;
+    background: #19140e;
 
-    color:
-        #d7a94b;
+    color: #d7a94b;
 
     font-size: 10px;
     font-weight: bold;
@@ -997,26 +1045,158 @@ nav a:hover {
 
 
 /* =========================================================
+   BAD LUCK PROTECTION
+========================================================= */
+
+.bad-luck-panel {
+    max-width: 900px;
+    margin: 24px auto 0;
+
+    padding: 22px;
+
+    border: 1px solid #463b30;
+
+    background: #141210;
+}
+
+.bad-luck-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    margin-bottom: 15px;
+}
+
+.bad-luck-title {
+    color: #d7a94b;
+    font-family: Georgia,serif;
+    font-size: 18px;
+}
+
+.token-counter {
+    color: #ddd2bd;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.token-counter span {
+    color: #d7a94b;
+}
+
+.bad-luck-description {
+    color: #81796e;
+    font-size: 11px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.protection-subtitle {
+    color: #81796e;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.exclusion-grid {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 7px;
+
+    margin-bottom: 18px;
+}
+
+.exclusion-button {
+    min-height: 40px;
+
+    padding: 8px;
+
+    background: #1c1916;
+
+    border: 1px solid #443a30;
+
+    color: #aaa195;
+
+    font-size: 11px;
+
+    transition:
+        opacity .15s,
+        background .15s,
+        border-color .15s;
+}
+
+.exclusion-button:hover:not(:disabled) {
+    border-color: #856b46;
+    color: #e6dccb;
+}
+
+.exclusion-button.excluded {
+    opacity: .46;
+    text-decoration: line-through;
+
+    background:
+        repeating-linear-gradient(
+            135deg,
+            #241212 0px,
+            #241212 5px,
+            #120d0d 5px,
+            #120d0d 10px
+        );
+
+    border-color: #733a34;
+    color: #d2776d;
+}
+
+.exclusion-button:disabled {
+    cursor: not-allowed;
+}
+
+.body-exclusion-row {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 8px;
+}
+
+.body-option-one {
+    border-color: #315d88;
+}
+
+.body-option-two {
+    border-color: #8e4567;
+}
+
+.protection-warning {
+    margin-top: 12px;
+    min-height: 16px;
+
+    text-align: center;
+
+    color: #d06153;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
    WHEEL RESULT
 ========================================================= */
 
 .wheel-result {
     max-width: 700px;
 
-    margin:
-        25px auto 0;
+    margin: 25px auto 0;
 
-    min-height: 85px;
+    min-height: 105px;
 
     text-align: center;
 
     padding: 18px;
 
-    border:
-        1px solid #383027;
+    border: 1px solid #383027;
 
-    background:
-        #141210;
+    background: #141210;
 }
 
 .wheel-result-label {
@@ -1040,8 +1220,23 @@ nav a:hover {
     font-weight: bold;
 }
 
+#wheelResultBody {
+    margin-top: 5px;
+
+    display: inline-block;
+
+    padding: 5px 13px;
+
+    border-radius: 3px;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
 #wheelResultMessage {
-    margin-top: 6px;
+    margin-top: 9px;
 
     color: #8d857a;
 
@@ -1237,7 +1432,6 @@ footer strong {
     background: #100e0d;
     border: 2px solid #806039;
     margin: auto 0;
-    max-height: none;
 }
 
 .game-header {
@@ -1284,11 +1478,8 @@ footer strong {
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     gap: 20px;
-
     padding: 11px 20px;
-
     background: #090908;
-
     font-size: 11px;
 }
 
@@ -1305,27 +1496,21 @@ footer strong {
     display: flex;
     align-items: center;
     justify-content: center;
-
     gap: 10px;
-
     color: #c84c42;
-
     font-weight: bold;
 }
 
 .boss-health-bar {
     width: 250px;
     height: 12px;
-
     background: #28100e;
-
     border: 1px solid #653029;
 }
 
 #bossHealthFill {
     height: 100%;
     width: 100%;
-
     background:
         linear-gradient(
             90deg,
@@ -1346,14 +1531,12 @@ footer strong {
 
 
 /* =========================================================
-   GAME AREA
+   GAME
 ========================================================= */
 
 #gameArea {
     height: 440px;
-
     position: relative;
-
     overflow: hidden;
 
     background:
@@ -1368,13 +1551,11 @@ footer strong {
         );
 
     cursor: pointer;
-
     user-select: none;
 }
 
 #gameGround {
     position: absolute;
-
     left: 0;
     right: 0;
     bottom: 0;
@@ -1383,14 +1564,8 @@ footer strong {
 
     background: #26221d;
 
-    border-top:
-        2px solid #5d4936;
+    border-top: 2px solid #5d4936;
 }
-
-
-/* =========================================================
-   RAID WARNING
-========================================================= */
 
 #raidWarning {
     position: absolute;
@@ -1398,8 +1573,7 @@ footer strong {
     top: 58px;
     left: 50%;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     z-index: 90;
 
@@ -1410,7 +1584,6 @@ footer strong {
     color: #ffd55f;
 
     font-family: Georgia,serif;
-
     font-weight: bold;
     font-size: 23px;
 
@@ -1424,27 +1597,19 @@ footer strong {
 }
 
 #raidWarning.show {
-    animation:
-        warningFlash
-        1.8s ease;
+    animation: warningFlash 1.8s ease;
 }
 
 @keyframes warningFlash {
 
     0% {
         opacity: 0;
-
-        transform:
-            translateX(-50%)
-            scale(.8);
+        transform: translateX(-50%) scale(.8);
     }
 
     15% {
         opacity: 1;
-
-        transform:
-            translateX(-50%)
-            scale(1.08);
+        transform: translateX(-50%) scale(1.08);
     }
 
     75% {
@@ -1453,318 +1618,134 @@ footer strong {
 
     100% {
         opacity: 0;
-
-        transform:
-            translateX(-50%)
-            scale(1);
+        transform: translateX(-50%) scale(1);
     }
 
 }
 
-
-/* =========================================================
-   LEFT COMBAT FEED
-========================================================= */
-
 #leftCombatFeed {
     position: absolute;
-
     left: 18px;
     top: 95px;
-
     width: 270px;
-
     z-index: 75;
-
     pointer-events: none;
 }
 
 .left-event {
     margin-bottom: 7px;
-
     padding: 7px 10px;
-
-    border-left:
-        3px solid #69c96b;
-
-    background:
-        rgba(5,12,5,.72);
-
-    color:
-        #8ce58e;
-
+    border-left: 3px solid #69c96b;
+    background: rgba(5,12,5,.72);
+    color: #8ce58e;
     font-size: 12px;
-
     line-height: 1.35;
-
-    text-shadow:
-        0 1px 2px black;
-
-    animation:
-        feedIn .2s ease;
+    text-shadow: 0 1px 2px black;
 }
 
 .left-event.buff {
-    border-left-color:
-        #d7a94b;
-
-    color:
-        #f3ce7c;
+    border-left-color: #d7a94b;
+    color: #f3ce7c;
 }
 
 .left-event.warning-event {
-    border-left-color:
-        #d55d4d;
-
-    color:
-        #e17a6c;
+    border-left-color: #d55d4d;
+    color: #e17a6c;
 }
-
-
-/* =========================================================
-   RIGHT DAMAGE FEED
-========================================================= */
 
 #rightDamageFeed {
     position: absolute;
-
     right: 12px;
     top: 100px;
-
     width: 170px;
-
     z-index: 75;
-
     text-align: right;
-
     pointer-events: none;
 }
 
 .damage-event {
     margin-bottom: 5px;
-
     color: #9beaff;
-
     font-weight: bold;
     font-size: 17px;
 
     text-shadow:
         0 2px 3px black,
         0 0 5px #236a95;
-
-    animation:
-        damageFade
-        1.15s forwards;
 }
 
 .damage-event.crit {
     color: #ffd84c;
-
-    font-family:
-        Georgia,serif;
-
+    font-family: Georgia,serif;
     font-size: 27px;
 
     text-shadow:
         0 2px 3px black,
         0 0 10px #ff8b00;
-
-    animation:
-        critBurst
-        1.25s forwards;
-}
-
-@keyframes feedIn {
-
-    from {
-        transform:
-            translateX(-15px);
-
-        opacity: 0;
-    }
-
-    to {
-        transform:
-            translateX(0);
-
-        opacity: 1;
-    }
-
-}
-
-@keyframes damageFade {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translateX(15px);
-    }
-
-    15% {
-        opacity: 1;
-
-        transform:
-            translateX(0);
-    }
-
-    70% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translateY(-20px);
-    }
-
-}
-
-@keyframes critBurst {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            scale(.5);
-    }
-
-    18% {
-        opacity: 1;
-
-        transform:
-            scale(1.3);
-    }
-
-    35% {
-        transform:
-            scale(1);
-    }
-
-    75% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translateY(-25px)
-            scale(.95);
-    }
-
 }
 
 
 /* =========================================================
-   ACTION BUTTON
+   RAID ACTION BUTTON
 ========================================================= */
 
 #raidActionPrompt {
     position: absolute;
-
     left: 50%;
     bottom: 72px;
-
-    transform:
-        translateX(-50%);
-
+    transform: translateX(-50%);
     z-index: 85;
-
     display: none;
 }
 
 #raidActionButton {
     padding: 14px 22px;
-
-    border:
-        2px solid #d7a94b;
-
-    background:
-        #4d3213;
-
-    color:
-        #ffe086;
-
+    border: 2px solid #d7a94b;
+    background: #4d3213;
+    color: #ffe086;
     font-weight: bold;
-
-    box-shadow:
-        0 0 16px rgba(215,169,75,.35);
 }
 
 
 /* =========================================================
-   DPS METER
+   DPS
 ========================================================= */
 
 .dps-meter {
-    background:
-        #0c0b0a;
-
-    border-left:
-        1px solid #493a2b;
-
-    padding:
-        12px 10px;
+    background: #0c0b0a;
+    border-left: 1px solid #493a2b;
+    padding: 12px 10px;
 }
 
 .dps-title {
-    color:
-        #d7a94b;
-
-    font-size:
-        10px;
-
-    letter-spacing:
-        1.5px;
-
-    text-align:
-        center;
-
-    margin-bottom:
-        12px;
+    color: #d7a94b;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 12px;
 }
 
 .dps-row {
-    margin-bottom:
-        9px;
+    margin-bottom: 9px;
 }
 
 .dps-name {
-    display:
-        flex;
-
-    justify-content:
-        space-between;
-
-    color:
-        #aaa195;
-
-    font-size:
-        10px;
-
-    margin-bottom:
-        3px;
+    display: flex;
+    justify-content: space-between;
+    color: #aaa195;
+    font-size: 10px;
+    margin-bottom: 3px;
 }
 
 .dps-bar {
-    height:
-        5px;
-
-    background:
-        #28231e;
+    height: 5px;
+    background: #28231e;
 }
 
 .dps-fill {
-    height:
-        100%;
-
-    background:
-        #9b7138;
-
-    transition:
-        width .2s;
+    height: 100%;
+    background: #9b7138;
+    transition: width .2s;
 }
 
 
@@ -1774,111 +1755,67 @@ footer strong {
 
 #gamePlayer {
     position: absolute;
-
     left: 95px;
     bottom: 55px;
-
     width: 46px;
     height: 76px;
-
     z-index: 20;
 }
 
 .player-head {
     position: absolute;
-
     left: 12px;
     top: 5px;
-
     width: 23px;
     height: 27px;
-
     border-radius: 50%;
-
-    background:
-        #c38f6a;
+    background: #c38f6a;
 }
 
 .player-hair {
     position: absolute;
-
     left: 11px;
     top: 2px;
-
     width: 26px;
     height: 13px;
-
-    background:
-        #2b211c;
-
-    border-radius:
-        50%;
-
-    z-index:
-        3;
+    background: #2b211c;
+    border-radius: 50%;
+    z-index: 3;
 }
 
 .player-body {
     position: absolute;
-
     left: 8px;
     top: 30px;
-
     width: 31px;
     height: 33px;
-
-    background:
-        #36506b;
-
-    border:
-        2px solid #94703d;
+    background: #36506b;
+    border: 2px solid #94703d;
 }
 
 .player-shoulder {
     position: absolute;
-
     top: 30px;
-
     width: 15px;
     height: 13px;
-
-    background:
-        #53412c;
-
-    border:
-        2px solid #a78447;
-
-    border-radius:
-        50%;
+    background: #53412c;
+    border: 2px solid #a78447;
+    border-radius: 50%;
 }
 
-.shoulder-left {
-    left: 1px;
-}
-
-.shoulder-right {
-    right: 0;
-}
+.shoulder-left { left: 1px; }
+.shoulder-right { right: 0; }
 
 .player-leg {
     position: absolute;
-
     bottom: 0;
-
     width: 10px;
     height: 19px;
-
-    background:
-        #332f2c;
+    background: #332f2c;
 }
 
-.leg-left {
-    left: 11px;
-}
-
-.leg-right {
-    right: 11px;
-}
+.leg-left { left: 11px; }
+.leg-right { right: 11px; }
 
 
 /* =========================================================
@@ -1887,158 +1824,95 @@ footer strong {
 
 #onyxia {
     position: absolute;
-
     right: 45px;
     bottom: 55px;
-
     width: 225px;
     height: 225px;
-
     z-index: 12;
 }
 
 .dragon-body {
     position: absolute;
-
     right: 25px;
     bottom: 15px;
-
     width: 115px;
     height: 95px;
-
-    border-radius:
-        55%;
-
-    background:
-        #21191c;
-
-    border:
-        3px solid #5b4749;
+    border-radius: 55%;
+    background: #21191c;
+    border: 3px solid #5b4749;
 }
 
 .dragon-wing {
     position: absolute;
-
     width: 95px;
     height: 130px;
-
-    background:
-        #35272d;
-
-    border:
-        3px solid #594148;
+    background: #35272d;
+    border: 3px solid #594148;
 }
 
 .dragon-wing-left {
     right: 100px;
     bottom: 65px;
-
-    clip-path:
-        polygon(
-            100% 100%,
-            0% 50%,
-            80% 0%
-        );
+    clip-path: polygon(100% 100%,0% 50%,80% 0%);
 }
 
 .dragon-wing-right {
     right: 5px;
     bottom: 80px;
-
-    clip-path:
-        polygon(
-            0% 100%,
-            20% 0%,
-            100% 45%
-        );
+    clip-path: polygon(0% 100%,20% 0%,100% 45%);
 }
 
 .dragon-neck {
     position: absolute;
-
     right: 120px;
     bottom: 65px;
-
     width: 55px;
     height: 100px;
-
-    background:
-        #21191c;
-
-    border:
-        3px solid #554045;
-
-    transform:
-        rotate(-24deg);
-
-    border-radius:
-        50%;
+    background: #21191c;
+    border: 3px solid #554045;
+    transform: rotate(-24deg);
+    border-radius: 50%;
 }
 
 .dragon-head {
     position: absolute;
-
     right: 150px;
     top: 37px;
-
     width: 66px;
     height: 49px;
-
-    background:
-        #241a1d;
-
-    border:
-        3px solid #594147;
-
-    border-radius:
-        50%;
+    background: #241a1d;
+    border: 3px solid #594147;
+    border-radius: 50%;
 }
 
 .dragon-eye {
     position: absolute;
-
     left: 16px;
     top: 15px;
-
     width: 8px;
     height: 5px;
-
-    background:
-        #ff9d28;
-
-    box-shadow:
-        0 0 8px #ff5e00;
+    background: #ff9d28;
+    box-shadow: 0 0 8px #ff5e00;
 }
 
 .dragon-tail {
     position: absolute;
-
     right: -65px;
     bottom: 40px;
-
     width: 115px;
     height: 22px;
-
-    background:
-        #21191c;
-
-    border:
-        3px solid #554045;
-
-    border-radius:
-        50%;
+    background: #21191c;
+    border: 3px solid #554045;
 }
 
 
 /* =========================================================
-   FIRE
+   FIRE + LIGHTNING
 ========================================================= */
 
 .game-fire {
     position: absolute;
-
     bottom: 55px;
-
     width: 62px;
     height: 42px;
 
@@ -2054,12 +1928,9 @@ footer strong {
 
 .game-breath {
     position: absolute;
-
     width: 125px;
     height: 37px;
-
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     background:
         linear-gradient(
@@ -2072,31 +1943,18 @@ footer strong {
         );
 }
 
-
-/* =========================================================
-   LIGHTNING
-========================================================= */
-
 .lightning-bolt {
     position: absolute;
-
     height: 6px;
     width: 45px;
-
-    background:
-        #a9ecff;
-
-    box-shadow:
-        0 0 12px #459cff;
-
+    background: #a9ecff;
+    box-shadow: 0 0 12px #459cff;
     z-index: 25;
 }
 
 .lightning-bolt.crit-bolt {
     height: 9px;
-
-    background:
-        #fff57a;
+    background: #fff57a;
 
     box-shadow:
         0 0 18px #ffd800,
@@ -2110,345 +1968,172 @@ footer strong {
 
 #gameMessage {
     position: absolute;
-
     inset: 0;
-
     z-index: 100;
 
-    background:
-        rgba(5,5,5,.88);
+    background: rgba(5,5,5,.88);
 
     display: flex;
+    flex-direction: column;
 
-    flex-direction:
-        column;
+    align-items: center;
+    justify-content: flex-start;
 
-    align-items:
-        center;
+    text-align: center;
 
-    justify-content:
-        flex-start;
+    padding: 50px 30px 40px;
 
-    text-align:
-        center;
-
-    padding:
-        50px 30px 40px;
-
-    overflow-y:
-        auto;
-
-    overflow-x:
-        hidden;
+    overflow-y: auto;
 }
 
 #gameMessage h2 {
-    font-family:
-        Georgia,serif;
-
-    color:
-        #d7a94b;
-
-    margin-bottom:
-        15px;
+    font-family: Georgia,serif;
+    color: #d7a94b;
+    margin-bottom: 15px;
 }
 
 #gameMessage p {
-    color:
-        #a69b8d;
-
-    line-height:
-        1.8;
-
-    margin-bottom:
-        20px;
+    color: #a69b8d;
+    line-height: 1.8;
+    margin-bottom: 20px;
 }
 
 #gameMessage button {
-    padding:
-        12px 22px;
-
-    background:
-        #b38538;
-
-    border:
-        1px solid #d7a94b;
-
-    font-weight:
-        bold;
-
-    flex-shrink:
-        0;
+    padding: 12px 22px;
+    background: #b38538;
+    border: 1px solid #d7a94b;
+    font-weight: bold;
+    flex-shrink: 0;
 }
-
-
-/* =========================================================
-   CONTROLS
-========================================================= */
 
 .game-controls {
-    padding:
-        13px 18px;
+    padding: 13px 18px;
+    background: #151310;
+    color: #837a6f;
+    font-size: 11px;
 
-    background:
-        #151310;
-
-    color:
-        #837a6f;
-
-    font-size:
-        11px;
-
-    display:
-        flex;
-
-    justify-content:
-        space-between;
-
-    gap:
-        15px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
 }
 
 
 /* =========================================================
-   LOOT WINDOW
+   LOOT
 ========================================================= */
 
 .loot-window {
-    width:
-        min(600px,96%);
+    width: min(600px,96%);
+    background: #11100e;
+    border: 2px solid #806039;
 
-    background:
-        #11100e;
-
-    border:
-        2px solid #806039;
-
-    box-shadow:
-        0 0 0 1px #2a221b,
-        0 15px 45px rgba(0,0,0,.8);
-
-    padding:
-        20px;
-
-    text-align:
-        left;
-
-    margin:
-        auto;
+    padding: 20px;
+    text-align: left;
+    margin: auto;
 }
 
 .loot-title {
-    text-align:
-        center;
-
-    color:
-        #d7a94b;
-
-    font-family:
-        Georgia,serif;
-
-    font-size:
-        25px;
-
-    margin-bottom:
-        6px;
+    text-align: center;
+    color: #d7a94b;
+    font-family: Georgia,serif;
+    font-size: 25px;
+    margin-bottom: 6px;
 }
 
 .loot-subtitle {
-    text-align:
-        center;
-
-    color:
-        #746c61;
-
-    font-size:
-        10px;
-
-    letter-spacing:
-        2px;
-
-    margin-bottom:
-        14px;
+    text-align: center;
+    color: #746c61;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
 }
 
 .victory-congratulations {
-    text-align:
-        center;
-
-    color:
-        #aaa195;
-
-    line-height:
-        1.6;
-
-    margin-bottom:
-        16px;
-
-    font-size:
-        13px;
+    text-align: center;
+    color: #aaa195;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-size: 13px;
 }
 
 .victory-congratulations strong {
-    display:
-        block;
-
-    color:
-        #d7a94b;
-
-    font-family:
-        Georgia,serif;
-
-    font-size:
-        21px;
-
-    margin-bottom:
-        3px;
+    display: block;
+    color: #d7a94b;
+    font-family: Georgia,serif;
+    font-size: 21px;
 }
 
 .loot-list {
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:
-        8px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 8px;
 }
 
 .loot-item {
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        10px;
-
-    padding:
-        9px;
-
-    background:
-        #171513;
-
-    border:
-        1px solid #40362d;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px;
+    background: #171513;
+    border: 1px solid #40362d;
 }
 
 .loot-icon {
-    width:
-        36px;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
 
-    height:
-        36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    flex:
-        0 0 36px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border:
-        2px solid #a335ee;
+    border: 2px solid #a335ee;
 
     background:
-        radial-gradient(
-            circle,
-            #48205e,
-            #1d1025
-        );
+        radial-gradient(circle,#48205e,#1d1025);
 
-    color:
-        #ddb3ff;
+    color: #ddb3ff;
 }
 
 .loot-name {
-    color:
-        #a335ee;
-
-    font-size:
-        12px;
-
-    font-weight:
-        bold;
+    color: #a335ee;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .loot-type {
-    margin-top:
-        3px;
-
-    color:
-        #777067;
-
-    font-size:
-        9px;
+    margin-top: 3px;
+    color: #777067;
+    font-size: 9px;
 }
 
 .loot-reserved {
-    margin-top:
-        15px;
-
-    padding:
-        13px;
-
-    text-align:
-        center;
-
-    background:
-        #28100d;
-
-    border:
-        1px solid #7d3328;
+    margin-top: 15px;
+    padding: 13px;
+    text-align: center;
+    background: #28100d;
+    border: 1px solid #7d3328;
 }
 
 .loot-reserved-title {
-    color:
-        #db6758;
-
-    font-size:
-        10px;
-
-    font-weight:
-        bold;
-
-    letter-spacing:
-        2px;
+    color: #db6758;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
 .loot-reserved-main {
-    margin-top:
-        6px;
-
-    color:
-        #eee1cb;
-
-    font-size:
-        17px;
-
-    font-weight:
-        bold;
+    margin-top: 6px;
+    color: #eee1cb;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .loot-reserved-note {
-    margin-top:
-        5px;
-
-    color:
-        #8f8175;
-
-    font-size:
-        10px;
-
-    line-height:
-        1.5;
+    margin-top: 5px;
+    color: #8f8175;
+    font-size: 10px;
+    line-height: 1.5;
 }
 
 
@@ -2468,47 +2153,33 @@ footer strong {
 
     .stats,
     .live-grid {
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .metrics,
     .tools {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
     .classes {
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 
     .wheel-machine {
-        grid-template-columns:
-            1fr;
-
-        padding:
-            25px 15px;
+        grid-template-columns: 1fr;
+        padding: 25px 15px;
     }
 
-    .wheel-controls {
-        height:
-            auto;
-    }
-
-    .lever-machine {
-        height:
-            210px;
+    .exclusion-grid {
+        grid-template-columns: repeat(3,1fr);
     }
 
     .raid-body {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
     .dps-meter {
-        display:
-            none;
+        display: none;
     }
 
 }
@@ -2516,61 +2187,44 @@ footer strong {
 @media(max-width:600px) {
 
     #raidGameOverlay {
-        padding:
-            8px;
+        padding: 8px;
     }
 
     #gameArea {
-        height:
-            380px;
+        height: 380px;
     }
 
     #gamePlayer {
-        left:
-            40px;
+        left: 40px;
     }
 
     #onyxia {
-        right:
-            -20px;
-
-        transform:
-            scale(.78);
-
-        transform-origin:
-            bottom right;
+        right: -20px;
+        transform: scale(.78);
+        transform-origin: bottom right;
     }
 
     #leftCombatFeed {
-        width:
-            190px;
-
-        left:
-            7px;
-
-        top:
-            100px;
+        width: 190px;
+        left: 7px;
     }
 
     #rightDamageFeed {
-        width:
-            125px;
-
-        right:
-            5px;
+        width: 125px;
+        right: 5px;
     }
 
     .game-hud {
-        grid-template-columns:
-            1fr;
-
-        text-align:
-            center;
+        grid-template-columns: 1fr;
+        text-align: center;
     }
 
     .loot-list {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
+    }
+
+    .body-exclusion-row {
+        grid-template-columns: 1fr;
     }
 
 }
@@ -2580,35 +2234,23 @@ footer strong {
     .stats,
     .live-grid,
     .classes {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
-    .wheel-machine {
-        padding:
-            18px 8px;
+    .exclusion-grid {
+        grid-template-columns: repeat(2,1fr);
     }
 
     .wheel-label {
-        font-size:
-            9px;
-
-        width:
-            88px;
-
-        margin-left:
-            -44px;
+        font-size: 9px;
+        width: 88px;
+        margin-left: -44px;
     }
 
     .wheel-hub {
-        width:
-            78px;
-
-        height:
-            78px;
-
-        font-size:
-            13px;
+        width: 78px;
+        height: 78px;
+        font-size: 13px;
     }
 
 }
@@ -2626,31 +2268,31 @@ footer strong {
 ========================================================= -->
 
 <audio id="backgroundMusic" loop preload="auto">
-    <source src="Background.mp3" type="audio/mpeg">
+<source src="Background.mp3" type="audio/mpeg">
 </audio>
 
 <audio id="readyCheckSound" preload="auto">
-    <source src="Readycheck.ogg" type="audio/ogg">
+<source src="Readycheck.ogg" type="audio/ogg">
 </audio>
 
 <audio id="verySlowlySound" preload="auto">
-    <source src="Very_Very_Slowly_DPS.mp3" type="audio/mpeg">
+<source src="Very_Very_Slowly_DPS.mp3" type="audio/mpeg">
 </audio>
 
 <audio id="wtfSound" preload="auto">
-    <source src="WTF.mp3" type="audio/mpeg">
+<source src="WTF.mp3" type="audio/mpeg">
 </audio>
 
 <audio id="moreDotsSound" preload="auto">
-    <source src="More_Dots.mp3" type="audio/mpeg">
+<source src="More_Dots.mp3" type="audio/mpeg">
 </audio>
 
 <audio id="gratzSound" preload="auto">
-    <source src="Gratz.mp3" type="audio/mpeg">
+<source src="Gratz.mp3" type="audio/mpeg">
 </audio>
 
 <audio id="levelUpSound" preload="auto">
-    <source src="lvl%20up.mp3" type="audio/mpeg">
+<source src="lvl%20up.mp3" type="audio/mpeg">
 </audio>
 
 
@@ -2796,88 +2438,35 @@ Initiate Ready Check
 <section id="stats">
 
 <div class="section-title">
-
-<h3>
-Guild Statistics
-</h3>
-
-<p>
-Key performance indicators for a highly professional gaming organisation
-</p>
-
+<h3>Guild Statistics</h3>
+<p>Key performance indicators for a highly professional gaming organisation</p>
 </div>
-
 
 <div class="stats">
 
-
 <div class="stat">
-
-<span class="stat-number">
-42
-</span>
-
-<span class="stat-label">
-Guild Members
-</span>
-
-<span class="stat-subtext">
-Social skills vary considerably
-</span>
-
+<span class="stat-number">42</span>
+<span class="stat-label">Guild Members</span>
+<span class="stat-subtext">Social skills vary considerably</span>
 </div>
 
-
 <div class="stat">
-
-<span class="stat-number">
-67
-</span>
-
-<span class="stat-label">
-Characters
-</span>
-
-<span class="stat-subtext">
-Character ownership records remain unreliable
-</span>
-
+<span class="stat-number">67</span>
+<span class="stat-label">Characters</span>
+<span class="stat-subtext">Character ownership records remain unreliable</span>
 </div>
 
-
 <div class="stat">
-
-<span class="stat-number">
-1
-</span>
-
-<span class="stat-label">
-Best Gamer
-</span>
-
-<span class="stat-subtext">
-Chris insists this metric is objective
-</span>
-
+<span class="stat-number">1</span>
+<span class="stat-label">Best Gamer</span>
+<span class="stat-subtext">Chris insists this metric is objective</span>
 </div>
 
-
 <div class="stat">
-
-<span class="stat-number">
-∞
-</span>
-
-<span class="stat-label">
-Roks Incidents
-</span>
-
-<span class="stat-subtext">
-Counter exceeded technical limit
-</span>
-
+<span class="stat-number">∞</span>
+<span class="stat-label">Roks Incidents</span>
+<span class="stat-subtext">Counter exceeded technical limit</span>
 </div>
-
 
 </div>
 
@@ -2885,77 +2474,37 @@ Counter exceeded technical limit
 
 
 <!-- =========================================================
-     LIVE OPERATIONS
+     LIVE
 ========================================================= -->
 
 <section>
 
 <div class="section-title">
-
-<h3>
-Live Guild Operations
-</h3>
-
-<p>
-Real-time monitoring of a completely normal group of adults playing a video game
-</p>
-
+<h3>Live Guild Operations</h3>
+<p>Real-time monitoring of a completely normal group of adults playing a video game</p>
 </div>
-
 
 <div class="live-grid">
 
+<div class="live-card">
+<div class="live-label">Latest Incident</div>
+<div class="live-value" id="latestDeath">Roks stood in fire.</div>
+<div class="live-note">Root cause analysis currently underway.</div>
+</div>
 
 <div class="live-card">
-
-<div class="live-label">
-Latest Incident
+<div class="live-label">Current Blame Target</div>
+<div class="live-value" id="blameTarget">Roks</div>
+<div class="live-note">Selected using evidence-based guild governance.</div>
 </div>
-
-<div class="live-value" id="latestDeath">
-Roks stood in fire.
-</div>
-
-<div class="live-note">
-Root cause analysis currently underway.
-</div>
-
-</div>
-
 
 <div class="live-card">
-
-<div class="live-label">
-Current Blame Target
-</div>
-
-<div class="live-value" id="blameTarget">
-Roks
-</div>
-
-<div class="live-note">
-Selected using evidence-based guild governance.
-</div>
-
-</div>
-
-
-<div class="live-card">
-
-<div class="live-label">
-Leadership Status
-</div>
-
+<div class="live-label">Leadership Status</div>
 <div class="live-value" id="leadershipStatus">
 Phinky pretending everything is under control.
 </div>
-
-<div class="live-note">
-Guild Master authority remains mostly ceremonial.
+<div class="live-note">Guild Master authority remains mostly ceremonial.</div>
 </div>
-
-</div>
-
 
 </div>
 
@@ -2969,170 +2518,65 @@ Guild Master authority remains mostly ceremonial.
 <section>
 
 <div class="section-title">
-
-<h3>
-Performance &amp; Compliance
-</h3>
-
-<p>
-Because apparently playing the game wasn't complicated enough
-</p>
-
+<h3>Performance &amp; Compliance</h3>
+<p>Because apparently playing the game wasn't complicated enough</p>
 </div>
-
 
 <div class="metrics">
 
+<div class="metric">
+<div class="metric-top">
+<span class="metric-name">Chris Gaming Ability</span>
+<span class="metric-value">100%</span>
+</div>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
+<div class="metric-note">Self-reported. Peer review unavailable.</div>
+</div>
 
 <div class="metric">
-
 <div class="metric-top">
-
-<span class="metric-name">
-Chris Gaming Ability
-</span>
-
-<span class="metric-value">
-100%
-</span>
-
+<span class="metric-name">Roks Mechanic Awareness</span>
+<span class="metric-value">18%</span>
 </div>
-
-<div class="bar">
-<div class="fill" style="width:100%"></div>
+<div class="bar"><div class="fill" style="width:18%"></div></div>
+<div class="metric-note">Corrective action remains ineffective.</div>
 </div>
-
-<div class="metric-note">
-Self-reported. Peer review unavailable.
-</div>
-
-</div>
-
 
 <div class="metric">
-
 <div class="metric-top">
-
-<span class="metric-name">
-Roks Mechanic Awareness
-</span>
-
-<span class="metric-value">
-18%
-</span>
-
+<span class="metric-name">Luffa Sobriety</span>
+<span class="metric-value">7%</span>
 </div>
-
-<div class="bar">
-<div class="fill" style="width:18%"></div>
+<div class="bar"><div class="fill" style="width:7%"></div></div>
+<div class="metric-note">Strong inverse correlation with time of evening.</div>
 </div>
-
-<div class="metric-note">
-Corrective action remains ineffective.
-</div>
-
-</div>
-
 
 <div class="metric">
-
 <div class="metric-top">
-
-<span class="metric-name">
-Luffa Sobriety
-</span>
-
-<span class="metric-value">
-7%
-</span>
-
+<span class="metric-name">Aimless Directional Accuracy</span>
+<span class="metric-value">31%</span>
 </div>
-
-<div class="bar">
-<div class="fill" style="width:7%"></div>
+<div class="bar"><div class="fill" style="width:31%"></div></div>
+<div class="metric-note">Name appears statistically relevant.</div>
 </div>
-
-<div class="metric-note">
-Strong inverse correlation with time of evening.
-</div>
-
-</div>
-
 
 <div class="metric">
-
 <div class="metric-top">
-
-<span class="metric-name">
-Aimless Directional Accuracy
-</span>
-
-<span class="metric-value">
-31%
-</span>
-
+<span class="metric-name">Phinky Leadership Confidence</span>
+<span class="metric-value">94%</span>
 </div>
-
-<div class="bar">
-<div class="fill" style="width:31%"></div>
+<div class="bar"><div class="fill" style="width:94%"></div></div>
+<div class="metric-note">Has somehow turned WoW into middle management.</div>
 </div>
-
-<div class="metric-note">
-Name appears statistically relevant.
-</div>
-
-</div>
-
 
 <div class="metric">
-
 <div class="metric-top">
-
-<span class="metric-name">
-Phinky Leadership Confidence
-</span>
-
-<span class="metric-value">
-94%
-</span>
-
+<span class="metric-name">Fayne Bladestorm Uptime</span>
+<span class="metric-value">100%</span>
 </div>
-
-<div class="bar">
-<div class="fill" style="width:94%"></div>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
+<div class="metric-note">Mechanic participation measured separately.</div>
 </div>
-
-<div class="metric-note">
-Has somehow turned WoW into middle management.
-</div>
-
-</div>
-
-
-<div class="metric">
-
-<div class="metric-top">
-
-<span class="metric-name">
-Fayne Bladestorm Uptime
-</span>
-
-<span class="metric-value">
-100%
-</span>
-
-</div>
-
-<div class="bar">
-<div class="fill" style="width:100%"></div>
-</div>
-
-<div class="metric-note">
-Mechanic participation measured separately.
-</div>
-
-</div>
-
 
 </div>
 
@@ -3146,64 +2590,21 @@ Mechanic participation measured separately.
 <section id="classes">
 
 <div class="section-title">
-
-<h3>
-Class Distribution
-</h3>
-
-<p>
-Current composition until everyone rerolls again
-</p>
-
+<h3>Class Distribution</h3>
+<p>Current composition until everyone rerolls again</p>
 </div>
-
 
 <div class="classes">
 
-<div class="class-card">
-<span>Warrior</span>
-<span class="class-count warrior">12</span>
-</div>
-
-<div class="class-card">
-<span>Paladin</span>
-<span class="class-count paladin">4</span>
-</div>
-
-<div class="class-card">
-<span>Hunter</span>
-<span class="class-count hunter">9</span>
-</div>
-
-<div class="class-card">
-<span>Rogue</span>
-<span class="class-count rogue">7</span>
-</div>
-
-<div class="class-card">
-<span>Priest</span>
-<span class="class-count priest">3</span>
-</div>
-
-<div class="class-card">
-<span>Shaman</span>
-<span class="class-count shaman">10</span>
-</div>
-
-<div class="class-card">
-<span>Mage</span>
-<span class="class-count mage">8</span>
-</div>
-
-<div class="class-card">
-<span>Warlock</span>
-<span class="class-count warlock">6</span>
-</div>
-
-<div class="class-card">
-<span>Druid</span>
-<span class="class-count druid">8</span>
-</div>
+<div class="class-card"><span>Warrior</span><span class="class-count warrior">12</span></div>
+<div class="class-card"><span>Paladin</span><span class="class-count paladin">4</span></div>
+<div class="class-card"><span>Hunter</span><span class="class-count hunter">9</span></div>
+<div class="class-card"><span>Rogue</span><span class="class-count rogue">7</span></div>
+<div class="class-card"><span>Priest</span><span class="class-count priest">3</span></div>
+<div class="class-card"><span>Shaman</span><span class="class-count shaman">10</span></div>
+<div class="class-card"><span>Mage</span><span class="class-count mage">8</span></div>
+<div class="class-card"><span>Warlock</span><span class="class-count warlock">6</span></div>
+<div class="class-card"><span>Druid</span><span class="class-count druid">8</span></div>
 
 </div>
 
@@ -3215,8 +2616,8 @@ Current composition until everyone rerolls again
 ========================================================= -->
 
 <section
-    id="class-wheel-section"
-    class="wheel-section"
+id="class-wheel-section"
+class="wheel-section"
 >
 
 <div class="section-title">
@@ -3226,7 +2627,7 @@ Which Class Will You Roll? (Spin)
 </h3>
 
 <p>
-Because choosing your own character would imply personal responsibility
+Three tokens. Nine classes. Two body types. One regrettable decision.
 </p>
 
 </div>
@@ -3239,8 +2640,8 @@ Because choosing your own character would imply personal responsibility
 
 
 <div
-    id="wheelPointer"
-    class="wheel-pointer"
+id="wheelPointer"
+class="wheel-pointer"
 ></div>
 
 
@@ -3250,123 +2651,125 @@ Because choosing your own character would imply personal responsibility
 <div id="classWheel">
 
 
-<!-- DIVIDERS -->
-
 <div
-    class="wheel-divider"
-    style="transform:translate(-50%,-100%) rotate(20deg);"
-></div>
-
-<div
-    class="wheel-divider"
-    style="transform:translate(-50%,-100%) rotate(60deg);"
-></div>
-
-<div
-    class="wheel-divider"
-    style="transform:translate(-50%,-100%) rotate(100deg);"
-></div>
-
-<div
-    class="wheel-divider"
-    style="transform:translate(-50%,-100%) rotate(140deg);"
-></div>
-
-<div
-    class="wheel-divider"
-    style="transform:translate(-50%,-100%) rotate(180deg);"
-></div>
-
-<div
-    class="wheel-divider"
-    style="transform:translate(-50%,-100%) rotate(220deg);"
-></div>
-
-<div
-    class="wheel-divider"
-    style="transform:translate(-50%,-100%) rotate(260deg);"
-></div>
-
-<div
-    class="wheel-divider"
-    style="transform:translate(-50%,-100%) rotate(300deg);"
-></div>
-
-<div
-    class="wheel-divider"
-    style="transform:translate(-50%,-100%) rotate(340deg);"
+id="wheelDisabledMask"
 ></div>
 
 
-<!-- CLASS NAMES -->
+<div
+class="wheel-divider"
+style="transform:translate(-50%,-100%) rotate(20deg);"
+></div>
 
 <div
-    class="wheel-label"
-    style="transform:rotate(0deg) translateY(-190px) rotate(0deg);"
+class="wheel-divider"
+style="transform:translate(-50%,-100%) rotate(60deg);"
+></div>
+
+<div
+class="wheel-divider"
+style="transform:translate(-50%,-100%) rotate(100deg);"
+></div>
+
+<div
+class="wheel-divider"
+style="transform:translate(-50%,-100%) rotate(140deg);"
+></div>
+
+<div
+class="wheel-divider"
+style="transform:translate(-50%,-100%) rotate(180deg);"
+></div>
+
+<div
+class="wheel-divider"
+style="transform:translate(-50%,-100%) rotate(220deg);"
+></div>
+
+<div
+class="wheel-divider"
+style="transform:translate(-50%,-100%) rotate(260deg);"
+></div>
+
+<div
+class="wheel-divider"
+style="transform:translate(-50%,-100%) rotate(300deg);"
+></div>
+
+<div
+class="wheel-divider"
+style="transform:translate(-50%,-100%) rotate(340deg);"
+></div>
+
+
+<div
+class="wheel-label"
+data-wheel-class="Warrior"
+style="transform:rotate(0deg) translateY(-190px) rotate(0deg);"
 >
 Warrior
 </div>
 
-
 <div
-    class="wheel-label"
-    style="transform:rotate(40deg) translateY(-190px) rotate(-40deg);"
+class="wheel-label"
+data-wheel-class="Paladin"
+style="transform:rotate(40deg) translateY(-190px) rotate(-40deg);"
 >
 Paladin
 </div>
 
-
 <div
-    class="wheel-label"
-    style="transform:rotate(80deg) translateY(-190px) rotate(-80deg);"
+class="wheel-label"
+data-wheel-class="Hunter"
+style="transform:rotate(80deg) translateY(-190px) rotate(-80deg);"
 >
 Hunter
 </div>
 
-
 <div
-    class="wheel-label"
-    style="transform:rotate(120deg) translateY(-190px) rotate(-120deg);"
+class="wheel-label"
+data-wheel-class="Rogue"
+style="transform:rotate(120deg) translateY(-190px) rotate(-120deg);"
 >
 Rogue
 </div>
 
-
 <div
-    class="wheel-label"
-    style="transform:rotate(160deg) translateY(-190px) rotate(-160deg);"
+class="wheel-label"
+data-wheel-class="Priest"
+style="transform:rotate(160deg) translateY(-190px) rotate(-160deg);"
 >
 Priest
 </div>
 
-
 <div
-    class="wheel-label"
-    style="transform:rotate(200deg) translateY(-190px) rotate(-200deg);"
+class="wheel-label"
+data-wheel-class="Shaman"
+style="transform:rotate(200deg) translateY(-190px) rotate(-200deg);"
 >
 Shaman
 </div>
 
-
 <div
-    class="wheel-label"
-    style="transform:rotate(240deg) translateY(-190px) rotate(-240deg);"
+class="wheel-label"
+data-wheel-class="Mage"
+style="transform:rotate(240deg) translateY(-190px) rotate(-240deg);"
 >
 Mage
 </div>
 
-
 <div
-    class="wheel-label"
-    style="transform:rotate(280deg) translateY(-190px) rotate(-280deg);"
+class="wheel-label"
+data-wheel-class="Warlock"
+style="transform:rotate(280deg) translateY(-190px) rotate(-280deg);"
 >
 Warlock
 </div>
 
-
 <div
-    class="wheel-label"
-    style="transform:rotate(320deg) translateY(-190px) rotate(-320deg);"
+class="wheel-label"
+data-wheel-class="Druid"
+style="transform:rotate(320deg) translateY(-190px) rotate(-320deg);"
 >
 Druid
 </div>
@@ -3385,32 +2788,91 @@ AU<br>TSM
 </div>
 
 
-<!-- LEVER -->
+<!-- BODY TYPE + LEVER -->
 
 <div class="wheel-controls">
 
 
-<div
-    id="leverMachine"
-    class="lever-machine"
->
+<div class="body-slot-panel">
 
+<div class="body-slot-title">
+BODY TYPE
+</div>
 
-<div class="lever-slot"></div>
+<div class="body-slot-window">
 
+<div id="bodySlotTrack">
 
-<div class="lever-arm">
+<div class="body-slot-item body-one">
+BODY TYPE 1
+</div>
 
-<div class="lever-handle"></div>
+<div class="body-slot-item body-two">
+BODY TYPE 2
+</div>
+
+<div class="body-slot-item body-one">
+BODY TYPE 1
+</div>
+
+<div class="body-slot-item body-two">
+BODY TYPE 2
+</div>
+
+<div class="body-slot-item body-one">
+BODY TYPE 1
+</div>
+
+<div class="body-slot-item body-two">
+BODY TYPE 2
+</div>
+
+<div class="body-slot-item body-one">
+BODY TYPE 1
+</div>
+
+<div class="body-slot-item body-two">
+BODY TYPE 2
+</div>
+
+<div class="body-slot-item body-one">
+BODY TYPE 1
+</div>
+
+<div class="body-slot-item body-two">
+BODY TYPE 2
+</div>
+
+<div class="body-slot-item body-one">
+BODY TYPE 1
+</div>
+
+<div class="body-slot-item body-two">
+BODY TYPE 2
+</div>
 
 </div>
 
+</div>
+
+</div>
+
+
+<div
+id="leverMachine"
+class="lever-machine"
+>
+
+<div class="lever-slot"></div>
+
+<div class="lever-arm">
+<div class="lever-handle"></div>
+</div>
 
 <button id="spinWheelButton">
 PULL
 </button>
 
-
 </div>
 
 
@@ -3419,6 +2881,153 @@ PULL
 
 </div>
 
+
+<!-- BAD LUCK PROTECTION -->
+
+<div class="bad-luck-panel">
+
+
+<div class="bad-luck-header">
+
+<div class="bad-luck-title">
+Bad Luck Protection
+</div>
+
+<div class="token-counter">
+
+TOKENS REMAINING:
+
+<span id="tokensRemaining">
+3 / 3
+</span>
+
+</div>
+
+</div>
+
+
+<div class="bad-luck-description">
+
+You may spend up to three tokens before pulling the lever.
+Each disabled class or body type costs one token.
+Click it again before spinning to refund the token.
+At least one body type must remain available because not even AU TSM can roll nothing.
+
+</div>
+
+
+<div class="protection-subtitle">
+DISABLE CLASSES
+</div>
+
+
+<div
+id="classExclusionGrid"
+class="exclusion-grid"
+>
+
+<button
+class="exclusion-button"
+data-class-name="Warrior"
+>
+Warrior
+</button>
+
+<button
+class="exclusion-button"
+data-class-name="Paladin"
+>
+Paladin
+</button>
+
+<button
+class="exclusion-button"
+data-class-name="Hunter"
+>
+Hunter
+</button>
+
+<button
+class="exclusion-button"
+data-class-name="Rogue"
+>
+Rogue
+</button>
+
+<button
+class="exclusion-button"
+data-class-name="Priest"
+>
+Priest
+</button>
+
+<button
+class="exclusion-button"
+data-class-name="Shaman"
+>
+Shaman
+</button>
+
+<button
+class="exclusion-button"
+data-class-name="Mage"
+>
+Mage
+</button>
+
+<button
+class="exclusion-button"
+data-class-name="Warlock"
+>
+Warlock
+</button>
+
+<button
+class="exclusion-button"
+data-class-name="Druid"
+>
+Druid
+</button>
+
+</div>
+
+
+<div class="protection-subtitle">
+DISABLE BODY TYPE
+</div>
+
+
+<div class="body-exclusion-row">
+
+<button
+id="excludeBody1"
+class="exclusion-button body-option-one"
+data-body-type="1"
+>
+BODY TYPE 1 — BLUE
+</button>
+
+<button
+id="excludeBody2"
+class="exclusion-button body-option-two"
+data-body-type="2"
+>
+BODY TYPE 2 — PINK
+</button>
+
+</div>
+
+
+<div
+id="protectionWarning"
+class="protection-warning"
+></div>
+
+
+</div>
+
+
+<!-- RESULT -->
 
 <div class="wheel-result">
 
@@ -3430,8 +3039,15 @@ THE WHEEL HAS NOT YET JUDGED YOU
 ?
 </div>
 
+<div
+id="wheelResultBody"
+style="display:none;"
+>
+?
+</div>
+
 <div id="wheelResultMessage">
-Pull the lever and surrender control of your future.
+Spend your protection tokens wisely, then surrender your future to the lever.
 </div>
 
 </div>
@@ -3447,64 +3063,31 @@ Pull the lever and surrender control of your future.
 <section>
 
 <div class="section-title">
-
-<h3>
-Guild Operations Centre
-</h3>
-
-<p>
-Monitoring AU TSM's ongoing descent into operational excellence
-</p>
-
+<h3>Guild Operations Centre</h3>
+<p>Monitoring AU TSM's ongoing descent into operational excellence</p>
 </div>
 
-
-<div class="feed" id="guildFeed">
-
+<div class="feed">
 
 <div class="feed-item">
-
-<span class="feed-time">
-NOW
-</span>
-
+<span class="feed-time">NOW</span>
 Roks has been reminded that fire is not a temporary buff.
-
 </div>
 
-
 <div class="feed-item">
-
-<span class="feed-time">
-2m
-</span>
-
+<span class="feed-time">2m</span>
 Fayne has been assigned an important mechanic. Bladestorm availability is being investigated.
-
 </div>
 
-
 <div class="feed-item">
-
-<span class="feed-time">
-4m
-</span>
-
+<span class="feed-time">4m</span>
 Chris has completed another internal review confirming Chris is the best gamer.
-
 </div>
-
 
 <div class="feed-item">
-
-<span class="feed-time">
-6m
-</span>
-
+<span class="feed-time">6m</span>
 Luffa has entered the operationally impaired phase of the evening.
-
 </div>
-
 
 </div>
 
@@ -3518,104 +3101,36 @@ Luffa has entered the operationally impaired phase of the evening.
 <section>
 
 <div class="section-title">
-
-<h3>
-Personnel Readiness Matrix
-</h3>
-
-<p>
-Because a normal ready check wasn't sufficiently bureaucratic
-</p>
-
+<h3>Personnel Readiness Matrix</h3>
+<p>Because a normal ready check wasn't sufficiently bureaucratic</p>
 </div>
-
 
 <div class="raid-box">
 
-<div class="raid-row">
-<span>Tanks</span>
-<span class="good">Ready</span>
-</div>
+<div class="raid-row"><span>Tanks</span><span class="good">Ready</span></div>
 
 <div class="raid-row">
 <span>Healers</span>
-<span class="warning">
-Penny asked why Chris needs three healers
-</span>
+<span class="warning">Penny asked why Chris needs three healers</span>
 </div>
 
-<div class="raid-row">
-<span>DPS</span>
-<span class="good">
-Far too many
-</span>
-</div>
+<div class="raid-row"><span>DPS</span><span class="good">Far too many</span></div>
 
 <div class="raid-row">
 <span>Fayne</span>
-<span
-    class="good"
-    id="fayneStatus"
->
+<span class="good" id="fayneStatus">
 Ready — Bladestorm available
 </span>
 </div>
 
-<div class="raid-row">
-<span>Stiff</span>
-<span class="warning">
-AFK status unclear
-</span>
-</div>
-
-<div class="raid-row">
-<span>KP</span>
-<span class="good">
-Claims to be ready
-</span>
-</div>
-
-<div class="raid-row">
-<span>Jaydo</span>
-<span class="warning">
-Has started a completely unrelated conversation
-</span>
-</div>
-
-<div class="raid-row">
-<span>Sev</span>
-<span class="good">
-Quietly carrying without acknowledgement
-</span>
-</div>
-
-<div class="raid-row">
-<span>Rulzy</span>
-<span class="warning">
-Currently disputing a loot interpretation
-</span>
-</div>
-
-<div class="raid-row">
-<span>Marsmallow</span>
-<span class="good">
-Present and somehow not involved in the drama
-</span>
-</div>
-
-<div class="raid-row">
-<span>Zomgs</span>
-<span class="warning">
-Connection status classified
-</span>
-</div>
-
-<div class="raid-row">
-<span>Roks</span>
-<span class="warning">
-Already dead
-</span>
-</div>
+<div class="raid-row"><span>Stiff</span><span class="warning">AFK status unclear</span></div>
+<div class="raid-row"><span>KP</span><span class="good">Claims to be ready</span></div>
+<div class="raid-row"><span>Jaydo</span><span class="warning">Has started a completely unrelated conversation</span></div>
+<div class="raid-row"><span>Sev</span><span class="good">Quietly carrying without acknowledgement</span></div>
+<div class="raid-row"><span>Rulzy</span><span class="warning">Currently disputing a loot interpretation</span></div>
+<div class="raid-row"><span>Marsmallow</span><span class="good">Present and somehow not involved in the drama</span></div>
+<div class="raid-row"><span>Zomgs</span><span class="warning">Connection status classified</span></div>
+<div class="raid-row"><span>Roks</span><span class="warning">Already dead</span></div>
 
 </div>
 
@@ -3629,20 +3144,11 @@ Already dead
 <section id="tools">
 
 <div class="section-title">
-
-<h3>
-Guild Tools
-</h3>
-
-<p>
-Enterprise-grade solutions to problems we created ourselves
-</p>
-
+<h3>Guild Tools</h3>
+<p>Enterprise-grade solutions to problems we created ourselves</p>
 </div>
 
-
 <div class="tools">
-
 
 <div class="tool">
 
@@ -3659,8 +3165,8 @@ Analyse Character
 </button>
 
 <div
-    class="result"
-    id="eligibilityResult"
+class="result"
+id="eligibilityResult"
 ></div>
 
 </div>
@@ -3681,8 +3187,8 @@ Test Connection
 </button>
 
 <div
-    class="result"
-    id="latencyResult"
+class="result"
+id="latencyResult"
 ></div>
 
 </div>
@@ -3703,8 +3209,8 @@ Calculate Priority
 </button>
 
 <div
-    class="result"
-    id="lootResult"
+class="result"
+id="lootResult"
 ></div>
 
 </div>
@@ -3725,12 +3231,11 @@ Improve My Parse
 </button>
 
 <div
-    class="result"
-    id="parseResult"
+class="result"
+id="parseResult"
 ></div>
 
 </div>
-
 
 </div>
 
@@ -3744,17 +3249,9 @@ Improve My Parse
 <section id="announcements">
 
 <div class="section-title">
-
-<h3>
-Officer Announcements
-</h3>
-
-<p>
-Please read before asking the exact question answered below
-</p>
-
+<h3>Officer Announcements</h3>
+<p>Please read before asking the exact question answered below</p>
 </div>
-
 
 <div class="announcement">
 
@@ -3766,7 +3263,6 @@ Phinky would like to remind everyone that Guild Master decisions are final unles
 
 </div>
 
-
 <div class="announcement">
 
 <strong>
@@ -3776,7 +3272,6 @@ Luffa:
 Raid leadership recommends completing all technically difficult mechanics before Luffa reaches beverage number four.
 
 </div>
-
 
 <div class="announcement">
 
@@ -3788,7 +3283,6 @@ Following several incidents, Roks is no longer permitted to say "trust me" immed
 
 </div>
 
-
 <div class="announcement">
 
 <strong>
@@ -3798,7 +3292,6 @@ Fayne:
 Fayne is generally a good player. Unfortunately, mechanics occurring during Bladestorm are considered outside his jurisdiction.
 
 </div>
-
 
 <div class="announcement">
 
@@ -3810,16 +3303,11 @@ Please stop depositing grey items, broken teeth, six-slot bags and anything Stif
 
 </div>
 
-
 </section>
 
 
 </main>
 
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
 
 <footer>
 
@@ -3878,7 +3366,6 @@ ONYXIA • NORMALISH DIFFICULTY
 
 <div class="game-hud">
 
-
 <div>
 
 PLAYER:
@@ -3895,9 +3382,7 @@ PLAYER:
 ONYXIA
 
 <div class="boss-health-bar">
-
 <div id="bossHealthFill"></div>
-
 </div>
 
 <span id="bossHealthText">
@@ -3916,7 +3401,6 @@ FIGHT:
 </span>s
 
 </div>
-
 
 </div>
 
@@ -3946,17 +3430,11 @@ USE ITEM
 <div id="gamePlayer">
 
 <div class="player-hair"></div>
-
 <div class="player-head"></div>
-
 <div class="player-shoulder shoulder-left"></div>
-
 <div class="player-shoulder shoulder-right"></div>
-
 <div class="player-body"></div>
-
 <div class="player-leg leg-left"></div>
-
 <div class="player-leg leg-right"></div>
 
 </div>
@@ -3965,17 +3443,12 @@ USE ITEM
 <div id="onyxia">
 
 <div class="dragon-wing dragon-wing-left"></div>
-
 <div class="dragon-wing dragon-wing-right"></div>
-
 <div class="dragon-body"></div>
-
 <div class="dragon-neck"></div>
 
 <div class="dragon-head">
-
 <div class="dragon-eye"></div>
-
 </div>
 
 <div class="dragon-tail"></div>
@@ -4059,16 +3532,6 @@ Critical strikes deal
 You have
 <strong>5 hearts</strong>.
 
-<br><br>
-
-Guild members may occasionally heal you,
-help you,
-or make everything considerably worse.
-
-<br><br>
-
-Kill Onyxia before AU TSM kills itself.
-
 </p>
 
 
@@ -4083,7 +3546,7 @@ PULL BOSS
 </div>
 
 
-<!-- DPS METER -->
+<!-- DPS -->
 
 <div class="dps-meter">
 
@@ -4096,24 +3559,12 @@ DAMAGE
 <div class="dps-row">
 
 <div class="dps-name">
-
-<span>
-Chris
-</span>
-
-<span id="dpsChris">
-0
-</span>
-
+<span>Chris</span>
+<span id="dpsChris">0</span>
 </div>
 
 <div class="dps-bar">
-
-<div
-    class="dps-fill"
-    id="barChris"
-></div>
-
+<div class="dps-fill" id="barChris"></div>
 </div>
 
 </div>
@@ -4122,24 +3573,12 @@ Chris
 <div class="dps-row">
 
 <div class="dps-name">
-
-<span>
-You
-</span>
-
-<span id="dpsPlayer">
-0
-</span>
-
+<span>You</span>
+<span id="dpsPlayer">0</span>
 </div>
 
 <div class="dps-bar">
-
-<div
-    class="dps-fill"
-    id="barPlayer"
-></div>
-
+<div class="dps-fill" id="barPlayer"></div>
 </div>
 
 </div>
@@ -4148,24 +3587,12 @@ You
 <div class="dps-row">
 
 <div class="dps-name">
-
-<span>
-Fayne
-</span>
-
-<span id="dpsFayne">
-0
-</span>
-
+<span>Fayne</span>
+<span id="dpsFayne">0</span>
 </div>
 
 <div class="dps-bar">
-
-<div
-    class="dps-fill"
-    id="barFayne"
-></div>
-
+<div class="dps-fill" id="barFayne"></div>
 </div>
 
 </div>
@@ -4174,24 +3601,12 @@ Fayne
 <div class="dps-row">
 
 <div class="dps-name">
-
-<span>
-Sev
-</span>
-
-<span id="dpsSev">
-0
-</span>
-
+<span>Sev</span>
+<span id="dpsSev">0</span>
 </div>
 
 <div class="dps-bar">
-
-<div
-    class="dps-fill"
-    id="barSev"
-></div>
-
+<div class="dps-fill" id="barSev"></div>
 </div>
 
 </div>
@@ -4200,24 +3615,12 @@ Sev
 <div class="dps-row">
 
 <div class="dps-name">
-
-<span>
-Roks
-</span>
-
-<span id="dpsRoks">
-0
-</span>
-
+<span>Roks</span>
+<span id="dpsRoks">0</span>
 </div>
 
 <div class="dps-bar">
-
-<div
-    class="dps-fill"
-    id="barRoks"
-></div>
-
+<div class="dps-fill" id="barRoks"></div>
 </div>
 
 </div>
@@ -4435,9 +3838,7 @@ function queueSound(
 ) {
 
     if (!audio) {
-
         return;
-
     }
 
 
@@ -4582,7 +3983,7 @@ async function processSoundQueue() {
 
 
 /* =========================================================
-   MUSIC BUTTON
+   MUSIC
 ========================================================= */
 
 musicButton.onclick =
@@ -4623,7 +4024,7 @@ musicButton.onclick =
             catch(error) {
 
                 showToast(
-                    "Browser blocked audio. Click the music button again."
+                    "Browser blocked audio. Click again."
                 );
 
             }
@@ -4806,39 +4207,8 @@ setInterval(function() {
 
 
 /* =========================================================
-   CLASS WHEEL
+   CLASS WHEEL DATA
 ========================================================= */
-
-const classWheel =
-    document.getElementById(
-        "classWheel"
-    );
-
-const spinWheelButton =
-    document.getElementById(
-        "spinWheelButton"
-    );
-
-const leverMachine =
-    document.getElementById(
-        "leverMachine"
-    );
-
-const wheelPointer =
-    document.getElementById(
-        "wheelPointer"
-    );
-
-const wheelResultClass =
-    document.getElementById(
-        "wheelResultClass"
-    );
-
-const wheelResultMessage =
-    document.getElementById(
-        "wheelResultMessage"
-    );
-
 
 const wheelClasses = [
 
@@ -4917,17 +4287,43 @@ const wheelClasses = [
 ];
 
 
+const bodyTypes =
+[
+
+    {
+        id:
+            1,
+
+        name:
+            "Body Type 1",
+
+        colour:
+            "#287ac2"
+    },
+
+    {
+        id:
+            2,
+
+        name:
+            "Body Type 2",
+
+        colour:
+            "#cf5d94"
+    }
+
+];
+
+
 const wheelMessages = [
 
     "The wheel has spoken. Any reroll before level 20 will be investigated.",
 
-    "Congratulations. Your carefully planned class choice has been outsourced to JavaScript.",
-
-    "Locked in. Chris has already begun explaining why his class is better.",
+    "Congratulations. Your character planning has now been outsourced to JavaScript.",
 
     "The decision is final unless Phinky changes the rules.",
 
-    "Character planning complete. Time to spend six hours choosing a name.",
+    "Character selected. Time to spend six hours choosing a name.",
 
     "AU TSM recruitment analytics confirm this was probably a mistake.",
 
@@ -4935,9 +4331,67 @@ const wheelMessages = [
 
     "Excellent. Now immediately begin researching your second character.",
 
-    "Roks recommends ignoring this result and rolling something completely different."
+    "Roks recommends ignoring this result and rolling something completely different.",
+
+    "Chris has reviewed the result and believes he would play it better."
 
 ];
+
+
+const classWheel =
+    document.getElementById(
+        "classWheel"
+    );
+
+const wheelPointer =
+    document.getElementById(
+        "wheelPointer"
+    );
+
+const wheelDisabledMask =
+    document.getElementById(
+        "wheelDisabledMask"
+    );
+
+const spinWheelButton =
+    document.getElementById(
+        "spinWheelButton"
+    );
+
+const leverMachine =
+    document.getElementById(
+        "leverMachine"
+    );
+
+const tokensRemaining =
+    document.getElementById(
+        "tokensRemaining"
+    );
+
+const protectionWarning =
+    document.getElementById(
+        "protectionWarning"
+    );
+
+const wheelResultClass =
+    document.getElementById(
+        "wheelResultClass"
+    );
+
+const wheelResultBody =
+    document.getElementById(
+        "wheelResultBody"
+    );
+
+const wheelResultMessage =
+    document.getElementById(
+        "wheelResultMessage"
+    );
+
+const bodySlotTrack =
+    document.getElementById(
+        "bodySlotTrack"
+    );
 
 
 let wheelSpinning =
@@ -4948,15 +4402,481 @@ let wheelRotation =
     0;
 
 
-let wheelTickerTimer =
-    null;
+let tokensUsed =
+    0;
+
+
+const MAX_TOKENS =
+    3;
+
+
+const disabledClasses =
+    new Set();
+
+
+const disabledBodies =
+    new Set();
 
 
 /* =========================================================
-   WHEEL POINTER TICK EFFECT
+   TOKEN DISPLAY
+========================================================= */
+
+function updateTokenDisplay() {
+
+    const remaining =
+        MAX_TOKENS -
+        tokensUsed;
+
+
+    tokensRemaining.textContent =
+        remaining +
+        " / " +
+        MAX_TOKENS;
+
+}
+
+
+/* =========================================================
+   BAD LUCK WARNING
+========================================================= */
+
+function protectionMessage(text) {
+
+    protectionWarning.textContent =
+        text;
+
+
+    setTimeout(function() {
+
+        if (
+            protectionWarning.textContent ===
+            text
+        ) {
+
+            protectionWarning.textContent =
+                "";
+
+        }
+
+    },2400);
+
+}
+
+
+/* =========================================================
+   CLASS EXCLUSION VISUAL
+========================================================= */
+
+function updateClassProtectionVisuals() {
+
+
+    document
+    .querySelectorAll(
+        "[data-class-name]"
+    )
+    .forEach(function(button) {
+
+
+        const className =
+            button.dataset.className;
+
+
+        button.classList.toggle(
+            "excluded",
+            disabledClasses.has(
+                className
+            )
+        );
+
+
+    });
+
+
+    document
+    .querySelectorAll(
+        "[data-wheel-class]"
+    )
+    .forEach(function(label) {
+
+
+        const className =
+            label.dataset.wheelClass;
+
+
+        label.classList.toggle(
+            "disabled-label",
+            disabledClasses.has(
+                className
+            )
+        );
+
+
+    });
+
+
+    /*
+    Build a conic-gradient mask over disabled segments.
+    */
+
+    const pieces =
+        [];
+
+
+    wheelClasses.forEach(
+        function(classInfo,index) {
+
+
+            const start =
+                index *
+                40;
+
+
+            const end =
+                start +
+                40;
+
+
+            if (
+                disabledClasses.has(
+                    classInfo.name
+                )
+            ) {
+
+
+                pieces.push(
+                    "rgba(0,0,0,.72) " +
+                    start +
+                    "deg " +
+                    end +
+                    "deg"
+                );
+
+
+            }
+
+            else {
+
+
+                pieces.push(
+                    "transparent " +
+                    start +
+                    "deg " +
+                    end +
+                    "deg"
+                );
+
+
+            }
+
+
+        }
+    );
+
+
+    wheelDisabledMask.style.background =
+        "conic-gradient(from -20deg," +
+        pieces.join(",") +
+        ")";
+
+}
+
+
+/* =========================================================
+   BODY PROTECTION VISUALS
+========================================================= */
+
+function updateBodyProtectionVisuals() {
+
+
+    document
+    .querySelectorAll(
+        "[data-body-type]"
+    )
+    .forEach(function(button) {
+
+
+        const bodyId =
+            Number(
+                button.dataset.bodyType
+            );
+
+
+        button.classList.toggle(
+            "excluded",
+            disabledBodies.has(
+                bodyId
+            )
+        );
+
+
+    });
+
+
+}
+
+
+/* =========================================================
+   TOGGLE CLASS PROTECTION
+========================================================= */
+
+document
+.querySelectorAll(
+    "[data-class-name]"
+)
+.forEach(function(button) {
+
+
+    button.onclick =
+        function() {
+
+
+            if (
+                wheelSpinning
+            ) {
+
+                return;
+
+            }
+
+
+            const className =
+                button.dataset.className;
+
+
+            if (
+                disabledClasses.has(
+                    className
+                )
+            ) {
+
+
+                disabledClasses.delete(
+                    className
+                );
+
+
+                tokensUsed--;
+
+
+                updateTokenDisplay();
+
+
+                updateClassProtectionVisuals();
+
+
+                protectionMessage(
+                    className +
+                    " restored. Token refunded."
+                );
+
+
+                return;
+
+
+            }
+
+
+            if (
+                tokensUsed >=
+                MAX_TOKENS
+            ) {
+
+
+                protectionMessage(
+                    "No protection tokens remaining."
+                );
+
+
+                return;
+
+
+            }
+
+
+            disabledClasses.add(
+                className
+            );
+
+
+            tokensUsed++;
+
+
+            updateTokenDisplay();
+
+
+            updateClassProtectionVisuals();
+
+
+            protectionMessage(
+                className +
+                " removed from the wheel."
+            );
+
+
+        };
+
+
+});
+
+
+/* =========================================================
+   TOGGLE BODY PROTECTION
+========================================================= */
+
+document
+.querySelectorAll(
+    "[data-body-type]"
+)
+.forEach(function(button) {
+
+
+    button.onclick =
+        function() {
+
+
+            if (
+                wheelSpinning
+            ) {
+
+                return;
+
+            }
+
+
+            const bodyId =
+                Number(
+                    button.dataset.bodyType
+                );
+
+
+            if (
+                disabledBodies.has(
+                    bodyId
+                )
+            ) {
+
+
+                disabledBodies.delete(
+                    bodyId
+                );
+
+
+                tokensUsed--;
+
+
+                updateTokenDisplay();
+
+
+                updateBodyProtectionVisuals();
+
+
+                protectionMessage(
+                    "Body Type " +
+                    bodyId +
+                    " restored. Token refunded."
+                );
+
+
+                return;
+
+
+            }
+
+
+            if (
+                disabledBodies.size >=
+                1
+            ) {
+
+
+                protectionMessage(
+                    "At least one body type must remain available."
+                );
+
+
+                return;
+
+
+            }
+
+
+            if (
+                tokensUsed >=
+                MAX_TOKENS
+            ) {
+
+
+                protectionMessage(
+                    "No protection tokens remaining."
+                );
+
+
+                return;
+
+
+            }
+
+
+            disabledBodies.add(
+                bodyId
+            );
+
+
+            tokensUsed++;
+
+
+            updateTokenDisplay();
+
+
+            updateBodyProtectionVisuals();
+
+
+            protectionMessage(
+                "Body Type " +
+                bodyId +
+                " disabled."
+            );
+
+
+        };
+
+
+});
+
+
+/* =========================================================
+   LOCK / UNLOCK PROTECTION
+========================================================= */
+
+function setProtectionLocked(
+    locked
+) {
+
+
+    document
+    .querySelectorAll(
+        ".exclusion-button"
+    )
+    .forEach(function(button) {
+
+
+        button.disabled =
+            locked;
+
+
+    });
+
+
+}
+
+
+/* =========================================================
+   POINTER TICK
 ========================================================= */
 
 function tickWheelPointer() {
+
 
     wheelPointer.classList.remove(
         "ticking"
@@ -4969,6 +4889,75 @@ function tickWheelPointer() {
     wheelPointer.classList.add(
         "ticking"
     );
+
+
+}
+
+
+/* =========================================================
+   BODY SLOT SPIN
+========================================================= */
+
+function spinBodySlot(
+    winnerId
+) {
+
+
+    /*
+    Slot items are 72px high.
+
+    Track contains alternating 1 / 2.
+
+    Choose a late matching item so it visibly
+    scrolls through several cycles.
+    */
+
+
+    const matchingIndexes =
+        winnerId ===
+        1
+        ?
+        [6,8,10]
+        :
+        [7,9,11];
+
+
+    const targetIndex =
+        randomItem(
+            matchingIndexes
+        );
+
+
+    const targetY =
+        targetIndex *
+        72;
+
+
+    /*
+    Remove transition first so every spin can
+    reset cleanly.
+    */
+
+    bodySlotTrack.style.transition =
+        "none";
+
+
+    bodySlotTrack.style.transform =
+        "translateY(0px)";
+
+
+    void bodySlotTrack.offsetWidth;
+
+
+    bodySlotTrack.style.transition =
+        "transform 5.8s cubic-bezier(.10,.70,.10,1)";
+
+
+    bodySlotTrack.style.transform =
+        "translateY(-" +
+        targetY +
+        "px)";
+
 
 }
 
@@ -4990,8 +4979,75 @@ spinWheelButton.onclick =
         }
 
 
+        const availableClasses =
+            wheelClasses.filter(
+                function(classInfo) {
+
+
+                    return !disabledClasses.has(
+                        classInfo.name
+                    );
+
+
+                }
+            );
+
+
+        const availableBodies =
+            bodyTypes.filter(
+                function(bodyInfo) {
+
+
+                    return !disabledBodies.has(
+                        bodyInfo.id
+                    );
+
+
+                }
+            );
+
+
+        if (
+            availableClasses.length ===
+            0
+        ) {
+
+
+            protectionMessage(
+                "You somehow disabled every class."
+            );
+
+
+            return;
+
+
+        }
+
+
+        if (
+            availableBodies.length ===
+            0
+        ) {
+
+
+            protectionMessage(
+                "At least one body type must remain."
+            );
+
+
+            return;
+
+
+        }
+
+
         wheelSpinning =
             true;
+
+
+        setProtectionLocked(
+            true
+        );
 
 
         spinWheelButton.disabled =
@@ -5015,35 +5071,60 @@ spinWheelButton.onclick =
             "#d7a94b";
 
 
+        wheelResultBody.style.display =
+            "none";
+
+
         wheelResultMessage.textContent =
-            "Calculating the class you will abandon at level 17...";
+            "Applying bad luck protection and consulting the ancient algorithm...";
 
 
         /*
-        Randomly choose one of the nine class segments.
+        CLASS WINNER
         */
 
-        const winnerIndex =
-            randomNumber(
-                0,
-                wheelClasses.length -
-                1
+        const winningClass =
+            randomItem(
+                availableClasses
             );
 
+
+        const winnerIndex =
+            wheelClasses.findIndex(
+                function(classInfo) {
+
+
+                    return classInfo.name ===
+                        winningClass.name;
+
+
+                }
+            );
+
+
+        /*
+        BODY WINNER
+        */
+
+        const winningBody =
+            randomItem(
+                availableBodies
+            );
+
+
+        spinBodySlot(
+            winningBody.id
+        );
+
+
+        /*
+        WHEEL ROTATION
+        */
 
         const segmentSize =
             360 /
             wheelClasses.length;
 
-
-        /*
-        Segment zero is centred under the pointer
-        when wheel rotation = 0 degrees.
-
-        To place another segment beneath the fixed
-        pointer we rotate the wheel backwards by
-        that segment's angle.
-        */
 
         const targetPosition =
             (
@@ -5096,19 +5177,29 @@ spinWheelButton.onclick =
             extraDistance;
 
 
+        classWheel.style.transform =
+            "rotate(" +
+            wheelRotation +
+            "deg)";
+
+
         /*
-        Start pointer ticking rapidly,
-        then gradually slow the ticker.
+        POINTER TICKS
         */
 
         let tickDelay =
-            90;
+            75;
+
+
+        let tickerActive =
+            true;
 
 
         function scheduleTick() {
 
+
             if (
-                !wheelSpinning
+                !tickerActive
             ) {
 
                 return;
@@ -5120,17 +5211,17 @@ spinWheelButton.onclick =
 
 
             tickDelay +=
-                10;
+                9;
 
 
-            wheelTickerTimer =
-                setTimeout(
-                    scheduleTick,
-                    Math.min(
-                        tickDelay,
-                        380
-                    )
-                );
+            setTimeout(
+                scheduleTick,
+                Math.min(
+                    tickDelay,
+                    360
+                )
+            );
+
 
         }
 
@@ -5139,52 +5230,38 @@ spinWheelButton.onclick =
 
 
         /*
-        Start wheel rotation.
-        */
-
-        classWheel.style.transform =
-            "rotate(" +
-            wheelRotation +
-            "deg)";
-
-
-        /*
-        Lever springs back shortly after pull.
+        LEVER RETURN
         */
 
         setTimeout(function() {
+
 
             leverMachine.classList.remove(
                 "pulled"
             );
 
+
         },500);
 
 
         /*
-        Wheel transition is 6.2 seconds.
-        Reveal result just afterwards.
+        RESULT
         */
 
         setTimeout(function() {
+
+
+            tickerActive =
+                false;
 
 
             wheelSpinning =
                 false;
 
 
-            if (
-                wheelTickerTimer
-            ) {
-
-                clearTimeout(
-                    wheelTickerTimer
-                );
-
-            }
-
-
-            tickWheelPointer();
+            setProtectionLocked(
+                false
+            );
 
 
             spinWheelButton.disabled =
@@ -5195,18 +5272,27 @@ spinWheelButton.onclick =
                 "PULL";
 
 
-            const winner =
-                wheelClasses[
-                    winnerIndex
-                ];
+            tickWheelPointer();
 
 
             wheelResultClass.textContent =
-                winner.name;
+                winningClass.name;
 
 
             wheelResultClass.style.color =
-                winner.colour;
+                winningClass.colour;
+
+
+            wheelResultBody.style.display =
+                "inline-block";
+
+
+            wheelResultBody.textContent =
+                winningBody.name;
+
+
+            wheelResultBody.style.background =
+                winningBody.colour;
 
 
             wheelResultMessage.textContent =
@@ -5226,79 +5312,82 @@ spinWheelButton.onclick =
 ========================================================= */
 
 document
-    .getElementById(
-        "joinButton"
-    )
-    .onclick =
-    function() {
+.getElementById(
+    "joinButton"
+)
+.onclick =
+function() {
 
 
-        queueSound(
-            levelUpSound
-        );
+    queueSound(
+        levelUpSound
+    );
 
 
-        const applicationSteps = [
+    const applicationSteps =
+    [
 
-            "Guild application submitted.",
+        "Guild application submitted.",
 
-            "Retrieving Warcraft Logs...",
+        "Retrieving Warcraft Logs...",
 
-            "Checking whether Chris knows you...",
+        "Checking whether Chris knows you...",
 
-            "Reviewing Discord history...",
+        "Reviewing Discord history...",
 
-            "Calculating fire-standing probability...",
+        "Calculating fire-standing probability...",
 
-            "Application declined by Phinky. Reason: Vibes."
+        "Application declined by Phinky. Reason: Vibes."
 
-        ];
-
-
-        let step =
-            0;
+    ];
 
 
-        showToast(
-            applicationSteps[
-                step
-            ]
-        );
+    let step =
+        0;
 
 
-        const timer =
-            setInterval(function() {
+    showToast(
+        applicationSteps[
+            step
+        ]
+    );
 
 
-                step++;
+    const timer =
+        setInterval(function() {
 
 
-                if (
-                    step >=
-                    applicationSteps.length
-                ) {
-
-                    clearInterval(
-                        timer
-                    );
+            step++;
 
 
-                    return;
+            if (
+                step >=
+                applicationSteps.length
+            ) {
 
-                }
 
-
-                showToast(
-                    applicationSteps[
-                        step
-                    ]
+                clearInterval(
+                    timer
                 );
 
 
-            },1000);
+                return;
 
 
-    };
+            }
+
+
+            showToast(
+                applicationSteps[
+                    step
+                ]
+            );
+
+
+        },1000);
+
+
+};
 
 
 /* =========================================================
@@ -5674,7 +5763,7 @@ let actionTimeout =
 
 
 /* =========================================================
-   DPS DATA
+   DPS
 ========================================================= */
 
 let raidDamage =
@@ -5699,7 +5788,7 @@ let raidDamage =
 
 
 /* =========================================================
-   OPEN / CLOSE
+   OPEN RAID
 ========================================================= */
 
 document
@@ -5900,8 +5989,8 @@ function resetGame() {
 
         <br>
 
-        Same mechanics as Phase 2,
-        but approximately twice as fast.
+        Same mechanics,
+        approximately twice the frequency.
 
         <br><br>
 
@@ -5910,10 +5999,8 @@ function resetGame() {
 
         <br>
 
-        You have a
-        <strong>
-        25% chance to critically strike for 10 damage
-        </strong>.
+        25% chance to critically strike for
+        <strong>10 damage</strong>.
 
         <br><br>
 
@@ -5941,7 +6028,7 @@ function resetGame() {
 
 
 /* =========================================================
-   START
+   START RAID
 ========================================================= */
 
 function startGame() {
@@ -6224,8 +6311,6 @@ function gameLoop(time) {
         );
 
 
-    /* PLAYER PHYSICS */
-
     velocityY -=
         1500 *
         delta;
@@ -6262,8 +6347,6 @@ function gameLoop(time) {
         "px";
 
 
-    /* MECHANICS */
-
     mechanicTimer -=
         delta;
 
@@ -6283,8 +6366,6 @@ function gameLoop(time) {
 
     }
 
-
-    /* PLAYER ATTACK */
 
     attackTimer -=
         delta;
@@ -6308,8 +6389,6 @@ function gameLoop(time) {
     }
 
 
-    /* GUILD EVENT */
-
     guildEventTimer -=
         delta;
 
@@ -6329,8 +6408,6 @@ function gameLoop(time) {
 
     }
 
-
-    /* DPS */
 
     dpsTickTimer -=
         delta;
@@ -6415,9 +6492,7 @@ function updatePhase() {
         currentPhase
     ) {
 
-
         return;
-
 
     }
 
@@ -6473,7 +6548,7 @@ function updatePhase() {
 
 
 /* =========================================================
-   MECHANIC INTERVALS
+   MECHANIC TIMING
 ========================================================= */
 
 function getMechanicInterval() {
@@ -6513,10 +6588,6 @@ function getMechanicInterval() {
     }
 
 
-    /*
-    Roughly double Phase 2 frequency.
-    */
-
     return randomNumber(
         10,
         13
@@ -6527,10 +6598,6 @@ function getMechanicInterval() {
 
 }
 
-
-/* =========================================================
-   MECHANIC SPEED
-========================================================= */
 
 function getMechanicSpeed() {
 
@@ -6565,11 +6632,6 @@ function getMechanicSpeed() {
     }
 
 
-    /*
-    Phase 3 only slightly faster movement.
-    Spawn frequency provides most difficulty.
-    */
-
     return randomNumber(
         310,
         350
@@ -6578,10 +6640,6 @@ function getMechanicSpeed() {
 
 }
 
-
-/* =========================================================
-   GUILD EVENT TIMINGS
-========================================================= */
 
 function getGuildEventInterval() {
 
@@ -6638,11 +6696,6 @@ function spawnMechanic() {
         );
 
 
-    /*
-    PHASE 1:
-    Ground fire only.
-    */
-
     if (
         currentPhase ===
         1
@@ -6654,12 +6707,6 @@ function spawnMechanic() {
 
 
     }
-
-
-    /*
-    PHASE 2 + 3:
-    Fire or breath.
-    */
 
     else {
 
@@ -6737,10 +6784,6 @@ function spawnMechanic() {
 
 }
 
-
-/* =========================================================
-   AIMLESS REVERSE FIRE
-========================================================= */
 
 function spawnReverseFire() {
 
@@ -6975,10 +7018,6 @@ function playerAttack() {
 }
 
 
-/* =========================================================
-   LIGHTNING VISUAL
-========================================================= */
-
 function castLightningVisual(crit) {
 
 
@@ -7045,10 +7084,6 @@ function castLightningVisual(crit) {
 
 }
 
-
-/* =========================================================
-   UPDATE BOLTS
-========================================================= */
 
 function updateBolts(delta) {
 
@@ -7205,10 +7240,6 @@ function damageBoss(
 }
 
 
-/* =========================================================
-   DAMAGE DISPLAY
-========================================================= */
-
 function addDamageEvent(
     amount,
     crit
@@ -7278,10 +7309,6 @@ function addDamageEvent(
 }
 
 
-/* =========================================================
-   BOSS HP
-========================================================= */
-
 function updateBoss() {
 
 
@@ -7313,7 +7340,7 @@ function updateBoss() {
 
 
 /* =========================================================
-   LEFT EVENT FEED
+   LEFT FEED
 ========================================================= */
 
 function addLeftEvent(
@@ -7716,10 +7743,6 @@ function healPlayer(name) {
 }
 
 
-/* =========================================================
-   RANDOM HEAL
-========================================================= */
-
 function maybeRandomHeal() {
 
 
@@ -7766,19 +7789,12 @@ function maybeRandomHeal() {
 
         healPlayer(
             randomItem([
-
                 "Jaydo",
-
                 "Sev",
-
                 "Chris",
-
                 "Penny",
-
                 "Marsmallow",
-
                 "KP"
-
             ])
         );
 
@@ -7790,7 +7806,7 @@ function maybeRandomHeal() {
 
 
 /* =========================================================
-   CONSUMABLES
+   RAID ACTIONS
 ========================================================= */
 
 function spawnRaidAction(type) {
@@ -7800,9 +7816,7 @@ function spawnRaidAction(type) {
         currentAction
     ) {
 
-
         return;
-
 
     }
 
@@ -7857,36 +7871,6 @@ function spawnRaidAction(type) {
         setTimeout(function() {
 
 
-            if (
-                currentAction ===
-                "healthstone"
-            ) {
-
-
-                addLeftEvent(
-                    "Healthstone expired. Warlock has noted this.",
-                    "warning-event"
-                );
-
-
-            }
-
-
-            if (
-                currentAction ===
-                "bloodlust"
-            ) {
-
-
-                addLeftEvent(
-                    "Bloodlust opportunity missed. Officer review pending.",
-                    "warning-event"
-                );
-
-
-            }
-
-
             hideActionPrompt();
 
 
@@ -7895,10 +7879,6 @@ function spawnRaidAction(type) {
 
 }
 
-
-/* =========================================================
-   ACTION BUTTON
-========================================================= */
 
 raidActionButton.onclick =
     function(event) {
@@ -7911,9 +7891,7 @@ raidActionButton.onclick =
             !currentAction
         ) {
 
-
             return;
-
 
         }
 
@@ -7944,17 +7922,6 @@ raidActionButton.onclick =
 
             }
 
-            else {
-
-
-                addLeftEvent(
-                    "Healthstone used at full HP. Peak AU TSM efficiency.",
-                    "warning-event"
-                );
-
-
-            }
-
 
         }
 
@@ -7967,12 +7934,6 @@ raidActionButton.onclick =
 
             showRaidWarning(
                 "BLOODLUST"
-            );
-
-
-            addLeftEvent(
-                "Bloodlust activated. Button pressing intensified.",
-                "buff"
             );
 
 
@@ -8130,10 +8091,6 @@ function simulateRaidDamage() {
 }
 
 
-/* =========================================================
-   DPS DISPLAY
-========================================================= */
-
 function updateDpsMeter() {
 
 
@@ -8254,16 +8211,10 @@ function damagePlayer() {
         !gameRunning
     ) {
 
-
         return;
-
 
     }
 
-
-    /*
-    Don't let WTF sounds pile up.
-    */
 
     const wtfAlreadyQueued =
         soundQueue.some(
@@ -8294,10 +8245,6 @@ function damagePlayer() {
 
     ) {
 
-
-        /*
-        Expires after 2 seconds.
-        */
 
         queueSound(
             wtfSound,
@@ -8337,10 +8284,6 @@ function damagePlayer() {
 
 }
 
-
-/* =========================================================
-   HEALTH
-========================================================= */
 
 function updateHealthDisplay() {
 
@@ -8384,10 +8327,6 @@ function updateHealthDisplay() {
 }
 
 
-/* =========================================================
-   COMBAT STATUS
-========================================================= */
-
 function updateCombatStatus() {
 
 
@@ -8414,7 +8353,7 @@ function updateCombatStatus() {
 
 
 /* =========================================================
-   REVIVE
+   REVIVE / WIPE
 ========================================================= */
 
 function attemptRevive() {
@@ -8512,10 +8451,6 @@ function attemptRevive() {
 }
 
 
-/* =========================================================
-   WIPE
-========================================================= */
-
 function wipe() {
 
 
@@ -8602,9 +8537,7 @@ function victory() {
         !gameRunning
     ) {
 
-
         return;
-
 
     }
 
@@ -8624,11 +8557,6 @@ function victory() {
 
     queueSound(
         gratzSound
-    );
-
-
-    showRaidWarning(
-        "ONYXIA DEFEATED"
     );
 
 
@@ -8670,14 +8598,7 @@ function victory() {
 
             Kill time:
 
-            <strong style="
-                display:inline;
-                font-size:13px;
-            ">
-
             ${fightTime.toFixed(1)} seconds
-
-            </strong>
 
         </div>
 
@@ -8699,15 +8620,11 @@ function victory() {
                 <div>
 
                     <div class="loot-name">
-
                     Dragonfire Greatblade
-
                     </div>
 
                     <div class="loot-type">
-
                     Epic Two-Handed Sword
-
                     </div>
 
                 </div>
@@ -8724,15 +8641,11 @@ function victory() {
                 <div>
 
                     <div class="loot-name">
-
                     Band of the Spreadsheet
-
                     </div>
 
                     <div class="loot-type">
-
                     Epic Ring
-
                     </div>
 
                 </div>
@@ -8749,15 +8662,11 @@ function victory() {
                 <div>
 
                     <div class="loot-name">
-
                     Fayne's Bladestorm Management Tool
-
                     </div>
 
                     <div class="loot-type">
-
                     Epic Axe
-
                     </div>
 
                 </div>
@@ -8774,15 +8683,11 @@ function victory() {
                 <div>
 
                     <div class="loot-name">
-
                     Roks' Fire Resistance Trinket
-
                     </div>
 
                     <div class="loot-type">
-
                     Epic Trinket • Still Insufficient
-
                     </div>
 
                 </div>
@@ -8814,11 +8719,6 @@ function victory() {
             <br><br>
 
             Guild Master privilege has been invoked.
-
-            <br>
-
-            Appeals may be submitted directly to Phinky
-            and will be ignored in the order received.
 
             </div>
 
@@ -8924,7 +8824,7 @@ function overlap(
 
 
 /* =========================================================
-   STOP
+   STOP / CLEAR
 ========================================================= */
 
 function stopGame() {
@@ -8953,10 +8853,6 @@ function stopGame() {
 
 }
 
-
-/* =========================================================
-   CLEAR GAME OBJECTS
-========================================================= */
 
 function clearObjects() {
 
@@ -9076,6 +8972,17 @@ document
 )
 .onclick =
     startGame;
+
+
+/* =========================================================
+   INITIAL PROTECTION DISPLAY
+========================================================= */
+
+updateTokenDisplay();
+
+updateClassProtectionVisuals();
+
+updateBodyProtectionVisuals();
 
 </script>
 
