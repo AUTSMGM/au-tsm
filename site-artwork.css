@@ -123,3 +123,127 @@ body.home-page {
         grid-template-columns:1fr !important;
     }
 }
+
+
+/* =========================================================
+   AU TSM - CENTRAL CONTENT CANVAS / FINAL ALIGNMENT PASS
+========================================================= */
+
+/*
+The Forever artwork is now treated like fixed page-side artwork rather than
+the reading surface. A solid WoW-brown canvas sits behind the central site,
+so text and controls retain the original readability while the landscape
+remains visible at the left and right margins.
+*/
+body.home-page {
+    position:relative;
+    isolation:isolate;
+    background:
+        linear-gradient(rgba(7,7,6,.36),rgba(7,7,6,.52)),
+        url("assets/forever-background.jpg") center center / cover fixed no-repeat !important;
+    background-color:#0b0908 !important;
+}
+
+body.home-page::before {
+    content:"";
+    position:fixed;
+    z-index:-1;
+    top:0;
+    bottom:0;
+    left:50%;
+    width:min(1580px,calc(100vw - 120px));
+    transform:translateX(-50%);
+    background:
+        radial-gradient(circle at top,#2b211a 0%,#171310 43%,#0b0908 100%);
+    border-left:1px solid rgba(110,78,42,.34);
+    border-right:1px solid rgba(110,78,42,.34);
+    box-shadow:
+        -32px 0 58px rgba(0,0,0,.42),
+        32px 0 58px rgba(0,0,0,.42);
+    pointer-events:none;
+}
+
+body.home-page > header,
+body.home-page > main {
+    position:relative;
+    z-index:1;
+}
+
+/* Equal, perfectly balanced mode-selector halves. */
+.creator-mode-selector {
+    width:min(1180px,100%) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+    align-items:stretch !important;
+}
+
+.creator-mode-button {
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    justify-self:stretch !important;
+    box-sizing:border-box !important;
+}
+
+/* Keep the embedded official roster centred on the same content axis. */
+.home-roster-section {
+    width:100% !important;
+    max-width:1180px !important;
+    margin:46px auto 56px !important;
+    padding:8px 0 0 !important;
+    box-sizing:border-box !important;
+}
+
+.home-roster-section > .section-title,
+.home-roster-section > .roster-summary,
+.home-roster-section > #rosterStatus,
+.home-roster-section > #rosterContent {
+    width:100% !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    box-sizing:border-box !important;
+}
+
+.home-roster-section .section-title {
+    text-align:center !important;
+}
+
+.home-roster-section .roster-summary {
+    max-width:920px !important;
+}
+
+.home-roster-section .roster-empty {
+    text-align:center !important;
+}
+
+/* The mystery role door stays visually neutral between wheel stop and reveal. */
+.role-door.checking .role-door-question,
+.role-door:not(.revealed) .role-door-question {
+    font-size:30px !important;
+    letter-spacing:0 !important;
+    white-space:nowrap !important;
+}
+
+@media (max-width:1260px) {
+    body.home-page::before {
+        width:calc(100vw - 54px);
+    }
+}
+
+@media (max-width:800px) {
+    body.home-page::before {
+        width:100vw;
+        border-left:0;
+        border-right:0;
+        box-shadow:none;
+    }
+
+    body.home-page {
+        background-image:none !important;
+    }
+
+    .creator-mode-selector {
+        grid-template-columns:1fr !important;
+    }
+}

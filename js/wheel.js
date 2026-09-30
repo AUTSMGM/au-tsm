@@ -831,18 +831,26 @@ function resetRoleDoor() {
 
 function beginRoleValidation() {
 
+    /* Keep the door closed and neutral after the wheel stops.
+       The final role is revealed a moment later without showing
+       a temporary "CHECKING..." label that does not fit the panel. */
     roleDoor.classList.remove(
-        "revealed"
-    );
-
-
-    roleDoor.classList.add(
+        "revealed",
         "checking"
     );
 
 
+    roleDoor.removeAttribute(
+        "data-role"
+    );
+
+
     roleDoorQuestion.textContent =
-        "CHECKING...";
+        "?";
+
+
+    roleDoorResult.textContent =
+        "?";
 
 }
 
@@ -1228,8 +1236,9 @@ spinWheelButton.onclick =
                 beginRoleValidation();
 
 
+                /* Keep the lever label visually stable while the role door resolves. */
                 spinWheelButton.textContent =
-                    "VALIDATING";
+                    "PULL";
 
 
                 const resultClass =
