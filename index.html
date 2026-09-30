@@ -3721,6 +3721,282 @@ footer strong {
 
 }
 
+
+
+/* =========================================================
+   WHEEL DASHBOARD - THREE COLUMN DESKTOP LAYOUT
+========================================================= */
+
+.wheel-section {
+    width: min(1480px, calc(100vw - 36px));
+    max-width: none;
+    margin-left: 50%;
+    margin-right: 0;
+    transform: translateX(-50%);
+}
+
+.wheel-dashboard {
+    display: grid;
+    grid-template-columns: 285px minmax(650px, 1fr) 330px;
+    gap: 22px;
+    align-items: start;
+}
+
+.wheel-centre-column {
+    min-width: 0;
+}
+
+.wheel-centre-column .character-entry {
+    max-width: none;
+    margin: 0 0 16px;
+}
+
+.wheel-centre-column .wheel-machine {
+    grid-template-columns: minmax(470px, 1fr) 145px;
+    gap: 22px;
+    padding: 25px;
+}
+
+.wheel-centre-column .wheel-stage {
+    width: min(500px, 100%);
+}
+
+.wheel-centre-column .wheel-result {
+    margin-top: 16px;
+}
+
+.wheel-side-panel {
+    position: sticky;
+    top: 92px;
+    margin: 0;
+    max-width: none;
+    min-width: 0;
+}
+
+.wheel-dashboard .bad-luck-panel {
+    margin: 0;
+    padding: 18px;
+}
+
+.wheel-dashboard .bad-luck-header {
+    display: block;
+}
+
+.wheel-dashboard .token-counter {
+    margin-top: 8px;
+}
+
+.wheel-dashboard .exclusion-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.wheel-dashboard .body-exclusion-row {
+    grid-template-columns: 1fr;
+}
+
+/* Class option buttons use their real class colours. */
+.exclusion-button.class-option {
+    --class-color: #777;
+    --class-text: #111;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    background: var(--class-color);
+    border-color: var(--class-color);
+    color: var(--class-text);
+    font-weight: 900;
+    text-shadow: 0 1px rgba(255,255,255,.18);
+    overflow: hidden;
+}
+
+.exclusion-button.class-option:hover:not(:disabled) {
+    filter: brightness(1.12);
+    color: var(--class-text);
+    border-color: #f1d28c;
+}
+
+.exclusion-button.class-option.excluded {
+    opacity: .58;
+    text-decoration: line-through;
+    background:
+        linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.58)),
+        var(--class-color);
+    border-color: var(--class-color);
+    color: #eee;
+    filter: grayscale(.35);
+}
+
+.class-option-icon {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,.58);
+    box-shadow: 0 1px 4px rgba(0,0,0,.45);
+}
+
+/* Official class icon images inside the wheel. */
+.wheel-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    line-height: 1;
+}
+
+.wheel-class-icon {
+    width: 31px;
+    height: 31px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid rgba(20,16,12,.78);
+    box-shadow: 0 2px 6px rgba(0,0,0,.48);
+}
+
+.wheel-label span {
+    padding: 2px 5px;
+    border-radius: 3px;
+    background: rgba(255,255,255,.30);
+}
+
+/* Last 30 rolls sit beside the wheel and scroll inside their own panel. */
+.wheel-dashboard .roll-history {
+    margin: 0;
+    max-width: none;
+    height: 710px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.wheel-dashboard .roll-history-header {
+    flex: 0 0 auto;
+    background: #11100f;
+    z-index: 2;
+}
+
+.wheel-dashboard #rollHistory {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #725938 #15120f;
+}
+
+.wheel-dashboard .roll-row {
+    grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+    gap: 8px;
+    padding: 10px 12px;
+}
+
+.wheel-dashboard .roll-character,
+.wheel-dashboard .roll-class {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.wheel-dashboard .roll-character {
+    font-weight: 900;
+}
+
+.wheel-dashboard .roll-class {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 800;
+}
+
+.wheel-dashboard .roll-body {
+    grid-column: 1 / -1;
+    text-align: left;
+    padding-left: 2px;
+    font-size: 10px;
+}
+
+.roll-class-icon {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    border-radius: 3px;
+    object-fit: cover;
+    border: 1px solid #3d342c;
+}
+
+/* Current winning name inherits the winning class colour in JS. */
+#wheelResultName {
+    font-size: 16px;
+    transition: color .2s ease;
+}
+
+@media(max-width: 1260px) {
+    .wheel-section {
+        width: min(1120px, calc(100vw - 30px));
+    }
+
+    .wheel-dashboard {
+        grid-template-columns: 250px minmax(0,1fr);
+    }
+
+    .wheel-dashboard .roll-history {
+        grid-column: 1 / -1;
+        height: 360px;
+        position: static;
+    }
+
+    .wheel-centre-column .wheel-machine {
+        grid-template-columns: minmax(400px,1fr) 135px;
+    }
+}
+
+@media(max-width: 900px) {
+    .wheel-section {
+        width: min(760px, calc(100vw - 24px));
+    }
+
+    .wheel-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .wheel-side-panel {
+        position: static;
+    }
+
+    .wheel-centre-column .wheel-machine {
+        grid-template-columns: 1fr;
+    }
+
+    .wheel-dashboard .bad-luck-panel {
+        order: 2;
+    }
+
+    .wheel-dashboard .roll-history {
+        grid-column: auto;
+        height: 380px;
+    }
+}
+
+@media(max-width: 560px) {
+    .wheel-dashboard .exclusion-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .wheel-class-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .wheel-label span {
+        font-size: 8px;
+    }
+}
+
 </style>
 
 </head>
@@ -3894,7 +4170,7 @@ Initiate Ready Check
 
 
 <!-- =========================================================
-     WHEEL - MOVED ABOVE STATISTICS
+     WHEEL - ABOVE STATISTICS / THREE COLUMN DASHBOARD
 ========================================================= -->
 
 <section
@@ -3914,6 +4190,102 @@ Enter your character name, spend up to three protection tokens, then surrender y
 
 </div>
 
+<div class="wheel-dashboard">
+
+<!-- LEFT: BAD LUCK PROTECTION -->
+<aside class="bad-luck-panel wheel-side-panel">
+
+<div class="bad-luck-header">
+
+<div class="bad-luck-title">
+Bad Luck Protection
+</div>
+
+<div class="token-counter">
+TOKENS REMAINING:
+<span id="tokensRemaining">3 / 3</span>
+</div>
+
+</div>
+
+<div class="bad-luck-description">
+Each disabled option costs one token. Disable up to three classes,
+or mix class exclusions with one body-type exclusion.
+Click an excluded option again before spinning to refund the token.
+</div>
+
+<div class="protection-subtitle">
+DISABLE CLASSES
+</div>
+
+<div class="exclusion-grid">
+<button class="exclusion-button class-option" data-class-name="Warrior" style="--class-color:#C79C6E;--class-text:#17120d;">
+<img class="class-option-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_warrior.jpg" alt="Warrior icon">
+<span>Warrior</span>
+</button>
+<button class="exclusion-button class-option" data-class-name="Paladin" style="--class-color:#F58CBA;--class-text:#25111a;">
+<img class="class-option-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_paladin.jpg" alt="Paladin icon">
+<span>Paladin</span>
+</button>
+<button class="exclusion-button class-option" data-class-name="Hunter" style="--class-color:#ABD473;--class-text:#15200f;">
+<img class="class-option-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_hunter.jpg" alt="Hunter icon">
+<span>Hunter</span>
+</button>
+<button class="exclusion-button class-option" data-class-name="Rogue" style="--class-color:#FFF569;--class-text:#282400;">
+<img class="class-option-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_rogue.jpg" alt="Rogue icon">
+<span>Rogue</span>
+</button>
+<button class="exclusion-button class-option" data-class-name="Priest" style="--class-color:#FFFFFF;--class-text:#171717;">
+<img class="class-option-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_priest.jpg" alt="Priest icon">
+<span>Priest</span>
+</button>
+<button class="exclusion-button class-option" data-class-name="Shaman" style="--class-color:#0070DE;--class-text:#ffffff;">
+<img class="class-option-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_shaman.jpg" alt="Shaman icon">
+<span>Shaman</span>
+</button>
+<button class="exclusion-button class-option" data-class-name="Mage" style="--class-color:#69CCF0;--class-text:#102027;">
+<img class="class-option-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_mage.jpg" alt="Mage icon">
+<span>Mage</span>
+</button>
+<button class="exclusion-button class-option" data-class-name="Warlock" style="--class-color:#9482C9;--class-text:#ffffff;">
+<img class="class-option-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_warlock.jpg" alt="Warlock icon">
+<span>Warlock</span>
+</button>
+<button class="exclusion-button class-option" data-class-name="Druid" style="--class-color:#FF7D0A;--class-text:#211207;">
+<img class="class-option-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_druid.jpg" alt="Druid icon">
+<span>Druid</span>
+</button>
+</div>
+
+<div class="protection-subtitle">
+DISABLE BODY TYPE
+</div>
+
+<div class="body-exclusion-row">
+
+<button
+class="exclusion-button body-option-one"
+data-body-type="1"
+>
+BODY TYPE 1 — BLUE
+</button>
+
+<button
+class="exclusion-button body-option-two"
+data-body-type="2"
+>
+BODY TYPE 2 — PINK
+</button>
+
+</div>
+
+<div id="protectionWarning" class="protection-warning"></div>
+
+</aside>
+
+
+<!-- CENTRE: CHARACTER + WHEEL + RESULT -->
+<div class="wheel-centre-column">
 
 <div class="character-entry">
 
@@ -3935,27 +4307,17 @@ Your winning roll will be added to the shared AU TSM roll history.
 
 </div>
 
-
 <div class="wheel-machine">
-
 
 <div class="wheel-stage">
 
-
-<div
-id="wheelPointer"
-class="wheel-pointer"
-></div>
-
+<div id="wheelPointer" class="wheel-pointer"></div>
 
 <div class="wheel-frame">
 
-
 <div id="classWheel">
 
-
 <div id="wheelDisabledMask"></div>
-
 
 <div class="wheel-divider" style="transform:translate(-50%,-100%) rotate(20deg);"></div>
 <div class="wheel-divider" style="transform:translate(-50%,-100%) rotate(60deg);"></div>
@@ -3967,95 +4329,90 @@ class="wheel-pointer"
 <div class="wheel-divider" style="transform:translate(-50%,-100%) rotate(300deg);"></div>
 <div class="wheel-divider" style="transform:translate(-50%,-100%) rotate(340deg);"></div>
 
-
 <div
 class="wheel-label"
 data-wheel-class="Warrior"
-style="transform:rotate(0deg) translateY(-190px) rotate(0deg);"
+style="transform:rotate(0deg) translateY(-190px) rotate(-0deg);"
 >
-Warrior
+<img class="wheel-class-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_warrior.jpg" alt="Warrior icon">
+<span>Warrior</span>
 </div>
-
 <div
 class="wheel-label"
 data-wheel-class="Paladin"
 style="transform:rotate(40deg) translateY(-190px) rotate(-40deg);"
 >
-Paladin
+<img class="wheel-class-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_paladin.jpg" alt="Paladin icon">
+<span>Paladin</span>
 </div>
-
 <div
 class="wheel-label"
 data-wheel-class="Hunter"
 style="transform:rotate(80deg) translateY(-190px) rotate(-80deg);"
 >
-Hunter
+<img class="wheel-class-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_hunter.jpg" alt="Hunter icon">
+<span>Hunter</span>
 </div>
-
 <div
 class="wheel-label"
 data-wheel-class="Rogue"
 style="transform:rotate(120deg) translateY(-190px) rotate(-120deg);"
 >
-Rogue
+<img class="wheel-class-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_rogue.jpg" alt="Rogue icon">
+<span>Rogue</span>
 </div>
-
 <div
 class="wheel-label"
 data-wheel-class="Priest"
 style="transform:rotate(160deg) translateY(-190px) rotate(-160deg);"
 >
-Priest
+<img class="wheel-class-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_priest.jpg" alt="Priest icon">
+<span>Priest</span>
 </div>
-
 <div
 class="wheel-label"
 data-wheel-class="Shaman"
 style="transform:rotate(200deg) translateY(-190px) rotate(-200deg);"
 >
-Shaman
+<img class="wheel-class-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_shaman.jpg" alt="Shaman icon">
+<span>Shaman</span>
 </div>
-
 <div
 class="wheel-label"
 data-wheel-class="Mage"
 style="transform:rotate(240deg) translateY(-190px) rotate(-240deg);"
 >
-Mage
+<img class="wheel-class-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_mage.jpg" alt="Mage icon">
+<span>Mage</span>
 </div>
-
 <div
 class="wheel-label"
 data-wheel-class="Warlock"
 style="transform:rotate(280deg) translateY(-190px) rotate(-280deg);"
 >
-Warlock
+<img class="wheel-class-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_warlock.jpg" alt="Warlock icon">
+<span>Warlock</span>
 </div>
-
 <div
 class="wheel-label"
 data-wheel-class="Druid"
 style="transform:rotate(320deg) translateY(-190px) rotate(-320deg);"
 >
-Druid
+<img class="wheel-class-icon" src="https://wow.zamimg.com/images/wow/icons/large/classicon_druid.jpg" alt="Druid icon">
+<span>Druid</span>
 </div>
 
-
 </div>
-
 
 <div class="wheel-hub">
 AU<br>TSM
 </div>
 
-
 </div>
 
 </div>
-
 
 <div class="wheel-controls">
-
 
 <div class="body-slot-panel">
 
@@ -4064,9 +4421,7 @@ BODY TYPE
 </div>
 
 <div class="body-slot-window">
-
 <div id="bodySlotTrack">
-
 <div class="body-slot-item body-one">BODY TYPE 1</div>
 <div class="body-slot-item body-two">BODY TYPE 2</div>
 <div class="body-slot-item body-one">BODY TYPE 1</div>
@@ -4079,180 +4434,47 @@ BODY TYPE
 <div class="body-slot-item body-two">BODY TYPE 2</div>
 <div class="body-slot-item body-one">BODY TYPE 1</div>
 <div class="body-slot-item body-two">BODY TYPE 2</div>
-
+</div>
 </div>
 
 </div>
 
-</div>
-
-
-<div
-id="leverMachine"
-class="lever-machine"
->
-
+<div id="leverMachine" class="lever-machine">
 <div class="lever-slot"></div>
-
-<div class="lever-arm">
-<div class="lever-handle"></div>
-</div>
-
-<button id="spinWheelButton">
-PULL
-</button>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-<!-- BAD LUCK -->
-
-<div class="bad-luck-panel">
-
-
-<div class="bad-luck-header">
-
-<div class="bad-luck-title">
-Bad Luck Protection
-</div>
-
-<div class="token-counter">
-
-TOKENS REMAINING:
-
-<span id="tokensRemaining">
-3 / 3
-</span>
-
+<div class="lever-arm"><div class="lever-handle"></div></div>
+<button id="spinWheelButton">PULL</button>
 </div>
 
 </div>
 
-
-<div class="bad-luck-description">
-
-Each disabled option costs one token. Disable up to three classes,
-or mix class exclusions with one body-type exclusion.
-Click an excluded option again before spinning to refund the token.
-
 </div>
-
-
-<div class="protection-subtitle">
-DISABLE CLASSES
-</div>
-
-
-<div class="exclusion-grid">
-
-<button class="exclusion-button" data-class-name="Warrior">Warrior</button>
-<button class="exclusion-button" data-class-name="Paladin">Paladin</button>
-<button class="exclusion-button" data-class-name="Hunter">Hunter</button>
-<button class="exclusion-button" data-class-name="Rogue">Rogue</button>
-<button class="exclusion-button" data-class-name="Priest">Priest</button>
-<button class="exclusion-button" data-class-name="Shaman">Shaman</button>
-<button class="exclusion-button" data-class-name="Mage">Mage</button>
-<button class="exclusion-button" data-class-name="Warlock">Warlock</button>
-<button class="exclusion-button" data-class-name="Druid">Druid</button>
-
-</div>
-
-
-<div class="protection-subtitle">
-DISABLE BODY TYPE
-</div>
-
-
-<div class="body-exclusion-row">
-
-<button
-class="exclusion-button body-option-one"
-data-body-type="1"
->
-BODY TYPE 1 — BLUE
-</button>
-
-<button
-class="exclusion-button body-option-two"
-data-body-type="2"
->
-BODY TYPE 2 — PINK
-</button>
-
-</div>
-
-
-<div
-id="protectionWarning"
-class="protection-warning"
-></div>
-
-
-</div>
-
-
-<!-- RESULT -->
 
 <div class="wheel-result">
-
-<div class="wheel-result-label">
-CHARACTER CREATION DECISION ENGINE
-</div>
-
-<div id="wheelResultName">
-Awaiting victim...
-</div>
-
-<div id="wheelResultClass">
-?
-</div>
-
-<div
-id="wheelResultBody"
-style="display:none;"
->
-?
-</div>
-
-<div id="wheelResultMessage">
-Enter a character name before pulling the lever.
+<div class="wheel-result-label">CHARACTER CREATION DECISION ENGINE</div>
+<div id="wheelResultName">Awaiting victim...</div>
+<div id="wheelResultClass">?</div>
+<div id="wheelResultBody" style="display:none;">?</div>
+<div id="wheelResultMessage">Enter a character name before pulling the lever.</div>
 </div>
 
 </div>
 
 
-<!-- SHARED HISTORY -->
-
-<div class="roll-history">
+<!-- RIGHT: SHARED LAST 30 RESULTS -->
+<aside class="roll-history wheel-side-panel">
 
 <div class="roll-history-header">
-
-<h4>
-Last 30 AU TSM Rolls
-</h4>
-
-<div id="databaseStatus">
-CONNECTING...
-</div>
-
+<h4>Last 30 AU TSM Rolls</h4>
+<div id="databaseStatus">CONNECTING...</div>
 </div>
 
 <div id="rollHistory">
-
-<div class="empty-history">
-Loading guild degeneracy...
+<div class="empty-history">Loading guild degeneracy...</div>
 </div>
 
-</div>
+</aside>
 
 </div>
-
 
 </section>
 
@@ -5639,6 +5861,20 @@ function renderRollHistory() {
     }
 
 
+    const classColours =
+    {
+        Warrior: "#C79C6E",
+        Paladin: "#F58CBA",
+        Hunter: "#ABD473",
+        Rogue: "#FFF569",
+        Priest: "#FFFFFF",
+        Shaman: "#0070DE",
+        Mage: "#69CCF0",
+        Warlock: "#9482C9",
+        Druid: "#FF7D0A"
+    };
+
+
     container.innerHTML =
         recentRolls
         .map(
@@ -5656,16 +5892,35 @@ function renderRollHistory() {
                     );
 
 
+                const classColour =
+                    classColours[
+                        roll.class_name
+                    ]
+                    ||
+                    "#d7a94b";
+
+
+                const classIcon =
+                    "https://wow.zamimg.com/images/wow/icons/large/classicon_"
+                    +
+                    encodeURIComponent(
+                        String(roll.class_name).toLowerCase()
+                    )
+                    +
+                    ".jpg";
+
+
                 return `
 
                 <div class="roll-row">
 
-                    <div class="roll-character">
+                    <div class="roll-character" style="color:${classColour}">
                     ${safeName}
                     </div>
 
-                    <div class="roll-class">
-                    ${safeClass}
+                    <div class="roll-class" style="color:${classColour}">
+                    <img class="roll-class-icon" src="${classIcon}" alt="">
+                    <span>${safeClass}</span>
                     </div>
 
                     <div class="roll-body">
@@ -6781,6 +7036,16 @@ spinWheelButton.onclick =
 
 
                 resultClass.style.color =
+                    winningClass.colour;
+
+
+                const resultName =
+                    document.getElementById(
+                        "wheelResultName"
+                    );
+
+
+                resultName.style.color =
                     winningClass.colour;
 
 
