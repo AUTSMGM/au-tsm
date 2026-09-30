@@ -364,3 +364,31 @@ body.home-page[data-creator-mode="wheel"] #wheelCentrePanel .wheel-controls {
         height:auto !important;
     }
 }
+
+
+/* =========================================================
+   V4.1 CENTERING HOTFIX
+   Older styles.css used margin-left:50% + translateX(-50%) on
+   .wheel-section. Reset that legacy transform so the modern
+   centred max-width layout actually centres in the viewport.
+========================================================= */
+
+.home-page .wheel-section {
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    transform:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+}
+
+.home-page .creator-mode-selector,
+.home-page .wheel-dashboard,
+.home-page .home-roster-section {
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    transform:none !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+}
