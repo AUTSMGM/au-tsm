@@ -4299,6 +4299,359 @@ footer strong {
     }
 }
 
+
+
+/* =========================================================
+   FOREVER NAME + BALANCED WHEEL DASHBOARD UPDATE
+========================================================= */
+
+/* Equal-width side panels with the result remaining below the wheel row. */
+.wheel-section {
+    width: min(1580px, calc(100vw - 36px));
+}
+
+.wheel-dashboard {
+    grid-template-columns: 360px minmax(650px, 1fr) 360px;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.wheel-result-row {
+    grid-template-columns: 360px minmax(650px, 1fr) 360px;
+    gap: 20px;
+}
+
+.wheel-side-panel {
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* First + last name styling for World of Warcraft Forever names. */
+.character-entry-title {
+    color: #d7a94b;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 9px;
+}
+
+.character-name-grid {
+    width: min(600px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.character-name-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: #847a6d;
+    font-size: 8px;
+    letter-spacing: 1.6px;
+}
+
+.character-name-field input {
+    width: 100%;
+    padding: 11px 12px;
+    background: #090807;
+    border: 1px solid #5e4c37;
+    color: #eee4d4;
+    text-align: center;
+    font-size: 15px;
+    outline: none;
+}
+
+.character-name-field input:focus {
+    border-color: #b38538;
+    box-shadow: 0 0 0 1px #b38538;
+}
+
+/* 3 x 3 class exclusion grid, balanced across the wider left panel. */
+.wheel-dashboard .exclusion-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+}
+
+.exclusion-button.class-option {
+    min-width: 0;
+    min-height: 55px;
+    padding: 7px 6px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.class-option-icon {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+}
+
+/* Body-type exclusions are coloured like their slot outcomes. */
+.wheel-dashboard .body-exclusion-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.exclusion-button.body-option-one {
+    min-height: 48px;
+    background: linear-gradient(135deg, #173b68, #297ac3);
+    border-color: #4b94d2;
+    color: #fff;
+    font-weight: 900;
+    text-shadow: 0 1px 3px rgba(0,0,0,.65);
+}
+
+.exclusion-button.body-option-two {
+    min-height: 48px;
+    background: linear-gradient(135deg, #7a284f, #d75d94);
+    border-color: #e17ba9;
+    color: #fff;
+    font-weight: 900;
+    text-shadow: 0 1px 3px rgba(0,0,0,.65);
+}
+
+.exclusion-button.body-option-one.excluded,
+.exclusion-button.body-option-two.excluded {
+    filter: grayscale(.65) brightness(.58);
+    opacity: .58;
+}
+
+/* WoW-inspired role buttons and badges. */
+.role-exclusion-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+}
+
+.role-exclusion-button {
+    min-width: 0;
+    min-height: 62px;
+    padding: 6px 5px;
+    flex-direction: column;
+    gap: 4px;
+    border-width: 1px;
+}
+
+.role-exclusion-button[data-role-name="Tank"] {
+    background: linear-gradient(145deg, #173550, #245f91);
+    border-color: #5aa4df;
+    color: #d7edff;
+}
+
+.role-exclusion-button[data-role-name="Healer"] {
+    background: linear-gradient(145deg, #173c20, #2f7b3b);
+    border-color: #69c875;
+    color: #dfffe3;
+}
+
+.role-exclusion-button[data-role-name="DPS"] {
+    background: linear-gradient(145deg, #542019, #9d3e2f);
+    border-color: #da7763;
+    color: #ffe1da;
+}
+
+.role-exclusion-button.excluded {
+    filter: grayscale(.55) brightness(.55);
+    opacity: .58;
+}
+
+.wow-role-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.35);
+    box-shadow: inset 0 0 9px rgba(0,0,0,.55), 0 1px 4px rgba(0,0,0,.5);
+}
+
+.wow-role-tank { background: radial-gradient(circle, #3c84bc, #122d45); }
+.wow-role-healer { background: radial-gradient(circle, #53a85d, #14361a); }
+.wow-role-dps { background: radial-gradient(circle, #c65a43, #481711); }
+
+.role-button-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.05;
+}
+
+.role-button-copy strong {
+    font-size: 10px;
+}
+
+.role-button-copy small {
+    margin-top: 3px;
+    font-size: 8px;
+    opacity: .78;
+}
+
+/* Single-column Last 30 list with internal scrolling. */
+.wheel-dashboard .roll-history {
+    height: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.wheel-dashboard #rollHistory {
+    display: block;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-color: #765635 #11100f;
+    scrollbar-width: thin;
+}
+
+.wheel-dashboard .roll-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) 30px minmax(95px, 1fr) auto;
+    grid-template-areas: "name role class body";
+    align-items: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 7px 10px;
+    border-bottom: 1px solid #25211c;
+}
+
+.wheel-dashboard .roll-character {
+    grid-area: name;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: nowrap;
+    font-size: 11px;
+}
+
+.wheel-dashboard .roll-class {
+    grid-area: class;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: nowrap;
+    font-size: 10px;
+}
+
+.wheel-dashboard .roll-body {
+    grid-area: body;
+    text-align: right;
+    white-space: nowrap;
+    padding: 0;
+    font-size: 8px;
+    color: #716a61;
+}
+
+.roll-role-icon.wow-history-role {
+    grid-area: role;
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    border-width: 1px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,.55);
+}
+
+.roll-role-icon.wow-history-role[data-role="Tank"] {
+    background: radial-gradient(circle, #3c84bc, #122d45);
+    border-color: #5aa4df;
+}
+
+.roll-role-icon.wow-history-role[data-role="Healer"] {
+    background: radial-gradient(circle, #53a85d, #14361a);
+    border-color: #69c875;
+}
+
+.roll-role-icon.wow-history-role[data-role="DPS"] {
+    background: radial-gradient(circle, #c65a43, #481711);
+    border-color: #da7763;
+}
+
+.roll-role-icon.wow-history-role[data-role="Unknown"] {
+    background: #1b1814;
+    border-color: #4a4035;
+    color: #857e75;
+}
+
+/* Maintain a compact, balanced desktop wheel. */
+@media(max-width: 1450px) {
+    .wheel-section {
+        width: min(1220px, calc(100vw - 28px));
+    }
+
+    .wheel-dashboard {
+        grid-template-columns: 330px minmax(0, 1fr);
+    }
+
+    .wheel-result-row {
+        grid-template-columns: 330px minmax(0, 1fr);
+    }
+
+    .wheel-result-row .wheel-result {
+        grid-column: 2;
+    }
+
+    .wheel-dashboard .roll-history {
+        grid-column: 1 / -1;
+        height: 430px;
+        margin-top: 0;
+    }
+}
+
+@media(max-width: 900px) {
+    .wheel-dashboard,
+    .wheel-result-row {
+        grid-template-columns: 1fr;
+    }
+
+    .wheel-result-row .wheel-result {
+        grid-column: 1;
+    }
+
+    .character-name-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wheel-dashboard .roll-history {
+        grid-column: auto;
+        height: 500px;
+    }
+}
+
+@media(max-width: 560px) {
+    .wheel-dashboard .exclusion-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .exclusion-button.class-option {
+        font-size: 8px;
+    }
+
+    .class-option-icon {
+        width: 24px;
+        height: 24px;
+        flex-basis: 24px;
+    }
+
+    .wheel-dashboard .roll-row {
+        grid-template-columns: minmax(0, 1fr) 28px minmax(80px, auto);
+        grid-template-areas:
+            "name role class"
+            "body body body";
+    }
+
+    .wheel-dashboard .roll-body {
+        text-align: left;
+    }
+}
+
 </style>
 
 </head>
@@ -4487,7 +4840,7 @@ Which Class Will You Roll? (Spin)
 </h3>
 
 <p>
-Enter your character name, spend up to three protection tokens, then surrender your future.
+Enter your Forever character name, spend up to three protection tokens, then surrender your future.
 </p>
 
 </div>
@@ -4585,13 +4938,16 @@ DISABLE ROLE
 
 <div class="role-exclusion-row">
 <button class="exclusion-button role-exclusion-button" data-role-name="Tank" data-role-cost="1">
-<span>🛡 Tank</span><span class="role-token-cost">1 token</span>
+<span class="wow-role-icon wow-role-tank" aria-hidden="true">🛡</span>
+<span class="role-button-copy"><strong>Tank</strong><small>1 token</small></span>
 </button>
 <button class="exclusion-button role-exclusion-button" data-role-name="Healer" data-role-cost="1">
-<span>✚ Healer</span><span class="role-token-cost">1 token</span>
+<span class="wow-role-icon wow-role-healer" aria-hidden="true">✚</span>
+<span class="role-button-copy"><strong>Healer</strong><small>1 token</small></span>
 </button>
 <button class="exclusion-button role-exclusion-button" data-role-name="DPS" data-role-cost="3">
-<span>⚔ DPS</span><span class="role-token-cost">3 tokens</span>
+<span class="wow-role-icon wow-role-dps" aria-hidden="true">⚔</span>
+<span class="role-button-copy"><strong>DPS</strong><small>3 tokens</small></span>
 </button>
 </div>
 
@@ -4609,20 +4965,23 @@ Role blocks are applied after class selection. If a class has no legal role left
 
 <div class="character-entry">
 
-<label for="characterName">
-CHARACTER NAME
-</label>
+<div class="character-entry-title">
+FOREVER CHARACTER NAME
+</div>
 
-<input
-id="characterName"
-type="text"
-maxlength="20"
-placeholder="e.g. Phinky"
-autocomplete="off"
->
+<div class="character-name-grid">
+<div class="character-name-field">
+<label for="firstName">FIRST NAME</label>
+<input id="firstName" type="text" maxlength="18" placeholder="e.g. Phinky" autocomplete="off">
+</div>
+<div class="character-name-field">
+<label for="lastName">LAST NAME</label>
+<input id="lastName" type="text" maxlength="18" placeholder="e.g. Stormcaller" autocomplete="off">
+</div>
+</div>
 
 <div class="character-note">
-Your winning roll will be added to the shared AU TSM roll history.
+Your full Forever name and winning roll will be added to the shared AU TSM roll history.
 </div>
 
 </div>
@@ -6016,52 +6375,66 @@ async function loadRecentRolls() {
         databaseStatus.textContent =
             "DATABASE NOT CONFIGURED";
 
-
         renderRollHistory();
-
-
         updateClassDistribution();
-
-
         return;
-
     }
-
 
     databaseStatus.textContent =
         "SYNCING...";
 
-
+    /* Preferred Forever-name schema. */
     let queryResult =
         await database
         .from(
             "guild_rolls"
         )
         .select(
-            "id, character_name, class_name, body_type, role, created_at"
+            "id, character_name, first_name, last_name, class_name, body_type, role, created_at"
         )
         .order(
             "created_at",
             {
-                ascending:
-                    false
+                ascending: false
             }
         )
         .limit(
             30
         );
 
-
-    /* Backward-compatible fallback while the optional role column is being added. */
+    /* Backward compatible with the database before first/last-name migration. */
     if (
         queryResult.error
     ) {
 
         console.warn(
-            "Role column not available yet; loading legacy roll data.",
+            "Forever name columns not available yet; loading compatible roll data.",
             queryResult.error
         );
 
+        queryResult =
+            await database
+            .from(
+                "guild_rolls"
+            )
+            .select(
+                "id, character_name, class_name, body_type, role, created_at"
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            )
+            .limit(
+                30
+            );
+    }
+
+    /* Final fallback for the original table before the role migration. */
+    if (
+        queryResult.error
+    ) {
 
         queryResult =
             await database
@@ -6074,16 +6447,13 @@ async function loadRecentRolls() {
             .order(
                 "created_at",
                 {
-                    ascending:
-                        false
+                    ascending: false
                 }
             )
             .limit(
                 30
             );
-
     }
-
 
     if (
         queryResult.error
@@ -6093,32 +6463,23 @@ async function loadRecentRolls() {
             queryResult.error
         );
 
-
         databaseStatus.textContent =
             "DATABASE ERROR";
 
-
         return;
-
     }
-
 
     recentRolls =
         queryResult.data ||
         [];
-
 
     databaseStatus.textContent =
         "LIVE • " +
         recentRolls.length +
         "/30";
 
-
     renderRollHistory();
-
-
     updateClassDistribution();
-
 }
 
 
@@ -6127,7 +6488,8 @@ async function loadRecentRolls() {
 ========================================================= */
 
 async function saveRoll(
-    characterName,
+    firstName,
+    lastName,
     className,
     bodyType,
     role
@@ -6140,13 +6502,15 @@ async function saveRoll(
         showToast(
             "Result generated, but shared database is not configured yet."
         );
-
-
         return;
-
     }
 
+    const characterName =
+        (firstName + " " + lastName)
+        .trim();
 
+    /* Preferred insert stores structured Forever names plus the combined
+       legacy character_name value for backward compatibility. */
     let insertResult =
         await database
         .from(
@@ -6155,32 +6519,25 @@ async function saveRoll(
         .insert(
             [
                 {
-                    character_name:
-                        characterName,
-
-                    class_name:
-                        className,
-
-                    body_type:
-                        bodyType,
-
-                    role:
-                        role
+                    character_name: characterName,
+                    first_name: firstName,
+                    last_name: lastName,
+                    class_name: className,
+                    body_type: bodyType,
+                    role: role
                 }
             ]
         );
 
-
-    /* Keep the site usable before the role column migration is run. */
+    /* Fallback while first_name / last_name migration is pending. */
     if (
         insertResult.error
     ) {
 
         console.warn(
-            "Could not save role; retrying legacy insert.",
+            "Could not save structured Forever name; retrying compatible insert.",
             insertResult.error
         );
-
 
         insertResult =
             await database
@@ -6190,20 +6547,35 @@ async function saveRoll(
             .insert(
                 [
                     {
-                        character_name:
-                            characterName,
-
-                        class_name:
-                            className,
-
-                        body_type:
-                            bodyType
+                        character_name: characterName,
+                        class_name: className,
+                        body_type: bodyType,
+                        role: role
                     }
                 ]
             );
-
     }
 
+    /* Final legacy fallback if the role column is also unavailable. */
+    if (
+        insertResult.error
+    ) {
+
+        insertResult =
+            await database
+            .from(
+                "guild_rolls"
+            )
+            .insert(
+                [
+                    {
+                        character_name: characterName,
+                        class_name: className,
+                        body_type: bodyType
+                    }
+                ]
+            );
+    }
 
     if (
         insertResult.error
@@ -6213,19 +6585,13 @@ async function saveRoll(
             insertResult.error
         );
 
-
         showToast(
             "Roll worked, but database save failed."
         );
-
-
         return;
-
     }
 
-
     await loadRecentRolls();
-
 }
 
 
@@ -6240,7 +6606,6 @@ function renderRollHistory() {
             "rollHistory"
         );
 
-
     if (
         recentRolls.length ===
         0
@@ -6248,20 +6613,12 @@ function renderRollHistory() {
 
         container.innerHTML =
             `
-
-            <div class="empty-history" style="grid-column:1 / -1;">
-
+            <div class="empty-history">
             No shared rolls recorded yet.
-
             </div>
-
             `;
-
-
         return;
-
     }
-
 
     const classColours =
     {
@@ -6276,7 +6633,6 @@ function renderRollHistory() {
         Druid: "#FF7D0A"
     };
 
-
     const roleIcons =
     {
         Tank: "🛡",
@@ -6284,107 +6640,90 @@ function renderRollHistory() {
         DPS: "⚔"
     };
 
-
-    function renderRoll(roll) {
-
-        const safeName =
-            escapeHtml(
-                roll.character_name
-            );
-
-
-        const safeClass =
-            escapeHtml(
-                roll.class_name
-            );
-
-
-        const safeRole =
-            ["Tank","Healer","DPS"].includes(
-                roll.role
-            )
-            ?
-            roll.role
-            :
-            "Unknown";
-
-
-        const classColour =
-            classColours[
-                roll.class_name
-            ]
-            ||
-            "#d7a94b";
-
-
-        const classIcon =
-            "https://wow.zamimg.com/images/wow/icons/large/classicon_"
-            +
-            encodeURIComponent(
-                String(roll.class_name).toLowerCase()
-            )
-            +
-            ".jpg";
-
-
-        const roleIcon =
-            roleIcons[
-                safeRole
-            ]
-            ||
-            "?";
-
-
-        return `
-
-        <div class="roll-row">
-
-            <div class="roll-character" style="color:${classColour}" title="${safeName}">
-            ${safeName}
-            </div>
-
-            <div class="roll-role-icon" data-role="${safeRole}" title="${safeRole}">
-            ${roleIcon}
-            </div>
-
-            <div class="roll-class" style="color:${classColour}" title="${safeClass}">
-            <img class="roll-class-icon" src="${classIcon}" alt="">
-            <span>${safeClass}</span>
-            </div>
-
-            <div class="roll-body">
-            Body Type ${roll.body_type}
-            </div>
-
-        </div>
-
-        `;
-    }
-
-
-    const columns =
-        [
-            recentRolls.slice(0,10),
-            recentRolls.slice(10,20),
-            recentRolls.slice(20,30)
-        ];
-
-
     container.innerHTML =
-        columns
+        recentRolls
         .map(
-            function(columnRolls) {
+            function(roll) {
+
+                const storedFullName =
+                    [
+                        roll.first_name,
+                        roll.last_name
+                    ]
+                    .filter(Boolean)
+                    .join(" ")
+                    .trim();
+
+                const displayName =
+                    storedFullName ||
+                    roll.character_name ||
+                    "Unknown Adventurer";
+
+                const safeName =
+                    escapeHtml(
+                        displayName
+                    );
+
+                const safeClass =
+                    escapeHtml(
+                        roll.class_name
+                    );
+
+                const safeRole =
+                    ["Tank","Healer","DPS"].includes(
+                        roll.role
+                    )
+                    ?
+                    roll.role
+                    :
+                    "Unknown";
+
+                const classColour =
+                    classColours[
+                        roll.class_name
+                    ]
+                    ||
+                    "#d7a94b";
+
+                const classIcon =
+                    "https://wow.zamimg.com/images/wow/icons/large/classicon_"
+                    +
+                    encodeURIComponent(
+                        String(roll.class_name).toLowerCase()
+                    )
+                    +
+                    ".jpg";
+
+                const roleIcon =
+                    roleIcons[
+                        safeRole
+                    ]
+                    ||
+                    "?";
 
                 return `
-                <div class="roll-history-column">
-                ${columnRolls.map(renderRoll).join("")}
+                <div class="roll-row">
+                    <div class="roll-character" style="color:${classColour}" title="${safeName}">
+                    ${safeName}
+                    </div>
+
+                    <div class="roll-role-icon wow-history-role" data-role="${safeRole}" title="${safeRole}">
+                    ${roleIcon}
+                    </div>
+
+                    <div class="roll-class" style="color:${classColour}" title="${safeClass}">
+                    <img class="roll-class-icon" src="${classIcon}" alt="">
+                    <span>${safeClass}</span>
+                    </div>
+
+                    <div class="roll-body">
+                    Body Type ${roll.body_type}
+                    </div>
                 </div>
                 `;
-
             }
         )
         .join("");
-
 }
 
 
@@ -6761,9 +7100,14 @@ const roleDoorResult =
         "roleDoorResult"
     );
 
-const characterNameInput =
+const firstNameInput =
     document.getElementById(
-        "characterName"
+        "firstName"
+    );
+
+const lastNameInput =
+    document.getElementById(
+        "lastName"
     );
 
 
@@ -7590,24 +7934,39 @@ spinWheelButton.onclick =
         }
 
 
-        const characterName =
-            characterNameInput
+        const firstName =
+            firstNameInput
             .value
+            .trim();
+
+        const lastName =
+            lastNameInput
+            .value
+            .trim();
+
+        const characterName =
+            (firstName + " " + lastName)
             .trim();
 
 
         if (
-            characterName.length <
-            2
+            firstName.length < 2
+            ||
+            lastName.length < 2
         ) {
 
             protectionMessage(
-                "Enter your character name before pulling the lever."
+                "Enter both your Forever first name and last name before pulling the lever."
             );
 
-
-            characterNameInput.focus();
-
+            if (
+                firstName.length < 2
+            ) {
+                firstNameInput.focus();
+            }
+            else {
+                lastNameInput.focus();
+            }
 
             return;
 
@@ -7677,7 +8036,10 @@ spinWheelButton.onclick =
             true;
 
 
-        characterNameInput.disabled =
+        firstNameInput.disabled =
+            true;
+
+        lastNameInput.disabled =
             true;
 
 
@@ -7964,7 +8326,10 @@ spinWheelButton.onclick =
                             false;
 
 
-                        characterNameInput.disabled =
+                        firstNameInput.disabled =
+                            false;
+
+                        lastNameInput.disabled =
                             false;
 
 
@@ -7987,7 +8352,8 @@ spinWheelButton.onclick =
 
 
                         saveRoll(
-                            characterName,
+                            firstName,
+                            lastName,
                             winningClass.name,
                             winningBody.id,
                             winningRole
