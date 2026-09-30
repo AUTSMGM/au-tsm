@@ -5342,3 +5342,214 @@ footer strong {
     .admin-card { grid-template-columns:1fr; }
     #raidApplicationForm { grid-template-columns:1fr; }
 }
+
+
+/* =========================================================
+   CHARACTER CREATION MODES + COMPACT RAID APPLICATION
+========================================================= */
+
+.creator-mode-selector {
+    width:min(980px,100%);
+    margin:0 auto 16px;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    padding:10px;
+    border:1px solid #4a3a28;
+    background:#0d0c0b;
+    box-shadow:0 10px 30px rgba(0,0,0,.22);
+}
+.creator-mode-button {
+    min-height:105px;
+    padding:14px 18px;
+    border:1px solid #3f352b;
+    background:linear-gradient(180deg,#171411,#0e0d0b);
+    color:#9d9488;
+    text-align:left;
+    transition:transform .16s ease,border-color .16s ease,background .16s ease,box-shadow .16s ease;
+}
+.creator-mode-button:hover { transform:translateY(-1px); border-color:#80613a; }
+.creator-mode-button.active {
+    border-color:#c19142;
+    background:linear-gradient(180deg,#281d0e,#15110b);
+    box-shadow:inset 0 0 0 1px rgba(215,169,75,.2),0 0 18px rgba(215,169,75,.08);
+}
+.creator-mode-kicker {
+    display:block;
+    margin-bottom:5px;
+    color:#756c61;
+    font-size:7px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+.creator-mode-button.active .creator-mode-kicker { color:#b99655; }
+.creator-mode-title {
+    display:block;
+    color:#d7a94b;
+    font-family:Georgia,serif;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:.5px;
+}
+.creator-mode-copy { display:block; margin-top:7px; font-size:10px; line-height:1.45; }
+
+.manual-creator-panel {
+    grid-column:1 / 3;
+    grid-row:1;
+    height:620px;
+    min-height:0;
+    padding:18px;
+    overflow:auto;
+    border:1px solid #44382b;
+    background:radial-gradient(circle at 50% 0%,rgba(140,96,36,.10),transparent 40%),#11100e;
+}
+.manual-creator-panel[hidden], .creator-wheel-only[hidden] { display:none !important; }
+.manual-creator-heading {
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:15px;
+    padding-bottom:11px;
+    border-bottom:1px solid #302820;
+    color:#d7a94b;
+    font-family:Georgia,serif;
+    font-size:21px;
+    font-weight:bold;
+}
+.manual-creator-heading span { color:#71695f; font-family:Arial,sans-serif; font-size:9px; font-weight:normal; letter-spacing:1px; }
+.manual-name-block { margin:14px 0 16px; }
+.manual-name-block .character-entry-title { margin-bottom:7px; }
+.manual-name-block input {
+    width:100%;
+    box-sizing:border-box;
+    padding:10px 12px;
+    background:#080706;
+    border:1px solid #51402c;
+    color:#eee5d8;
+    text-align:center;
+}
+.manual-field-label { margin:10px 0 7px; color:#81776a; font-size:8px; font-weight:bold; letter-spacing:1.8px; }
+.manual-class-grid {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:7px;
+}
+.manual-class-button {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    min-height:52px;
+    padding:7px 9px;
+    border:2px solid transparent;
+    background:var(--manual-class);
+    color:var(--manual-class-text);
+    font-weight:bold;
+    text-align:left;
+    opacity:.72;
+}
+.manual-class-button img { width:30px; height:30px; border:1px solid rgba(0,0,0,.55); border-radius:3px; }
+.manual-class-button:hover { opacity:.92; }
+.manual-class-button.selected { opacity:1; border-color:#f0c568; box-shadow:0 0 0 2px #15110d,0 0 12px rgba(240,197,104,.3); }
+.manual-choice-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:8px; }
+.manual-role-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+.manual-role-button, .manual-body-button {
+    min-height:58px;
+    padding:7px;
+    border:2px solid transparent;
+    color:#fff;
+    font-weight:bold;
+    text-align:center;
+    opacity:.78;
+}
+.manual-role-button:disabled { opacity:.18; cursor:not-allowed; filter:grayscale(1); }
+.manual-role-button.selected, .manual-body-button.selected { opacity:1; border-color:#f0c568; box-shadow:0 0 0 2px #15110d; }
+.manual-role-icon { display:block; margin-bottom:2px; font-size:19px; }
+.manual-role-button small { display:block; margin-top:2px; font-size:6px; }
+.manual-role-tank { background:linear-gradient(180deg,#225a89,#15344f); }
+.manual-role-healer { background:linear-gradient(180deg,#347d42,#183b20); }
+.manual-role-dps { background:linear-gradient(180deg,#8c3329,#481914); }
+.manual-body-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+.manual-body-button strong,.manual-body-button span { display:block; }
+.manual-body-button span { margin-top:3px; font-size:7px; opacity:.75; }
+.manual-body-button.body-1 { background:linear-gradient(180deg,#287ac2,#163d6b); }
+.manual-body-button.body-2 { background:linear-gradient(180deg,#cf5d94,#7b3157); }
+.manual-empty-choice { grid-column:1/-1; padding:19px; border:1px dashed #3d342a; color:#6f675d; text-align:center; font-size:9px; }
+.manual-creator-status { min-height:18px; margin:13px 0 8px; color:#9b9185; font-size:10px; text-align:center; }
+.manual-create-button {
+    display:block;
+    width:min(390px,100%);
+    margin:0 auto;
+    padding:13px 18px;
+    border:1px solid #c49848;
+    background:linear-gradient(180deg,#6e4a19,#34230f);
+    color:#f3ce75;
+    font-family:Georgia,serif;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+.manual-create-button:disabled { opacity:.3; cursor:not-allowed; }
+
+/* The assessment used an animated pseudo-element that expanded behind the new application form.
+   Replace it with a quiet, contained WoW-style panel. */
+.raid-ready-callout {
+    max-width:760px !important;
+    margin:18px auto 38px !important;
+    padding:16px !important;
+    border:1px solid #5b452d !important;
+    border-radius:4px !important;
+    background:#0f0d0b !important;
+    box-shadow:0 10px 26px rgba(0,0,0,.24) !important;
+}
+.raid-ready-callout::before { display:none !important; content:none !important; }
+.raid-ready-label { margin-top:-34px; }
+.raid-ready-callout > p {
+    max-width:650px;
+    margin:10px auto 12px !important;
+    padding:0 !important;
+    background:transparent !important;
+    color:#b7aea2 !important;
+    font-size:12px !important;
+    line-height:1.45 !important;
+}
+#raidGameButton { width:min(620px,100%); }
+.raid-ready-warning { margin:8px 0 0 !important; color:#6e655b !important; font-size:8px !important; }
+.raid-application-panel {
+    width:min(620px,100%) !important;
+    box-sizing:border-box !important;
+    margin:14px auto 0 !important;
+    padding:12px 14px !important;
+    border:1px solid #4e3c29 !important;
+    border-left:3px solid #b58a43 !important;
+    background:#15120f !important;
+    box-shadow:none !important;
+    text-align:left !important;
+}
+.application-status-title { font-size:13px !important; letter-spacing:1.3px !important; }
+.raid-application-panel p {
+    margin:5px 0 9px !important;
+    padding:0 !important;
+    background:transparent !important;
+    color:#a89f93 !important;
+    font-size:10px !important;
+    line-height:1.45 !important;
+}
+#raidApplicationForm { max-width:none !important; margin:8px 0 0 !important; gap:6px !important; }
+#raidApplicationForm input { padding:9px 10px !important; }
+#raidApplicationForm button { padding:9px 12px !important; }
+
+@media (min-width:1180px) {
+    .manual-creator-panel { grid-column:1 / 3 !important; grid-row:1 !important; }
+}
+@media (max-width:1179px) {
+    .manual-creator-panel { grid-column:1 !important; width:100%; box-sizing:border-box; height:auto; max-height:none; }
+}
+@media (max-width:700px) {
+    .creator-mode-selector { grid-template-columns:1fr; }
+    .creator-mode-button { min-height:85px; }
+    .manual-class-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .manual-choice-row { grid-template-columns:1fr; }
+    .manual-creator-heading { display:block; }
+    .manual-creator-heading span { display:block; margin-top:5px; }
+    .raid-ready-callout { margin-top:28px !important; padding:12px !important; }
+    #raidApplicationForm { grid-template-columns:1fr !important; }
+}

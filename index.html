@@ -171,20 +171,72 @@ class="wheel-section"
 
 <div class="section-title">
 
-<h3>
-Which Class Will You Roll? (Spin)
+<h3 id="creatorModeHeading">
+Create Your Forever Character
 </h3>
 
-<p>
-Enter your Forever character name, spend up to three protection tokens, then surrender your future.
+<p id="creatorModeDescription">
+Choose exactly what you want, or place your future in the hands of the AU TSM decision engine.
 </p>
 
 </div>
 
+<div class="creator-mode-selector" role="group" aria-label="Character creation mode">
+    <button id="manualModeButton" class="creator-mode-button active" type="button">
+        <span class="creator-mode-kicker">DEFAULT</span>
+        <span class="creator-mode-title">⚔ CREATE CHARACTER</span>
+        <span class="creator-mode-copy">Choose your class, role and body type yourself.</span>
+    </button>
+    <button id="wheelModeButton" class="creator-mode-button" type="button">
+        <span class="creator-mode-kicker">DEGENERATE OPTION</span>
+        <span class="creator-mode-title">🎲 SPIN THE WHEEL</span>
+        <span class="creator-mode-copy">Use Bad Luck Protection, then let fate ruin your plans.</span>
+    </button>
+</div>
+
 <div class="wheel-dashboard">
 
+<!-- MANUAL CHARACTER CREATOR - DEFAULT MODE -->
+<section id="manualCreationMode" class="manual-creator-panel">
+    <div class="manual-creator-heading">
+        <div>CREATE CHARACTER</div>
+        <span>No random number generator. No excuses.</span>
+    </div>
+
+    <div class="manual-name-block">
+        <div class="character-entry-title">FOREVER CHARACTER NAME</div>
+        <div class="character-name-grid">
+            <div class="character-name-field">
+                <label for="manualFirstName">FIRST NAME</label>
+                <input id="manualFirstName" type="text" maxlength="18" placeholder="e.g. Phinky" autocomplete="off">
+            </div>
+            <div class="character-name-field">
+                <label for="manualLastName">LAST NAME</label>
+                <input id="manualLastName" type="text" maxlength="18" placeholder="e.g. Do" autocomplete="off">
+            </div>
+        </div>
+    </div>
+
+    <div class="manual-field-label">1. CHOOSE CLASS</div>
+    <div id="manualClassGrid" class="manual-class-grid"></div>
+
+    <div class="manual-choice-row">
+        <div class="manual-choice-group">
+            <div class="manual-field-label">2. CHOOSE ROLE</div>
+            <div id="manualRoleGrid" class="manual-role-grid"></div>
+        </div>
+        <div class="manual-choice-group">
+            <div class="manual-field-label">3. CHOOSE BODY TYPE</div>
+            <div id="manualBodyGrid" class="manual-body-grid"></div>
+        </div>
+    </div>
+
+    <div id="manualCreatorStatus" class="manual-creator-status">Choose a class to begin.</div>
+    <button id="manualCreateButton" class="manual-create-button" type="button" disabled>CREATE TRIAL CHARACTER</button>
+</section>
+
 <!-- LEFT: BAD LUCK PROTECTION -->
-<aside class="bad-luck-panel wheel-side-panel">
+<aside id="wheelBadLuckPanel" class="bad-luck-panel wheel-side-panel creator-wheel-only" hidden>
 
 <div class="bad-luck-header">
 
@@ -297,7 +349,7 @@ Role blocks are applied after class selection. If a class has no legal role left
 
 
 <!-- CENTRE: CHARACTER + WHEEL + RESULT -->
-<div class="wheel-centre-column">
+<div id="wheelCentrePanel" class="wheel-centre-column creator-wheel-only" hidden>
 
 <div class="character-entry">
 
@@ -500,13 +552,13 @@ BODY TYPE
 
 <div class="wheel-result-row">
 <div class="wheel-result">
-<div class="wheel-result-label">CHARACTER CREATION DECISION ENGINE</div>
+<div class="wheel-result-label">FOREVER CHARACTER RECORD</div>
 <div id="wheelResultName">Awaiting victim...</div>
 <div id="wheelResultClass">?</div>
 <div id="wheelResultBody" style="display:none;">?</div>
 <div id="wheelResultRole" style="display:none;">?</div>
-<p id="characterSaveStatus" aria-live="polite">Spin to create your Trial character.</p>
-<div id="wheelResultMessage">Enter a character name before pulling the lever.</div>
+<p id="characterSaveStatus" aria-live="polite">Create or spin to register your Trial character.</p>
+<div id="wheelResultMessage">Create a character manually or switch to the wheel.</div>
 </div>
 </div>
 <div class="raid-ready-callout">
@@ -1311,6 +1363,7 @@ PHASE 1 • 5/5 HP
 <script src="js/classes.js"></script>
 <script src="js/supabase.js"></script>
 <script src="js/progression.js"></script>
+<script src="js/creator.js"></script>
 <script src="js/wheel.js"></script>
 <script src="js/jokes.js"></script>
 <script src="js/raid.js"></script>

@@ -37,10 +37,12 @@ async function saveRoll(firstName,lastName,className,bodyType,role) {
         if(!data || data.id == null) throw Error('Database did not return a saved row ID');
         setCharacter(data);
         await loadRecentRolls();
+        return data;
     } catch(error) {
         console.error(error);
         setCharacter(null,'Save not confirmed. Check your connection and recent rolls before spinning again.');
         showToast('Character save could not be confirmed. Raid test is locked.');
+        return null;
     }
 }
 
