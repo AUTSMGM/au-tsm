@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AU TSM • Guild Management</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+<div class="header-inner">
+<div class="logo"><h1>AU TSM</h1><p>GUILD MANAGEMENT</p></div>
+<div class="header-right"><nav>
+<a href="index.html">Character Creator</a>
+<a href="roster.html">Official Roster</a>
+</nav></div>
+</div>
+</header>
+<main class="page-shell">
+<div class="page-title"><h2>Guild Management</h2><p>Authorised middle management only.</p></div>
+
+<section id="adminLogin" class="admin-login">
+<div class="admin-login-card">
+<h3>Phinky Authentication</h3>
+<label>Email</label><input id="adminEmail" type="email" autocomplete="username">
+<label>Password</label><input id="adminPassword" type="password" autocomplete="current-password">
+<button id="adminLoginButton" class="admin-button">LOGIN</button>
+<p id="adminLoginStatus" class="admin-meta"></p>
+</div>
+</section>
+
+<section id="adminPanel" class="admin-panel" hidden>
+<div class="admin-toolbar">
+<div><strong id="adminIdentity">Authenticated</strong><div class="admin-meta">Guild Master controls active</div></div>
+<button id="adminLogoutButton" class="admin-button">LOG OUT</button>
+</div>
+
+<div class="admin-section">
+<h3>Pending Raid Applications</h3>
+<div id="pendingApplications"><div class="admin-meta">Loading applications…</div></div>
+</div>
+
+<div class="admin-section">
+<h3>Current Raiders</h3>
+<div id="activeRaiders"><div class="admin-meta">Loading roster…</div></div>
+</div>
+</section>
+</main>
+<script src="js/config.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/classes.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

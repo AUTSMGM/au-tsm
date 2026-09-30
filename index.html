@@ -76,8 +76,8 @@ Roll
 Statistics
 </a>
 
-<a href="#classes">
-Roster
+<a href="roster.html">
+Official Roster
 </a>
 
 <a href="#tools">
@@ -515,7 +515,7 @@ BODY TYPE
 ⚠ MANDATORY GUILD ASSESSMENT ⚠
 </div>
 
-<p>To become a Raider, pass the Raid Ready Test with this saved character.</p>
+<p>Pass the Raid Ready Test to become <strong>Raid Ready</strong>. You can then submit this character for an official AU TSM Forever raid spot.</p>
 <button id="raidGameButton" disabled>
 
 <span class="raid-button-main">
@@ -530,6 +530,16 @@ CAN YOU SURVIVE ONYXIA?
 
 <div class="raid-ready-warning">
 Failure may result in automatic classification as Roks
+</div>
+
+<div id="raidApplicationPanel" class="raid-application-panel" hidden>
+    <div class="application-status-title">RAID READY</div>
+    <p id="raidApplicationMessage">Pass Onyxia to unlock your roster application.</p>
+    <div id="raidApplicationForm" hidden>
+        <label for="discordName">DISCORD / PLAYER NAME</label>
+        <input id="discordName" type="text" maxlength="40" placeholder="e.g. Chris">
+        <button id="submitRaidApplication">SUBMIT FOR RAID SPOT</button>
+    </div>
 </div>
 
 </div>

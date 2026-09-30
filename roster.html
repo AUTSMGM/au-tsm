@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AU TSM • Forever Roster</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+<div class="header-inner">
+<div class="logo"><h1>AU TSM</h1><p>WORLD OF WARCRAFT • FOREVER</p></div>
+<div class="header-right"><nav>
+<a href="index.html">Character Creator</a>
+<a href="roster.html">Official Roster</a>
+<a class="subtle-admin-link" href="admin.html">Guild Management</a>
+</nav></div>
+</div>
+</header>
+<main class="page-shell">
+<div class="page-title">
+<h2>AU TSM — Forever Raid Roster</h2>
+<p>The characters below have survived Onyxia, survived Phinky's paperwork, and been officially approved.</p>
+</div>
+<div class="roster-summary">
+<div class="roster-stat"><strong id="rosterTotal">0</strong><span>RAIDERS</span></div>
+<div class="roster-stat"><strong id="rosterTanks">0</strong><span>🛡 TANKS</span></div>
+<div class="roster-stat"><strong id="rosterDps">0</strong><span>⚔ DPS</span></div>
+<div class="roster-stat"><strong id="rosterHealers">0</strong><span>✚ HEALERS</span></div>
+</div>
+<div id="rosterStatus" class="roster-empty">Loading official guild paperwork…</div>
+<div id="rosterContent"></div>
+</main>
+<script src="js/config.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/classes.js"></script>
+<script src="js/roster.js"></script>
+</body>
+</html>

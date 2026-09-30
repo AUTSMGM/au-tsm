@@ -15,7 +15,7 @@ const databaseStatus =
 async function loadRecentRolls() {
     if (!database) { databaseStatus.textContent = 'DATABASE UNAVAILABLE'; return; }
     try {
-        const {data,error} = await database.from('guild_rolls').select('id, character_name, first_name, last_name, class_name, body_type, role, guild_rank, created_at').order('created_at',{ascending:false}).limit(30);
+        const {data,error} = await database.from('guild_rolls').select('id, character_name, first_name, last_name, class_name, body_type, role, guild_rank, application_status, roster_active, discord_name, raid_ready_at, created_at').order('created_at',{ascending:false}).limit(30);
         if(error) throw error;
         recentRolls=data || [];
         databaseStatus.textContent='LIVE • '+recentRolls.length+'/30';
@@ -168,7 +168,7 @@ function renderRollHistory() {
                     <div class="roll-body">
                     Body Type ${escapeHtml(String(roll.body_type))}
                     </div>
-                    <span class="guild-rank" data-rank="${roll.guild_rank === "Raider" ? "Raider" : "Trial"}">${roll.guild_rank === "Raider" ? "Raider" : "Trial"}</span>
+                    <span class="guild-rank" data-rank="${escapeHtml(roll.guild_rank || "Trial")}">${escapeHtml(roll.guild_rank || "Trial")}${roll.application_status === "Pending" ? " • Pending" : ""}</span>
                 </div>
                 `;
             }

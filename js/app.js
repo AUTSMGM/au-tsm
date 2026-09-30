@@ -249,8 +249,8 @@ const RAID_V2_HEAL_INTERVAL = 6;
     panel.className = "promotion-feed";
     panel.innerHTML = `
         <div class="promotion-feed-header">
-            <h5>Recent Promotions</h5>
-            <span>RAID READY</span>
+            <h5>Recent Raid Ready</h5>
+            <span>ONYXIA PASSES</span>
         </div>
         <div id="promotionFeed">
             <div class="empty-history">No promotions recorded yet.</div>
@@ -285,7 +285,7 @@ function renderPromotionFeed(rows) {
         return `
             <div class="promotion-row">
                 <div class="promotion-name" style="color:${classColourFor(row.class_name)}">
-                    ${name} <span class="promotion-raider">→ Raider</span>
+                    ${name} <span class="promotion-raider">→ Raid Ready</span>
                 </div>
                 <div class="promotion-note">${cls} • Onyxia cleared</div>
             </div>
@@ -300,7 +300,7 @@ async function loadRecentPromotions() {
         const {data,error} = await database
             .from("guild_rolls")
             .select("id,character_name,first_name,last_name,class_name,role,guild_rank,promoted_at")
-            .eq("guild_rank","Raider")
+            .eq("guild_rank","Raid Ready")
             .order("promoted_at",{ascending:false,nullsFirst:false})
             .limit(8);
 
@@ -315,7 +315,7 @@ async function loadRecentPromotions() {
     }
 
     const fallback = (recentRolls || [])
-        .filter(row => row.guild_rank === "Raider")
+        .filter(row => row.guild_rank === "Raid Ready")
         .slice(0,8);
 
     renderPromotionFeed(fallback);
@@ -632,64 +632,9 @@ raidActionButton.onclick = function(event) {
     hideActionPrompt();
 };
 
-/* =========================================================
-   PROMOTION WITH TIMESTAMP
-========================================================= */
-
-promoteCharacter = async function(character) {
-    if (!database || character.id == null) throw Error("Saved character unavailable");
-
-    const timestamp = new Date().toISOString();
-
-    if (promotionTimestampAvailable) {
-        const {data,error} = await database
-            .from("guild_rolls")
-            .update({
-                guild_rank:"Raider",
-                promoted_at:timestamp
-            })
-            .eq("id",character.id)
-            .eq("guild_rank","Trial")
-            .select()
-            .maybeSingle();
-
-        if (!error && data) return data;
-
-        if (error && /promoted_at/i.test(String(error.message || error.details || error))) {
-            promotionTimestampAvailable = false;
-        } else if (error) {
-            throw error;
-        }
-    }
-
-    /* Schema-safe fallback if promoted_at has not been added yet. */
-    const {data,error} = await database
-        .from("guild_rolls")
-        .update({guild_rank:"Raider"})
-        .eq("id",character.id)
-        .eq("guild_rank","Trial")
-        .select()
-        .maybeSingle();
-
-    if (error) throw error;
-    if (data) return data;
-
-    const existing = await database
-        .from("guild_rolls")
-        .select("*")
-        .eq("id",character.id)
-        .single();
-
-    if (existing.error) throw existing.error;
-    if (existing.data.guild_rank !== "Raider") {
-        throw Error("Promotion not allowed; check Supabase UPDATE permissions");
-    }
-
-    return existing.data;
-};
 
 /* =========================================================
-   VICTORY - PROMOTION IS NOW THE PRIMARY OUTCOME
+   RAID READY VICTORY / APPLICATION FLOW
 ========================================================= */
 
 victory = function() {
@@ -715,41 +660,17 @@ victory = function() {
             </div>
 
             <div class="promotion-victory-panel">
-                <div class="promotion-victory-title">RAIDER PROMOTION EARNED</div>
+                <div class="promotion-victory-title">RAID READY STATUS EARNED</div>
                 <div id="promotionStatus" class="promotion-victory-status" aria-live="polite">
-                    Recording your promotion with the guild bureaucracy…
+                    Recording your Onyxia pass with the guild bureaucracy…
                 </div>
             </div>
 
             <div class="loot-list">
-                <div class="loot-item">
-                    <div class="loot-icon">⚔</div>
-                    <div>
-                        <div class="loot-name">Dragonfire Greatblade</div>
-                        <div class="loot-type">Epic Two-Handed Sword</div>
-                    </div>
-                </div>
-                <div class="loot-item">
-                    <div class="loot-icon">💍</div>
-                    <div>
-                        <div class="loot-name">Band of the Spreadsheet</div>
-                        <div class="loot-type">Epic Ring</div>
-                    </div>
-                </div>
-                <div class="loot-item">
-                    <div class="loot-icon">🪓</div>
-                    <div>
-                        <div class="loot-name">Fayne's Bladestorm Management Tool</div>
-                        <div class="loot-type">Epic Axe</div>
-                    </div>
-                </div>
-                <div class="loot-item">
-                    <div class="loot-icon">🔥</div>
-                    <div>
-                        <div class="loot-name">Roks' Fire Resistance Trinket</div>
-                        <div class="loot-type">Still insufficient</div>
-                    </div>
-                </div>
+                <div class="loot-item"><div class="loot-icon">⚔</div><div><div class="loot-name">Dragonfire Greatblade</div><div class="loot-type">Epic Two-Handed Sword</div></div></div>
+                <div class="loot-item"><div class="loot-icon">💍</div><div><div class="loot-name">Band of the Spreadsheet</div><div class="loot-type">Epic Ring</div></div></div>
+                <div class="loot-item"><div class="loot-icon">🪓</div><div><div class="loot-name">Fayne's Bladestorm Management Tool</div><div class="loot-type">Epic Axe</div></div></div>
+                <div class="loot-item"><div class="loot-icon">🔥</div><div><div class="loot-name">Roks' Fire Resistance Trinket</div><div class="loot-type">Still insufficient</div></div></div>
             </div>
 
             <div class="loot-reserved">
@@ -759,21 +680,15 @@ victory = function() {
             </div>
 
             <div class="victory-actions">
-                <button id="returnToGuildHall" class="primary-victory" disabled>
-                    SAVING PROMOTION…
-                </button>
-                <button id="retryPromotion" hidden>
-                    RETRY SAVING PROMOTION
-                </button>
-                <button id="resetInstance" class="secondary-victory">
-                    FIGHT ONYXIA AGAIN
-                </button>
+                <button id="returnToGuildHall" class="primary-victory" disabled>SAVING RAID READY STATUS…</button>
+                <button id="retryRaidReadySave" hidden>RETRY SAVING RESULT</button>
+                <button id="resetInstance" class="secondary-victory">FIGHT ONYXIA AGAIN</button>
             </div>
         </div>
     `;
 
     const returnButton = document.getElementById("returnToGuildHall");
-    const retryButton = document.getElementById("retryPromotion");
+    const retryButton = document.getElementById("retryRaidReadySave");
     const resetButton = document.getElementById("resetInstance");
     const status = document.getElementById("promotionStatus");
 
@@ -781,47 +696,44 @@ victory = function() {
 
     returnButton.onclick = function() {
         overlay.style.display = "none";
-        const panel = document.getElementById("promotionFeedPanel");
+        const panel = document.getElementById("raidApplicationPanel");
         if (panel) panel.scrollIntoView({behavior:"smooth",block:"center"});
     };
 
-    (async function saveVictoryPromotion() {
+    async function saveRaidReadyResult() {
         try {
-            promotionPending = true;
             resetButton.disabled = true;
-
-            const saved = await promoteCharacter(victoriousCharacter);
+            const saved = await markRaidReady(victoriousCharacter);
 
             status.innerHTML =
-                `<strong>${escapeHtml(saved.character_name)}</strong> is now officially <strong>Raider</strong>.`;
-            returnButton.disabled = false;
-            returnButton.textContent = "✓ PROMOTED TO RAIDER — RETURN TO GUILD HALL";
+                `<strong>${escapeHtml(saved.character_name)}</strong> is now <strong>Raid Ready</strong>. Return to the Guild Hall to submit for an official raid spot.`;
 
-            if (
-                activeCharacter &&
-                String(activeCharacter.id) === String(saved.id)
-            ) {
-                setCharacter(saved,"Guild Rank: Raider");
+            returnButton.disabled = false;
+            returnButton.textContent = "✓ RAID READY — RETURN TO GUILD HALL";
+
+            if (activeCharacter && String(activeCharacter.id) === String(saved.id)) {
+                setCharacter(saved,"Guild Rank: Raid Ready");
             }
 
             await loadRecentRolls();
+            if (typeof loadRecentPromotions === "function") await loadRecentPromotions();
         } catch (error) {
             console.error(error);
-            status.textContent =
-                "Onyxia is dead, but the paperwork failed. Your promotion has not been confirmed yet.";
+            status.textContent = "Onyxia is dead, but the paperwork failed. Retry saving the Raid Ready result.";
             returnButton.disabled = false;
             returnButton.textContent = "RETURN TO GUILD HALL";
             retryButton.hidden = false;
             retryButton.onclick = function() {
                 retryButton.hidden = true;
-                status.textContent = "Retrying promotion save…";
-                saveVictoryPromotion();
+                status.textContent = "Retrying Raid Ready save…";
+                saveRaidReadyResult();
             };
         } finally {
-            promotionPending = false;
             resetButton.disabled = false;
         }
-    })();
+    }
+
+    saveRaidReadyResult();
 };
 
 /* =========================================================
