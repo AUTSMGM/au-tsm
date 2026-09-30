@@ -11,11 +11,12 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="creator-overrides.css">
 
 </head>
 
 
-<body>
+<body data-creator-mode="manual">
 
 
 <!-- =========================================================
@@ -199,40 +200,63 @@ Choose exactly what you want, or place your future in the hands of the AU TSM de
 <!-- MANUAL CHARACTER CREATOR - DEFAULT MODE -->
 <section id="manualCreationMode" class="manual-creator-panel">
     <div class="manual-creator-heading">
-        <div>CREATE CHARACTER</div>
-        <span>No random number generator. No excuses.</span>
+        <div>
+            <span class="manual-heading-kicker">DEFAULT CREATION MODE</span>
+            <strong>CREATE YOUR FOREVER CHARACTER</strong>
+        </div>
+        <span>Pick exactly what you want. Any bad decisions are now entirely your own.</span>
     </div>
 
-    <div class="manual-name-block">
-        <div class="character-entry-title">FOREVER CHARACTER NAME</div>
-        <div class="character-name-grid">
-            <div class="character-name-field">
-                <label for="manualFirstName">FIRST NAME</label>
-                <input id="manualFirstName" type="text" maxlength="18" placeholder="e.g. Phinky" autocomplete="off">
+    <div class="manual-creator-layout">
+
+        <div class="manual-identity-card">
+            <div class="manual-card-title">CHARACTER IDENTITY</div>
+
+            <div class="manual-name-block">
+                <div class="character-entry-title">FOREVER CHARACTER NAME</div>
+                <div class="character-name-grid">
+                    <div class="character-name-field">
+                        <label for="manualFirstName">FIRST NAME</label>
+                        <input id="manualFirstName" type="text" maxlength="18" placeholder="e.g. Phinky" autocomplete="off">
+                    </div>
+                    <div class="character-name-field">
+                        <label for="manualLastName">LAST NAME</label>
+                        <input id="manualLastName" type="text" maxlength="18" placeholder="e.g. Do" autocomplete="off">
+                    </div>
+                </div>
             </div>
-            <div class="character-name-field">
-                <label for="manualLastName">LAST NAME</label>
-                <input id="manualLastName" type="text" maxlength="18" placeholder="e.g. Do" autocomplete="off">
+
+            <div class="manual-identity-note">
+                This character will be registered as <strong>Trial</strong> and can then take the Raid Ready Test.
+            </div>
+
+            <div id="manualCreatorStatus" class="manual-creator-status">Choose a class to begin.</div>
+
+            <button id="manualCreateButton" class="manual-create-button" type="button" disabled>
+                CREATE TRIAL CHARACTER
+            </button>
+        </div>
+
+        <div class="manual-options-card">
+            <div class="manual-card-title">CHARACTER OPTIONS</div>
+
+            <div class="manual-field-label">1. CHOOSE CLASS</div>
+            <div id="manualClassGrid" class="manual-class-grid"></div>
+
+            <div class="manual-choice-row">
+                <div class="manual-choice-group">
+                    <div class="manual-field-label">2. CHOOSE ROLE</div>
+                    <div id="manualRoleGrid" class="manual-role-grid"></div>
+                </div>
+
+                <div class="manual-choice-group">
+                    <div class="manual-field-label">3. CHOOSE BODY TYPE</div>
+                    <div id="manualBodyGrid" class="manual-body-grid"></div>
+                </div>
             </div>
         </div>
+
     </div>
-
-    <div class="manual-field-label">1. CHOOSE CLASS</div>
-    <div id="manualClassGrid" class="manual-class-grid"></div>
-
-    <div class="manual-choice-row">
-        <div class="manual-choice-group">
-            <div class="manual-field-label">2. CHOOSE ROLE</div>
-            <div id="manualRoleGrid" class="manual-role-grid"></div>
-        </div>
-        <div class="manual-choice-group">
-            <div class="manual-field-label">3. CHOOSE BODY TYPE</div>
-            <div id="manualBodyGrid" class="manual-body-grid"></div>
-        </div>
-    </div>
-
-    <div id="manualCreatorStatus" class="manual-creator-status">Choose a class to begin.</div>
-    <button id="manualCreateButton" class="manual-create-button" type="button" disabled>CREATE TRIAL CHARACTER</button>
 </section>
 
 <!-- LEFT: BAD LUCK PROTECTION -->

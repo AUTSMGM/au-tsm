@@ -43,6 +43,8 @@ function setCreatorMode(mode) {
     creatorMode = mode === 'wheel' ? 'wheel' : 'manual';
     const wheelActive = creatorMode === 'wheel';
 
+    document.body.dataset.creatorMode = creatorMode;
+
     manualCreationMode.hidden = wheelActive;
     wheelBadLuckPanel.hidden = !wheelActive;
     wheelCentrePanel.hidden = !wheelActive;

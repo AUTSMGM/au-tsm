@@ -1,0 +1,551 @@
+
+/* =========================================================
+   AU TSM CHARACTER CREATOR - ROBUST MODE / VISUAL OVERRIDES
+   Loaded after styles.css on purpose.
+========================================================= */
+
+.creator-mode-selector {
+    width: min(1180px, 100%);
+    margin: 0 auto 18px;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    background: #0c0b0a;
+    border: 1px solid #4b3b2b;
+    box-shadow: 0 14px 32px rgba(0,0,0,.26);
+}
+
+.creator-mode-button {
+    appearance: none;
+    -webkit-appearance: none;
+    min-height: 92px;
+    padding: 13px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #42362b;
+    border-radius: 2px;
+    background: linear-gradient(180deg,#171411,#0f0d0b);
+    color: #9d9488;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+
+.creator-mode-button:hover {
+    transform: translateY(-1px);
+    border-color: #8d6a39;
+    background: linear-gradient(180deg,#20190f,#12100d);
+}
+
+.creator-mode-button.active {
+    border-color: #c59443;
+    background:
+        radial-gradient(circle at top left,rgba(197,148,67,.14),transparent 45%),
+        linear-gradient(180deg,#281d0e,#15110b);
+    box-shadow: inset 0 0 0 1px rgba(230,187,95,.12), 0 0 18px rgba(215,169,75,.07);
+}
+
+.creator-mode-kicker {
+    display: block;
+    margin-bottom: 4px;
+    color: #746b60;
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.creator-mode-button.active .creator-mode-kicker { color:#bf9b54; }
+
+.creator-mode-title {
+    display: block;
+    color: #d7a94b;
+    font-family: Georgia,serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .7px;
+}
+
+.creator-mode-copy {
+    display: block;
+    margin-top: 5px;
+    color: #91887d;
+    font-size: 9px;
+    line-height: 1.35;
+}
+
+/* CSS state makes the initial/manual mode safe even before JavaScript finishes loading. */
+body[data-creator-mode="manual"] #wheelBadLuckPanel,
+body[data-creator-mode="manual"] #wheelCentrePanel {
+    display: none !important;
+}
+
+body[data-creator-mode="manual"] #manualCreationMode {
+    display: block !important;
+}
+
+body[data-creator-mode="wheel"] #manualCreationMode {
+    display: none !important;
+}
+
+body[data-creator-mode="wheel"] #wheelBadLuckPanel,
+body[data-creator-mode="wheel"] #wheelCentrePanel {
+    display: flex;
+}
+
+body[data-creator-mode="wheel"] #wheelBadLuckPanel {
+    display: block;
+}
+
+/* Manual mode uses BOTH the former left bad-luck column and the wheel column. */
+.manual-creator-panel {
+    grid-column: 1 / 3 !important;
+    grid-row: 1 !important;
+    height: 620px !important;
+    min-height: 620px !important;
+    max-height: 620px !important;
+    padding: 18px !important;
+    overflow: hidden !important;
+    border: 1px solid #493a2b !important;
+    background:
+        radial-gradient(circle at 70% 10%,rgba(145,98,35,.08),transparent 42%),
+        linear-gradient(180deg,#12100e,#0d0c0b) !important;
+    box-shadow: inset 0 0 32px rgba(0,0,0,.25);
+}
+
+.manual-creator-heading {
+    min-height: 58px;
+    padding: 0 2px 12px !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    border-bottom: 1px solid #302820 !important;
+}
+
+.manual-creator-heading > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.manual-heading-kicker {
+    margin-bottom: 3px;
+    color: #766b5c;
+    font-family: Arial,sans-serif;
+    font-size: 7px;
+    letter-spacing: 2px;
+}
+
+.manual-creator-heading strong {
+    color: #d7a94b;
+    font-family: Georgia,serif;
+    font-size: 22px;
+    letter-spacing: .5px;
+}
+
+.manual-creator-heading > span {
+    max-width: 420px;
+    color: #746d64 !important;
+    font-family: Arial,sans-serif !important;
+    font-size: 9px !important;
+    line-height: 1.4;
+    text-align: right;
+}
+
+.manual-creator-layout {
+    height: calc(100% - 70px);
+    padding-top: 14px;
+    display: grid;
+    grid-template-columns: minmax(270px,.78fr) minmax(470px,1.7fr);
+    gap: 14px;
+}
+
+.manual-identity-card,
+.manual-options-card {
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid #302920;
+    background: rgba(8,7,6,.57);
+}
+
+.manual-card-title {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #29231d;
+    color: #a98b54;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.manual-name-block {
+    margin: 0 0 14px !important;
+}
+
+.manual-name-block .character-entry-title {
+    margin-bottom: 8px;
+    color: #d7a94b;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+.manual-name-block .character-name-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+}
+
+.manual-name-block .character-name-field label {
+    display:block;
+    margin-bottom: 4px;
+    color:#70685f;
+    font-size:7px;
+    letter-spacing:1.3px;
+}
+
+.manual-name-block input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100% !important;
+    height: 38px;
+    box-sizing: border-box;
+    padding: 9px 11px !important;
+    background: #070605 !important;
+    border: 1px solid #4b3a27 !important;
+    color: #eee5d8 !important;
+    font-size: 13px;
+    text-align: left !important;
+    outline: none;
+}
+
+.manual-name-block input:focus {
+    border-color: #a77c39 !important;
+    box-shadow: 0 0 0 1px rgba(215,169,75,.14);
+}
+
+.manual-identity-note {
+    margin-top: 12px;
+    padding: 10px;
+    border-left: 2px solid #6d522e;
+    background: #110f0d;
+    color: #837a6e;
+    font-size: 9px;
+    line-height: 1.45;
+}
+
+.manual-identity-note strong { color:#c6a561; }
+
+.manual-field-label {
+    margin: 9px 0 7px !important;
+    color: #847969 !important;
+    font-size: 8px !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.6px !important;
+}
+
+.manual-class-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    gap: 7px !important;
+}
+
+.manual-class-button {
+    appearance: none;
+    -webkit-appearance: none;
+    min-height: 61px !important;
+    padding: 7px 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    border: 2px solid transparent !important;
+    border-radius: 2px;
+    background: var(--manual-class) !important;
+    color: var(--manual-class-text) !important;
+    font: inherit;
+    font-size: 10px;
+    font-weight: 900 !important;
+    text-align: left !important;
+    cursor: pointer;
+    opacity: .78 !important;
+    box-shadow: inset 0 -12px 22px rgba(0,0,0,.08);
+}
+
+.manual-class-button img {
+    width: 36px !important;
+    height: 36px !important;
+    flex: 0 0 36px;
+    object-fit: cover;
+    border: 1px solid rgba(0,0,0,.55) !important;
+    border-radius: 3px;
+}
+
+.manual-class-button:hover {
+    opacity: .96 !important;
+    filter: brightness(1.07);
+}
+
+.manual-class-button.selected {
+    opacity: 1 !important;
+    border-color: #f0c568 !important;
+    box-shadow: 0 0 0 2px #15110d,0 0 14px rgba(240,197,104,.28) !important;
+}
+
+.manual-choice-row {
+    display: grid !important;
+    grid-template-columns: 1.18fr .82fr !important;
+    gap: 12px !important;
+    margin-top: 12px !important;
+}
+
+.manual-role-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    gap: 6px !important;
+}
+
+.manual-body-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    gap: 6px !important;
+}
+
+.manual-role-button,
+.manual-body-button {
+    appearance: none;
+    -webkit-appearance: none;
+    min-height: 64px !important;
+    padding: 8px 6px !important;
+    border: 2px solid transparent !important;
+    border-radius: 2px;
+    color: #fff !important;
+    font: inherit;
+    font-size: 10px;
+    font-weight: 800 !important;
+    text-align: center !important;
+    cursor: pointer;
+    opacity: .82 !important;
+}
+
+.manual-role-button:hover:not(:disabled),
+.manual-body-button:hover {
+    opacity: 1 !important;
+    filter: brightness(1.09);
+}
+
+.manual-role-button:disabled {
+    opacity: .20 !important;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+.manual-role-button.selected,
+.manual-body-button.selected {
+    opacity: 1 !important;
+    border-color: #f0c568 !important;
+    box-shadow: 0 0 0 2px #15110d !important;
+}
+
+.manual-role-icon {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 19px;
+}
+
+.manual-role-button small {
+    display:block;
+    margin-top:3px;
+    font-size:6px;
+    opacity:.72;
+}
+
+.manual-role-tank {
+    background: linear-gradient(180deg,#2b6e9f,#163a57) !important;
+}
+.manual-role-healer {
+    background: linear-gradient(180deg,#3a8a49,#1b4524) !important;
+}
+.manual-role-dps {
+    background: linear-gradient(180deg,#a23c31,#522019) !important;
+}
+
+.manual-body-button.body-1 {
+    background: linear-gradient(180deg,#2f83cb,#19466f) !important;
+}
+.manual-body-button.body-2 {
+    background: linear-gradient(180deg,#d7679d,#7f345a) !important;
+}
+
+.manual-body-button strong,
+.manual-body-button span { display:block; }
+.manual-body-button span {
+    margin-top:3px;
+    font-size:7px;
+    opacity:.8;
+}
+
+.manual-empty-choice {
+    grid-column:1/-1;
+    min-height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px dashed #44382c;
+    background:#0d0b0a;
+    color:#736b62;
+    font-size:9px;
+}
+
+.manual-creator-status {
+    min-height: 46px !important;
+    margin: 15px 0 10px !important;
+    padding: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2c261f;
+    background: #0c0b09;
+    color: #9d9386 !important;
+    font-size: 9px !important;
+    line-height: 1.4;
+    text-align: center !important;
+}
+
+.manual-create-button {
+    appearance: none;
+    -webkit-appearance: none;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 13px 16px !important;
+    border: 1px solid #bd9143 !important;
+    border-radius: 2px;
+    background: linear-gradient(180deg,#6b491c,#36230f) !important;
+    color: #f0ca70 !important;
+    font: inherit;
+    font-size: 10px;
+    font-weight: 900 !important;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.manual-create-button:hover:not(:disabled) {
+    background: linear-gradient(180deg,#815923,#422b12) !important;
+    border-color:#e0b65f !important;
+}
+
+.manual-create-button:disabled {
+    opacity: .35 !important;
+    cursor: not-allowed;
+    filter: grayscale(.65);
+}
+
+/* Keep the right-hand shared history aligned with the manual creator. */
+body[data-creator-mode="manual"] .wheel-dashboard > .roll-history {
+    height: 620px !important;
+    max-height: 620px !important;
+}
+
+/* Compact Raid Ready / application area: no giant orange backing. */
+.raid-ready-callout {
+    width: min(820px,100%) !important;
+    margin: 18px auto 0 !important;
+    padding: 14px !important;
+    border: 1px solid #4b3a28 !important;
+    border-radius: 3px !important;
+    background: #0f0d0b !important;
+    box-sizing: border-box;
+}
+
+.raid-ready-callout::before {
+    display: none !important;
+}
+
+.raid-ready-label {
+    margin-bottom: 8px !important;
+}
+
+.raid-ready-callout > p {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 10px !important;
+    color: #9e9589 !important;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+}
+
+#raidGameButton {
+    width: 100% !important;
+    padding: 15px 18px !important;
+    box-shadow: 0 0 0 1px rgba(215,169,75,.10),0 0 18px rgba(105,43,29,.12);
+}
+
+.raid-button-main {
+    font-size: 18px !important;
+}
+
+.raid-ready-subtitle {
+    margin-top: 5px !important;
+    font-size: 9px !important;
+}
+
+.raid-ready-warning {
+    margin-top: 6px !important;
+    color: #675f56 !important;
+    font-size: 8px !important;
+}
+
+.raid-application-panel {
+    max-width: 620px !important;
+    margin: 12px auto 0 !important;
+    padding: 13px !important;
+    border: 1px solid #57442d !important;
+    background: #0a0908 !important;
+    box-shadow: none !important;
+}
+
+.application-status-title {
+    font-size: 14px !important;
+}
+
+.raid-application-panel p {
+    margin: 6px 0 !important;
+    font-size: 10px !important;
+    line-height: 1.4 !important;
+}
+
+#raidApplicationForm {
+    margin-top: 9px !important;
+}
+
+@media(max-width:1150px) {
+    .manual-creator-layout {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+    .manual-creator-panel {
+        height: auto !important;
+        max-height: none !important;
+        min-height: 620px !important;
+        overflow: visible !important;
+    }
+    body[data-creator-mode="manual"] .wheel-dashboard > .roll-history {
+        height: 500px !important;
+    }
+}
+
+@media(max-width:800px) {
+    .creator-mode-selector {
+        grid-template-columns:1fr;
+    }
+    .manual-creator-panel {
+        grid-column:1 !important;
+    }
+    .manual-class-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    }
+    .manual-choice-row {
+        grid-template-columns:1fr !important;
+    }
+}
