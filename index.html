@@ -4652,6 +4652,491 @@ footer strong {
     }
 }
 
+
+
+/* =========================================================
+   COMPACT WHEEL LAYOUT / SCROLLING / UPRIGHT WHEEL LABELS
+   2026-09 compact visual pass
+========================================================= */
+
+/* Keep the whole character-creation dashboard comfortably inside a desktop view. */
+.wheel-section {
+    width: min(1460px, calc(100vw - 32px)) !important;
+}
+
+.wheel-dashboard {
+    grid-template-columns: 320px minmax(620px, 1fr) 320px !important;
+    gap: 16px !important;
+    align-items: start !important;
+}
+
+/* Left/right panels are deliberately fixed-height. They no longer grow with content. */
+.wheel-dashboard .wheel-side-panel,
+.wheel-dashboard .bad-luck-panel,
+.wheel-dashboard .roll-history {
+    height: 620px !important;
+    min-height: 0 !important;
+    max-height: 620px !important;
+    align-self: start !important;
+}
+
+/* LEFT: compact bad-luck protection panel. */
+.wheel-dashboard .bad-luck-panel {
+    padding: 14px !important;
+    overflow: hidden !important;
+}
+
+.wheel-dashboard .bad-luck-header {
+    margin-bottom: 8px !important;
+}
+
+.wheel-dashboard .bad-luck-title {
+    font-size: 17px !important;
+    line-height: 1.1 !important;
+}
+
+.wheel-dashboard .token-counter {
+    margin-top: 5px !important;
+    font-size: 11px !important;
+}
+
+.wheel-dashboard .bad-luck-description {
+    margin: 8px 0 11px !important;
+    font-size: 9.5px !important;
+    line-height: 1.45 !important;
+}
+
+.wheel-dashboard .protection-subtitle {
+    margin: 8px 0 6px !important;
+    font-size: 8px !important;
+    line-height: 1.2 !important;
+    letter-spacing: 1.5px !important;
+    clear: both !important;
+}
+
+.wheel-dashboard .exclusion-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    margin-bottom: 10px !important;
+}
+
+.wheel-dashboard .exclusion-button.class-option {
+    min-height: 50px !important;
+    padding: 5px 6px !important;
+    gap: 5px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 9px !important;
+    line-height: 1.05 !important;
+}
+
+.wheel-dashboard .class-option-icon {
+    width: 25px !important;
+    height: 25px !important;
+    flex-basis: 25px !important;
+}
+
+.wheel-dashboard .body-exclusion-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    margin-bottom: 7px !important;
+}
+
+.wheel-dashboard .body-exclusion-row .exclusion-button {
+    min-height: 41px !important;
+    padding: 6px 4px !important;
+    font-size: 8.5px !important;
+    line-height: 1.15 !important;
+}
+
+.wheel-dashboard .role-exclusion-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    margin: 0 0 5px !important;
+}
+
+.wheel-dashboard .role-exclusion-button {
+    min-height: 51px !important;
+    padding: 5px 3px !important;
+    gap: 3px !important;
+    flex-direction: column !important;
+    line-height: 1 !important;
+}
+
+.wheel-dashboard .role-button-copy strong {
+    display: block !important;
+    font-size: 9px !important;
+}
+
+.wheel-dashboard .role-button-copy small {
+    display: block !important;
+    margin-top: 2px !important;
+    font-size: 7px !important;
+}
+
+.wheel-dashboard .wow-role-icon {
+    margin: 0 !important;
+}
+
+.wheel-dashboard .role-protection-note {
+    margin: 4px 0 0 !important;
+    font-size: 7.5px !important;
+    line-height: 1.3 !important;
+}
+
+.wheel-dashboard .protection-warning {
+    min-height: 12px !important;
+    margin-top: 4px !important;
+    font-size: 8px !important;
+}
+
+/* RIGHT: fixed-height history with its own scrollbar. */
+.wheel-dashboard .roll-history {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+.wheel-dashboard .roll-history-header {
+    flex: 0 0 auto !important;
+    padding: 13px 14px !important;
+}
+
+.wheel-dashboard .roll-history-header h4 {
+    font-size: 16px !important;
+}
+
+.wheel-dashboard #databaseStatus {
+    font-size: 8px !important;
+}
+
+.wheel-dashboard #rollHistory {
+    display: block !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scrollbar-width: thin;
+    scrollbar-color: #6d5130 #14110e;
+}
+
+/* Chrome / Edge scrollbar */
+.wheel-dashboard #rollHistory::-webkit-scrollbar {
+    width: 9px;
+}
+
+.wheel-dashboard #rollHistory::-webkit-scrollbar-track {
+    background: #14110e;
+}
+
+.wheel-dashboard #rollHistory::-webkit-scrollbar-thumb {
+    background: #6d5130;
+    border-radius: 6px;
+    border: 2px solid #14110e;
+}
+
+.wheel-dashboard #rollHistory::-webkit-scrollbar-thumb:hover {
+    background: #9b753f;
+}
+
+.wheel-dashboard .roll-history-column {
+    display: contents !important;
+}
+
+.wheel-dashboard .roll-history-column + .roll-history-column {
+    border-left: 0 !important;
+}
+
+.wheel-dashboard .roll-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 24px minmax(92px, auto) auto !important;
+    grid-template-areas: "name role class body" !important;
+    align-items: center !important;
+    gap: 7px !important;
+    min-height: 39px !important;
+    padding: 7px 10px !important;
+    border-bottom: 1px solid #25211c !important;
+}
+
+.wheel-dashboard .roll-character {
+    grid-area: name !important;
+    font-size: 10px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+.wheel-dashboard .roll-role-icon {
+    grid-area: role !important;
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 12px !important;
+}
+
+.wheel-dashboard .roll-class {
+    grid-area: class !important;
+    min-width: 0 !important;
+    font-size: 9px !important;
+    white-space: nowrap !important;
+}
+
+.wheel-dashboard .roll-class-icon {
+    width: 18px !important;
+    height: 18px !important;
+    flex: 0 0 18px !important;
+}
+
+.wheel-dashboard .roll-body {
+    grid-area: body !important;
+    padding: 0 !important;
+    text-align: right !important;
+    white-space: nowrap !important;
+    font-size: 7px !important;
+    color: #6f675d !important;
+}
+
+/* CENTRE: reduce total height substantially. */
+.wheel-centre-column .character-entry {
+    height: 105px !important;
+    margin: 0 0 12px !important;
+    padding: 13px 18px !important;
+}
+
+.wheel-centre-column .character-entry-title {
+    margin-bottom: 7px !important;
+    font-size: 9px !important;
+}
+
+.wheel-centre-column .character-name-grid {
+    gap: 8px !important;
+}
+
+.wheel-centre-column .character-name-field label {
+    margin-bottom: 3px !important;
+    font-size: 7px !important;
+}
+
+.wheel-centre-column .character-name-field input {
+    height: 34px !important;
+    padding: 7px 10px !important;
+    font-size: 13px !important;
+}
+
+.wheel-centre-column .character-note {
+    margin-top: 5px !important;
+    font-size: 7px !important;
+}
+
+.wheel-centre-column .wheel-machine {
+    height: 503px !important;
+    min-height: 503px !important;
+    max-height: 503px !important;
+    grid-template-columns: minmax(390px, 1fr) 120px !important;
+    gap: 12px !important;
+    padding: 15px !important;
+    overflow: hidden !important;
+}
+
+.wheel-centre-column .wheel-stage {
+    width: 405px !important;
+    max-width: 100% !important;
+    align-self: center !important;
+}
+
+.wheel-frame {
+    padding: 13px !important;
+}
+
+.wheel-pointer {
+    top: -18px !important;
+    border-left-width: 15px !important;
+    border-right-width: 15px !important;
+    border-top-width: 37px !important;
+}
+
+/* Wheel labels stay well within the circle. JS continuously counter-rotates them. */
+.wheel-label {
+    width: 74px !important;
+    margin-left: -37px !important;
+    gap: 2px !important;
+    z-index: 12 !important;
+    pointer-events: none !important;
+    will-change: transform;
+}
+
+.wheel-class-icon {
+    width: 25px !important;
+    height: 25px !important;
+    border-width: 1px !important;
+}
+
+.wheel-label span {
+    max-width: 68px !important;
+    padding: 2px 4px !important;
+    font-size: 8px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.wheel-hub {
+    width: 82px !important;
+    height: 82px !important;
+    font-size: 14px !important;
+}
+
+.wheel-controls {
+    gap: 7px !important;
+    justify-content: center !important;
+}
+
+.role-reveal-panel,
+.body-slot-panel {
+    margin-bottom: 8px !important;
+}
+
+.role-reveal-title,
+.body-slot-title {
+    margin-bottom: 4px !important;
+    font-size: 7px !important;
+}
+
+.role-door {
+    width: 104px !important;
+    height: 63px !important;
+}
+
+.role-door-question {
+    font-size: 30px !important;
+}
+
+.role-door-result {
+    font-size: 16px !important;
+}
+
+.body-slot-window {
+    width: 104px !important;
+    height: 57px !important;
+}
+
+.body-slot-item {
+    height: 57px !important;
+    font-size: 11px !important;
+}
+
+.lever-machine {
+    width: 88px !important;
+    height: 195px !important;
+}
+
+.lever-slot {
+    top: 30px !important;
+    height: 113px !important;
+}
+
+.lever-arm {
+    top: 37px !important;
+    height: 82px !important;
+}
+
+.lever-machine.pulled .lever-arm {
+    top: 86px !important;
+    height: 59px !important;
+}
+
+.lever-handle {
+    width: 37px !important;
+    height: 37px !important;
+    top: -19px !important;
+}
+
+#spinWheelButton {
+    bottom: 10px !important;
+    width: 67px !important;
+    padding: 6px 4px !important;
+    font-size: 8px !important;
+}
+
+/* Result remains below the main three-column dashboard, but stays compact. */
+.wheel-result-row {
+    grid-template-columns: 320px minmax(620px, 1fr) 320px !important;
+    gap: 16px !important;
+    margin-top: 12px !important;
+}
+
+.wheel-result-row .wheel-result {
+    min-height: 102px !important;
+    padding: 12px !important;
+}
+
+#wheelResultName {
+    font-size: 13px !important;
+}
+
+#wheelResultClass {
+    font-size: 24px !important;
+}
+
+#wheelResultBody,
+#wheelResultRole {
+    padding: 4px 10px !important;
+    font-size: 9px !important;
+}
+
+/* Allow the whole component to scale sensibly on narrower desktops. */
+@media (max-width: 1320px) {
+    .wheel-section {
+        width: min(1180px, calc(100vw - 24px)) !important;
+    }
+
+    .wheel-dashboard {
+        grid-template-columns: 285px minmax(560px, 1fr) 285px !important;
+        gap: 12px !important;
+    }
+
+    .wheel-result-row {
+        grid-template-columns: 285px minmax(560px, 1fr) 285px !important;
+        gap: 12px !important;
+    }
+
+    .wheel-centre-column .wheel-stage {
+        width: 380px !important;
+    }
+
+    .wheel-centre-column .wheel-machine {
+        grid-template-columns: minmax(365px, 1fr) 112px !important;
+    }
+}
+
+@media (max-width: 1080px) {
+    .wheel-dashboard {
+        grid-template-columns: 1fr !important;
+    }
+
+    .wheel-dashboard .wheel-side-panel,
+    .wheel-dashboard .bad-luck-panel,
+    .wheel-dashboard .roll-history {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+    }
+
+    .wheel-dashboard .roll-history {
+        height: 420px !important;
+        max-height: 420px !important;
+    }
+
+    .wheel-result-row {
+        display: block !important;
+    }
+
+    .wheel-result-row .wheel-result {
+        width: 100% !important;
+    }
+}
+
 </style>
 
 </head>
@@ -11016,6 +11501,112 @@ if (
     );
 
 }
+
+
+
+/* =========================================================
+   KEEP WHEEL CLASS ICONS / LABELS UPRIGHT WHILE SPINNING
+========================================================= */
+
+const uprightWheelLabels = Array.from(
+    document.querySelectorAll("#classWheel .wheel-label")
+);
+
+let uprightWheelLabelFrame = null;
+let uprightWheelTrackingUntil = 0;
+
+function getRenderedWheelRotation() {
+    const transform = window.getComputedStyle(classWheel).transform;
+
+    if (!transform || transform === "none") {
+        return 0;
+    }
+
+    const match = transform.match(/^matrix\(([^)]+)\)$/);
+
+    if (match) {
+        const values = match[1].split(",").map(Number);
+        const a = values[0];
+        const b = values[1];
+        return Math.atan2(b, a) * 180 / Math.PI;
+    }
+
+    const match3d = transform.match(/^matrix3d\(([^)]+)\)$/);
+
+    if (match3d) {
+        const values = match3d[1].split(",").map(Number);
+        const a = values[0];
+        const b = values[1];
+        return Math.atan2(b, a) * 180 / Math.PI;
+    }
+
+    return 0;
+}
+
+function updateUprightWheelLabels() {
+    const renderedRotation = getRenderedWheelRotation();
+    const radius = 148;
+
+    uprightWheelLabels.forEach(function(label, index) {
+        const segmentAngle = index * 40;
+
+        label.style.transform =
+            "rotate(" + segmentAngle + "deg) " +
+            "translateY(-" + radius + "px) " +
+            "rotate(" + (-(segmentAngle + renderedRotation)) + "deg)";
+    });
+}
+
+function trackUprightWheelLabels(duration = 6800) {
+    uprightWheelTrackingUntil = performance.now() + duration;
+
+    if (uprightWheelLabelFrame) {
+        cancelAnimationFrame(uprightWheelLabelFrame);
+    }
+
+    function frame() {
+        updateUprightWheelLabels();
+
+        if (performance.now() < uprightWheelTrackingUntil) {
+            uprightWheelLabelFrame = requestAnimationFrame(frame);
+        } else {
+            uprightWheelLabelFrame = null;
+            updateUprightWheelLabels();
+        }
+    }
+
+    frame();
+}
+
+/* Initialise labels in their upright resting positions. */
+requestAnimationFrame(updateUprightWheelLabels);
+
+/*
+Watch the wheel's inline transform. Every spin changes that property,
+so this automatically begins counter-rotation tracking without changing
+the existing spin-selection logic.
+*/
+const uprightWheelObserver = new MutationObserver(function(mutations) {
+    for (const mutation of mutations) {
+        if (
+            mutation.type === "attributes" &&
+            mutation.attributeName === "style"
+        ) {
+            trackUprightWheelLabels(6800);
+            break;
+        }
+    }
+});
+
+uprightWheelObserver.observe(classWheel, {
+    attributes: true,
+    attributeFilter: ["style"]
+});
+
+/* Recalculate the safe label radius if the viewport changes. */
+window.addEventListener("resize", function() {
+    requestAnimationFrame(updateUprightWheelLabels);
+});
 
 </script>
 
