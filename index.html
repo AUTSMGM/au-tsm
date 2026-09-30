@@ -3737,7 +3737,7 @@ footer strong {
 
 .wheel-dashboard {
     display: grid;
-    grid-template-columns: 285px minmax(650px, 1fr) 480px;
+    grid-template-columns: 285px minmax(600px, 1fr) 600px;
     gap: 22px;
     align-items: stretch;
 }
@@ -3754,21 +3754,18 @@ footer strong {
 }
 
 .wheel-centre-column .wheel-machine {
-    grid-template-columns: minmax(470px, 1fr) 155px;
+    grid-template-columns: minmax(450px, 1fr) 155px;
     gap: 22px;
     padding: 25px;
+    flex: 1 1 auto;
 }
 
 .wheel-centre-column .wheel-stage {
     width: min(500px, 100%);
 }
 
-.wheel-centre-column .wheel-result {
-    margin-top: 16px;
-}
-
-/* Side panels deliberately stretch to the complete centre column height,
-   including the result panel at the bottom. */
+/* Side panels end at the bottom of the main wheel box. The result panel
+   lives in a separate matching grid row below, so the page stays balanced. */
 .wheel-side-panel {
     position: static;
     margin: 0;
@@ -3776,6 +3773,19 @@ footer strong {
     min-width: 0;
     height: 100%;
     align-self: stretch;
+}
+
+.wheel-result-row {
+    display: grid;
+    grid-template-columns: 285px minmax(600px, 1fr) 600px;
+    gap: 22px;
+    margin-top: 16px;
+}
+
+.wheel-result-row .wheel-result {
+    grid-column: 2;
+    margin: 0;
+    max-width: none;
 }
 
 .wheel-dashboard .bad-luck-panel {
@@ -4017,7 +4027,57 @@ footer strong {
     font-weight: bold;
 }
 
-/* Last 30 rolls beside the wheel, two columns of up to 15. */
+/* Role protection uses the same three-token budget as class/body protection. */
+.role-exclusion-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.role-exclusion-button {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-weight: 800;
+}
+
+.role-exclusion-button[data-role-name="Tank"] {
+    border-color: #416f96;
+    color: #8ec8ff;
+}
+
+.role-exclusion-button[data-role-name="Healer"] {
+    border-color: #477d4b;
+    color: #86e18c;
+}
+
+.role-exclusion-button[data-role-name="DPS"] {
+    border-color: #8f4a3b;
+    color: #ff9b81;
+}
+
+.role-exclusion-button.excluded {
+    opacity: .5;
+    text-decoration: line-through;
+    background: #241412;
+}
+
+.role-token-cost {
+    font-size: 9px;
+    opacity: .7;
+}
+
+.role-protection-note {
+    color: #6f675d;
+    font-size: 9px;
+    line-height: 1.45;
+    margin-bottom: 12px;
+}
+
+/* Last 30 rolls beside the wheel, three columns of up to 10. */
 .wheel-dashboard .roll-history {
     margin: 0;
     max-width: none;
@@ -4038,17 +4098,14 @@ footer strong {
     flex: 1 1 auto;
     min-height: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     overflow: hidden;
     border-top: 1px solid #25211c;
 }
 
 .roll-history-column {
     min-width: 0;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
-    scrollbar-color: #725938 #15120f;
+    overflow: hidden;
 }
 
 .roll-history-column + .roll-history-column {
@@ -4056,9 +4113,14 @@ footer strong {
 }
 
 .wheel-dashboard .roll-row {
-    grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr);
-    gap: 7px;
-    padding: 10px 10px;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 22px minmax(0,1fr);
+    grid-template-areas:
+        "name role class"
+        "body body body";
+    gap: 4px 5px;
+    padding: 8px 7px;
+    min-height: 51px;
 }
 
 .wheel-dashboard .roll-character,
@@ -4070,27 +4132,65 @@ footer strong {
 }
 
 .wheel-dashboard .roll-character {
+    grid-area: name;
     font-weight: 900;
+    align-self: center;
+}
+
+.roll-role-icon {
+    grid-area: role;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    font-size: 13px;
+    font-weight: 900;
+    background: #191713;
+    border: 1px solid #4a4035;
+}
+
+.roll-role-icon[data-role="Tank"] {
+    color: #8ec8ff;
+    border-color: #416f96;
+}
+
+.roll-role-icon[data-role="Healer"] {
+    color: #86e18c;
+    border-color: #477d4b;
+}
+
+.roll-role-icon[data-role="DPS"] {
+    color: #ff9b81;
+    border-color: #8f4a3b;
+}
+
+.roll-role-icon[data-role="Unknown"] {
+    color: #8b8379;
 }
 
 .wheel-dashboard .roll-class {
+    grid-area: class;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     font-weight: 800;
 }
 
 .wheel-dashboard .roll-body {
-    grid-column: 1 / -1;
+    grid-area: body;
     text-align: left;
-    padding-left: 2px;
-    font-size: 10px;
+    padding-left: 1px;
+    font-size: 9px;
 }
 
 .roll-class-icon {
-    width: 20px;
-    height: 20px;
-    flex: 0 0 20px;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
     border-radius: 3px;
     object-fit: cover;
     border: 1px solid #3d342c;
@@ -4102,14 +4202,22 @@ footer strong {
     transition: color .2s ease;
 }
 
-@media(max-width: 1450px) {
+@media(max-width: 1550px) {
     .wheel-section {
-        width: min(1180px, calc(100vw - 30px));
+        width: min(1260px, calc(100vw - 30px));
     }
 
     .wheel-dashboard {
-        grid-template-columns: 260px minmax(0,1fr);
+        grid-template-columns: 270px minmax(0,1fr);
         align-items: start;
+    }
+
+    .wheel-result-row {
+        grid-template-columns: 270px minmax(0,1fr);
+    }
+
+    .wheel-result-row .wheel-result {
+        grid-column: 2;
     }
 
     .wheel-side-panel {
@@ -4118,7 +4226,11 @@ footer strong {
 
     .wheel-dashboard .roll-history {
         grid-column: 1 / -1;
-        height: 430px;
+        height: 390px;
+    }
+
+    .wheel-dashboard #rollHistory {
+        grid-template-columns: repeat(3, minmax(0,1fr));
     }
 
     .wheel-centre-column .wheel-machine {
@@ -4131,8 +4243,13 @@ footer strong {
         width: min(760px, calc(100vw - 24px));
     }
 
-    .wheel-dashboard {
+    .wheel-dashboard,
+    .wheel-result-row {
         grid-template-columns: 1fr;
+    }
+
+    .wheel-result-row .wheel-result {
+        grid-column: 1;
     }
 
     .wheel-side-panel {
@@ -4394,9 +4511,7 @@ TOKENS REMAINING:
 </div>
 
 <div class="bad-luck-description">
-Each disabled option costs one token. Disable up to three classes,
-or mix class exclusions with one body-type exclusion.
-Click an excluded option again before spinning to refund the token.
+Class and body-type exclusions cost one token each. Tank and Healer role exclusions cost one token each; blocking DPS costs all three tokens. Every choice uses the same three-token budget. Click an excluded option again before spinning to refund its cost.
 </div>
 
 <div class="protection-subtitle">
@@ -4462,6 +4577,26 @@ data-body-type="2"
 BODY TYPE 2 — PINK
 </button>
 
+</div>
+
+<div class="protection-subtitle">
+DISABLE ROLE
+</div>
+
+<div class="role-exclusion-row">
+<button class="exclusion-button role-exclusion-button" data-role-name="Tank" data-role-cost="1">
+<span>🛡 Tank</span><span class="role-token-cost">1 token</span>
+</button>
+<button class="exclusion-button role-exclusion-button" data-role-name="Healer" data-role-cost="1">
+<span>✚ Healer</span><span class="role-token-cost">1 token</span>
+</button>
+<button class="exclusion-button role-exclusion-button" data-role-name="DPS" data-role-cost="3">
+<span>⚔ DPS</span><span class="role-token-cost">3 tokens</span>
+</button>
+</div>
+
+<div class="role-protection-note">
+Role blocks are applied after class selection. If a class has no legal role left, that class is automatically removed from the possible outcomes for that spin.
 </div>
 
 <div id="protectionWarning" class="protection-warning"></div>
@@ -4649,15 +4784,6 @@ BODY TYPE
 
 </div>
 
-<div class="wheel-result">
-<div class="wheel-result-label">CHARACTER CREATION DECISION ENGINE</div>
-<div id="wheelResultName">Awaiting victim...</div>
-<div id="wheelResultClass">?</div>
-<div id="wheelResultBody" style="display:none;">?</div>
-<div id="wheelResultRole" style="display:none;">?</div>
-<div id="wheelResultMessage">Enter a character name before pulling the lever.</div>
-</div>
-
 </div>
 
 
@@ -4675,6 +4801,17 @@ BODY TYPE
 
 </aside>
 
+</div>
+
+<div class="wheel-result-row">
+<div class="wheel-result">
+<div class="wheel-result-label">CHARACTER CREATION DECISION ENGINE</div>
+<div id="wheelResultName">Awaiting victim...</div>
+<div id="wheelResultClass">?</div>
+<div id="wheelResultBody" style="display:none;">?</div>
+<div id="wheelResultRole" style="display:none;">?</div>
+<div id="wheelResultMessage">Enter a character name before pulling the lever.</div>
+</div>
 </div>
 
 </section>
@@ -5895,36 +6032,65 @@ async function loadRecentRolls() {
         "SYNCING...";
 
 
-    const {
-        data,
-        error
+    let queryResult =
+        await database
+        .from(
+            "guild_rolls"
+        )
+        .select(
+            "id, character_name, class_name, body_type, role, created_at"
+        )
+        .order(
+            "created_at",
+            {
+                ascending:
+                    false
+            }
+        )
+        .limit(
+            30
+        );
+
+
+    /* Backward-compatible fallback while the optional role column is being added. */
+    if (
+        queryResult.error
+    ) {
+
+        console.warn(
+            "Role column not available yet; loading legacy roll data.",
+            queryResult.error
+        );
+
+
+        queryResult =
+            await database
+            .from(
+                "guild_rolls"
+            )
+            .select(
+                "id, character_name, class_name, body_type, created_at"
+            )
+            .order(
+                "created_at",
+                {
+                    ascending:
+                        false
+                }
+            )
+            .limit(
+                30
+            );
+
     }
-    =
-    await database
-    .from(
-        "guild_rolls"
-    )
-    .select(
-        "id, character_name, class_name, body_type, created_at"
-    )
-    .order(
-        "created_at",
-        {
-            ascending:
-                false
-        }
-    )
-    .limit(
-        30
-    );
 
 
     if (
-        error
+        queryResult.error
     ) {
 
         console.error(
-            error
+            queryResult.error
         );
 
 
@@ -5938,7 +6104,7 @@ async function loadRecentRolls() {
 
 
     recentRolls =
-        data ||
+        queryResult.data ||
         [];
 
 
@@ -5963,7 +6129,8 @@ async function loadRecentRolls() {
 async function saveRoll(
     characterName,
     className,
-    bodyType
+    bodyType,
+    role
 ) {
 
     if (
@@ -5980,36 +6147,70 @@ async function saveRoll(
     }
 
 
-    const {
-        error
+    let insertResult =
+        await database
+        .from(
+            "guild_rolls"
+        )
+        .insert(
+            [
+                {
+                    character_name:
+                        characterName,
+
+                    class_name:
+                        className,
+
+                    body_type:
+                        bodyType,
+
+                    role:
+                        role
+                }
+            ]
+        );
+
+
+    /* Keep the site usable before the role column migration is run. */
+    if (
+        insertResult.error
+    ) {
+
+        console.warn(
+            "Could not save role; retrying legacy insert.",
+            insertResult.error
+        );
+
+
+        insertResult =
+            await database
+            .from(
+                "guild_rolls"
+            )
+            .insert(
+                [
+                    {
+                        character_name:
+                            characterName,
+
+                        class_name:
+                            className,
+
+                        body_type:
+                            bodyType
+                    }
+                ]
+            );
+
     }
-    =
-    await database
-    .from(
-        "guild_rolls"
-    )
-    .insert(
-        [
-            {
-                character_name:
-                    characterName,
-
-                class_name:
-                    className,
-
-                body_type:
-                    bodyType
-            }
-        ]
-    );
 
 
     if (
-        error
+        insertResult.error
     ) {
 
         console.error(
-            error
+            insertResult.error
         );
 
 
@@ -6076,6 +6277,14 @@ function renderRollHistory() {
     };
 
 
+    const roleIcons =
+    {
+        Tank: "🛡",
+        Healer: "✚",
+        DPS: "⚔"
+    };
+
+
     function renderRoll(roll) {
 
         const safeName =
@@ -6088,6 +6297,16 @@ function renderRollHistory() {
             escapeHtml(
                 roll.class_name
             );
+
+
+        const safeRole =
+            ["Tank","Healer","DPS"].includes(
+                roll.role
+            )
+            ?
+            roll.role
+            :
+            "Unknown";
 
 
         const classColour =
@@ -6108,15 +6327,27 @@ function renderRollHistory() {
             ".jpg";
 
 
+        const roleIcon =
+            roleIcons[
+                safeRole
+            ]
+            ||
+            "?";
+
+
         return `
 
         <div class="roll-row">
 
-            <div class="roll-character" style="color:${classColour}">
+            <div class="roll-character" style="color:${classColour}" title="${safeName}">
             ${safeName}
             </div>
 
-            <div class="roll-class" style="color:${classColour}">
+            <div class="roll-role-icon" data-role="${safeRole}" title="${safeRole}">
+            ${roleIcon}
+            </div>
+
+            <div class="roll-class" style="color:${classColour}" title="${safeClass}">
             <img class="roll-class-icon" src="${classIcon}" alt="">
             <span>${safeClass}</span>
             </div>
@@ -6131,25 +6362,28 @@ function renderRollHistory() {
     }
 
 
-    const leftColumn =
-        recentRolls
-        .slice(0,15)
-        .map(renderRoll)
-        .join("");
-
-
-    const rightColumn =
-        recentRolls
-        .slice(15,30)
-        .map(renderRoll)
-        .join("");
+    const columns =
+        [
+            recentRolls.slice(0,10),
+            recentRolls.slice(10,20),
+            recentRolls.slice(20,30)
+        ];
 
 
     container.innerHTML =
-        `
-        <div class="roll-history-column">${leftColumn}</div>
-        <div class="roll-history-column">${rightColumn}</div>
-        `;
+        columns
+        .map(
+            function(columnRolls) {
+
+                return `
+                <div class="roll-history-column">
+                ${columnRolls.map(renderRoll).join("")}
+                </div>
+                `;
+
+            }
+        )
+        .join("");
 
 }
 
@@ -6441,14 +6675,18 @@ const classRoles =
 function getValidRoleForClass(className) {
 
     const validRoles =
-        classRoles[className]
-        ||
-        ["DPS"];
+        getAvailableRolesForClass(
+            className
+        );
 
 
-    return randomItem(
-        validRoles
-    );
+    return validRoles.length
+        ?
+        randomItem(
+            validRoles
+        )
+        :
+        null;
 
 }
 
@@ -6553,6 +6791,39 @@ const disabledBodies =
     new Set();
 
 
+const disabledRoles =
+    new Set();
+
+
+const roleTokenCosts =
+{
+    Tank: 1,
+    Healer: 1,
+    DPS: 3
+};
+
+
+function getAvailableRolesForClass(className) {
+
+    const roles =
+        classRoles[className]
+        ||
+        ["DPS"];
+
+
+    return roles.filter(
+        function(role) {
+
+            return !disabledRoles.has(
+                role
+            );
+
+        }
+    );
+
+}
+
+
 /* =========================================================
    PROTECTION
 ========================================================= */
@@ -6636,6 +6907,26 @@ function updateProtectionDisplay() {
     );
 
 
+    document
+    .querySelectorAll(
+        "[data-role-name]"
+    )
+    .forEach(
+        function(button) {
+
+            button
+            .classList
+            .toggle(
+                "excluded",
+                disabledRoles.has(
+                    button.dataset.roleName
+                )
+            );
+
+        }
+    );
+
+
     const maskPieces =
         [];
 
@@ -6659,8 +6950,14 @@ function updateProtectionDisplay() {
             maskPieces.push(
 
                 (
-                    disabledClasses.has(
-                        classInfo.name
+                    (
+                        disabledClasses.has(
+                            classInfo.name
+                        )
+                        ||
+                        getAvailableRolesForClass(
+                            classInfo.name
+                        ).length === 0
                     )
                     ?
                     "rgba(0,0,0,.72)"
@@ -6796,6 +7093,44 @@ document
                 tokensUsed++;
 
 
+                const classesStillPossible =
+                    wheelClasses.some(
+                        function(classInfo) {
+
+                            return !disabledClasses.has(
+                                classInfo.name
+                            )
+                            &&
+                            getAvailableRolesForClass(
+                                classInfo.name
+                            ).length > 0;
+
+                        }
+                    );
+
+
+                if (
+                    !classesStillPossible
+                ) {
+
+                    disabledClasses.delete(
+                        name
+                    );
+
+
+                    tokensUsed--;
+
+
+                    protectionMessage(
+                        "That would leave no legal class/role result."
+                    );
+
+
+                    return;
+
+                }
+
+
                 updateProtectionDisplay();
 
             };
@@ -6890,6 +7225,155 @@ document
 
 
                 updateProtectionDisplay();
+
+            };
+
+    }
+);
+
+
+/* =========================================================
+   ROLE EXCLUSIONS
+========================================================= */
+
+document
+.querySelectorAll(
+    "[data-role-name]"
+)
+.forEach(
+    function(button) {
+
+        button.onclick =
+            function() {
+
+                if (
+                    wheelSpinning
+                ) {
+
+                    return;
+
+                }
+
+
+                const role =
+                    button.dataset.roleName;
+
+
+                const cost =
+                    roleTokenCosts[role]
+                    ||
+                    1;
+
+
+                if (
+                    disabledRoles.has(
+                        role
+                    )
+                ) {
+
+                    disabledRoles.delete(
+                        role
+                    );
+
+
+                    tokensUsed -=
+                        cost;
+
+
+                    updateProtectionDisplay();
+
+
+                    protectionMessage(
+                        role +
+                        " restored. " +
+                        cost +
+                        (cost === 1 ? " token refunded." : " tokens refunded.")
+                    );
+
+
+                    return;
+
+                }
+
+
+                if (
+                    tokensUsed +
+                    cost >
+                    MAX_TOKENS
+                ) {
+
+                    protectionMessage(
+                        role === "DPS"
+                        ?
+                        "Blocking DPS costs all 3 tokens. Refund your other choices first."
+                        :
+                        "Not enough protection tokens remaining."
+                    );
+
+
+                    return;
+
+                }
+
+
+                disabledRoles.add(
+                    role
+                );
+
+
+                tokensUsed +=
+                    cost;
+
+
+                /* Never allow a configuration that removes every class. */
+                const classesStillPossible =
+                    wheelClasses.some(
+                        function(classInfo) {
+
+                            return !disabledClasses.has(
+                                classInfo.name
+                            )
+                            &&
+                            getAvailableRolesForClass(
+                                classInfo.name
+                            ).length > 0;
+
+                        }
+                    );
+
+
+                if (
+                    !classesStillPossible
+                ) {
+
+                    disabledRoles.delete(
+                        role
+                    );
+
+
+                    tokensUsed -=
+                        cost;
+
+
+                    protectionMessage(
+                        "That would leave no legal class/role result."
+                    );
+
+
+                    return;
+
+                }
+
+
+                updateProtectionDisplay();
+
+
+                protectionMessage(
+                    role +
+                    " blocked for " +
+                    cost +
+                    (cost === 1 ? " token." : " tokens.")
+                );
 
             };
 
@@ -7136,10 +7620,29 @@ spinWheelButton.onclick =
 
                     return !disabledClasses.has(
                         classInfo.name
-                    );
+                    )
+                    &&
+                    getAvailableRolesForClass(
+                        classInfo.name
+                    ).length > 0;
 
                 }
             );
+
+
+        if (
+            availableClasses.length ===
+            0
+        ) {
+
+            protectionMessage(
+                "No legal class/role combinations remain. Refund a protection choice."
+            );
+
+
+            return;
+
+        }
 
 
         const availableBodies =
@@ -7482,15 +7985,16 @@ spinWheelButton.onclick =
                         spinWheelButton.textContent =
                             "PULL";
 
+
+                        saveRoll(
+                            characterName,
+                            winningClass.name,
+                            winningBody.id,
+                            winningRole
+                        );
+
                     },
                     700
-                );
-
-
-                await saveRoll(
-                    characterName,
-                    winningClass.name,
-                    winningBody.id
                 );
 
             },
