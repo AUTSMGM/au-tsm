@@ -1,0 +1,191 @@
+/* =========================================================
+   RAGNAROS — SITE HELPER
+========================================================= */
+
+.ragnaros-helper {
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:min(760px,50vw);
+    aspect-ratio:1.5 / 1;
+    z-index:2147483600;
+    pointer-events:none;
+
+    opacity:0;
+    transform:translate3d(-110%,0,0) scale(.985);
+    transform-origin:0 100%;
+    will-change:transform,opacity;
+    transition:
+        transform 1.05s cubic-bezier(.16,.82,.18,1),
+        opacity .42s ease;
+}
+
+.ragnaros-helper.is-visible {
+    opacity:1;
+    transform:translate3d(0,0,0) scale(1);
+}
+
+.ragnaros-helper[hidden] {
+    display:none !important;
+}
+
+.ragnaros-character-button {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    border:0;
+    background:transparent;
+    pointer-events:auto;
+    cursor:pointer;
+    overflow:visible;
+    filter:
+        drop-shadow(12px 18px 22px rgba(0,0,0,.70))
+        drop-shadow(0 0 18px rgba(255,98,0,.18));
+}
+
+.ragnaros-character-button img {
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:left bottom;
+    user-select:none;
+    -webkit-user-drag:none;
+    pointer-events:none;
+}
+
+/* Generated artwork includes an empty molten speech panel in the upper-right. */
+.ragnaros-speech {
+    position:absolute;
+    z-index:8;
+    right:4.5%;
+    top:9%;
+    width:47%;
+    height:29%;
+    box-sizing:border-box;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+
+    padding:6% 7% 5%;
+    color:#fff2d2;
+    text-align:center;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(12px,1.12vw,18px);
+    font-weight:700;
+    line-height:1.3;
+    text-shadow:
+        0 2px 3px #000,
+        0 0 8px rgba(255,115,0,.38);
+
+    pointer-events:auto;
+    opacity:1;
+    transition:opacity .2s ease, transform .22s ease;
+}
+
+.ragnaros-speech.is-hidden {
+    opacity:0;
+    transform:scale(.96) translateY(5px);
+    pointer-events:none;
+}
+
+.ragnaros-ask-button {
+    padding:7px 11px;
+    border:1px solid rgba(255,154,64,.72);
+    border-radius:2px;
+    background:rgba(47,13,4,.84);
+    color:#ffd28a;
+    box-shadow:
+        inset 0 0 10px rgba(255,95,0,.14),
+        0 2px 7px rgba(0,0,0,.42);
+    font-size:clamp(7px,.57vw,9px);
+    font-weight:900;
+    letter-spacing:1.3px;
+    cursor:pointer;
+}
+
+.ragnaros-ask-button:hover {
+    color:#fff7e8;
+    border-color:#ffc076;
+    background:rgba(72,20,5,.95);
+}
+
+.ragnaros-close {
+    position:absolute;
+    z-index:12;
+    top:4.7%;
+    left:3.2%;
+    width:34px;
+    height:34px;
+    padding:0;
+
+    border:1px solid #ff9548;
+    border-radius:50%;
+    background:rgba(28,7,2,.94);
+    color:#ffe4c0;
+    box-shadow:
+        0 0 0 2px rgba(255,103,0,.10),
+        0 0 13px rgba(255,87,0,.38);
+
+    font:400 23px/30px Arial,sans-serif;
+    text-align:center;
+    pointer-events:auto;
+    cursor:pointer;
+}
+
+.ragnaros-close:hover {
+    color:#fff;
+    border-color:#ffd5a3;
+    box-shadow:0 0 18px rgba(255,105,28,.58);
+}
+
+@media(max-width:1000px) {
+    .ragnaros-helper {
+        width:min(650px,64vw);
+    }
+
+    .ragnaros-speech {
+        font-size:clamp(11px,1.5vw,15px);
+    }
+}
+
+@media(max-width:700px) {
+    .ragnaros-helper {
+        width:min(530px,90vw);
+        left:-3vw;
+    }
+
+    .ragnaros-speech {
+        right:5%;
+        top:8%;
+        width:47%;
+        height:29%;
+        padding:6% 6% 5%;
+        font-size:clamp(10px,2.4vw,13px);
+    }
+
+    .ragnaros-ask-button {
+        padding:5px 7px;
+        letter-spacing:.8px;
+    }
+
+    .ragnaros-close {
+        width:29px;
+        height:29px;
+        font-size:19px;
+        line-height:25px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .ragnaros-helper {
+        transition:opacity .2s linear;
+        transform:none !important;
+    }
+}

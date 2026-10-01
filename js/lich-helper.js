@@ -79,6 +79,7 @@
 
         window.setTimeout(() => {
             helper.hidden = true;
+            window.dispatchEvent(new CustomEvent('autsm:lich-dismissed'));
         }, 1100);
     });
 
