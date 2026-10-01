@@ -904,30 +904,24 @@ PHASE 1
 </div>
 
 
-<div id="toast"></div>
-
 <!-- =========================================================
-     TOTALLY USELESS LICH KING HELPER
+     THE LICH KING — EXTREMELY UNHELPFUL SITE HELPER
 ========================================================= -->
-<div id="lichHelper" aria-live="polite">
-    <div id="lichHelperBubble" class="lich-helper-bubble">
-        <div class="lich-helper-title">The Lich King, Site Helper</div>
-        <div id="lichHelperText">Mortal... is there anything I can help you with?</div>
-        <div class="lich-helper-actions">
-            <button id="lichHelperAsk" type="button">ASK FOR HELP</button>
-            <button id="lichHelperClose" type="button" aria-label="Dismiss helper">×</button>
-        </div>
+<div id="lichHelper" class="lich-helper" aria-live="polite" hidden>
+    <button id="lichHelperClose" class="lich-helper-close" type="button" aria-label="Dismiss the Lich King">×</button>
+
+    <div id="lichSpeech" class="lich-speech">
+        <div id="lichSpeechText">Mortal... is there anything I can help you with?</div>
+        <button id="lichAskButton" class="lich-ask-button" type="button">ASK FOR HELP</button>
     </div>
-    <img
-        id="lichHelperModel"
-        class="lich-helper-model"
-        src="https://www.pngkey.com/png/detail/164-1640273_arthas-lich-king-wow-lich-king-model.png"
-        alt="The Lich King site helper"
-        draggable="false"
-    >
-    <div class="lich-helper-nameplate">THE LICH KING • HELPER</div>
+
+    <button id="lichCharacterButton" class="lich-character-button" type="button" aria-label="Ask the Lich King for help">
+        <img src="assets/lich-king-helper.png" alt="The Lich King">
+    </button>
 </div>
 
+
+<div id="toast"></div>
 
 
 <script src="js/config.js"></script>
@@ -940,8 +934,8 @@ PHASE 1
 <script src="js/raid.js"></script>
 <script src="js/app.js"></script>
 <script src="js/raid-v3.js"></script>
-<script src="js/roster.js"></script>
 <script src="js/lich-helper.js"></script>
+<script src="js/roster.js"></script>
 
 
 </body>

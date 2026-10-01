@@ -1,201 +1,175 @@
+
 /* =========================================================
-   AU TSM - TOTALLY USELESS LICH KING HELPER
+   THE LICH KING — USELESS SITE HELPER
 ========================================================= */
 
-#lichHelper {
+.lich-helper {
     position:fixed;
-    right:18px;
+    right:14px;
     bottom:0;
-    z-index:1400;
-    width:340px;
-    height:430px;
+    width:min(430px,34vw);
+    height:min(620px,74vh);
+    z-index:2147483000;
     pointer-events:none;
-    transform:translateY(115%);
     opacity:0;
-    transition:transform .72s cubic-bezier(.18,.9,.24,1.04),opacity .35s ease;
+    transform:translateY(105%);
+    transition:transform .72s cubic-bezier(.2,.82,.2,1), opacity .35s ease;
 }
 
-#lichHelper.is-visible {
-    transform:translateY(0);
+.lich-helper.is-visible {
     opacity:1;
+    transform:translateY(0);
 }
 
-#lichHelper.is-dismissed {
-    transform:translateY(115%);
-    opacity:0;
+.lich-helper[hidden] {
+    display:none !important;
 }
 
-.lich-helper-model {
+.lich-character-button {
     position:absolute;
     right:0;
-    bottom:-5px;
-    width:270px;
-    height:390px;
+    bottom:-8px;
+    width:100%;
+    height:100%;
+    padding:0;
+    border:0;
+    background:transparent;
+    cursor:pointer;
+    pointer-events:auto;
+    overflow:visible;
+    filter:drop-shadow(-8px 12px 18px rgba(0,0,0,.65))
+           drop-shadow(0 0 8px rgba(70,183,255,.15));
+}
+
+.lich-character-button img {
+    position:absolute;
+    right:0;
+    bottom:0;
+    width:100%;
+    height:100%;
     object-fit:contain;
     object-position:right bottom;
-    filter:drop-shadow(0 12px 14px rgba(0,0,0,.9)) drop-shadow(0 0 18px rgba(63,180,255,.23));
-    pointer-events:auto;
-    cursor:pointer;
     user-select:none;
     -webkit-user-drag:none;
-    transform-origin:bottom center;
-    transition:filter .15s ease, transform .15s ease;
+    pointer-events:none;
 }
 
-.lich-helper-model:hover {
-    transform:scale(1.025);
-    filter:drop-shadow(0 14px 16px rgba(0,0,0,.95)) drop-shadow(0 0 25px rgba(78,195,255,.36));
-}
-
-.lich-helper-bubble {
+.lich-helper-close {
     position:absolute;
-    left:0;
-    top:30px;
-    width:215px;
-    padding:13px 14px 12px;
-    border:1px solid #6f5638;
-    border-radius:7px;
-    background:linear-gradient(180deg,rgba(22,19,16,.98),rgba(9,8,7,.98));
-    box-shadow:0 10px 28px rgba(0,0,0,.72),inset 0 0 0 1px rgba(255,255,255,.025);
-    color:#d8d0c4;
-    font-size:11px;
-    line-height:1.45;
+    z-index:5;
+    right:4px;
+    top:8px;
+    width:31px;
+    height:31px;
+    border-radius:50%;
+    border:1px solid #71879b;
+    background:rgba(5,11,18,.94);
+    color:#d8ecff;
+    font-size:20px;
+    line-height:27px;
+    cursor:pointer;
     pointer-events:auto;
-    opacity:0;
-    transform:translateY(8px) scale(.98);
-    transition:opacity .18s ease,transform .2s ease;
+    box-shadow:0 0 12px rgba(58,172,255,.28);
 }
 
-.lich-helper-bubble.is-speaking {
+.lich-speech {
+    position:absolute;
+    z-index:6;
+    right:68%;
+    top:23%;
+    width:250px;
+    max-width:42vw;
+    padding:15px 16px 12px;
+    color:#e7f3ff;
+    background:
+        linear-gradient(180deg,rgba(12,29,43,.98),rgba(5,12,19,.98));
+    border:2px solid #6abfff;
+    border-radius:9px;
+    box-shadow:
+        0 0 0 2px rgba(171,224,255,.14),
+        0 0 18px rgba(43,167,255,.35),
+        0 12px 30px rgba(0,0,0,.56);
+    font-family:Georgia,serif;
+    font-size:15px;
+    line-height:1.45;
+    text-align:center;
+    pointer-events:auto;
     opacity:1;
-    transform:none;
+    transform:translateY(0) scale(1);
+    transition:opacity .2s ease, transform .2s ease;
 }
 
-.lich-helper-bubble::after {
+.lich-speech::before {
     content:"";
     position:absolute;
-    right:-14px;
-    bottom:24px;
-    border-width:9px 0 9px 14px;
-    border-style:solid;
-    border-color:transparent transparent transparent #6f5638;
+    right:-32px;
+    bottom:18px;
+    width:36px;
+    height:24px;
+    background:linear-gradient(135deg,rgba(5,12,19,.98) 48%,transparent 49%);
+    clip-path:polygon(0 0,100% 55%,0 100%);
+    filter:drop-shadow(2px 0 0 #6abfff);
+    transform:rotate(8deg);
 }
 
-.lich-helper-title {
-    margin:0 0 6px;
-    color:#7fdcff;
-    font-family:Georgia,serif;
-    font-size:12px;
-    font-weight:bold;
-    letter-spacing:.4px;
-    text-shadow:0 0 8px rgba(86,202,255,.25);
+.lich-speech.is-hidden {
+    opacity:0;
+    transform:translateY(7px) scale(.97);
+    pointer-events:none;
 }
 
-#lichHelperText {
-    min-height:32px;
-}
-
-.lich-helper-actions {
-    display:flex;
-    align-items:center;
-    gap:6px;
-    margin-top:9px;
-}
-
-#lichHelperAsk,
-#lichHelperClose {
-    border:1px solid #4b3c2b;
-    background:#15110e;
-    color:#b9aa95;
-    font:700 8px Arial,sans-serif;
-    letter-spacing:.8px;
-    padding:6px 8px;
+.lich-ask-button {
+    display:block;
+    width:100%;
+    margin-top:11px;
+    padding:8px 10px;
+    border:1px solid #577999;
+    background:#101d29;
+    color:#9dd8ff;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.3px;
     cursor:pointer;
 }
 
-#lichHelperAsk {
-    flex:1;
-}
-
-#lichHelperAsk:hover {
-    color:#8ee5ff;
-    border-color:#4f7c8c;
-}
-
-#lichHelperClose {
-    width:29px;
-    padding-left:0;
-    padding-right:0;
-}
-
-#lichHelperClose:hover {
-    color:#e0b75e;
-    border-color:#8b6837;
-}
-
-.lich-helper-nameplate {
-    position:absolute;
-    right:46px;
-    bottom:5px;
-    padding:5px 8px;
-    border:1px solid rgba(75,116,133,.55);
-    background:rgba(5,10,12,.78);
-    color:#79d7fb;
-    font-size:8px;
-    font-weight:bold;
-    letter-spacing:1px;
-    pointer-events:none;
-    white-space:nowrap;
-    box-shadow:0 0 12px rgba(49,177,226,.12);
+.lich-ask-button:hover {
+    color:#e4f5ff;
+    border-color:#83cfff;
+    background:#142839;
 }
 
 @media(max-width:900px) {
-    #lichHelper {
-        width:250px;
-        height:320px;
-        right:6px;
+    .lich-helper {
+        width:min(330px,54vw);
+        height:min(470px,62vh);
+        right:4px;
     }
 
-    .lich-helper-model {
-        width:190px;
-        height:285px;
-    }
-
-    .lich-helper-bubble {
-        width:165px;
-        left:-5px;
-        top:22px;
-        font-size:9px;
-    }
-
-    .lich-helper-nameplate {
-        right:20px;
-        font-size:7px;
-    }
-}
-
-@media(max-width:600px) {
-    #lichHelper {
+    .lich-speech {
+        right:60%;
+        top:20%;
         width:205px;
-        height:265px;
-    }
-
-    .lich-helper-model {
-        width:150px;
-        height:225px;
-    }
-
-    .lich-helper-bubble {
-        width:150px;
-        left:-8px;
-        top:10px;
+        font-size:13px;
     }
 }
 
-@media(prefers-reduced-motion:reduce) {
-    #lichHelper,
-    .lich-helper-bubble,
-    .lich-helper-model {
-        transition:none !important;
+@media(max-width:620px) {
+    .lich-helper {
+        width:250px;
+        height:355px;
+    }
+
+    .lich-speech {
+        right:40%;
+        top:6%;
+        width:180px;
+        max-width:72vw;
+        padding:11px;
+        font-size:12px;
+    }
+
+    .lich-helper-close {
+        top:2px;
+        right:2px;
     }
 }

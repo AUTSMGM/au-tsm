@@ -1,93 +1,88 @@
 /* =========================================================
-   AU TSM - TOTALLY USELESS LICH KING HELPER
+   THE LICH KING — EXTREMELY UNHELPFUL SITE HELPER
 ========================================================= */
-
 (function () {
     const helper = document.getElementById('lichHelper');
-    const model = document.getElementById('lichHelperModel');
-    const bubble = document.getElementById('lichHelperBubble');
-    const text = document.getElementById('lichHelperText');
-    const ask = document.getElementById('lichHelperAsk');
-    const close = document.getElementById('lichHelperClose');
+    const speech = document.getElementById('lichSpeech');
+    const speechText = document.getElementById('lichSpeechText');
+    const askButton = document.getElementById('lichAskButton');
+    const closeButton = document.getElementById('lichHelperClose');
+    const characterButton = document.getElementById('lichCharacterButton');
 
-    if (!helper || !model || !bubble || !text || !ask || !close) return;
+    if (!helper || !speech || !speechText || !askButton || !closeButton || !characterButton) return;
 
-    const quotes = [
+    const lines = [
         'Have you considered getting good?',
-        'I bet you can\'t even beat the raid test.',
-        'Don\'t stand in the fire... unless your name is Roks.',
-        'Your gear is temporary. My disappointment is eternal.',
-        'Frostmourne hungers. Your parses do not.',
-        'A wipe is just a raid strategy with extra steps.',
+        'I bet you can’t even beat the raid test.',
+        'Don’t stand in the fire... unless your name is Roks.',
         'Have you tried blaming the healer?',
-        'The DPS meter remembers everything.',
-        'You may enter Icecrown when your logs improve.',
+        'Frostmourne hungers. Your parses do not.',
         'Your rotation appears to be mostly panic.',
-        'Phinky has reserved your loot. Naturally.',
-        'I sense fear... and several unbound keybinds.',
-        'Stand in the fire if you seek a swift promotion to spectator.',
-        'The raid leader said spread. You heard stack.',
-        'Your cooldowns cannot help you if you never press them.',
-        'I have conquered kingdoms with fewer spreadsheets than this guild.',
-        'You are not prepared... which is apparently normal here.',
-        'Perhaps another character will fix your mechanical issues.',
-        'The Frozen Throne has reviewed your application. Grim news.',
-        'I could help, but watching this is much funnier.'
+        'Phinky has reviewed your request and recommends more DPS.',
+        'The DPS meter remembers everything.',
+        'I could help... but this is much funnier.',
+        'Another wipe? Excellent. My work here is done.',
+        'Perhaps your true BiS item was competence all along.',
+        'Your raid spot is safe. Probably. I am not in charge.',
+        'Stand in the fire. Acquire data.',
+        'No king rules forever. Except apparently Phinky.',
+        'You have my blessing to blame latency.',
+        'The Frozen Throne has fewer mechanics than your application process.',
+        'If in doubt, press buttons harder.',
+        'I foresee a glorious future... for someone else’s loot.',
+        'The Lich King demands one thing: stop keyboard turning.',
+        'This advice costs one flask and your dignity.'
     ];
 
-    let bubbleTimer = null;
-    let lastQuote = -1;
+    let hideTimer = null;
     let dismissed = false;
 
-    function showBubble(message, duration = 5200) {
+    function showSpeech(text, duration = 5200) {
         if (dismissed) return;
+        window.clearTimeout(hideTimer);
+        speechText.textContent = text;
+        speech.classList.remove('is-hidden');
 
-        window.clearTimeout(bubbleTimer);
-        text.textContent = message;
-        bubble.classList.add('is-speaking');
-
-        bubbleTimer = window.setTimeout(function () {
-            bubble.classList.remove('is-speaking');
+        hideTimer = window.setTimeout(() => {
+            speech.classList.add('is-hidden');
         }, duration);
     }
 
-    function randomQuote() {
-        if (!quotes.length) return;
+    function randomLine() {
+        return lines[Math.floor(Math.random() * lines.length)];
+    }
 
-        let index = Math.floor(Math.random() * quotes.length);
-        if (quotes.length > 1 && index === lastQuote) {
-            index = (index + 1 + Math.floor(Math.random() * (quotes.length - 1))) % quotes.length;
+    function askForHelp(event) {
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
         }
-
-        lastQuote = index;
-        showBubble(quotes[index], 5000);
+        showSpeech(randomLine(), 4600);
     }
 
-    function appear() {
-        if (dismissed) return;
-        helper.classList.add('is-visible');
+    askButton.addEventListener('click', askForHelp);
+    characterButton.addEventListener('click', askForHelp);
 
-        window.setTimeout(function () {
-            showBubble('Mortal... is there anything I can help you with?', 6200);
-        }, 650);
-    }
-
-    ask.addEventListener('click', function (event) {
-        event.stopPropagation();
-        randomQuote();
-    });
-
-    model.addEventListener('click', randomQuote);
-
-    close.addEventListener('click', function (event) {
+    closeButton.addEventListener('click', function (event) {
+        event.preventDefault();
         event.stopPropagation();
         dismissed = true;
-        window.clearTimeout(bubbleTimer);
-        bubble.classList.remove('is-speaking');
-        helper.classList.add('is-dismissed');
+        window.clearTimeout(hideTimer);
         helper.classList.remove('is-visible');
+
+        window.setTimeout(() => {
+            helper.hidden = true;
+        }, 750);
     });
 
-    /* Let the rest of the homepage settle before he rises from the corner. */
-    window.setTimeout(appear, 3000);
+    /* Appear after 3 seconds on each page load. */
+    window.setTimeout(() => {
+        if (dismissed) return;
+        helper.hidden = false;
+        requestAnimationFrame(() => helper.classList.add('is-visible'));
+
+        window.setTimeout(() => {
+            showSpeech('Mortal... is there anything I can help you with?', 6500);
+        }, 500);
+    }, 3000);
 })();
