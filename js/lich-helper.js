@@ -1,5 +1,5 @@
 /* =========================================================
-   THE LICH KING — EXTREMELY UNHELPFUL SITE HELPER
+   THE LICH KING — EXTREMELY UNHELPFUL SITE HELPER V3
 ========================================================= */
 (function () {
     const helper = document.getElementById('lichHelper');
@@ -27,7 +27,6 @@
         'Stand in the fire. Acquire data.',
         'No king rules forever. Except apparently Phinky.',
         'You have my blessing to blame latency.',
-        'The Frozen Throne has fewer mechanics than your application process.',
         'If in doubt, press buttons harder.',
         'I foresee a glorious future... for someone else’s loot.',
         'The Lich King demands one thing: stop keyboard turning.',
@@ -36,9 +35,20 @@
 
     let hideTimer = null;
     let dismissed = false;
+    let lastLine = '';
 
-    function showSpeech(text, duration = 5200) {
+    function pickLine() {
+        let line = lines[Math.floor(Math.random() * lines.length)];
+        if (lines.length > 1 && line === lastLine) {
+            line = lines[(lines.indexOf(line) + 1) % lines.length];
+        }
+        lastLine = line;
+        return line;
+    }
+
+    function showSpeech(text, duration = 5000) {
         if (dismissed) return;
+
         window.clearTimeout(hideTimer);
         speechText.textContent = text;
         speech.classList.remove('is-hidden');
@@ -48,16 +58,12 @@
         }, duration);
     }
 
-    function randomLine() {
-        return lines[Math.floor(Math.random() * lines.length)];
-    }
-
     function askForHelp(event) {
         if (event) {
             event.preventDefault();
             event.stopPropagation();
         }
-        showSpeech(randomLine(), 4600);
+        showSpeech(pickLine(), 4800);
     }
 
     askButton.addEventListener('click', askForHelp);
@@ -66,23 +72,32 @@
     closeButton.addEventListener('click', function (event) {
         event.preventDefault();
         event.stopPropagation();
+
         dismissed = true;
         window.clearTimeout(hideTimer);
         helper.classList.remove('is-visible');
 
         window.setTimeout(() => {
             helper.hidden = true;
-        }, 750);
+        }, 1100);
     });
 
-    /* Appear after 3 seconds on each page load. */
+    /* Arrive smoothly three seconds after entry. */
     window.setTimeout(() => {
         if (dismissed) return;
-        helper.hidden = false;
-        requestAnimationFrame(() => helper.classList.add('is-visible'));
 
+        helper.hidden = false;
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                helper.classList.add('is-visible');
+            });
+        });
+
+        /* Let the character nearly finish rising before speaking. */
         window.setTimeout(() => {
             showSpeech('Mortal... is there anything I can help you with?', 6500);
-        }, 500);
+        }, 850);
+
     }, 3000);
 })();
