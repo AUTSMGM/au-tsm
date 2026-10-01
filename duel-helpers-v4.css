@@ -1,0 +1,47 @@
+/* =========================================================
+   AU TSM HELPER DUO V4
+   Lich King left / Ragnaros right
+========================================================= */
+.helper{
+position:fixed;bottom:0;z-index:2147483600;pointer-events:none;opacity:0;
+will-change:transform,opacity;transition:transform 1.05s cubic-bezier(.16,.82,.18,1),opacity .42s ease}
+.helper[hidden]{display:none!important}
+.helper-lich{left:0;width:min(520px,34vw);height:min(600px,76vh);transform:translate3d(-110%,0,0) scale(.985);transform-origin:0 100%}
+.helper-rag{right:0;width:min(520px,34vw);height:min(600px,76vh);transform:translate3d(110%,0,0) scale(.985);transform-origin:100% 100%}
+.helper.is-visible{opacity:1;transform:translate3d(0,0,0) scale(1)}
+.helper-character{position:absolute;inset:0;width:100%;height:100%;padding:0;margin:0;border:0;background:transparent;pointer-events:auto;cursor:pointer;overflow:visible}
+.helper-character img{position:absolute;bottom:0;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.helper-character-lich img{left:0;object-position:left bottom;filter:drop-shadow(10px 16px 20px rgba(0,0,0,.7)) drop-shadow(0 0 12px rgba(69,186,255,.18))}
+.helper-character-rag img{right:0;object-position:right bottom;filter:drop-shadow(-10px 16px 20px rgba(0,0,0,.7)) drop-shadow(0 0 14px rgba(255,104,0,.22))}
+
+.helper-speech{position:absolute;z-index:8;width:245px;max-width:42vw;min-height:110px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;padding:16px 18px 13px;text-align:center;font-family:Georgia,"Times New Roman",serif;font-size:15px;font-weight:700;line-height:1.35;pointer-events:auto;opacity:1;transition:opacity .2s ease,transform .22s ease}
+.helper-speech.is-hidden{opacity:0;transform:translateY(6px) scale(.97);pointer-events:none}
+
+.helper-speech-lich{left:58%;top:18%;color:#edf7ff;background:linear-gradient(180deg,rgba(11,28,43,.98),rgba(4,12,19,.98));border:2px solid #74c8ff;border-radius:8px;box-shadow:0 0 0 2px rgba(174,226,255,.1),0 0 18px rgba(53,171,255,.34),0 12px 30px rgba(0,0,0,.58);text-shadow:0 2px 3px #000,0 0 8px rgba(89,194,255,.28)}
+.helper-speech-lich::before{content:"";position:absolute;left:-29px;bottom:22px;width:31px;height:23px;background:#081521;clip-path:polygon(100% 0,0 48%,100% 100%);filter:drop-shadow(-2px 0 0 #74c8ff)}
+.helper-speech-lich::after{content:"";position:absolute;left:12px;right:12px;bottom:-7px;height:10px;background:linear-gradient(135deg,transparent 35%,#82d4ff 36% 55%,transparent 56%) 0 0/24px 10px repeat-x;opacity:.75}
+
+.helper-speech-rag{right:58%;top:18%;color:#fff1d4;background:linear-gradient(180deg,rgba(54,15,4,.98),rgba(22,7,2,.98));border:2px solid #ff9f3f;border-radius:8px;box-shadow:0 0 0 2px rgba(255,162,70,.1),0 0 20px rgba(255,79,0,.36),0 12px 30px rgba(0,0,0,.58);text-shadow:0 2px 3px #000,0 0 8px rgba(255,105,0,.34)}
+.helper-speech-rag::before{content:"";position:absolute;right:-29px;bottom:22px;width:31px;height:23px;background:#2b0b03;clip-path:polygon(0 0,100% 48%,0 100%);filter:drop-shadow(2px 0 0 #ff9f3f)}
+.helper-speech-rag::after{content:"";position:absolute;left:10px;right:10px;top:-8px;height:11px;background:radial-gradient(ellipse at 50% 100%,#ffb347 0 28%,#ff5a00 30% 48%,transparent 51%) 0 0/28px 11px repeat-x;opacity:.9}
+
+.helper-ask{padding:7px 11px;border-radius:2px;font-size:8px;font-weight:900;letter-spacing:1.2px;cursor:pointer}
+.helper-ask-lich{border:1px solid rgba(117,199,255,.7);background:rgba(6,21,33,.84);color:#a9ddff}
+.helper-ask-lich:hover{color:#fff;border-color:#d1efff;background:rgba(10,34,51,.95)}
+.helper-ask-rag{border:1px solid rgba(255,154,64,.75);background:rgba(47,13,4,.86);color:#ffd28a}
+.helper-ask-rag:hover{color:#fff7e8;border-color:#ffd0a0;background:rgba(72,20,5,.95)}
+
+.helper-close{position:absolute;z-index:12;top:5%;width:32px;height:32px;padding:0;border-radius:50%;font:400 22px/28px Arial,sans-serif;text-align:center;pointer-events:auto;cursor:pointer}
+.helper-close-lich{left:4%;border:1px solid #86cfff;background:rgba(3,14,23,.94);color:#def3ff;box-shadow:0 0 13px rgba(63,174,255,.38)}
+.helper-close-rag{right:4%;border:1px solid #ff9548;background:rgba(28,7,2,.94);color:#ffe4c0;box-shadow:0 0 13px rgba(255,87,0,.38)}
+#lichHelper,#ragnarosHelper{isolation:isolate}
+
+@media(max-width:1000px){
+.helper-lich,.helper-rag{width:min(450px,48vw);height:min(520px,66vh)}
+.helper-speech{width:210px;font-size:13px}
+.helper-speech-lich{left:52%}.helper-speech-rag{right:52%}}
+@media(max-width:700px){
+.helper-lich,.helper-rag{width:min(360px,70vw);height:min(430px,58vh)}
+.helper-speech{width:185px;max-width:70vw;min-height:96px;padding:12px 13px 10px;font-size:12px}
+.helper-speech-lich{left:45%;top:12%}.helper-speech-rag{right:45%;top:12%}}
+@media(prefers-reduced-motion:reduce){.helper{transition:opacity .2s linear;transform:none!important}}

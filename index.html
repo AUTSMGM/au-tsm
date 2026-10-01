@@ -20,9 +20,8 @@
 <link rel="stylesheet" href="progressive-creator.css">
 <link rel="stylesheet" href="progressive-layout-fix.css">
 <link rel="stylesheet" href="creator-flow-v5-2.css">
+<link rel="stylesheet" href="duel-helpers-v4.css">
 <link rel="stylesheet" href="raid-v3.css">
-<link rel="stylesheet" href="lich-helper-v3.css">
-<link rel="stylesheet" href="ragnaros-helper.css">
 </head>
 
 
@@ -906,38 +905,32 @@ PHASE 1
 
 
 <!-- =========================================================
-     THE LICH KING — EXTREMELY UNHELPFUL SITE HELPER V3
+     THE LICH KING — DEFAULT UNHELPFUL SITE HELPER
 ========================================================= -->
-<div id="lichHelper" class="lich-helper-v3" aria-live="polite" hidden>
-    <button id="lichHelperClose" class="lich-helper-close-v3" type="button" aria-label="Dismiss the Lich King">×</button>
-
-    <button id="lichCharacterButton" class="lich-character-button-v3" type="button" aria-label="Ask the Lich King for help">
-        <img src="assets/lich-king-helper-v3.png" alt="The Lich King">
+<div id="lichHelper" class="helper helper-lich" aria-live="polite" hidden>
+    <button id="lichHelperClose" class="helper-close helper-close-lich" type="button" aria-label="Dismiss the Lich King">×</button>
+    <button id="lichCharacterButton" class="helper-character helper-character-lich" type="button" aria-label="Ask the Lich King for help">
+        <img src="assets/lich-king-helper-v4.png" alt="The Lich King">
     </button>
-
-    <div id="lichSpeech" class="lich-speech-v3">
+    <div id="lichSpeech" class="helper-speech helper-speech-lich">
         <div id="lichSpeechText">Mortal... is there anything I can help you with?</div>
-        <button id="lichAskButton" class="lich-ask-button-v3" type="button">ASK FOR HELP</button>
+        <button id="lichAskButton" class="helper-ask helper-ask-lich" type="button">ASK FOR HELP</button>
     </div>
 </div>
-
 
 <!-- =========================================================
-     RAGNAROS — EVEN LESS HELPFUL SITE HELPER
+     RAGNAROS — SECOND UNHELPFUL SITE HELPER
 ========================================================= -->
-<div id="ragnarosHelper" class="ragnaros-helper" aria-live="polite" hidden>
-    <button id="ragnarosClose" class="ragnaros-close" type="button" aria-label="Dismiss Ragnaros">×</button>
-
-    <button id="ragnarosCharacterButton" class="ragnaros-character-button" type="button" aria-label="Ask Ragnaros for help">
-        <img src="assets/ragnaros-helper.png" alt="Ragnaros">
+<div id="ragnarosHelper" class="helper helper-rag" aria-live="polite" hidden>
+    <button id="ragnarosClose" class="helper-close helper-close-rag" type="button" aria-label="Dismiss Ragnaros">×</button>
+    <button id="ragnarosCharacterButton" class="helper-character helper-character-rag" type="button" aria-label="Ask Ragnaros for help">
+        <img src="assets/ragnaros-helper-v2.png" alt="Ragnaros">
     </button>
-
-    <div id="ragnarosSpeech" class="ragnaros-speech">
-        <div id="ragnarosSpeechText">TOO SOON... apparently not for Roks.</div>
-        <button id="ragnarosAskButton" class="ragnaros-ask-button" type="button">ASK FOR HELP</button>
+    <div id="ragnarosSpeech" class="helper-speech helper-speech-rag">
+        <div id="ragnarosSpeechText">TOO SOON!... apparently not for Roks.</div>
+        <button id="ragnarosAskButton" class="helper-ask helper-ask-rag" type="button">ASK FOR HELP</button>
     </div>
 </div>
-
 
 <div id="toast"></div>
 
