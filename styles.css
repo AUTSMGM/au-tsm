@@ -5553,3 +5553,144 @@ footer strong {
     .raid-ready-callout { margin-top:28px !important; padding:12px !important; }
     #raidApplicationForm { grid-template-columns:1fr !important; }
 }
+
+
+/* =========================================================
+   GUILD MASTER CHARACTER EDITOR
+========================================================= */
+.admin-button.edit-character {
+    border-color:#6e5a87;
+    color:#cdb7f0;
+    background:#17111f;
+}
+
+.gm-editor-overlay {
+    position:fixed;
+    inset:0;
+    z-index:2147482500;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(4px);
+    opacity:0;
+    transition:opacity .18s ease;
+}
+
+.gm-editor-overlay[hidden] {
+    display:none !important;
+}
+
+.gm-editor-overlay.is-visible {
+    opacity:1;
+}
+
+.gm-editor-card {
+    width:min(720px,94vw);
+    max-height:90vh;
+    overflow:auto;
+    padding:20px;
+    border:1px solid #6a5030;
+    background:
+        radial-gradient(circle at 50% 0%,rgba(139,94,36,.13),transparent 34%),
+        #100e0c;
+    box-shadow:0 24px 70px rgba(0,0,0,.72);
+    color:#d8d0c5;
+}
+
+.gm-editor-header {
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:15px;
+    padding-bottom:13px;
+    border-bottom:1px solid #33291f;
+}
+
+.gm-editor-header h3 {
+    margin:3px 0 0;
+    color:#d7a94b;
+    font-family:Georgia,serif;
+    font-size:24px;
+}
+
+.gm-editor-kicker {
+    color:#8d7351;
+    font-size:7px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.gm-editor-close {
+    width:34px;
+    height:34px;
+    border:1px solid #59452d;
+    background:#17120d;
+    color:#d9b35a;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.gm-editor-grid {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:13px;
+    margin-top:17px;
+}
+
+.gm-editor-grid label {
+    display:block;
+}
+
+.gm-editor-grid label span {
+    display:block;
+    margin-bottom:5px;
+    color:#8c8174;
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:1.5px;
+}
+
+.gm-editor-grid input,
+.gm-editor-grid select {
+    width:100%;
+    box-sizing:border-box;
+    padding:11px 10px;
+    border:1px solid #4b3a27;
+    background:#080706;
+    color:#eee6da;
+    outline:none;
+}
+
+.gm-editor-grid input:focus,
+.gm-editor-grid select:focus {
+    border-color:#a27b3c;
+    box-shadow:0 0 0 1px rgba(215,169,75,.14);
+}
+
+.gm-editor-status {
+    min-height:18px;
+    margin-top:11px;
+    color:#d9ad58;
+    font-size:10px;
+}
+
+.gm-editor-actions {
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:6px;
+    padding-top:13px;
+    border-top:1px solid #2f271f;
+}
+
+@media(max-width:650px) {
+    .gm-editor-grid {
+        grid-template-columns:1fr;
+    }
+
+    .gm-editor-actions {
+        flex-direction:column-reverse;
+    }
+}
