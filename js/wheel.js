@@ -1315,13 +1315,20 @@ spinWheelButton.onclick =
                             );
 
 
-                        await saveRoll(
+                        const savedCharacter = await saveRoll(
                             firstName,
                             lastName,
                             winningClass.name,
                             winningBody.id,
                             winningRole
                         );
+
+                        if (savedCharacter) {
+                            window.setTimeout(() => {
+                                document.getElementById('characterProgression')
+                                    ?.scrollIntoView({behavior:'smooth',block:'center'});
+                            }, 260);
+                        }
 
                         wheelSpinning =
                             false;
@@ -1368,6 +1375,39 @@ spinWheelButton.onclick =
 
     };
 
+
+
+function resetWheelState() {
+    wheelSpinning = false;
+    wheelRotation = 0;
+    tokensUsed = 0;
+
+    disabledClasses.clear();
+    disabledBodies.clear();
+    disabledRoles.clear();
+
+    classWheel.style.transition = 'none';
+    classWheel.style.transform = 'rotate(0deg)';
+    bodySlotTrack.style.transition = 'none';
+    bodySlotTrack.style.transform = 'translateY(0px)';
+    leverMachine.classList.remove('pulled');
+
+    resetRoleDoor();
+    updateProtectionDisplay();
+
+    firstNameInput.disabled = false;
+    lastNameInput.disabled = false;
+
+    document.querySelectorAll('.exclusion-button').forEach(button => {
+        button.disabled = false;
+    });
+
+    spinWheelButton.disabled = false;
+    spinWheelButton.textContent = 'PULL';
+
+    const warning = document.getElementById('protectionWarning');
+    if (warning) warning.textContent = '';
+}
 
 
 /* =========================================================

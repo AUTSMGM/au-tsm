@@ -5,17 +5,104 @@ let raidProfile = null;
 let selfHealTimer = 0;
 let promotionPending = false;
 
+
+function revealProgressionUI(character) {
+    const progression = document.getElementById('characterProgression');
+    if (!progression || !character) return;
+
+    progression.hidden = false;
+    progression.classList.remove('progression-hiding');
+    progression.classList.add('progression-revealing');
+
+    requestAnimationFrame(() => {
+        progression.classList.add('progression-visible');
+    });
+
+    window.setTimeout(() => {
+        progression.classList.remove('progression-revealing');
+    }, 360);
+}
+
+function resetProgressionUI(options = {}) {
+    const progression = document.getElementById('characterProgression');
+    const panel = document.getElementById('raidApplicationPanel');
+    const form = document.getElementById('raidApplicationForm');
+    const discord = document.getElementById('discordName');
+    const raidButton = document.getElementById('raidGameButton');
+
+    activeCharacter = null;
+    raidCharacter = null;
+
+    if (raidButton) raidButton.disabled = true;
+
+    if (panel) panel.hidden = true;
+    if (form) form.hidden = true;
+    if (discord) discord.value = '';
+
+    const saveStatus = document.getElementById('characterSaveStatus');
+    if (saveStatus) saveStatus.textContent = '';
+
+    const resultName = document.getElementById('wheelResultName');
+    const resultClass = document.getElementById('wheelResultClass');
+    const resultBody = document.getElementById('wheelResultBody');
+    const resultRole = document.getElementById('wheelResultRole');
+    const resultMessage = document.getElementById('wheelResultMessage');
+
+    if (resultName) {
+        resultName.textContent = 'Awaiting character...';
+        resultName.style.color = '';
+    }
+    if (resultClass) {
+        resultClass.textContent = '';
+        resultClass.style.color = '';
+    }
+    if (resultBody) {
+        resultBody.style.display = 'none';
+        resultBody.textContent = '';
+    }
+    if (resultRole) {
+        resultRole.style.display = 'none';
+        resultRole.textContent = '';
+    }
+    if (resultMessage) resultMessage.textContent = '';
+
+    if (options.forget !== false) {
+        try { localStorage.removeItem('auTsmCharacterId'); } catch (_) {}
+    }
+
+    if (progression) {
+        progression.classList.remove('progression-visible','progression-revealing');
+        progression.classList.add('progression-hiding');
+
+        window.setTimeout(() => {
+            progression.hidden = true;
+            progression.classList.remove('progression-hiding');
+        }, options.instant ? 0 : 220);
+    }
+}
+
 function setCharacter(character, status) {
     activeCharacter = character;
+
     const label = document.getElementById('characterSaveStatus');
-    label.textContent = status || 'Guild Rank: ' + (character && character.guild_rank ? character.guild_rank : 'Trial');
-    document.getElementById('raidGameButton').disabled = !character || character.id == null;
-    // Remember only the row ID. On reload, retrieve the authoritative character.
+    if (label) {
+        label.textContent = character
+            ? (status || 'Guild Rank: ' + (character.guild_rank || 'Trial'))
+            : (status || '');
+    }
+
+    const raidButton = document.getElementById('raidGameButton');
+    if (raidButton) raidButton.disabled = !character || character.id == null;
+
     try {
         if (character) localStorage.setItem('auTsmCharacterId', String(character.id));
         else localStorage.removeItem('auTsmCharacterId');
-    } catch (_) { /* Storage can be disabled; the current session still works. */ }
-    if (character && typeof refreshApplicationPanel === 'function') refreshApplicationPanel(character);
+    } catch (_) {}
+
+    if (character && character.id != null) {
+        revealProgressionUI(character);
+        if (typeof refreshApplicationPanel === 'function') refreshApplicationPanel(character);
+    }
 }
 
 function tickSelfHeal(delta) {
@@ -144,6 +231,7 @@ function refreshApplicationPanel(character) {
                 refreshApplicationPanel(saved);
                 await loadRecentRolls();
                 showToast('Raid application submitted to Phinky.');
+                window.setTimeout(() => resetProgressionUI(), 450);
             } catch (error) {
                 console.error(error);
                 showToast(error.message || 'Application could not be submitted.');
@@ -156,24 +244,8 @@ function refreshApplicationPanel(character) {
 }
 
 async function restoreCharacter() {
-    let id;
-    try { id = localStorage.getItem('auTsmCharacterId'); } catch (_) { return; }
-    if (!id || !database) return;
-    // Do not overwrite a new spin with a late restoration response.
-    const spinButton = document.getElementById('spinWheelButton');
-    spinButton.disabled = true;
-    try {
-        const {data,error} = await database.from('guild_rolls').select('*').eq('id',id).single();
-        if (error) throw error;
-        if (!classAttacks[data.class_name] || !['Tank','Healer','DPS'].includes(data.role)) return;
-        setCharacter(data);
-        document.getElementById('wheelResultName').textContent = data.character_name;
-        document.getElementById('wheelResultClass').textContent = data.class_name;
-        for (const [field,text] of [['Body','Body Type '+data.body_type],['Role',data.role]]) {
-            const element = document.getElementById('wheelResult'+field);
-            element.style.display = 'inline-block'; element.textContent = text;
-        }
-        document.getElementById('wheelResultMessage').textContent = 'Your saved character is ready.';
-    } catch (error) { console.warn('Could not restore saved character',error); }
-    finally { spinButton.disabled = false; }
+    /* Deliberately start clean on page load.
+       Historical characters remain in Supabase / Recent Character Applications,
+       but the active progression card is not restored after a refresh. */
+    resetProgressionUI({instant:true});
 }

@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="shared-header.css">
 <link rel="stylesheet" href="progressive-creator.css">
 <link rel="stylesheet" href="progressive-layout-fix.css">
+<link rel="stylesheet" href="creator-flow-v5-2.css">
 </head>
 
 
@@ -180,6 +181,10 @@ Choose exactly what you want, or place your future in the hands of the AU TSM de
         <span class="creator-mode-title">🎲 SPIN THE WHEEL</span>
         <span class="creator-mode-copy">Use Bad Luck Protection, then let fate ruin your plans.</span>
     </button>
+</div>
+
+<div class="creator-flow-actions">
+    <button id="creatorStartOver" class="creator-start-over" type="button" hidden>↺ START OVER</button>
 </div>
 
 <div class="wheel-dashboard">
@@ -557,8 +562,8 @@ BODY TYPE
 
 
 <!-- RIGHT: CHARACTER PROGRESSION / RAID READY -->
-<aside class="progression-rail">
-<div class="progression-rail-heading">CHARACTER PROGRESSION</div>
+<aside class="progression-rail" id="characterProgression" hidden>
+<div class="progression-rail-heading">NEXT STEP</div>
 <div class="wheel-result-row">
 <div class="wheel-result">
 <div class="wheel-result-label">FOREVER CHARACTER RECORD</div>
@@ -572,26 +577,18 @@ BODY TYPE
 </div>
 <div class="raid-ready-callout">
 
-<div class="raid-ready-label">
-⚠ MANDATORY GUILD ASSESSMENT ⚠
-</div>
+<div class="raid-ready-label">RAID APPLICATION</div>
 
-<p>Pass the Raid Ready Test to become <strong>Raid Ready</strong>. You can then submit this character for an official AU TSM Forever raid spot.</p>
+<p class="raid-next-step-copy"><strong>Want a raid spot?</strong> Beat Onyxia.</p>
 <button id="raidGameButton" disabled>
 
-<span class="raid-button-main">
-⚔ TEST YOUR RAID READINESS ⚔
-</span>
+<span class="raid-button-main">⚔ FIGHT ONYXIA ⚔</span>
 
-<span class="raid-ready-subtitle">
-CAN YOU SURVIVE ONYXIA?
-</span>
+<span class="raid-ready-subtitle">PASS TO UNLOCK YOUR APPLICATION</span>
 
 </button>
 
-<div class="raid-ready-warning">
-Failure may result in automatic classification as Roks
-</div>
+
 
 <div id="raidApplicationPanel" class="raid-application-panel" hidden>
     <div class="application-status-title">RAID READY</div>

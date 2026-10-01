@@ -10,6 +10,7 @@ const wheelBadLuckPanel = document.getElementById('wheelBadLuckPanel');
 const wheelCentrePanel = document.getElementById('wheelCentrePanel');
 const creatorModeHeading = document.getElementById('creatorModeHeading');
 const creatorModeDescription = document.getElementById('creatorModeDescription');
+const creatorStartOver = document.getElementById('creatorStartOver');
 
 const manualFirstName = document.getElementById('manualFirstName');
 const manualLastName = document.getElementById('manualLastName');
@@ -73,11 +74,21 @@ function hideStep(element) {
     element.hidden = true;
 }
 
-function resetManualProgression() {
+function resetManualProgression(options = {}) {
     manualNameConfirmed = false;
     manualClass = null;
     manualBody = null;
     manualRole = null;
+
+    manualFirstName.disabled = false;
+    manualLastName.disabled = false;
+    manualConfirmName.disabled = false;
+    manualConfirmName.textContent = 'CONTINUE';
+
+    if (options.clearNames) {
+        manualFirstName.value = '';
+        manualLastName.value = '';
+    }
 
     hideStep(manualClassStep);
     hideStep(manualBodyStep);
@@ -88,6 +99,7 @@ function resetManualProgression() {
     manualBodyGrid.innerHTML = '';
     manualRoleGrid.innerHTML = '';
     manualCreateButton.disabled = true;
+    manualCreateButton.textContent = 'CREATE TRIAL CHARACTER';
     manualCreatorStatus.textContent = '';
 }
 
@@ -103,6 +115,7 @@ function showCreatorMode(mode) {
     document.body.dataset.creatorStarted = 'true';
     document.body.dataset.creatorMode = mode;
     setSelectorState(mode);
+    if (creatorStartOver) creatorStartOver.hidden = false;
 
     manualCreationMode.hidden = mode !== 'manual';
     wheelNameGate.hidden = mode !== 'wheel';
@@ -361,12 +374,61 @@ wheelConfirmName.onclick = function() {
     }, 220);
 };
 
+
+function resetCreatorFlow() {
+    if (creatorTransitioning) return;
+
+    creatorMode = null;
+    wheelNameConfirmed = false;
+
+    resetManualProgression({clearNames:true});
+
+    wheelFirstName.disabled = false;
+    wheelLastName.disabled = false;
+    wheelFirstName.value = '';
+    wheelLastName.value = '';
+    wheelConfirmName.disabled = false;
+    wheelConfirmName.textContent = 'CONTINUE TO THE WHEEL';
+    wheelNameGate.classList.remove('step-completing');
+
+    if (typeof resetWheelState === 'function') {
+        resetWheelState();
+    }
+
+    manualCreationMode.hidden = true;
+    wheelNameGate.hidden = true;
+    wheelBadLuckPanel.hidden = true;
+    wheelCentrePanel.hidden = true;
+
+    manualCreationMode.style.display = 'none';
+    wheelNameGate.style.display = 'none';
+    wheelBadLuckPanel.style.display = 'none';
+    wheelCentrePanel.style.display = 'none';
+
+    document.body.dataset.creatorStarted = 'false';
+    document.body.dataset.creatorMode = 'none';
+
+    setSelectorState(null);
+
+    creatorModeHeading.textContent = 'Hey! How are we making this character?';
+    creatorModeDescription.textContent = 'Create it yourself, or leave it up to the gods.';
+
+    if (creatorStartOver) creatorStartOver.hidden = true;
+
+    if (typeof resetProgressionUI === 'function') {
+        resetProgressionUI();
+    }
+
+    window.scrollTo({top: document.querySelector('.wheel-section')?.offsetTop || 0, behavior:'smooth'});
+}
+
 /* =========================================================
    MODE SELECTION
 ========================================================= */
 
 manualModeButton.onclick = () => transitionToMode('manual');
 wheelModeButton.onclick = () => transitionToMode('wheel');
+if (creatorStartOver) creatorStartOver.onclick = resetCreatorFlow;
 
 /* Start with only the two fate choices visible. */
 document.body.dataset.creatorStarted = 'false';
@@ -383,3 +445,4 @@ wheelCentrePanel.style.display = 'none';
 creatorModeHeading.textContent = 'Hey! How are we making this character?';
 creatorModeDescription.textContent = 'Create it yourself, or leave it up to the gods.';
 setSelectorState(null);
+if (creatorStartOver) creatorStartOver.hidden = true;

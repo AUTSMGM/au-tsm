@@ -1,0 +1,192 @@
+
+/* =========================================================
+   AU TSM CREATOR FLOW V5.2
+   Reset control + hidden progression + cleaner Onyxia handoff
+========================================================= */
+
+/* Start Over is deliberately small: useful without competing with the two
+   primary creation choices. */
+.creator-flow-actions {
+    min-height:34px;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    margin:-8px 0 8px;
+}
+
+.creator-start-over {
+    appearance:none;
+    padding:7px 11px;
+    border:1px solid #5a452d;
+    background:#100d0a;
+    color:#a99679;
+    font:inherit;
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:1.2px;
+    cursor:pointer;
+    transition:border-color .15s ease,color .15s ease,background .15s ease;
+}
+
+.creator-start-over:hover {
+    color:#e0b75e;
+    border-color:#9b7438;
+    background:#181109;
+}
+
+.creator-start-over[hidden] {
+    display:none !important;
+}
+
+/* Character Progression should not consume any space until Supabase has
+   confirmed an actual saved character row. */
+#characterProgression[hidden] {
+    display:none !important;
+}
+
+#characterProgression {
+    transform-origin:top center;
+    transition:opacity .22s ease,transform .28s ease;
+}
+
+#characterProgression.progression-revealing {
+    opacity:0;
+    transform:translateY(10px);
+}
+
+#characterProgression.progression-revealing.progression-visible,
+#characterProgression.progression-visible {
+    opacity:1;
+    transform:none;
+}
+
+#characterProgression.progression-hiding {
+    opacity:0;
+    transform:translateY(-5px);
+}
+
+/* The post-creation transition is intentionally much simpler than the creator.
+   It answers one question: what do I do next? */
+.home-page #characterProgression {
+    padding:10px !important;
+    grid-template-columns:235px minmax(0,1fr) !important;
+    gap:10px !important;
+}
+
+.home-page #characterProgression .progression-rail-heading {
+    display:none !important;
+}
+
+.home-page #characterProgression .wheel-result {
+    min-height:126px !important;
+    padding:11px !important;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+}
+
+.home-page #characterProgression .wheel-result-label {
+    font-size:7px !important;
+    letter-spacing:1.5px !important;
+}
+
+.home-page #characterProgression #wheelResultName {
+    margin-top:5px !important;
+}
+
+.home-page #characterProgression #wheelResultMessage {
+    display:none !important;
+}
+
+.home-page #characterProgression #characterSaveStatus {
+    margin:7px 0 0 !important;
+    font-size:8px !important;
+}
+
+/* Compact handoff from character creation to the actual guild requirement. */
+.home-page #characterProgression .raid-ready-callout {
+    min-height:126px !important;
+    grid-template-columns:minmax(0,1fr) minmax(260px,.72fr) !important;
+    grid-template-areas:
+        "label application"
+        "copy application"
+        "button application" !important;
+    align-content:center !important;
+    row-gap:5px !important;
+}
+
+.home-page #characterProgression .raid-ready-label {
+    color:#806c4c !important;
+    font-size:7px !important;
+    letter-spacing:1.5px !important;
+    border:0 !important;
+    padding:0 !important;
+}
+
+.home-page #characterProgression .raid-next-step-copy {
+    font-family:Georgia,serif !important;
+    color:#d9c9ad !important;
+    font-size:15px !important;
+    line-height:1.2 !important;
+}
+
+.home-page #characterProgression .raid-next-step-copy strong {
+    color:#e1b554 !important;
+}
+
+.home-page #characterProgression #raidGameButton {
+    min-height:48px !important;
+    padding:8px 12px !important;
+}
+
+.home-page #characterProgression .raid-button-main {
+    font-size:14px !important;
+}
+
+.home-page #characterProgression .raid-ready-subtitle {
+    font-size:6px !important;
+    margin-top:3px !important;
+}
+
+.home-page #characterProgression .raid-application-panel {
+    min-height:104px !important;
+    align-self:stretch !important;
+}
+
+/* Once Raid Ready, the application is the visual priority, not more copy. */
+.home-page #characterProgression .raid-application-panel:not([hidden]) {
+    display:flex !important;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.home-page #characterProgression .application-status-title {
+    font-size:12px !important;
+}
+
+.home-page #characterProgression #raidApplicationMessage {
+    font-size:8px !important;
+}
+
+.home-page #characterProgression #raidApplicationForm label {
+    font-size:7px !important;
+}
+
+@media(max-width:800px) {
+    .creator-flow-actions {
+        justify-content:center;
+    }
+
+    .home-page #characterProgression {
+        grid-template-columns:1fr !important;
+    }
+
+    .home-page #characterProgression .raid-ready-callout {
+        display:block !important;
+    }
+
+    .home-page #characterProgression .raid-application-panel {
+        margin-top:9px !important;
+    }
+}
