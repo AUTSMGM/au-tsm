@@ -1,0 +1,268 @@
+
+/* =========================================================
+   AU TSM PROGRESSIVE CREATOR V5
+========================================================= */
+
+/* Initial state: the choice is the experience. */
+body.home-page[data-creator-started="false"] .wheel-dashboard {
+    display:none !important;
+}
+
+body.home-page[data-creator-started="false"] .creator-mode-selector {
+    margin-top:18px !important;
+    margin-bottom:60px !important;
+}
+
+body.home-page[data-creator-started="false"] #creatorModeHeading {
+    font-size:34px !important;
+}
+
+.creator-mode-selector {
+    max-width:980px !important;
+}
+
+.creator-mode-button {
+    min-height:118px !important;
+    align-items:center !important;
+    text-align:center !important;
+}
+
+.creator-mode-title {
+    font-size:20px !important;
+}
+
+.creator-mode-copy {
+    font-size:10px !important;
+}
+
+/* Smooth dashboard reveal. */
+.wheel-dashboard {
+    transform-origin:50% 0%;
+    transition:opacity .22s ease, transform .28s ease;
+}
+
+.creator-dashboard-transitioning {
+    opacity:0 !important;
+    transform:translateY(8px) scale(.99) !important;
+}
+
+.creator-dashboard-entering {
+    opacity:0 !important;
+    transform:translateY(10px) scale(.99) !important;
+}
+
+.creator-dashboard-entering.creator-dashboard-entering-active {
+    opacity:1 !important;
+    transform:none !important;
+}
+
+/* Manual progressive panel takes the old creator footprint but removes visual noise. */
+.progressive-creator-panel {
+    grid-column:1 / 3 !important;
+    grid-row:1 !important;
+    height:auto !important;
+    min-height:420px !important;
+    max-height:none !important;
+    overflow:visible !important;
+    padding:18px !important;
+    border:1px solid #493a2b !important;
+    background:linear-gradient(180deg,#12100e,#0c0b0a) !important;
+}
+
+.progressive-step-shell {
+    width:min(920px,100%);
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.creator-progress-step,
+.wheel-name-gate-card {
+    display:grid;
+    grid-template-columns:38px minmax(0,1fr);
+    gap:12px;
+    padding:14px;
+    border:1px solid #332b22;
+    background:#0e0c0a;
+    opacity:0;
+    transform:translateY(8px);
+    transition:opacity .25s ease, transform .3s ease, border-color .2s ease;
+}
+
+.creator-progress-step.is-visible,
+.wheel-name-gate-card {
+    opacity:1;
+    transform:none;
+}
+
+.creator-progress-step[hidden] {
+    display:none !important;
+}
+
+.progress-step-number {
+    width:30px;
+    height:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #70552f;
+    border-radius:50%;
+    color:#d7a94b;
+    font-family:Georgia,serif;
+    font-weight:bold;
+}
+
+.progress-step-content {
+    min-width:0;
+}
+
+.progress-step-title {
+    margin:4px 0 12px;
+    color:#d7a94b;
+    font-family:Georgia,serif;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.progressive-name-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+}
+
+.progressive-name-grid input {
+    width:100%;
+    box-sizing:border-box;
+    padding:10px 11px;
+    background:#070605;
+    border:1px solid #4b3a27;
+    color:#eee5d8;
+}
+
+.progress-continue-button {
+    margin-top:11px;
+    padding:10px 16px;
+    border:1px solid #9b7438;
+    background:#21180d;
+    color:#e7ba58;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.progress-continue-button:hover {
+    border-color:#d0a64f;
+    background:#2b1f0e;
+}
+
+/* Class choices stay compact. */
+.progressive-creator-panel .manual-class-grid {
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:7px !important;
+}
+
+.progressive-creator-panel .manual-class-button {
+    min-height:58px !important;
+}
+
+/* Body before role, no redundant BLUE/PINK words. */
+.progressive-creator-panel .manual-body-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    max-width:520px;
+}
+
+.progressive-creator-panel .manual-role-grid {
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    max-width:700px;
+}
+
+.progressive-creator-panel .manual-body-button,
+.progressive-creator-panel .manual-role-button {
+    min-height:72px !important;
+    height:72px !important;
+}
+
+.progressive-creator-panel .manual-body-button span,
+.progressive-creator-panel .manual-role-button small {
+    display:none !important;
+}
+
+.manual-creator-status {
+    margin:0 0 10px !important;
+    min-height:0 !important;
+    padding:8px 10px !important;
+}
+
+/* Wheel name gate uses the same left+centre footprint as the wheel itself. */
+.wheel-name-gate {
+    grid-column:1 / 3 !important;
+    grid-row:1 !important;
+    height:620px !important;
+    padding:0 !important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #493a2b;
+    background:linear-gradient(180deg,#12100e,#0c0b0a);
+    box-sizing:border-box;
+}
+
+.wheel-name-gate[hidden] {
+    display:none !important;
+}
+
+.wheel-name-gate-card {
+    width:min(620px,calc(100% - 44px));
+    box-sizing:border-box;
+}
+
+.wheel-name-gate.step-completing {
+    opacity:0;
+    transform:rotateY(18deg) scale(.98);
+    transition:opacity .2s ease, transform .22s ease;
+}
+
+/* Recent applications stays on the right once the flow begins. */
+.home-page .wheel-dashboard > .roll-history {
+    grid-column:3 !important;
+    grid-row:1 !important;
+}
+
+/* Reduce bad-luck explanatory noise. */
+.bad-luck-description {
+    margin:6px 0 12px !important;
+    font-size:8px !important;
+    line-height:1.35 !important;
+}
+
+/* The official roster is now the final homepage content before the footer. */
+.home-roster-section {
+    margin-bottom:34px !important;
+}
+
+footer {
+    margin-top:24px !important;
+}
+
+/* No stale selector active state before a user chooses. */
+body[data-creator-mode="none"] .creator-mode-button {
+    border-color:#42362b !important;
+    background:linear-gradient(180deg,#171411,#0f0d0b) !important;
+    box-shadow:none !important;
+}
+
+@media(max-width:800px) {
+    .progressive-name-grid {
+        grid-template-columns:1fr !important;
+    }
+
+    .progressive-creator-panel .manual-class-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    }
+
+    .wheel-name-gate {
+        grid-column:1 !important;
+        height:auto !important;
+        min-height:360px !important;
+        padding:24px 0 !important;
+    }
+}

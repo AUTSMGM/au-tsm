@@ -17,10 +17,11 @@
 <link rel="stylesheet" href="home-layout-v4.css">
 
 <link rel="stylesheet" href="shared-header.css">
+<link rel="stylesheet" href="progressive-creator.css">
 </head>
 
 
-<body class="home-page" data-creator-mode="manual">
+<body class="home-page" data-creator-mode="none" data-creator-started="false">
 
 
 <!-- =========================================================
@@ -183,23 +184,14 @@ Choose exactly what you want, or place your future in the hands of the AU TSM de
 <div class="wheel-dashboard">
 
 <!-- MANUAL CHARACTER CREATOR - DEFAULT MODE -->
-<section id="manualCreationMode" class="manual-creator-panel">
-    <div class="manual-creator-heading">
-        <div>
-            <span class="manual-heading-kicker">DEFAULT CREATION MODE</span>
-            <strong>CREATE YOUR FOREVER CHARACTER</strong>
-        </div>
-        <span>Pick exactly what you want. Any bad decisions are now entirely your own.</span>
-    </div>
+<section id="manualCreationMode" class="manual-creator-panel progressive-creator-panel" hidden>
+    <div class="progressive-step-shell">
 
-    <div class="manual-creator-layout">
-
-        <div class="manual-identity-card">
-            <div class="manual-card-title">CHARACTER IDENTITY</div>
-
-            <div class="manual-name-block">
-                <div class="character-entry-title">FOREVER CHARACTER NAME</div>
-                <div class="character-name-grid">
+        <section id="manualNameStep" class="creator-progress-step is-visible">
+            <div class="progress-step-number">1</div>
+            <div class="progress-step-content">
+                <div class="progress-step-title">Name your character</div>
+                <div class="character-name-grid progressive-name-grid">
                     <div class="character-name-field">
                         <label for="manualFirstName">FIRST NAME</label>
                         <input id="manualFirstName" type="text" maxlength="18" placeholder="e.g. Phinky" autocomplete="off">
@@ -209,68 +201,70 @@ Choose exactly what you want, or place your future in the hands of the AU TSM de
                         <input id="manualLastName" type="text" maxlength="18" placeholder="e.g. Do" autocomplete="off">
                     </div>
                 </div>
+                <button id="manualConfirmName" class="progress-continue-button" type="button">CONTINUE</button>
             </div>
+        </section>
 
-            <div class="manual-identity-note">
-                This character will be registered as <strong>Trial</strong> and can then take the Raid Ready Test.
+        <section id="manualClassStep" class="creator-progress-step" hidden>
+            <div class="progress-step-number">2</div>
+            <div class="progress-step-content">
+                <div class="progress-step-title">Choose a class</div>
+                <div id="manualClassGrid" class="manual-class-grid"></div>
             </div>
+        </section>
 
-            <div id="manualCreatorStatus" class="manual-creator-status">Choose a class to begin.</div>
+        <section id="manualBodyStep" class="creator-progress-step" hidden>
+            <div class="progress-step-number">3</div>
+            <div class="progress-step-content">
+                <div class="progress-step-title">Choose a body type</div>
+                <div id="manualBodyGrid" class="manual-body-grid"></div>
+            </div>
+        </section>
 
-            <button id="manualCreateButton" class="manual-create-button" type="button" disabled>
-                CREATE TRIAL CHARACTER
-            </button>
-        </div>
+        <section id="manualRoleStep" class="creator-progress-step" hidden>
+            <div class="progress-step-number">4</div>
+            <div class="progress-step-content">
+                <div class="progress-step-title">Choose a role</div>
+                <div id="manualRoleGrid" class="manual-role-grid"></div>
+            </div>
+        </section>
 
-        <div class="manual-options-card">
-            <div class="manual-card-title">CHARACTER OPTIONS</div>
+        <section id="manualFinishStep" class="creator-progress-step" hidden>
+            <div class="progress-step-number">✓</div>
+            <div class="progress-step-content">
+                <div class="progress-step-title">Ready to register</div>
+                <div id="manualCreatorStatus" class="manual-creator-status"></div>
+                <button id="manualCreateButton" class="manual-create-button" type="button" disabled>
+                    CREATE TRIAL CHARACTER
+                </button>
+            </div>
+        </section>
 
-            <div class="manual-field-label">1. CHOOSE CLASS</div>
-            <div id="manualClassGrid" class="manual-class-grid"></div>
+    </div>
+</section>
 
-            <div class="manual-choice-row">
-                <div class="manual-choice-group">
-                    <div class="manual-field-label">2. CHOOSE ROLE</div>
-                    <div id="manualRoleGrid" class="manual-role-grid"></div>
+<section id="wheelNameGate" class="wheel-name-gate" hidden>
+    <div class="wheel-name-gate-card">
+        <div class="progress-step-number">1</div>
+        <div class="progress-step-content">
+            <div class="progress-step-title">Name your character</div>
+            <div class="character-name-grid progressive-name-grid">
+                <div class="character-name-field">
+                    <label for="firstName">FIRST NAME</label>
+                    <input id="firstName" type="text" maxlength="18" placeholder="e.g. Phinky" autocomplete="off">
                 </div>
-
-                <div class="manual-choice-group">
-                    <div class="manual-field-label">3. CHOOSE BODY TYPE</div>
-                    <div id="manualBodyGrid" class="manual-body-grid"></div>
+                <div class="character-name-field">
+                    <label for="lastName">LAST NAME</label>
+                    <input id="lastName" type="text" maxlength="18" placeholder="e.g. Stormcaller" autocomplete="off">
                 </div>
             </div>
+            <button id="wheelConfirmName" class="progress-continue-button" type="button">CONTINUE TO THE WHEEL</button>
         </div>
-
     </div>
 </section>
 
 <!-- LEFT: BAD LUCK PROTECTION -->
 <aside id="wheelBadLuckPanel" class="bad-luck-panel wheel-side-panel creator-wheel-only" hidden>
-
-<div class="wheel-name-card">
-<div class="character-entry">
-
-<div class="character-entry-title">
-FOREVER CHARACTER NAME
-</div>
-
-<div class="character-name-grid">
-<div class="character-name-field">
-<label for="firstName">FIRST NAME</label>
-<input id="firstName" type="text" maxlength="18" placeholder="e.g. Phinky" autocomplete="off">
-</div>
-<div class="character-name-field">
-<label for="lastName">LAST NAME</label>
-<input id="lastName" type="text" maxlength="18" placeholder="e.g. Stormcaller" autocomplete="off">
-</div>
-</div>
-
-<div class="character-note">
-Your full Forever name and winning roll will be added to the shared AU TSM roll history.
-</div>
-
-</div>
-</div>
 
 <div class="bad-luck-header">
 
@@ -285,9 +279,7 @@ TOKENS REMAINING:
 
 </div>
 
-<div class="bad-luck-description">
-Class and body-type exclusions cost one token each. Tank and Healer role exclusions cost one token each; blocking DPS costs all three tokens. Every choice uses the same three-token budget. Click an excluded option again before spinning to refund its cost.
-</div>
+<div class="bad-luck-description">Spend up to three tokens to block outcomes before you spin.</div>
 
 <div class="protection-subtitle">
 DISABLE CLASSES
@@ -638,489 +630,6 @@ Failure may result in automatic classification as Roks
 <div id="rosterContent"></div>
 </section>
 
-<!-- =========================================================
-     GUILD STATISTICS
-========================================================= -->
-
-<section id="stats">
-
-<div class="section-title">
-
-<h3>
-Guild Statistics
-</h3>
-
-<p>
-Now partially powered by actual questionable decisions
-</p>
-
-</div>
-
-
-<div class="stats">
-
-<div class="stat">
-
-<span
-class="stat-number"
-id="recentRollCount"
->
-0
-</span>
-
-<span class="stat-label">
-Recorded Rolls
-</span>
-
-<span class="stat-subtext">
-Up to the latest 30
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<span
-class="stat-number"
-id="mostRolledClass"
->
-—
-</span>
-
-<span class="stat-label">
-Most Rolled Class
-</span>
-
-<span class="stat-subtext">
-Meta slavery detector
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<span class="stat-number">
-1
-</span>
-
-<span class="stat-label">
-Best Gamer
-</span>
-
-<span class="stat-subtext">
-Chris insists this metric is objective
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<span class="stat-number">
-∞
-</span>
-
-<span class="stat-label">
-Roks Incidents
-</span>
-
-<span class="stat-subtext">
-Counter exceeded technical limit
-</span>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-     CLASS DISTRIBUTION
-========================================================= -->
-
-<section id="classes">
-
-<div class="section-title">
-
-<h3>
-Class Distribution
-</h3>
-
-<p>
-Calculated live from the most recent 30 class-wheel results
-</p>
-
-</div>
-
-
-<div class="classes">
-
-<div class="class-card">
-<span>Warrior</span>
-<span id="countWarrior" class="class-count warrior">0</span>
-</div>
-
-<div class="class-card">
-<span>Paladin</span>
-<span id="countPaladin" class="class-count paladin">0</span>
-</div>
-
-<div class="class-card">
-<span>Hunter</span>
-<span id="countHunter" class="class-count hunter">0</span>
-</div>
-
-<div class="class-card">
-<span>Rogue</span>
-<span id="countRogue" class="class-count rogue">0</span>
-</div>
-
-<div class="class-card">
-<span>Priest</span>
-<span id="countPriest" class="class-count priest">0</span>
-</div>
-
-<div class="class-card">
-<span>Shaman</span>
-<span id="countShaman" class="class-count shaman">0</span>
-</div>
-
-<div class="class-card">
-<span>Mage</span>
-<span id="countMage" class="class-count mage">0</span>
-</div>
-
-<div class="class-card">
-<span>Warlock</span>
-<span id="countWarlock" class="class-count warlock">0</span>
-</div>
-
-<div class="class-card">
-<span>Druid</span>
-<span id="countDruid" class="class-count druid">0</span>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-     LIVE OPERATIONS
-========================================================= -->
-
-<section>
-
-<div class="section-title">
-<h3>Live Guild Operations</h3>
-<p>Real-time monitoring of a completely normal group of adults</p>
-</div>
-
-<div class="live-grid">
-
-<div class="live-card">
-<div class="live-label">Latest Incident</div>
-<div class="live-value" id="latestDeath">Roks stood in fire.</div>
-<div class="live-note">Root cause analysis currently underway.</div>
-</div>
-
-<div class="live-card">
-<div class="live-label">Current Blame Target</div>
-<div class="live-value" id="blameTarget">Roks</div>
-<div class="live-note">Selected using evidence-based governance.</div>
-</div>
-
-<div class="live-card">
-<div class="live-label">Leadership Status</div>
-<div class="live-value" id="leadershipStatus">
-Phinky pretending everything is under control.
-</div>
-<div class="live-note">Guild Master authority remains mostly ceremonial.</div>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-     PERFORMANCE
-========================================================= -->
-
-<section>
-
-<div class="section-title">
-<h3>Performance &amp; Compliance</h3>
-<p>Because apparently playing the game wasn't complicated enough</p>
-</div>
-
-<div class="metrics">
-
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Chris Gaming Ability</span>
-<span class="metric-value">100%</span>
-</div>
-<div class="bar"><div class="fill" style="width:100%"></div></div>
-<div class="metric-note">Self-reported. Peer review unavailable.</div>
-</div>
-
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Roks Mechanic Awareness</span>
-<span class="metric-value">18%</span>
-</div>
-<div class="bar"><div class="fill" style="width:18%"></div></div>
-<div class="metric-note">Corrective action remains ineffective.</div>
-</div>
-
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Luffa Sobriety</span>
-<span class="metric-value">7%</span>
-</div>
-<div class="bar"><div class="fill" style="width:7%"></div></div>
-<div class="metric-note">Strong inverse correlation with time of evening.</div>
-</div>
-
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Aimless Directional Accuracy</span>
-<span class="metric-value">31%</span>
-</div>
-<div class="bar"><div class="fill" style="width:31%"></div></div>
-<div class="metric-note">Name appears statistically relevant.</div>
-</div>
-
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Phinky Leadership Confidence</span>
-<span class="metric-value">94%</span>
-</div>
-<div class="bar"><div class="fill" style="width:94%"></div></div>
-<div class="metric-note">Has somehow turned WoW into middle management.</div>
-</div>
-
-<div class="metric">
-<div class="metric-top">
-<span class="metric-name">Fayne Bladestorm Uptime</span>
-<span class="metric-value">100%</span>
-</div>
-<div class="bar"><div class="fill" style="width:100%"></div></div>
-<div class="metric-note">Mechanic participation measured separately.</div>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-     OPERATIONS
-========================================================= -->
-
-<section>
-
-<div class="section-title">
-<h3>Guild Operations Centre</h3>
-<p>Monitoring AU TSM's ongoing descent into operational excellence</p>
-</div>
-
-<div class="feed">
-
-<div class="feed-item">
-<span class="feed-time">NOW</span>
-Roks has been reminded that fire is not a temporary buff.
-</div>
-
-<div class="feed-item">
-<span class="feed-time">2m</span>
-Fayne has been assigned an important mechanic. Bladestorm availability is being investigated.
-</div>
-
-<div class="feed-item">
-<span class="feed-time">4m</span>
-Chris has completed another internal review confirming Chris is the best gamer.
-</div>
-
-<div class="feed-item">
-<span class="feed-time">6m</span>
-Luffa has entered the operationally impaired phase of the evening.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-     READINESS
-========================================================= -->
-
-<section>
-
-<div class="section-title">
-<h3>Personnel Readiness Matrix</h3>
-<p>Because a normal ready check wasn't sufficiently bureaucratic</p>
-</div>
-
-<div class="raid-box">
-
-<div class="raid-row"><span>Tanks</span><span class="good">Ready</span></div>
-<div class="raid-row"><span>Healers</span><span class="warning">Penny asked why Chris needs three healers</span></div>
-<div class="raid-row"><span>DPS</span><span class="good">Far too many</span></div>
-
-<div class="raid-row">
-<span>Fayne</span>
-<span class="good" id="fayneStatus">Ready — Bladestorm available</span>
-</div>
-
-<div class="raid-row"><span>Stiff</span><span class="warning">AFK status unclear</span></div>
-<div class="raid-row"><span>KP</span><span class="good">Claims to be ready</span></div>
-<div class="raid-row"><span>Jaydo</span><span class="warning">Has started a completely unrelated conversation</span></div>
-<div class="raid-row"><span>Sev</span><span class="good">Quietly carrying without acknowledgement</span></div>
-<div class="raid-row"><span>Rulzy</span><span class="warning">Currently disputing a loot interpretation</span></div>
-<div class="raid-row"><span>Marsmallow</span><span class="good">Present and somehow not involved in the drama</span></div>
-<div class="raid-row"><span>Zomgs</span><span class="warning">Connection status classified</span></div>
-<div class="raid-row"><span>Roks</span><span class="warning">Already dead</span></div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-     TOOLS
-========================================================= -->
-
-<section id="tools">
-
-<div class="section-title">
-<h3>Guild Tools</h3>
-<p>Enterprise-grade solutions to problems we created ourselves</p>
-</div>
-
-<div class="tools">
-
-<div class="tool">
-
-<h4>
-Raid Eligibility Scanner
-</h4>
-
-<p>
-Determine whether your character meets AU TSM's rigorous standards.
-</p>
-
-<button id="eligibilityButton">
-Analyse Character
-</button>
-
-<div class="result" id="eligibilityResult"></div>
-
-</div>
-
-
-<div class="tool">
-
-<h4>
-Oceanic Latency Diagnostic
-</h4>
-
-<p>
-Determine whether poor performance can legally be blamed on Australian internet.
-</p>
-
-<button id="latencyButton">
-Test Connection
-</button>
-
-<div class="result" id="latencyResult"></div>
-
-</div>
-
-
-<div class="tool">
-
-<h4>
-Loot Council Priority
-</h4>
-
-<p>
-Calculate your theoretical chance of seeing an epic before Phinky.
-</p>
-
-<button id="lootButton">
-Calculate Priority
-</button>
-
-<div class="result" id="lootResult"></div>
-
-</div>
-
-
-<div class="tool">
-
-<h4>
-Parse Improvement Engine
-</h4>
-
-<p>
-Personalised advice developed using decades of questionable expertise.
-</p>
-
-<button id="parseButton">
-Improve My Parse
-</button>
-
-<div class="result" id="parseResult"></div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-     ANNOUNCEMENTS
-========================================================= -->
-
-<section>
-
-<div class="section-title">
-<h3>Officer Announcements</h3>
-<p>Please read before asking the exact question answered below</p>
-</div>
-
-<div class="announcement">
-<strong>Guild Leadership:</strong>
-Phinky would like to remind everyone that Guild Master decisions are final unless Chris disagrees confidently enough.
-</div>
-
-<div class="announcement">
-<strong>Luffa:</strong>
-Raid leadership recommends completing all technically difficult mechanics before Luffa reaches beverage number four.
-</div>
-
-<div class="announcement">
-<strong>Roks:</strong>
-Roks is no longer permitted to say "trust me" immediately before a pull.
-</div>
-
-<div class="announcement">
-<strong>Fayne:</strong>
-Mechanics occurring during Bladestorm are apparently outside Fayne's jurisdiction.
-</div>
-
-</section>
-
-
-</main>
-
 
 <footer>
 
@@ -1404,7 +913,6 @@ PHASE 1 • 5/5 HP
 <script src="js/progression.js"></script>
 <script src="js/creator.js"></script>
 <script src="js/wheel.js"></script>
-<script src="js/jokes.js"></script>
 <script src="js/raid.js"></script>
 <script src="js/app.js"></script>
 <script src="js/roster.js"></script>

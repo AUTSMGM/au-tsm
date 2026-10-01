@@ -185,132 +185,37 @@ function renderRollHistory() {
 
 function updateClassDistribution() {
 
-    const counts =
-    {
-
-        Warrior:
-            0,
-
-        Paladin:
-            0,
-
-        Hunter:
-            0,
-
-        Rogue:
-            0,
-
-        Priest:
-            0,
-
-        Shaman:
-            0,
-
-        Mage:
-            0,
-
-        Warlock:
-            0,
-
-        Druid:
-            0
-
+    const counts = {
+        Warrior:0, Paladin:0, Hunter:0, Rogue:0, Priest:0,
+        Shaman:0, Mage:0, Warlock:0, Druid:0
     };
 
-
-    recentRolls.forEach(
-        function(roll) {
-
-            if (
-                counts[
-                    roll.class_name
-                ]
-                !==
-                undefined
-            ) {
-
-                counts[
-                    roll.class_name
-                ]++;
-
-            }
-
+    recentRolls.forEach(function(roll) {
+        if (counts[roll.class_name] !== undefined) {
+            counts[roll.class_name]++;
         }
-    );
+    });
 
+    Object.keys(counts).forEach(function(className) {
+        const target = document.getElementById("count" + className);
+        if (target) target.textContent = counts[className];
+    });
 
-    Object.keys(
-        counts
-    )
-    .forEach(
-        function(className) {
+    const recentCount = document.getElementById("recentRollCount");
+    if (recentCount) recentCount.textContent = recentRolls.length;
 
-            document
-            .getElementById(
-                "count" +
-                className
-            )
-            .textContent =
-                counts[
-                    className
-                ];
+    let leader = "—";
+    let leaderCount = 0;
 
+    Object.entries(counts).forEach(function([className,count]) {
+        if (count > leaderCount) {
+            leader = className;
+            leaderCount = count;
         }
-    );
+    });
 
-
-    document
-    .getElementById(
-        "recentRollCount"
-    )
-    .textContent =
-        recentRolls.length;
-
-
-    let leader =
-        "—";
-
-
-    let leaderCount =
-        0;
-
-
-    Object.entries(
-        counts
-    )
-    .forEach(
-        function(
-            [
-                className,
-                count
-            ]
-        ) {
-
-            if (
-                count >
-                leaderCount
-            ) {
-
-                leader =
-                    className;
-
-
-                leaderCount =
-                    count;
-
-            }
-
-        }
-    );
-
-
-    document
-    .getElementById(
-        "mostRolledClass"
-    )
-    .textContent =
-        leader;
-
+    const leaderTarget = document.getElementById("mostRolledClass");
+    if (leaderTarget) leaderTarget.textContent = leader;
 }
 
 
