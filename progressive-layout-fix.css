@@ -1,0 +1,120 @@
+
+/* =========================================================
+   AU TSM PROGRESSIVE CREATOR V5.1
+   Auto-height fix for progressively revealed manual steps.
+========================================================= */
+
+/*
+The previous desktop layout still reserved a hard 620px first grid row.
+As Body Type and Role were revealed, the creator grew visually but the next
+grid row stayed at 620px, so Character Progression and the roster overlapped it.
+
+Manual mode now owns an AUTO-SIZED first row. Wheel mode keeps its fixed 620px
+machine footprint.
+*/
+
+body.home-page[data-creator-mode="manual"] .wheel-dashboard {
+    grid-template-rows:auto auto !important;
+    align-items:stretch !important;
+}
+
+/* Higher specificity than the older .home-page .manual-creator-panel rule. */
+body.home-page[data-creator-mode="manual"] .manual-creator-panel.progressive-creator-panel {
+    grid-column:1 / 3 !important;
+    grid-row:1 !important;
+    height:auto !important;
+    min-height:420px !important;
+    max-height:none !important;
+    overflow:visible !important;
+    align-self:start !important;
+}
+
+/* Let the progressive content establish the panel's actual height. */
+body.home-page[data-creator-mode="manual"] .progressive-step-shell {
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+}
+
+/*
+Recent Character Applications stays beside the creator and stretches with the
+manual workflow. Its own list remains scrollable instead of making the page
+unnecessarily tall.
+*/
+body.home-page[data-creator-mode="manual"] .wheel-dashboard > .roll-history {
+    grid-column:3 !important;
+    grid-row:1 !important;
+    height:auto !important;
+    min-height:620px !important;
+    max-height:none !important;
+    align-self:stretch !important;
+    overflow:hidden !important;
+}
+
+body.home-page[data-creator-mode="manual"] .roll-history #rollHistory {
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    overflow-y:auto !important;
+}
+
+/* Progression always begins after the complete manual creator row. */
+body.home-page[data-creator-mode="manual"] .progression-rail {
+    grid-column:1 / 4 !important;
+    grid-row:2 !important;
+    position:relative !important;
+    z-index:1 !important;
+    margin-top:0 !important;
+}
+
+/* Wheel mode deliberately retains the compact fixed machine row. */
+body.home-page[data-creator-mode="wheel"] .wheel-dashboard {
+    grid-template-rows:620px auto !important;
+}
+
+body.home-page[data-creator-mode="wheel"] .wheel-dashboard > .roll-history {
+    height:620px !important;
+    min-height:620px !important;
+    max-height:620px !important;
+}
+
+/* Smooth visual growth as each new manual step appears. */
+body.home-page[data-creator-mode="manual"] .progressive-creator-panel {
+    transition:min-height .25s ease, padding .25s ease !important;
+}
+
+.creator-progress-step {
+    transform-origin:top center;
+}
+
+/* Make sure the roster cannot float upward into the creator/progression area. */
+.home-page .home-roster-section {
+    position:relative !important;
+    clear:both !important;
+    margin-top:42px !important;
+}
+
+@media (max-width:1120px) {
+    body.home-page[data-creator-mode="manual"] .wheel-dashboard {
+        grid-template-rows:auto auto auto !important;
+    }
+
+    body.home-page[data-creator-mode="manual"] .wheel-dashboard > .roll-history {
+        min-height:460px !important;
+        height:460px !important;
+        max-height:460px !important;
+    }
+}
+
+@media (max-width:800px) {
+    body.home-page[data-creator-mode="manual"] .wheel-dashboard,
+    body.home-page[data-creator-mode="wheel"] .wheel-dashboard {
+        grid-template-rows:auto !important;
+    }
+
+    body.home-page[data-creator-mode="manual"] .wheel-dashboard > .roll-history,
+    body.home-page[data-creator-mode="wheel"] .wheel-dashboard > .roll-history {
+        height:420px !important;
+        min-height:420px !important;
+        max-height:420px !important;
+    }
+}
