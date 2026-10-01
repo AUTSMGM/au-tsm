@@ -228,6 +228,68 @@ spawnRaidAction = function(type) {
 /* Also keep mouse/touch usable. S is the primary keyboard shortcut. */
 raidActionButton.title = "Press S";
 
+
+
+/* ---------------------------------------------------------
+   PROJECTILES FOLLOW THE PLAYER
+--------------------------------------------------------- */
+/*
+The original attack visual used a fixed x=135px and a calculated jump height.
+Now the launch point is measured directly from the player's live DOM position,
+so A/D movement and jumping are reflected on every shot.
+*/
+castClassAttackVisual = function(crit) {
+    if (!gameRunning || !raidCharacter || !raidProfile) return;
+
+    const bolt = document.createElement("div");
+
+    bolt.className =
+        raidCharacter.class_name === "Shaman"
+            ? "lightning-bolt"
+            : "class-projectile";
+
+    bolt.textContent =
+        raidCharacter.class_name === "Shaman"
+            ? ""
+            : raidProfile.symbol;
+
+    bolt.style.color = raidProfile.colour;
+    bolt.title = raidProfile.name;
+
+    if (crit) {
+        bolt.classList.add("crit-bolt");
+    }
+
+    const areaRect = gameArea.getBoundingClientRect();
+    const playerRect = player.getBoundingClientRect();
+
+    /* Launch from the character's forward hand / weapon area. */
+    const startX =
+        playerRect.right -
+        areaRect.left -
+        Math.max(3, playerRect.width * 0.08);
+
+    const launchYFromTop =
+        playerRect.top -
+        areaRect.top +
+        playerRect.height * 0.43;
+
+    const startBottom =
+        areaRect.height -
+        launchYFromTop;
+
+    bolt.style.left = startX + "px";
+    bolt.style.bottom = startBottom + "px";
+
+    gameArea.appendChild(bolt);
+
+    bolts.push({
+        element: bolt,
+        x: startX,
+        speed: crit ? 800 : 680
+    });
+};
+
 /* ---------------------------------------------------------
    CLEAN UP KEY STATE WHEN RAID CLOSES / STOPS
 --------------------------------------------------------- */

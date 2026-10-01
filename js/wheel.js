@@ -746,18 +746,44 @@ function spinBodySlot(
 ) {
 
     const matchingIndexes =
-        winnerId ===
-        1
-        ?
-        [6,8,10]
-        :
-        [7,9,11];
+        winnerId === 1
+        ? [6,8,10]
+        : [7,9,11];
 
 
     const targetIndex =
         randomItem(
             matchingIndexes
         );
+
+
+    const targetItem =
+        bodySlotTrack.children[
+            targetIndex
+        ];
+
+
+    if (
+        !targetItem
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+    IMPORTANT:
+    The wheel controls are visually scaled by CSS. getBoundingClientRect()
+    returns that scaled height, while translateY() works in the element's
+    unscaled layout coordinate system. That mismatch caused the slot to stop
+    halfway between Body Type 1 and Body Type 2.
+
+    offsetTop is an unscaled layout value, so the chosen item now aligns
+    exactly with the slot window.
+    */
+    const finalOffset =
+        targetItem.offsetTop;
 
 
     bodySlotTrack.style.transition =
@@ -778,12 +804,32 @@ function spinBodySlot(
     bodySlotTrack.style.transform =
         "translateY(-"
         +
-        (
-            targetIndex *
-            bodySlotTrack.firstElementChild.getBoundingClientRect().height
-        )
+        finalOffset
         +
         "px)";
+
+
+    /*
+    Snap to the exact final pixel once the animation has finished. This avoids
+    fractional transform rounding leaving a sliver of the neighbouring colour.
+    */
+    window.setTimeout(
+        function() {
+
+            bodySlotTrack.style.transition =
+                "none";
+
+
+            bodySlotTrack.style.transform =
+                "translateY(-"
+                +
+                targetItem.offsetTop
+                +
+                "px)";
+
+        },
+        5850
+    );
 
 }
 
