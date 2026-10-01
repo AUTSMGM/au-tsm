@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="progressive-layout-fix.css">
 <link rel="stylesheet" href="creator-flow-v5-2.css">
 <link rel="stylesheet" href="raid-v3.css">
+<link rel="stylesheet" href="lich-helper.css">
 </head>
 
 
@@ -905,6 +906,29 @@ PHASE 1
 
 <div id="toast"></div>
 
+<!-- =========================================================
+     TOTALLY USELESS LICH KING HELPER
+========================================================= -->
+<div id="lichHelper" aria-live="polite">
+    <div id="lichHelperBubble" class="lich-helper-bubble">
+        <div class="lich-helper-title">The Lich King, Site Helper</div>
+        <div id="lichHelperText">Mortal... is there anything I can help you with?</div>
+        <div class="lich-helper-actions">
+            <button id="lichHelperAsk" type="button">ASK FOR HELP</button>
+            <button id="lichHelperClose" type="button" aria-label="Dismiss helper">×</button>
+        </div>
+    </div>
+    <img
+        id="lichHelperModel"
+        class="lich-helper-model"
+        src="https://www.pngkey.com/png/detail/164-1640273_arthas-lich-king-wow-lich-king-model.png"
+        alt="The Lich King site helper"
+        draggable="false"
+    >
+    <div class="lich-helper-nameplate">THE LICH KING • HELPER</div>
+</div>
+
+
 
 <script src="js/config.js"></script>
 <script src="js/helpers.js"></script>
@@ -917,6 +941,7 @@ PHASE 1
 <script src="js/app.js"></script>
 <script src="js/raid-v3.js"></script>
 <script src="js/roster.js"></script>
+<script src="js/lich-helper.js"></script>
 
 
 </body>

@@ -1,0 +1,201 @@
+/* =========================================================
+   AU TSM - TOTALLY USELESS LICH KING HELPER
+========================================================= */
+
+#lichHelper {
+    position:fixed;
+    right:18px;
+    bottom:0;
+    z-index:1400;
+    width:340px;
+    height:430px;
+    pointer-events:none;
+    transform:translateY(115%);
+    opacity:0;
+    transition:transform .72s cubic-bezier(.18,.9,.24,1.04),opacity .35s ease;
+}
+
+#lichHelper.is-visible {
+    transform:translateY(0);
+    opacity:1;
+}
+
+#lichHelper.is-dismissed {
+    transform:translateY(115%);
+    opacity:0;
+}
+
+.lich-helper-model {
+    position:absolute;
+    right:0;
+    bottom:-5px;
+    width:270px;
+    height:390px;
+    object-fit:contain;
+    object-position:right bottom;
+    filter:drop-shadow(0 12px 14px rgba(0,0,0,.9)) drop-shadow(0 0 18px rgba(63,180,255,.23));
+    pointer-events:auto;
+    cursor:pointer;
+    user-select:none;
+    -webkit-user-drag:none;
+    transform-origin:bottom center;
+    transition:filter .15s ease, transform .15s ease;
+}
+
+.lich-helper-model:hover {
+    transform:scale(1.025);
+    filter:drop-shadow(0 14px 16px rgba(0,0,0,.95)) drop-shadow(0 0 25px rgba(78,195,255,.36));
+}
+
+.lich-helper-bubble {
+    position:absolute;
+    left:0;
+    top:30px;
+    width:215px;
+    padding:13px 14px 12px;
+    border:1px solid #6f5638;
+    border-radius:7px;
+    background:linear-gradient(180deg,rgba(22,19,16,.98),rgba(9,8,7,.98));
+    box-shadow:0 10px 28px rgba(0,0,0,.72),inset 0 0 0 1px rgba(255,255,255,.025);
+    color:#d8d0c4;
+    font-size:11px;
+    line-height:1.45;
+    pointer-events:auto;
+    opacity:0;
+    transform:translateY(8px) scale(.98);
+    transition:opacity .18s ease,transform .2s ease;
+}
+
+.lich-helper-bubble.is-speaking {
+    opacity:1;
+    transform:none;
+}
+
+.lich-helper-bubble::after {
+    content:"";
+    position:absolute;
+    right:-14px;
+    bottom:24px;
+    border-width:9px 0 9px 14px;
+    border-style:solid;
+    border-color:transparent transparent transparent #6f5638;
+}
+
+.lich-helper-title {
+    margin:0 0 6px;
+    color:#7fdcff;
+    font-family:Georgia,serif;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:.4px;
+    text-shadow:0 0 8px rgba(86,202,255,.25);
+}
+
+#lichHelperText {
+    min-height:32px;
+}
+
+.lich-helper-actions {
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:9px;
+}
+
+#lichHelperAsk,
+#lichHelperClose {
+    border:1px solid #4b3c2b;
+    background:#15110e;
+    color:#b9aa95;
+    font:700 8px Arial,sans-serif;
+    letter-spacing:.8px;
+    padding:6px 8px;
+    cursor:pointer;
+}
+
+#lichHelperAsk {
+    flex:1;
+}
+
+#lichHelperAsk:hover {
+    color:#8ee5ff;
+    border-color:#4f7c8c;
+}
+
+#lichHelperClose {
+    width:29px;
+    padding-left:0;
+    padding-right:0;
+}
+
+#lichHelperClose:hover {
+    color:#e0b75e;
+    border-color:#8b6837;
+}
+
+.lich-helper-nameplate {
+    position:absolute;
+    right:46px;
+    bottom:5px;
+    padding:5px 8px;
+    border:1px solid rgba(75,116,133,.55);
+    background:rgba(5,10,12,.78);
+    color:#79d7fb;
+    font-size:8px;
+    font-weight:bold;
+    letter-spacing:1px;
+    pointer-events:none;
+    white-space:nowrap;
+    box-shadow:0 0 12px rgba(49,177,226,.12);
+}
+
+@media(max-width:900px) {
+    #lichHelper {
+        width:250px;
+        height:320px;
+        right:6px;
+    }
+
+    .lich-helper-model {
+        width:190px;
+        height:285px;
+    }
+
+    .lich-helper-bubble {
+        width:165px;
+        left:-5px;
+        top:22px;
+        font-size:9px;
+    }
+
+    .lich-helper-nameplate {
+        right:20px;
+        font-size:7px;
+    }
+}
+
+@media(max-width:600px) {
+    #lichHelper {
+        width:205px;
+        height:265px;
+    }
+
+    .lich-helper-model {
+        width:150px;
+        height:225px;
+    }
+
+    .lich-helper-bubble {
+        width:150px;
+        left:-8px;
+        top:10px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    #lichHelper,
+    .lich-helper-bubble,
+    .lich-helper-model {
+        transition:none !important;
+    }
+}
